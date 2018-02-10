@@ -1,1 +1,6 @@
 /.gradle/
+*.prefs
+*.symbolMap
+*.symbolMap
+/gwt-unitCache/
+/war/
