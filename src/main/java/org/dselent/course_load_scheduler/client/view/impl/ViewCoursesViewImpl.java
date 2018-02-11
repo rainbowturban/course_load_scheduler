@@ -13,8 +13,9 @@ import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HasWidgets;
 
 import org.dselent.course_load_scheduler.client.presenter.ViewCoursesPresenter;
+import com.google.gwt.user.client.ui.HTMLPanel;
 
-public class ViewCoursesImpl extends BaseViewImpl<ViewCoursesPresenter> {
+public class ViewCoursesViewImpl extends BaseViewImpl<ViewCoursesPresenter> {
 
 	private static viewCoursesUiBinder uiBinder = GWT.create(viewCoursesUiBinder.class);
 	@UiField Label pageTitle;
@@ -24,11 +25,12 @@ public class ViewCoursesImpl extends BaseViewImpl<ViewCoursesPresenter> {
 	@UiField Label courseTitle;
 	@UiField Grid courseGrid;
 	@UiField Button button;
+	@UiField HTMLPanel baseContainer;
 
-	interface viewCoursesUiBinder extends UiBinder<Widget, ViewCoursesImpl> {
+	interface viewCoursesUiBinder extends UiBinder<Widget, ViewCoursesViewImpl> {
 	}
 
-	public ViewCoursesImpl() {
+	public ViewCoursesViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
@@ -44,18 +46,18 @@ public class ViewCoursesImpl extends BaseViewImpl<ViewCoursesPresenter> {
 	@Override
 	public void setPresenter(ViewCoursesPresenter presenter) {
 		// TODO Auto-generated method stub
-		
+		this.presenter = presenter;
 	}
 
 	@Override
 	public Widget getWidgetContainer() {
 		// TODO Auto-generated method stub
-		return null;
+		return this;
 	}
 
 	@Override
 	public HasWidgets getViewRootPanel() {
 		// TODO Auto-generated method stub
-		return null;
+		return baseContainer;
 	}
 }

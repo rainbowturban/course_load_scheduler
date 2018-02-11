@@ -6,4 +6,10 @@ public interface ViewCoursesPresenter extends BasePresenter {
 	//function that determines how many entries for courses we will need?
 	//would it create the xml and pass it in as well?
 	
+	//returns the parent presenter
+	IndexPresenter getParentPresenter();
+	
+	//sets the parent presenter
+	void setParentPresenter(IndexPresenter parentPresenter);
+	
 }

@@ -4,7 +4,7 @@
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel styleName="viewCoursesglobal">
+	<g:HTMLPanel styleName="viewCoursesglobal" ui:field="baseContainer">
 		<g:VerticalPanel height="320px" width="487px">
 			<g:Cell horizontalAlignment="ALIGN_CENTER">
 				<g:HorizontalPanel>
