@@ -5,5 +5,10 @@
 	
 	</ui:style>
 	<g:HTMLPanel>
+		<g:VerticalPanel>
+			<g:Button text="Button 1" ui:field="button1"/>
+			<g:Button text="Button 2" ui:field="button2"/>
+			<g:Button text="Button 3" ui:field="button3"/>
+		</g:VerticalPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 
