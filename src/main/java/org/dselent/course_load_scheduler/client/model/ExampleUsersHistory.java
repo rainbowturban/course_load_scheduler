@@ -3,8 +3,7 @@ package org.dselent.course_load_scheduler.client.model;
 import java.sql.Timestamp;
 import java.time.Instant;
 
-
-public class User extends Model
+public class ExampleUsersHistory extends Model
 {
 	// attributes
 	
@@ -16,6 +15,8 @@ public class User extends Model
 	private Instant createdAt;
 	private Instant updatedAt;
 	private Boolean deleted;
+
+	//
 	
 	public Integer getId()
 	{
@@ -140,11 +141,11 @@ public class User extends Model
 		{
 			return false;
 		}
-		if (!(obj instanceof User))
+		if (!(obj instanceof ExampleUsersHistory))
 		{
 			return false;
 		}
-		User other = (User) obj;
+		ExampleUsersHistory other = (ExampleUsersHistory) obj;
 		if (createdAt == null)
 		{
 			if (other.createdAt != null)
@@ -235,7 +236,6 @@ public class User extends Model
 		}
 		return true;
 	}
-	
 
 	@Override
 	public String toString()
@@ -260,5 +260,4 @@ public class User extends Model
 		builder.append("]");
 		return builder.toString();
 	}
-	
 }
