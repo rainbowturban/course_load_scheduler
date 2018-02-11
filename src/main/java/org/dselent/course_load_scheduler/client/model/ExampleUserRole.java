@@ -3,19 +3,17 @@ package org.dselent.course_load_scheduler.client.model;
 import java.sql.Timestamp;
 import java.time.Instant;
 
-
-public class User extends Model
+public class ExampleUserRole extends Model
 {
 	// attributes
 	
 	private Integer id;
-	private Integer accountTypeId;  
-	private Integer facultyId;
-	private String encryptedPassword;
-	private String passwordSalt;
+	private String roleName;
 	private Instant createdAt;
 	private Instant updatedAt;
 	private Boolean deleted;
+
+	//
 	
 	public Integer getId()
 	{
@@ -27,44 +25,14 @@ public class User extends Model
 		this.id = id;
 	}
 
-	public Integer getAccountTypeId()
+	public String getRoleName()
 	{
-		return accountTypeId;
+		return roleName;
 	}
 
-	public void setAccountTypeId(Integer accountTypeId)
+	public void setRoleName(String roleName)
 	{
-		this.accountTypeId = accountTypeId;
-	}
-
-	public Integer getFacultyId()
-	{
-		return facultyId;
-	}
-
-	public void setFacultyId(Integer facultyId)
-	{
-		this.facultyId = facultyId;
-	}
-
-	public String getEncryptedPassword()
-	{
-		return encryptedPassword;
-	}
-
-	public void setEncryptedPassword(String encryptedPassword)
-	{
-		this.encryptedPassword = encryptedPassword;
-	}
-
-	public String getPasswordSalt()
-	{
-		return passwordSalt;
-	}
-
-	public void setPasswordSalt(String passwordSalt)
-	{
-		this.passwordSalt = passwordSalt;
+		this.roleName = roleName;
 	}
 
 	public Instant getCreatedAt()
@@ -103,11 +71,11 @@ public class User extends Model
 		}
 	}
 	
-	public Boolean getDeleted()
+	public Boolean isDeleted()
 	{
 		return deleted;
 	}
-
+	
 	public void setDeleted(Boolean deleted)
 	{
 		this.deleted = deleted;
@@ -119,12 +87,9 @@ public class User extends Model
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
-		result = prime * result + ((accountTypeId == null) ? 0 : accountTypeId.hashCode());
-		result = prime * result + ((encryptedPassword == null) ? 0 : encryptedPassword.hashCode());
-		result = prime * result + ((facultyId == null) ? 0 : facultyId.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((deleted == null) ? 0 : deleted.hashCode());
-		result = prime * result + ((passwordSalt == null) ? 0 : passwordSalt.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((roleName == null) ? 0 : roleName.hashCode());
 		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
 		return result;
 	}
@@ -140,11 +105,11 @@ public class User extends Model
 		{
 			return false;
 		}
-		if (!(obj instanceof User))
+		if (!(obj instanceof ExampleUserRole))
 		{
 			return false;
 		}
-		User other = (User) obj;
+		ExampleUserRole other = (ExampleUserRole) obj;
 		if (createdAt == null)
 		{
 			if (other.createdAt != null)
@@ -153,50 +118,6 @@ public class User extends Model
 			}
 		}
 		else if (!createdAt.equals(other.createdAt))
-		{
-			return false;
-		}
-		if (accountTypeId == null)
-		{
-			if (other.accountTypeId != null)
-			{
-				return false;
-			}
-		}
-		else if (!accountTypeId.equals(other.accountTypeId))
-		{
-			return false;
-		}
-		if (encryptedPassword == null)
-		{
-			if (other.encryptedPassword != null)
-			{
-				return false;
-			}
-		}
-		else if (!encryptedPassword.equals(other.encryptedPassword))
-		{
-			return false;
-		}
-		if (facultyId == null)
-		{
-			if (other.facultyId != null)
-			{
-				return false;
-			}
-		}
-		else if (!facultyId.equals(other.facultyId))
-		{
-			return false;
-		}
-		if (id == null)
-		{
-			if (other.id != null)
-			{
-				return false;
-			}
-		}
-		else if (!id.equals(other.id))
 		{
 			return false;
 		}
@@ -211,14 +132,25 @@ public class User extends Model
 		{
 			return false;
 		}
-		if (passwordSalt == null)
+		if (id == null)
 		{
-			if (other.passwordSalt != null)
+			if (other.id != null)
 			{
 				return false;
 			}
 		}
-		else if (!passwordSalt.equals(other.passwordSalt))
+		else if (!id.equals(other.id))
+		{
+			return false;
+		}
+		if (roleName == null)
+		{
+			if (other.roleName != null)
+			{
+				return false;
+			}
+		}
+		else if (!roleName.equals(other.roleName))
 		{
 			return false;
 		}
@@ -235,22 +167,15 @@ public class User extends Model
 		}
 		return true;
 	}
-	
 
 	@Override
 	public String toString()
 	{
 		StringBuilder builder = new StringBuilder();
-		builder.append("Users [id=");
+		builder.append("UserRoles [id=");
 		builder.append(id);
-		builder.append(", accountTypeId=");
-		builder.append(accountTypeId);
-		builder.append(", facultyId=");
-		builder.append(facultyId);
-		builder.append(", encryptedPassword=");
-		builder.append(encryptedPassword);
-		builder.append(", passwordSalt=");
-		builder.append(passwordSalt);
+		builder.append(", roleName=");
+		builder.append(roleName);
 		builder.append(", createdAt=");
 		builder.append(createdAt);
 		builder.append(", updatedAt=");
@@ -260,5 +185,4 @@ public class User extends Model
 		builder.append("]");
 		return builder.toString();
 	}
-	
 }
