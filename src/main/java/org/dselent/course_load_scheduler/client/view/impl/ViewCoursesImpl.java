@@ -14,7 +14,7 @@ import com.google.gwt.user.client.ui.HasWidgets;
 
 import org.dselent.course_load_scheduler.client.presenter.ViewCoursesPresenter;
 
-public class ViewCourses extends BaseViewImpl<ViewCoursesPresenter> {
+public class ViewCoursesImpl extends BaseViewImpl<ViewCoursesPresenter> {
 
 	private static viewCoursesUiBinder uiBinder = GWT.create(viewCoursesUiBinder.class);
 	@UiField Label pageTitle;
@@ -25,10 +25,10 @@ public class ViewCourses extends BaseViewImpl<ViewCoursesPresenter> {
 	@UiField Grid courseGrid;
 	@UiField Button button;
 
-	interface viewCoursesUiBinder extends UiBinder<Widget, ViewCourses> {
+	interface viewCoursesUiBinder extends UiBinder<Widget, ViewCoursesImpl> {
 	}
 
-	public ViewCourses() {
+	public ViewCoursesImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
