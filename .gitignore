@@ -4,3 +4,6 @@
 *.symbolMap
 /gwt-unitCache/
 /war/
+.classpath
+/.gwt/
+*.prefs

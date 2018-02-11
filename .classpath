@@ -13,6 +13,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/javax.inject.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/guice-assistedinject-3.0.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/aopalliance.jar"/>
-	<classpathentry kind="con" path="com.gwtplugins.gwt.eclipse.core.GWT_CONTAINER"/>
+	<classpathentry kind="con" path="com.gwtplugins.gwt.eclipse.core.GWT_CONTAINER/GWT 2.7.0"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
