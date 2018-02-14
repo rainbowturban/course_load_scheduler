@@ -1,6 +1,5 @@
 package org.dselent.course_load_scheduler.client.presenter.impl;
 
-import org.dselent.course_load_scheduler.client.presenter.BasePresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.presenter.ViewCoursesPresenter;
 import org.dselent.course_load_scheduler.client.view.ViewCoursesView;

@@ -4,8 +4,8 @@
 	<ui:style>
 
 	</ui:style>
-	<g:VerticalPanel width="450" height="300" styleName="center" ui:field="loginPagePanel">
-		<g:Label text="Login" ui:field="loginTitle" styleName="login-title" horizontalAlignment="ALIGN_LEFT" width=""/>
+	<g:VerticalPanel width="450" height="300" styleName="center" ui:field="loginPagePanel" horizontalAlignment="ALIGN_CENTER">
+		<g:Label text="Login" ui:field="loginTitle" styleName="login-title" horizontalAlignment="ALIGN_CENTER" width=""/>
 		<g:Image
 				url="WEB-INF/classes/org/dselent/course_load_scheduler/client/view/images/WPI_Inst_Prim_FulClr_med.png"
 				width="" height="20%" ui:field="logoImage" />
