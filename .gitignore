@@ -5,6 +5,6 @@
 /gwt-unitCache/
 /war/
 .classpath
-/.gwt/
 *.prefs
 .classpath
+.gwt/.gwt-log
