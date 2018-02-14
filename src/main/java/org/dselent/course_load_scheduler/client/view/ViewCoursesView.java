@@ -13,4 +13,9 @@ public interface ViewCoursesView extends BaseView<ViewCoursesPresenter>{
 	//gets the button used a view a certain class?
 	Button getViewButton();//should take parameter
 	
+	public void placeCourses();
+	
+	
+	
+	
 }
