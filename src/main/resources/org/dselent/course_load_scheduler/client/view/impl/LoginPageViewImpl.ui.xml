@@ -1,0 +1,45 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+
+	</ui:style>
+	<g:VerticalPanel width="450" height="300" styleName="center" ui:field="loginPagePanel" horizontalAlignment="ALIGN_CENTER">
+		<g:Label text="Login" ui:field="loginTitle" styleName="login-title" horizontalAlignment="ALIGN_CENTER" width=""/>
+		<g:Image
+				url="WEB-INF/classes/org/dselent/course_load_scheduler/client/view/images/WPI_Inst_Prim_FulClr_med.png"
+				width="" height="20%" ui:field="logoImage" />
+		<g:VerticalPanel horizontalAlignment="ALIGN_CENTER" >
+			<g:Grid>
+				<g:row>
+					<g:customCell>
+						<g:Label text="Username:" ui:field="userNameLabel"/>
+					</g:customCell>
+				</g:row>
+				<g:row>
+					<g:customCell>
+						<g:TextBox ui:field="userNameTextBox" width="225px"/>
+					</g:customCell>
+				</g:row>
+				<g:row>
+					<g:customCell>
+						<g:Label text="Password:" ui:field="passwordLabel"/>
+					</g:customCell>
+				</g:row>
+				<g:row>
+					<g:customCell>
+						<g:PasswordTextBox ui:field="passwordTextBox" width="225px"/>
+					</g:customCell>
+				</g:row>
+				<g:row>
+					<g:customCell>
+						<g:HorizontalPanel>
+							<g:Button ui:field="createAccountButton">Create Account</g:Button>
+							<g:Button width="106px" ui:field="loginButton">Login</g:Button>
+						</g:HorizontalPanel>
+					</g:customCell>
+				</g:row>
+			</g:Grid>
+		</g:VerticalPanel>
+	</g:VerticalPanel>
+</ui:UiBinder> 

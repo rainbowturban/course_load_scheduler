@@ -1,8 +1,6 @@
 /** Add css rules here for your application. */
-
-
 /** Example rules used by the template application (remove for your app) */
-h1 {
+.h1 {
 	color: black;
 	margin: 40px 0px 70px;
 	font-weight: bold;
@@ -11,39 +9,113 @@ h1 {
 }
 
 .sendButton {
-  display: block;
-  font-size: 16pt;
+	display: block;
+	font-size: 16pt;
 }
 
 /** Most GWT widgets already have a style name defined */
 .gwt-DialogBox {
-  width: 400px;
+	width: 400px;
 }
 
 .dialogVPanel {
-  margin: 5px;
+	margin: 5px;
 }
 
 .serverResponseLabelError {
-  color: red;
+	color: red;
 }
 
 /** Set ids using widget.getElement().setId("idOfElement") */
 #closeButton {
-  margin: 15px 6px 6px;
+	margin: 15px 6px 6px;
 }
+
 .courseTitle {
 	font-family: Times New Roman;
 	text-align: center;
 }
+
 .backgroundDefault {
 	background: A9B0B7;
 	color: Black;
 	font-size: 2em;
-	background-color: Silver;	
+	background-color: Silver;
 }
+
 .viewCoursesHeader {
 	color: red;
 	font-size: 3em;
 	font-family: Times New Roman;
+}
+
+.center {
+	position: absolute;
+	width: 500px;
+	height: 250px;
+	margin-left: 250px;
+	background-color: Gray;
+}
+
+.login-panel {
+	background-color: rgb(204, 234, 247);
+}
+
+.view-label {
+	font-family: Times New Roman;
+	font-size: 32px;
+}
+
+.login-form {
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+	margin-top: 20px;
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+.login-label {
+	font-family: Times New Roman;
+	font-style: normal;
+	font-size: 14px;
+	font-weight: bold;
+	font-stretch: normal;
+	font-variant: normal;
+	color: rgb(0, 0, 0);
+	float: right;
+	margin-left: 0px;
+	margin-right: 8px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.login-text {
+	font-family: Times New Roman;
+	font-size: 14px;
+	font-weight: normal;
+	float: right;
+}
+
+.warning-label {
+	font-family: Times New Roman;
+	font-size: 18px;
+	font-weight: bold;
+	color: rgb(255, 0, 0);
+	margin-top: 4px;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+.login-button {
+	font-size: 14px;
+	margin-left: 20px;
+}
+.login-title {
+	font-family: Times New Roman;
+	font-size: 32px;
 }
