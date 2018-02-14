@@ -44,7 +44,7 @@
 }
 
 .viewCoursesHeader {
-	color: red;
+	color: #AC2B37;
 	font-size: 3em;
 	font-family: Times New Roman;
 }
@@ -122,4 +122,5 @@
 .navButton {
 color: white;
 background: #AC2B37;
+font-family: TimesNewRoman;
 }
