@@ -1,10 +1,7 @@
 package org.dselent.course_load_scheduler.client.presenter.impl;
 
-<<<<<<< HEAD
-
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
-=======
->>>>>>> a5ee1c93e208fb544c5e4cee9a28f244e2fa736a
+
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.presenter.ViewCoursesPresenter;
 import org.dselent.course_load_scheduler.client.view.ViewCoursesView;
