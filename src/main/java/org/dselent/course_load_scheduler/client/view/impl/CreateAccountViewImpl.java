@@ -1,7 +1,7 @@
 package org.dselent.course_load_scheduler.client.view.impl;
 
-import org.dselent.course_load_scheduler.client.presenter.LoginPagePresenter;
-import org.dselent.course_load_scheduler.client.view.LoginPageView;
+import org.dselent.course_load_scheduler.client.presenter.CreateAccountPresenter;
+import org.dselent.course_load_scheduler.client.view.CreateAccountView;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.HasWidgets;
 
 public class CreateAccountViewImpl extends BaseViewImpl<CreateAccountPresenter> implements CreateAccountView {
 
@@ -92,6 +93,48 @@ public class CreateAccountViewImpl extends BaseViewImpl<CreateAccountPresenter> 
 
 	public void setSubmitButton(Button submitButton) {
 		this.submitButton = submitButton;
+	}
+
+	@Override
+	public void setPresenter(CreateAccountPresenter presenter) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Widget getWidgetContainer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public HasWidgets getViewRootPanel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TextBox getUserNameTextBox() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setUserNameTextBox(TextBox nameTextBox) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Button getCreateAccountButton() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void showErrorMessages(String errorMessages) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
