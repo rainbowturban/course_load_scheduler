@@ -14,4 +14,7 @@ public interface ViewCoursesPresenter extends BasePresenter {
 	//gets information about courses to fill the page with
 	public List<CourseInfo> retrieveCourses();
 	
+	//injects the code for the variable element of the page into
+	public void fillCourses();
+	
 }

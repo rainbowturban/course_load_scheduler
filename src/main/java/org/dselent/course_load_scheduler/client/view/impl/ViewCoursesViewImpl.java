@@ -12,6 +12,8 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HasWidgets;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
@@ -19,29 +21,23 @@ import org.dselent.course_load_scheduler.client.presenter.ViewCoursesPresenter;
 import org.dselent.course_load_scheduler.client.view.ViewCoursesView;
 
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.StackPanel;
 
 public class ViewCoursesViewImpl extends BaseViewImpl<ViewCoursesPresenter> implements ViewCoursesView {
 
 	private static viewCoursesUiBinder uiBinder = GWT.create(viewCoursesUiBinder.class);
 	@UiField Label pageTitle;
 	@UiField Button addCourse;
-	@UiField Button EditViewCourse;
-	@UiField Button Remove;
-	@UiField Label courseTitle;
-	@UiField Grid courseGrid;
 	@UiField HTMLPanel baseContainer;
-	@UiField Button EditViewCourse2;
+	@UiField Button editCourseButton;
+	@UiField Button removeCourseButton;
+	@UiField StackPanel courseList;
 
 	interface viewCoursesUiBinder extends UiBinder<Widget, ViewCoursesViewImpl> {
 	}
 
 	public ViewCoursesViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
-	}
-
-	@UiHandler("EditViewCourse")
-	void onButtonClick(ClickEvent event) {
-		Window.alert("Did this work already???");
 	}
 
 	@Override
@@ -61,27 +57,54 @@ public class ViewCoursesViewImpl extends BaseViewImpl<ViewCoursesPresenter> impl
 		// TODO Auto-generated method stub
 		return baseContainer;
 	}
+
 	
 	@Override
-	public void placeCourses() {
-		List<CourseInfo> courses = presenter.retrieveCourses();
+	public StackPanel getCourseList() {
+		return courseList;
+	}
 	
-		//**Turn courses into UI elements and put them in xml???***
+	@Override
+	public void setCourseList(StackPanel courseList) {
+		this.courseList = courseList;
+	}
+	
+
+	@Override
+	public Button getRemoveCourseButton() {
+		// TODO Auto-generated method stub
+		return removeCourseButton;
+	}
+
+	@Override
+	public Button getEditCourseButton() {
+		// TODO Auto-generated method stub
+		return editCourseButton;
+	}
+
+	@UiHandler("addCourse")
+	void onAddCourseClick(ClickEvent event) {
+		//TODO: redirect to another page or cue popup
+		Window.alert("add Course button! Either a new page or popup here.");
+	}
+	
+	
+	@UiHandler("editCourseButton")
+	void onEditCourseButtonClick(ClickEvent event) {
+		//TODO: redirect to another page or cue popup
+		Window.alert("Edit Course button! Either a new page or popup here.");
+	}
+	
+	@UiHandler("removeCourseButton")
+	void onRemoveCourseButtonClick(ClickEvent event) {
+		int index = courseList.getSelectedIndex();//what is to be removed? get the index.
 		
-	}
-	
-	
-	
+		//TODO: get the information for the course entry in the database and remove it
+		//TODO: only remove from list when it gets confirmation??
 
-	@Override
-	public Button getRemoveButton() {
-		// TODO Auto-generated method stub
-		return EditViewCourse;
+		if(index >= 0) {//returns -1 when nothing is selected--doesn't break program, but throws exception
+			courseList.remove(index);//<--helpful for removing?!?
+		}
 	}
-
-	@Override
-	public Button getViewButton() {
-		// TODO Auto-generated method stub
-		return Remove;
-	}
+	
 }

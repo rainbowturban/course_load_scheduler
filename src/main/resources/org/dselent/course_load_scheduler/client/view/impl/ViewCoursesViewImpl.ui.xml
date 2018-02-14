@@ -6,6 +6,7 @@
 	</ui:style>
 	<g:HTMLPanel styleName="viewCoursesglobal" ui:field="baseContainer">
 		<g:VerticalPanel height="320px" width="487px">
+		<!-- NAV STUFF -->
 			<g:Cell horizontalAlignment="ALIGN_CENTER">
 				<g:HorizontalPanel>
 				<g:Button text="WPI Logo"></g:Button>
@@ -15,49 +16,28 @@
 				<g:Button text="Account" styleName="navButton"></g:Button>
 			</g:HorizontalPanel>
 			</g:Cell>
+		<!-- VIEW COURSES LIST AND EDIT/REMOVE BUTTONS -->
 			<g:Cell horizontalAlignment="ALIGN_CENTER">
 				<g:Label text="View Courses" ui:field="pageTitle" height="77px" styleName="viewCoursesHeader"></g:Label>
 			</g:Cell>
 			<g:Cell horizontalAlignment="ALIGN_CENTER">
-				<g:Grid width="322px" height="68px" ui:field="courseGrid" styleName="courseGrid">
-					<g:row/>
-			<!-- TBD List length    -->
-				<g:row>
-					<g:customCell>
-						<g:Label text="Course Title" styleName="courseTitle" ui:field="courseTitle"></g:Label>
-					</g:customCell>
-					<g:customCell>
-						<g:Button text = "Edit/View" ui:field="EditViewCourse"></g:Button>
-					</g:customCell>
-					<g:customCell>
-						<g:Button text = "Remove" ui:field="Remove"></g:Button>
-					</g:customCell>
-				</g:row>
-				<g:row>
-					<g:customCell>
-						<g:Label text="Course Title" styleName="courseTitle"></g:Label>
-					</g:customCell>
-					<g:customCell>
-						<g:Button text = "Edit/View" ui:field="EditViewCourse2"></g:Button>
-					</g:customCell>
-					<g:customCell>
-						<g:Button text = "Remove"></g:Button>
-					</g:customCell>
-				</g:row>
-				
-			</g:Grid>
+				<g:HorizontalPanel>
+					<g:Cell horizontalAlignment="ALIGN_CENTER">
+						<g:StackPanel ui:field="courseList"/>
+					</g:Cell>
+					<g:Cell horizontalAlignment="ALIGN_CENTER">
+						<g:VerticalPanel>
+						<g:Button ui:field="editCourseButton" styleName="gwt-Button">Edit Course</g:Button>
+						<g:Button ui:field="removeCourseButton" text="Remove Course">Edit Course</g:Button>
+					</g:VerticalPanel>
+					</g:Cell>
+				</g:HorizontalPanel>
 			</g:Cell>
+		<!-- ADD NEW COURSE BUTTON -->
 			<g:Cell horizontalAlignment="ALIGN_RIGHT">
 				<g:Button text="Add new Course..." ui:field="addCourse"></g:Button>
 			</g:Cell>
-			<g:Cell horizontalAlignment="ALIGN_CENTER">
-				<g:StackPanel>
-			<g:VerticalPanel width="100%" height="100%" g:StackPanel-text="CourseTitle1">
-				<g:Label text="Information about stuff here"/>
-			</g:VerticalPanel>
 			
-			</g:StackPanel>
-			</g:Cell>
 		</g:VerticalPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 

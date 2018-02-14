@@ -57,22 +57,24 @@ public class CourseLoadScheduler implements EntryPoint
 		IndexPresenterImpl indexPresenter = injector.getIndexPresenter(); // on-demand injection
 		indexPresenter.init();
 		IndexView indexView = indexPresenter.getView();		
-		/*
+		
+		
 		LoginPresenterImpl loginPresenter = injector.getLoginPresenter();
 		loginPresenter.init();
 		//LoginView loginView = loginPresenter.getView();	
 		
 		//indexPresenter.go(RootPanel.get("indexContainer"));
 		indexPresenter.go(root);
-		loginPresenter.go(indexView.getViewRootPanel());*/
+		loginPresenter.go(indexView.getViewRootPanel());
 		
-		
+		/*/Testing stuff for Hannah's page
+		//---------------------------------------------------------------
 		ViewCoursesPresenterImpl coursePresenter = injector.getViewCoursesPresenter();
 		coursePresenter.init();
-		//LoginView loginView = loginPresenter.getView();	
 		
 		//indexPresenter.go(RootPanel.get("indexContainer"));
 		indexPresenter.go(root);
 		coursePresenter.go(indexView.getViewRootPanel());
+		//----------------------------------------------------------*/
 	}
 }
