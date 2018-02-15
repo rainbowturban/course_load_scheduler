@@ -10,7 +10,12 @@ public interface AddSectionPresenter extends BasePresenter{
 	void setParentPresenter(IndexPresenter parentPresenter);
 	void addSection();
 	
-	List<SectionsInfo> retrieveSections();
-	void fillSection();
+	List<SectionsInfo> retrieveTerm();
+	List<SectionsInfo> retrieveType();
+	List<SectionsInfo> retrieveTime();
+	void fillSectionTerms();
+	void fillSectionTypes();
+	void fillSectionStart();
+	void fillSectionEnd();
 
 }

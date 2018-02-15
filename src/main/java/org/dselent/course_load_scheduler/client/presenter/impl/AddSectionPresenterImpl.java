@@ -1,8 +1,9 @@
 package org.dselent.course_load_scheduler.client.presenter.impl;
 
+import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Iterator;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 import org.dselent.course_load_scheduler.client.presenter.AddSectionPresenter;
@@ -10,117 +11,206 @@ import org.dselent.course_load_scheduler.client.view.AddSectionView;
 
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.HasWidgets;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.StackPanel;
 import com.google.inject.Inject;
 
 public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSectionPresenter{
 	private IndexPresenter parentPresenter;
 	private AddSectionView view;
-	
+
 	@Inject
 	public AddSectionPresenterImpl(IndexPresenter parentPresenter, AddSectionView view)
 	{
 		this.view = view;
 		this.parentPresenter = parentPresenter;
 		view.setPresenter(this);
-		
-		fillSection();
+
+		fillSectionTerms();
+		fillSectionTypes();
+		fillSectionStart();
+		fillSectionEnd();
 	}
-	
+
 	@Override
 	public void init()
 	{
 		bind();
 	}
-	
+
 	@Override
 	public void bind()
 	{
 		HandlerRegistration registration;
-		
+
 		//button events for when they click on edit or remove buttons
-//		registration = eventBus.addHandler(InvalidLoginEvent.TYPE, this);
-//		eventBusRegistration.put(InvalidLoginEvent.TYPE, registration);
+		//		registration = eventBus.addHandler(InvalidLoginEvent.TYPE, this);
+		//		eventBusRegistration.put(InvalidLoginEvent.TYPE, registration);
 	}
-	
+
 	@Override
 	public void go(HasWidgets container)
 	{
 		container.clear();
 		container.add(view.getWidgetContainer());
 	}
-	
+
 	@Override
 	public AddSectionView getView() {
 		return view;
 	}
-	
-	//gets term, section type and section length info about sections
+
 	@Override
-	public List<SectionsInfo> retrieveSections(){
+	public IndexPresenter getParentPresenter()
+	{
+		return parentPresenter;
+	}
+
+	@Override
+	public void setParentPresenter(IndexPresenter parentPresenter)
+	{
+		this.parentPresenter = parentPresenter;
+	}
+
+	//gets term info about sections
+	@Override
+	public List<SectionsInfo> retrieveTerm(){
+		List<SectionsInfo> sections = new ArrayList<SectionsInfo>();
+
+		SectionsInfo section1 = new SectionsInfo();
+		section1.setTermsName("A Term");
+
+		SectionsInfo section2 = new SectionsInfo();
+		section2.setTermsName("B Term");
+
+		SectionsInfo section3 = new SectionsInfo();
+		section3.setTermsName("Fall");
+
+		SectionsInfo section4 = new SectionsInfo();
+		section4.setTermsName("C Term");
+
+		sections.add(section1);
+		sections.add(section2);
+		sections.add(section3);
+		sections.add(section4);
+
+		return sections;	
+
+	}
+
+	//gets section type info about sections
+	@Override
+	public List<SectionsInfo> retrieveType(){
+		List<SectionsInfo> sections = new ArrayList<SectionsInfo>();
+
+		SectionsInfo section1 = new SectionsInfo();
+		section1.setSectionType("Lab");
+
+		SectionsInfo section2 = new SectionsInfo();
+		section2.setSectionType("Lecture");
+
+		SectionsInfo section3 = new SectionsInfo();
+		section3.setSectionType("Conference");
+
+		sections.add(section1);
+		sections.add(section2);
+		sections.add(section3);
+
+		return sections;	
+
+	}
+
+	//gets start/end time info about sections
+	@Override
+	public List<SectionsInfo> retrieveTime(){
+		List<SectionsInfo> sections = new ArrayList<SectionsInfo>();
+
+		SectionsInfo section1 = new SectionsInfo();
+		section1.setStartTime(new Time(10,0,0)); //deprecated Time type (hour, minute, second) cuz Gregorian calendar is too complicated
+		section1.setEndTime(new Time(11,50,0));
+
+		SectionsInfo section2 = new SectionsInfo();
+		section2.setStartTime(new Time(13,0,0));
+		section2.setEndTime(new Time(13,50,0));
+
+		SectionsInfo section3 = new SectionsInfo();
+		section3.setStartTime(new Time(8,0,0));
+		section3.setEndTime(new Time(9,50,0));
+
+		sections.add(section1);
+		sections.add(section2);
+		sections.add(section3);
+
+		return sections;	
+
+	}
+
+	@Override
+	public void fillSectionTerms() {
+		ListBox term = view.getTermComboBox();
+
+		List<SectionsInfo> sectionTerms = retrieveTerm();
+		Iterator<SectionsInfo> iterator = sectionTerms.iterator();
 		
+		while(iterator.hasNext()) {
+			SectionsInfo sectionsInfo = iterator.next();
+			term.addItem(sectionsInfo.getTermsName());
+		}
 		
+		view.setTermComboBox(term);
 	}
 	
 	@Override
-	public void fillSection() {
+	public void fillSectionTypes() {
+		ListBox type = view.getSectionTypeComboBox();
+
+		List<SectionsInfo> sectionTypes = retrieveTerm();
+		Iterator<SectionsInfo> iterator = sectionTypes.iterator();
 		
+		while(iterator.hasNext()) {
+			SectionsInfo sectionsInfo = iterator.next();
+			type.addItem(sectionsInfo.getSectionType());			
+		}
+				
+		view.setSectionTypeComboBox(type);
 	}
 	
+	@Override
+	public void fillSectionStart() {
+		ListBox start = view.getSectionStartTimeComboBox();
+		
+
+		List<SectionsInfo> sectionStart = retrieveTerm();
+		Iterator<SectionsInfo> iterator = sectionStart.iterator();
+		
+		while(iterator.hasNext()) {
+			SectionsInfo sectionsInfo = iterator.next();
+			start.addItem(sectionsInfo.getStartTime().toString());			
+		}
+		
+		view.setSectionStartTimeComboBox(start);
+	}
 	
-//	//gets information about courses to fill the page with
-//		@Override
-//		public List<CourseInfo> retrieveCourses() {
-//			//************get courses returned in a list of CourseInfo objects*****
-//			
-//			//**iterate through list, creating a grid row entry for each object?***
-//			//^^This would probably implement the injector thing, whatever that actually does.
-//			List<CourseInfo> courses = new ArrayList<CourseInfo>();
-//			
-//			CourseInfo course1 = new CourseInfo();
-//			course1.setCoursesNumber("CS3733");
-//			course1.setCoursesTitle("Software Engineering");
-//			course1.setFrequency("4 Times/Year");
-//			
-//			CourseInfo course2 = new CourseInfo();
-//			course2.setCoursesNumber("CS2223");
-//			course2.setCoursesTitle("Algorithms");
-//			course2.setFrequency("2 Times/Year");
-//			
-//			CourseInfo course3 = new CourseInfo();
-//			course3.setCoursesNumber("CS####");
-//			course3.setCoursesTitle("Something...");
-//			course3.setFrequency("-5 Times/Year");
-//			
-//			
-//			courses.add(course1);
-//			courses.add(course2);
-//			courses.add(course3);
-//			
-//			return courses;
-//		}
-	
-//	@Override
-//	public void fillSection() {
-//		ListBox term = view.getTermComboBox();
-//		
-//		List<CourseInfo> courses = retrieveCourses();
-//		Iterator<CourseInfo> iterator = courses.iterator();
-//		
-//		
-//		while(iterator.hasNext()) {
-//			CourseInfo courseInfo = iterator.next();
-//
-//			//create label and add it to the course list
-//			Label label = new Label("Required Frequency: " + courseInfo.getFrequency());
-//			panel.add(label, courseInfo.getCoursesNumber() +": "+ courseInfo.getCoursesTitle());
-//		}
-//		
-//		
-//		view.setCourseList(panel);
-//	}
-	
+	@Override
+	public void fillSectionEnd() {
+		ListBox end = view.getSectionEndTimeComboBox();
+		
+
+		List<SectionsInfo> sectionEnd = retrieveTerm();
+		Iterator<SectionsInfo> iterator = sectionEnd.iterator();
+		
+		while(iterator.hasNext()) {
+			SectionsInfo sectionsInfo = iterator.next();
+			end.addItem(sectionsInfo.getEndTime().toString());			
+		}
+		
+		view.setSectionEndTimeComboBox(end);
+	}
+
+	@Override
+	public void addSection() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 
