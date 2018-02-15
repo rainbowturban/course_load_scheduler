@@ -1,13 +1,10 @@
 package org.dselent.course_load_scheduler.client.view.impl;
 
 import org.dselent.course_load_scheduler.client.presenter.AddSectionPresenter;
-import org.dselent.course_load_scheduler.client.presenter.LoginPresenter;
 import org.dselent.course_load_scheduler.client.view.AddSectionView;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.uibinder.client.UiField;
@@ -16,6 +13,7 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Button;
+
 
 public class AddSectionViewImpl extends BaseViewImpl<AddSectionPresenter> implements AddSectionView {
 
@@ -28,15 +26,17 @@ public class AddSectionViewImpl extends BaseViewImpl<AddSectionPresenter> implem
 	@UiField Label generatedNameLabel;
 	@UiField Label generatedCRNLabel;
 	@UiField Label sectionTypeLabel;
-	@UiField Label sectionLengthLabel;
 	@UiField ListBox termComboBox;
 	@UiField TextBox generatedNameTextBox;
 	@UiField TextBox generatedCRNTextBox;
 	@UiField ListBox sectionTypeComboBox;
-	@UiField ListBox sectionLengthComboBox;
 	@UiField VerticalPanel addSectionPanel;
 	@UiField Button cancelButton;
 	@UiField Button createButton;
+	@UiField Label sectionStartTimeLabel;
+	@UiField ListBox sectionStartTimeComboBox;
+	@UiField Label sectionEndTimeLabel;
+	@UiField ListBox sectionEndTimeComboBox;
 
 	public AddSectionViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -46,6 +46,12 @@ public class AddSectionViewImpl extends BaseViewImpl<AddSectionPresenter> implem
 	public ListBox getTermComboBox()
 	{
 		return termComboBox;
+	}
+	
+	@Override
+	public void setTermComboBox(ListBox termComboBox)
+	{
+		this.termComboBox = termComboBox;
 	}
 
 	@Override
@@ -75,13 +81,49 @@ public class AddSectionViewImpl extends BaseViewImpl<AddSectionPresenter> implem
 	}
 	
 	@Override
-	public ListBox getSectionLengthComboBox()
+	public void setSectionTypeComboBox(ListBox sectionTypeComboBox)
 	{
-		return sectionLengthComboBox;
+		this.sectionTypeComboBox = sectionTypeComboBox;
 	}
 	
 	@Override
-	public void setPresenter(LoginPresenter presenter)
+	public ListBox getSectionStartTimeComboBox()
+	{
+		return sectionStartTimeComboBox;
+	}
+	
+	@Override
+	public void setSectionStartTimeComboBox(ListBox sectionStartTimeComboBox)
+	{
+		this.sectionStartTimeComboBox = sectionStartTimeComboBox;
+	}
+	
+	@Override
+	public ListBox getSectionEndTimeComboBox()
+	{
+		return sectionStartTimeComboBox;
+	}
+	
+	@Override
+	public void setSectionEndTimeComboBox(ListBox sectionEndTimeComboBox)
+	{
+		this.sectionEndTimeComboBox = sectionEndTimeComboBox;
+	}
+	
+	@Override
+	public Button getCancelButton()
+	{
+		return cancelButton;
+	}
+	
+	@Override
+	public Button getCreateButton()
+	{
+		return createButton;
+	}
+	
+	@Override
+	public void setPresenter(AddSectionPresenter presenter)
 	{
 		this.presenter = presenter;
 	}
@@ -95,8 +137,6 @@ public class AddSectionViewImpl extends BaseViewImpl<AddSectionPresenter> implem
 	@Override
 	public HasWidgets getViewRootPanel()
 	{
-		return loginPanel;
+		return addSectionPanel;
 	}
-
-
 }

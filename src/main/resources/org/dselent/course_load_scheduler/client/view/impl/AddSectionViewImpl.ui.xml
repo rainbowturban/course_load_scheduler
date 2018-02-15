@@ -44,10 +44,18 @@
 				</g:row>
 				<g:row>
 					<g:customCell>
-						<g:Label text="Section Length:" ui:field="sectionLengthLabel"/>
+						<g:Label text="Start Time:" ui:field="sectionStartTimeLabel"/>
 					</g:customCell>
 					<g:customCell>
-						<g:ListBox ui:field="sectionLengthComboBox"/>
+						<g:ListBox ui:field="sectionStartTimeComboBox"/>
+					</g:customCell>
+				</g:row>
+				<g:row>
+					<g:customCell>
+						<g:Label text="End Time:" ui:field="sectionEndTimeLabel"/>
+					</g:customCell>
+					<g:customCell>
+						<g:ListBox ui:field="sectionEndTimeComboBox"/>
 					</g:customCell>
 				</g:row>
 

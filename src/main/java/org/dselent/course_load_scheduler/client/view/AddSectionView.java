@@ -7,11 +7,18 @@ import com.google.gwt.user.client.ui.TextBox;
 
 public interface AddSectionView  extends BaseView<AddSectionPresenter>{
 	ListBox getTermComboBox();
+	void setTermComboBox(ListBox termBoxCombo);
 	TextBox getGeneratedNameTextBox();
 	void setGeneratedNameTextBox(TextBox generatedNameTextBox);
 	TextBox getGeneratedCRNTextBox();
 	void setGeneratedCRNTextBox(TextBox generatedCRNTextBox);
 	ListBox getSectionTypeComboBox();
-	ListBox getSectionLengthComboBox();
+	void setSectionTypeComboBox(ListBox sectionTypeBoxCombo);
+	ListBox getSectionStartTimeComboBox();
+	void setSectionStartTimeComboBox(ListBox sectionStartTimeComboBox);
+	ListBox getSectionEndTimeComboBox();
+	void setSectionEndTimeComboBox(ListBox sectionEndTimeComboBox);
+	Button getCancelButton();
+	Button getCreateButton();
 	
 }
