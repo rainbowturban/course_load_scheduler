@@ -11,8 +11,8 @@ public class Courses extends Model
 	private String title;
 	private String number;
 	private Integer frequencyID;
-	private Instant createdAt;
-	private Instant updatedAt;
+	//private Instant createdAt;
+	//private Instant updatedAt;
 	private Boolean deleted;
 
 	// getters and setter methods
@@ -48,7 +48,7 @@ public class Courses extends Model
 		this.frequencyID = frequencyID;
 	}
 
-	public Instant getCreatedAt()
+	/*public Instant getCreatedAt()
 	{
 		return createdAt;
 	}
@@ -82,7 +82,7 @@ public class Courses extends Model
 		{
 			this.updatedAt = updatedAt.toInstant();
 		}
-	}
+	}*/
 
 	public Boolean getDeleted() {
 		return deleted;
@@ -96,13 +96,13 @@ public class Courses extends Model
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
+		//result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
 		result = prime * result + ((deleted == null) ? 0 : deleted.hashCode());
 		result = prime * result + ((frequencyID == null) ? 0 : frequencyID.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((number == null) ? 0 : number.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
+		//result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
 		return result;
 	}
 
@@ -115,7 +115,7 @@ public class Courses extends Model
 		if (getClass() != obj.getClass())
 			return false;
 		Courses other = (Courses) obj;
-		if (createdAt == null) {
+		/*if (createdAt == null) {
 			if (other.createdAt != null)
 				return false;
 		} else if (!createdAt.equals(other.createdAt))
@@ -128,7 +128,7 @@ public class Courses extends Model
 		if (frequencyID == null) {
 			if (other.frequencyID != null)
 				return false;
-		} else if (!frequencyID.equals(other.frequencyID))
+		}else*/ if (!frequencyID.equals(other.frequencyID))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -145,17 +145,17 @@ public class Courses extends Model
 				return false;
 		} else if (!title.equals(other.title))
 			return false;
-		if (updatedAt == null) {
+		/*if (updatedAt == null) {
 			if (other.updatedAt != null)
 				return false;
 		} else if (!updatedAt.equals(other.updatedAt))
-			return false;
+			return false;*/
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "Courses [id=" + id + ", title=" + title + ", number=" + number + ", frequencyID=" + frequencyID
-				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", deleted=" + deleted + "]";
+				+ ", createdAt=" + 0 + ", updatedAt=" + 0 + ", deleted=" + deleted + "]";
 	}
 }

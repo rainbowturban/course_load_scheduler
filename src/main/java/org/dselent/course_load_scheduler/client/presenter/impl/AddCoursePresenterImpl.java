@@ -1,5 +1,7 @@
 package org.dselent.course_load_scheduler.client.presenter.impl;
 
+import org.dselent.course_load_scheduler.client.gin.Injector;
+import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.presenter.AddCoursePresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.AddCourseView;
@@ -71,9 +73,25 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	@Override
 	public void fillFrequencies() {
 		//TODO: get frequencies from DB
+
+		//TODO: loop through and add them to the thingy
 		
+	}
+	
+	@Override
+	public boolean submitNewCourse(Courses newCourse) {
+		//TODO: send request to the DB to add course
 		
-		
+		return true;//returns if course adding was successful or not
+	}
+	
+	
+	@Override
+	public void returnToViewCourses() {
+		final Injector injector = Injector.INSTANCE;
+		ViewCoursesPresenterImpl viewCoursePresenter = injector.getViewCoursesPresenter();
+		viewCoursePresenter.init();
+		viewCoursePresenter.go(parentPresenter.getView().getViewRootPanel());
 	}
 	
 	
