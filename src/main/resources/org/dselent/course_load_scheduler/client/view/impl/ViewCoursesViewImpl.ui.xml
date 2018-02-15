@@ -35,7 +35,7 @@
 			</g:Cell>
 		<!-- ADD NEW COURSE BUTTON -->
 			<g:Cell horizontalAlignment="ALIGN_RIGHT">
-				<g:Button text="Add new Course..." ui:field="addCourse"></g:Button>
+				<g:Button text="Add new Course..." ui:field="addCourseButton"></g:Button>
 			</g:Cell>
 			
 		</g:VerticalPanel>

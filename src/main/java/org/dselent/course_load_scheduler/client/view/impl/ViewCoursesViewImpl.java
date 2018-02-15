@@ -9,12 +9,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HasWidgets;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.presenter.ViewCoursesPresenter;
@@ -27,7 +22,7 @@ public class ViewCoursesViewImpl extends BaseViewImpl<ViewCoursesPresenter> impl
 
 	private static viewCoursesUiBinder uiBinder = GWT.create(viewCoursesUiBinder.class);
 	@UiField Label pageTitle;
-	@UiField Button addCourse;
+	@UiField Button addCourseButton;
 	@UiField HTMLPanel baseContainer;
 	@UiField Button editCourseButton;
 	@UiField Button removeCourseButton;
@@ -58,7 +53,7 @@ public class ViewCoursesViewImpl extends BaseViewImpl<ViewCoursesPresenter> impl
 		return baseContainer;
 	}
 
-	
+	//setter and getter for the course list panel
 	@Override
 	public StackPanel getCourseList() {
 		return courseList;
@@ -69,29 +64,40 @@ public class ViewCoursesViewImpl extends BaseViewImpl<ViewCoursesPresenter> impl
 		this.courseList = courseList;
 	}
 	
-
+	//getters for buttons
 	@Override
 	public Button getRemoveCourseButton() {
-		// TODO Auto-generated method stub
 		return removeCourseButton;
 	}
-
 	@Override
 	public Button getEditCourseButton() {
-		// TODO Auto-generated method stub
 		return editCourseButton;
 	}
-
-	@UiHandler("addCourse")
-	void onAddCourseClick(ClickEvent event) {
-		//TODO: redirect to another page or cue popup
-		Window.alert("add Course button! Either a new page or popup here.");
+	@Override
+	public Button getAddCourseButton() {
+		return addCourseButton;
 	}
 	
 	
+	//UI Event handlers
+	
+	//Moves to the Add Course page
+	@UiHandler("addCourseButton")
+	void onAddCourseButtonClick(ClickEvent event) {
+		//TODO: redirect to another page or cue popup
+		presenter.loadAddPage(true);
+	}
+	
+	//Moves to the View/Edit Course Page
 	@UiHandler("editCourseButton")
 	void onEditCourseButtonClick(ClickEvent event) {
 		//TODO: redirect to another page or cue popup
+		
+		int index = courseList.getSelectedIndex();//what is to be removed? get the index.
+		if(index >= 0) {//returns -1 when nothing is selected--doesn't break program, but throws exception
+			presenter.loadEditPage(index);
+		}
+		
 		Window.alert("Edit Course button! Either a new page or popup here.");
 	}
 	

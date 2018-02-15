@@ -1,0 +1,46 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	
+	</ui:style>
+	<g:HTMLPanel ui:field="baseContainer">
+		<g:VerticalPanel horizontalAlignment="ALIGN_CENTER">
+			<g:Cell horizontalAlignment="ALIGN_CENTER">
+				<g:Label text="Add New Course" horizontalAlignment="ALIGN_CENTER" width="292px" styleName="h1"/>
+			</g:Cell>
+			<g:Cell horizontalAlignment="ALIGN_CENTER">
+				<g:Grid>
+				<g:row>
+					<g:customCell>
+						<g:Label text="Course Name:"></g:Label>
+					</g:customCell>
+					<g:customCell>
+						<g:TextBox text="&lt;course name here&gt;" ui:field="courseNameField"></g:TextBox>
+					</g:customCell>
+				</g:row>
+				<g:row>
+					<g:customCell>
+						<g:Label text="Course Number:"></g:Label>
+					</g:customCell>
+					<g:customCell>
+						<g:TextBox text="&lt;course frequency here&gt;" ui:field="courseNumberField"></g:TextBox>
+					</g:customCell>
+				</g:row>
+				<g:row>
+					<g:customCell>
+						<g:Label text="Required Frequency:"></g:Label>
+					</g:customCell>
+					<g:customCell>
+						<g:ListBox ui:field="frequencyDropdown"></g:ListBox>
+					</g:customCell>
+				</g:row>
+			</g:Grid>
+			</g:Cell>
+			<g:HorizontalPanel>
+				<g:Button text="Cancel" ui:field="cancelButton"/>
+				<g:Button text="Create" ui:field="createButton"/>
+			</g:HorizontalPanel>
+		</g:VerticalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

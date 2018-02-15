@@ -1,5 +1,6 @@
 package org.dselent.course_load_scheduler.client.presenter.impl;
 
+import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
 
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
@@ -32,6 +33,13 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		view.setPresenter(this);
 		
 		fillCourses();
+		
+		//TODO:***Remove buttons if not admin user! (or only have view button, depending on how stuff is implemented)**
+		/*if(userAdmin){		
+			view.getRemoveCourseButton().setVisible(false);
+			view.getEditCourseButton().setVisible(false);
+			view.getAddCourseButton().setVisible(false);
+		}*/
 	}
 	
 	@Override
@@ -62,16 +70,25 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		return view;
 	}
 	
+	@Override
+	public IndexPresenter getParentPresenter()
+	{
+		return parentPresenter;
+	}
+
+	@Override
+	public void setParentPresenter(IndexPresenter parentPresenter)
+	{
+		this.parentPresenter = parentPresenter;
+	}
+	
 	
 	//gets information about courses to fill the page with
 	@Override
 	public List<CourseInfo> retrieveCourses() {
-		//************get courses returned in a list of CourseInfo objects*****
+		List<CourseInfo> courses = new ArrayList<CourseInfo>();		
 		
-		//**iterate through list, creating a grid row entry for each object?***
-		//^^This would probably implement the injector thing, whatever that actually does.
-		List<CourseInfo> courses = new ArrayList<CourseInfo>();
-		
+		//TODO: instead of this, access DB to get courses
 		CourseInfo course1 = new CourseInfo();
 		course1.setCoursesNumber("CS3733");
 		course1.setCoursesTitle("Software Engineering");
@@ -91,6 +108,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		courses.add(course1);
 		courses.add(course2);
 		courses.add(course3);
+		
 		
 		return courses;
 	}
@@ -117,7 +135,28 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	}
 
 	
-
+	//loads the page to edit with the provided index/course (TODO: work out parameters)
+	@Override
+	public void loadEditPage(int courseIndex) {
+		//TODO: load the edit page somehow??? Send an event, perhaps?
+		//event would have information as follows?: If user is admin (although they should be),
+		//what course is being edited, either as in  index or the course's info from the page.
+		parentPresenter.showLoadScreen();
+	}
+	
+	//loads the page to add a course (TODO: work out parameters)
+	@Override
+	public void loadAddPage(boolean admin) {
+		//TODO: load the add page somehow??? Send an event, perhaps?
+		//event would have information as follows?: If user is admin (although they should be),
+		
+		final Injector injector = Injector.INSTANCE;
+		AddCoursePresenterImpl addCoursePresenter = injector.getAddCoursePresenter();
+		addCoursePresenter.init();
+		addCoursePresenter.go(parentPresenter.getView().getViewRootPanel());
+		
+		//parentPresenter.showLoadScreen();
+	}
 	
 	
 	
