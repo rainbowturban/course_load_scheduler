@@ -12,5 +12,4 @@ public class InvalidLoginStrings
 {
 	public static final String NULL_USER_NAME = "Your user name cannot be empty.";
 	public static final String NULL_PASSWORD = "Your password cannot be empty.";
-
 }
