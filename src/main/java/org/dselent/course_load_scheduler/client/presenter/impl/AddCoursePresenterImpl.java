@@ -130,8 +130,6 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	
 	@Override
 	public boolean submitNewCourse() {
-		//TODO: send request to the DB to add course
-		//TODO: check for valid name? Or would that be on the DB side?
 		int fIndex = view.getFrequencyDropdown().getSelectedIndex();
 		
 		if(fIndex >= 0) {
@@ -141,7 +139,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 			newCourse.setTitle(view.getCourseNameField().getText());
 			newCourse.setNumber(view.getCourseNumberField().getText());
 			
-			//TODO: send out to DB to add!
+			//TODO: *DB Event: send out to DB to add!
 			Window.alert("If this accesses the DB, it would send a request for a course with Name: "+newCourse.getTitle() +
 					", Number: "+newCourse.getNumber() + ", FrequencyId: " + newCourse.getFrequencyID());
 			
@@ -157,6 +155,8 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	
 	@Override
 	public void returnToViewCourses() {
+		
+		//TODO:!!!!!!!!! Replace with an Event!
 		final Injector injector = Injector.INSTANCE;
 		ViewCoursesPresenterImpl viewCoursePresenter = injector.getViewCoursesPresenter();
 		viewCoursePresenter.init();

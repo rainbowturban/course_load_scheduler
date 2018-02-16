@@ -37,19 +37,16 @@ public class ViewCoursesViewImpl extends BaseViewImpl<ViewCoursesPresenter> impl
 
 	@Override
 	public void setPresenter(ViewCoursesPresenter presenter) {
-		// TODO Auto-generated method stub
 		this.presenter = presenter;
 	}
 
 	@Override
 	public Widget getWidgetContainer() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
 	@Override
 	public HasWidgets getViewRootPanel() {
-		// TODO Auto-generated method stub
 		return baseContainer;
 	}
 
@@ -98,16 +95,15 @@ public class ViewCoursesViewImpl extends BaseViewImpl<ViewCoursesPresenter> impl
 	
 	@UiHandler("removeCourseButton")
 	void onRemoveCourseButtonClick(ClickEvent event) {
+		boolean success = presenter.removeCourse(courseList.getSelectedIndex());
 		int index = courseList.getSelectedIndex();//what is to be removed? get the index.
 		
-		if(index >= 0) {//returns -1 when nothing is selected--doesn't break program, but throws exception if it tries to remove it
-			//TODO: get the information for the course entry in the database and remove it
-			boolean success = presenter.removeCourse(index);
-			//TODO: only remove from list when it gets confirmation??
-			if(success) {
-				courseList.remove(index);
-			}
+		//TODO: Send correct Index--for DB not just the clientSide
+		
+		if(success) {
+			courseList.remove(index);
 		}
+		
 	}
 	
 }

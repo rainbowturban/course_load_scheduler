@@ -80,6 +80,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	//gets values from DB 
 	@Override
 	public List<Frequency> retrieveFequencies() {
+		
 		//TODO: fetch frequencies from the DB
 		//**In place of that, sample values are used
 		List<Frequency> freqs = new ArrayList<Frequency>();
@@ -187,6 +188,8 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	
 	@Override
 	public void loadEditSectionPage() {
+		//TODO: Make an event for this, to provide the name of the course and stuff, and the current section info
+		
 		final Injector injector = Injector.INSTANCE;
 		/*EditSectionPresenterImpl editSectionPresenter = injector.getEditSectionPresenter();
 		editSectionPresenter.init();
@@ -197,6 +200,8 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	
 	@Override
 	public void loadAddSectionPage() {
+		//TODO: Make an event for this, to provide the name of the course and stuff
+		
 		final Injector injector = Injector.INSTANCE;
 		AddSectionPresenterImpl addSectionPresenter = injector.getAddSectionPresenter();
 		addSectionPresenter.init();

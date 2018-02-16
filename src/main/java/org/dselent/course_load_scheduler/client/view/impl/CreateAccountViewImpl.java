@@ -97,8 +97,7 @@ public class CreateAccountViewImpl extends BaseViewImpl<CreateAccountPresenter> 
 
 	@Override
 	public void setPresenter(CreateAccountPresenter presenter) {
-		// TODO Auto-generated method stub
-		
+		this.presenter = presenter;
 	}
 
 	@Override

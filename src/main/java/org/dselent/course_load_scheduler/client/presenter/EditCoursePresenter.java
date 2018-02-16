@@ -22,7 +22,7 @@ public interface EditCoursePresenter  extends BasePresenter{
 	//gets the sections for this course and fills the list with them
 	public void fillSections();
 	
-	//section methods
+	//section button methods
 	public void removeSection();
 	public void loadEditSectionPage();
 	public void loadAddSectionPage();

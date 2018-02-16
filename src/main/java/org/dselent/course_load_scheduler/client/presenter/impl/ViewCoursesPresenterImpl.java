@@ -169,11 +169,17 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	//returns true if it was removed successfully, false otherwise.
 	@Override
 	public boolean removeCourse(int index) {
-		//TODO: Send remove request/event to server
-		//TODO: ensure it is real course ID, not only the index on the list
+		boolean success =  false;
+		if(index >= 0) {//returns -1 when nothing is selected--doesn't break program, but throws exception if it tries to remove it
+			//TODO: get the information for the course entry in the database and remove it
+			
+			//TODO: Send remove request/event to server
+			
+			success = true;//should change based on DB access
+
+		}
 		
-		//TODO: based on the request, return either true or false. For now, returns only true.
-		return true;
+		return success;
 	}
 	
 }

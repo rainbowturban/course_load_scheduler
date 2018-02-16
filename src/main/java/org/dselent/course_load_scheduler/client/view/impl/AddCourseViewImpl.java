@@ -49,7 +49,6 @@ public class AddCourseViewImpl extends BaseViewImpl<AddCoursePresenter> implemen
 
 	@Override
 	public HasWidgets getViewRootPanel() {
-		// TODO Auto-generated method stub
 		return baseContainer;
 	}
 	
