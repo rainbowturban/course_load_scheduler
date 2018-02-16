@@ -23,17 +23,17 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 
 	private IndexPresenter parentPresenter;
 	private ViewCoursesView view;
-	
-	
+
+
 	@Inject
 	public ViewCoursesPresenterImpl(IndexPresenter parentPresenter, ViewCoursesView view)
 	{
 		this.view = view;
 		this.parentPresenter = parentPresenter;
 		view.setPresenter(this);
-		
+
 		fillCourses();
-		
+
 		//TODO:***Remove buttons if not admin user! (or only have view button, depending on how stuff is implemented)**
 		/*if(userAdmin){		
 			view.getRemoveCourseButton().setVisible(false);
@@ -41,7 +41,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 			view.getAddCourseButton().setVisible(false);
 		}*/
 	}
-	
+
 	@Override
 	public void init()
 	{
@@ -52,12 +52,12 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	public void bind()
 	{
 		HandlerRegistration registration;
-		
+
 		//button events for when they click on edit or remove buttons
 		//registration = eventBus.addHandler(InvalidLoginEvent.TYPE, this);
 		//eventBusRegistration.put(InvalidLoginEvent.TYPE, registration);
 	}
-	
+
 	@Override
 	public void go(HasWidgets container) {
 		container.clear();
@@ -69,7 +69,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	public ViewCoursesView getView() {
 		return view;
 	}
-	
+
 	@Override
 	public IndexPresenter getParentPresenter()
 	{
@@ -81,48 +81,48 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	{
 		this.parentPresenter = parentPresenter;
 	}
-	
-	
+
+
 	//gets information about courses to fill the page with
 	@Override
 	public List<CourseInfo> retrieveCourses() {
 		List<CourseInfo> courses = new ArrayList<CourseInfo>();		
-		
+
 		//TODO: instead of this, access DB to get courses
 		CourseInfo course1 = new CourseInfo();
 		course1.setCoursesNumber("CS3733");
 		course1.setCoursesTitle("Software Engineering");
 		course1.setFrequency("4 Times/Year");
-		
+
 		CourseInfo course2 = new CourseInfo();
 		course2.setCoursesNumber("CS2223");
 		course2.setCoursesTitle("Algorithms");
 		course2.setFrequency("2 Times/Year");
-		
+
 		CourseInfo course3 = new CourseInfo();
 		course3.setCoursesNumber("CS####");
 		course3.setCoursesTitle("Something...");
 		course3.setFrequency("-5 Times/Year");
-		
-		
+
+
 		courses.add(course1);
 		courses.add(course2);
 		courses.add(course3);
-		
-		
+
+
 		return courses;
 	}
-	
+
 	//injects the code for the variable element of the page into
 	@Override
 	public void fillCourses() {
 		StackPanel panel = view.getCourseList();
 		panel.clear();
-		
+
 		List<CourseInfo> courses = retrieveCourses();
 		Iterator<CourseInfo> iterator = courses.iterator();
-		
-		
+
+
 		while(iterator.hasNext()) {
 			CourseInfo courseInfo = iterator.next();
 
@@ -130,12 +130,12 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 			Label label = new Label("Required Frequency: " + courseInfo.getFrequency());
 			panel.add(label, courseInfo.getCoursesNumber() +": "+ courseInfo.getCoursesTitle());
 		}
-		
-		
+
+
 		//view.setCourseList(panel);
 	}
 
-	
+
 	//loads the page to edit with the provided index/course (TODO: work out parameters)
 	@Override
 	public void loadEditPage(int courseIndex) {
@@ -148,23 +148,23 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		EditCoursePresenterImpl editCoursePresenter = injector.getEditCoursePresenter();
 		editCoursePresenter.init();
 		editCoursePresenter.go(parentPresenter.getView().getViewRootPanel());
-		
+
 	}
-	
+
 	//loads the page to add a course (TODO: work out parameters)
 	@Override
 	public void loadAddPage() {
 		//TODO: Should this be an event?
 		//event would have information as follows?: If user is admin (although they should be),
-		
-		
+
+
 		final Injector injector = Injector.INSTANCE;
 		AddCoursePresenterImpl addCoursePresenter = injector.getAddCoursePresenter();
 		addCoursePresenter.init();
 		addCoursePresenter.go(parentPresenter.getView().getViewRootPanel());
 	}
-	
-	
+
+
 	//sends the index of a course to be removed from the database.
 	//returns true if it was removed successfully, false otherwise.
 	@Override
@@ -172,14 +172,67 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		boolean success =  false;
 		if(index >= 0) {//returns -1 when nothing is selected--doesn't break program, but throws exception if it tries to remove it
 			//TODO: get the information for the course entry in the database and remove it
-			
+
 			//TODO: Send remove request/event to server
-			
+
 			success = true;//should change based on DB access
 
 		}
-		
+
 		return success;
 	}
+
+	//NAV BAR STUFF
+	//loads the home page (TODO: work out parameters, determine between Admin/User??)
+	@Override
+	public void loadHomePage() {
+		//TODO: Should this be an event?
+		//event would have information as follows?: If user is admin (although they should be),
+
+
+		final Injector injector = Injector.INSTANCE;
+		HomePresenterImpl homePresenter = injector.getHomePresenter();
+		homePresenter.init();
+		homePresenter.go(parentPresenter.getView().getViewRootPanel());
+	}
+
+	//loads schedule page (TODO: work out parameters, determine between Admin/User??)
+	@Override
+	public void loadSchedulePage() {
+		//TODO: Should this be an event?
+		//event would have information as follows?: If user is admin (although they should be),
+
+
+		final Injector injector = Injector.INSTANCE;
+		SchedulePresenterImpl schedulePresenter = injector.getSchedulePresenter();
+		schedulePresenter.init();
+		schedulePresenter.go(parentPresenter.getView().getViewRootPanel());
+	}
 	
+	//loads courses page (viewing) (TODO: work out parameters, determine between Admin/User??)
+	@Override
+	public void loadViewCoursesPage() {
+		//TODO: Should this be an event?
+		//event would have information as follows?: If user is admin (although they should be),
+
+
+		final Injector injector = Injector.INSTANCE;
+		ViewCoursesPresenterImpl viewCoursesPresenter = injector.getViewCoursesPresenter();
+		viewCoursesPresenter.init();
+		viewCoursesPresenter.go(parentPresenter.getView().getViewRootPanel());
+	}
+	
+	//loads account page (TODO: work out parameters, determine between Admin/User??)
+	@Override
+	public void loadAccountPage() {
+		//TODO: Should this be an event?
+		//event would have information as follows?: If user is admin (although they should be),
+
+
+		final Injector injector = Injector.INSTANCE;
+		AccountPresenterImpl accountPresenter = injector.getAccountPresenter();
+		accountPresenter.init();
+		accountPresenter.go(parentPresenter.getView().getViewRootPanel());
+	}
+
 }

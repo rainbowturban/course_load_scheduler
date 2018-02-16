@@ -36,13 +36,6 @@
 	text-align: center;
 }
 
-.backgroundDefault {
-	background: A9B0B7;
-	color: Black;
-	font-size: 2em;
-	background-color: Silver;
-}
-
 .viewCoursesHeader {
 	color: #AC2B37;
 	font-size: 3em;
@@ -123,4 +116,8 @@
 color: white;
 background: #AC2B37;
 font-family: TimesNewRoman;
+}
+.modalPanel {
+	padding: 5%, 25%;
+	background: #A9B0B7;
 }

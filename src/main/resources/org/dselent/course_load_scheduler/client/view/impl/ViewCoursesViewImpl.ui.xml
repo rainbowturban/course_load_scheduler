@@ -10,10 +10,10 @@
 			<g:Cell horizontalAlignment="ALIGN_CENTER">
 				<g:HorizontalPanel>
 				<g:Button text="WPI Logo"></g:Button>
-				<g:Button text="Home" styleName="navButton"></g:Button>
-				<g:Button text="Schedule" styleName="navButton"></g:Button>
-				<g:Button text="Courses" styleName="navButton"></g:Button>
-				<g:Button text="Account" styleName="navButton"></g:Button>
+				<g:Button text="Home" styleName="navButton" ui:field="homeButton"></g:Button>
+				<g:Button text="Schedule" styleName="navButton" ui:field="scheduleButton"></g:Button>
+				<g:Button text="Courses" styleName="navButton" ui:field="coursesButton"></g:Button>
+				<g:Button text="Account" styleName="navButton" ui:field="accountButton"></g:Button>
 			</g:HorizontalPanel>
 			</g:Cell>
 		<!-- VIEW COURSES LIST AND EDIT/REMOVE BUTTONS -->

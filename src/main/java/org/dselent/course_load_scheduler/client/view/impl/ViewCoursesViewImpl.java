@@ -27,6 +27,10 @@ public class ViewCoursesViewImpl extends BaseViewImpl<ViewCoursesPresenter> impl
 	@UiField Button editCourseButton;
 	@UiField Button removeCourseButton;
 	@UiField StackPanel courseList;
+	@UiField Button homeButton;
+	@UiField Button scheduleButton;
+	@UiField Button coursesButton;
+	@UiField Button accountButton;
 
 	interface viewCoursesUiBinder extends UiBinder<Widget, ViewCoursesViewImpl> {
 	}
@@ -106,4 +110,23 @@ public class ViewCoursesViewImpl extends BaseViewImpl<ViewCoursesPresenter> impl
 		
 	}
 	
+	@UiHandler("homeButton")
+	void onHomeButtonClick(ClickEvent event) {
+		presenter.loadHomePage();
+	}
+	
+	@UiHandler("scheduleButton")
+	void onScheduleButtonClick(ClickEvent event) {
+		presenter.loadSchedulePage();
+	}
+	
+	@UiHandler("coursesButton")
+	void onCoursesButtonClick(ClickEvent event) {
+		presenter.loadViewCoursesPage();
+	}
+	
+	@UiHandler("accountButton")
+	void onAccountButtonClick(ClickEvent event) {
+		presenter.loadAccountPage();
+	}
 }

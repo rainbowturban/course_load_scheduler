@@ -4,14 +4,16 @@
 	<ui:style>
 
 	</ui:style>
-	<g:HTMLPanel width="100%" height="100%" styleName="backgroundDefault">
+	<g:HTMLPanel width="100%" height="100%">
 		<g:VerticalPanel width="100%" height="100%"
 			horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_TOP"
-			ui:field="editSectionPanel">
+			ui:field="editSectionPanel" styleName="modalPanel">
+			<!-- TITLE -->
 			<g:Cell height="sectionTitle">
 				<g:Label text="Edit Section" styleName="viewCoursesHeader"
 					ui:field="editSectionTitle" />
 			</g:Cell>
+			<!-- SECTION INFORMATION -->
 			<g:Grid>
 				<g:row>
 					<g:customCell>
@@ -61,8 +63,8 @@
 						<g:ListBox ui:field="sectionEndTimeComboBox" />
 					</g:customCell>
 				</g:row>
-
 			</g:Grid>
+			<!-- DAYS CHECKBOXES -->
 			<g:HorizontalPanel>
 				<g:CheckBox text="M" ui:field="mondayCheckBox" checked="true" />
 				<g:CheckBox text="T" ui:field="tuesdayCheckBox" />
@@ -71,6 +73,7 @@
 				<g:CheckBox text="R" ui:field="thursdayCheckBox" />
 				<g:CheckBox text="F" ui:field="fridayCheckBox" checked="true" />
 			</g:HorizontalPanel>
+			<!-- SUBMIT/CANCEL BUTTONS -->
 			<g:HorizontalSplitPanel height="30px">
 				<g:Button text="Cancel" ui:field="cancelButton" />
 				<g:Button text="Submit" ui:field="submitButton" />
