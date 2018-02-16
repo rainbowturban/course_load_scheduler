@@ -17,5 +17,6 @@ public interface AddSectionPresenter extends BasePresenter{
 	void fillSectionTypes();
 	void fillSectionStart();
 	void fillSectionEnd();
+	String determineDays();
 
 }

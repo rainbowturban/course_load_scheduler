@@ -60,7 +60,14 @@
 				</g:row>
 
 			</g:Grid>
-			<g:HorizontalSplitPanel>
+			<g:HorizontalPanel>
+				<g:CheckBox text="M" ui:field="mondayCheckBox" checked="true"/>
+				<g:CheckBox text="T" ui:field="tuesdayCheckBox"/>
+				<g:CheckBox text="W" ui:field="wednesdayCheckBox" checked="true"/>
+				<g:CheckBox text="R" ui:field="thursdayCheckBox"/>
+				<g:CheckBox text="F" ui:field="fridayCheckBox" checked="true"/>
+			</g:HorizontalPanel>
+			<g:HorizontalSplitPanel height="30px">
 			<g:Button text="Cancel" ui:field="cancelButton"/>
 			<g:Button text="Create" ui:field="createButton"/>
 			</g:HorizontalSplitPanel>

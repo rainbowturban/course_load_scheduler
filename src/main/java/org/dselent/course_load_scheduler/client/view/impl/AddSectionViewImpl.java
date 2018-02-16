@@ -13,6 +13,9 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.user.client.ui.CheckBox;
 
 
 public class AddSectionViewImpl extends BaseViewImpl<AddSectionPresenter> implements AddSectionView {
@@ -37,6 +40,11 @@ public class AddSectionViewImpl extends BaseViewImpl<AddSectionPresenter> implem
 	@UiField ListBox sectionStartTimeComboBox;
 	@UiField Label sectionEndTimeLabel;
 	@UiField ListBox sectionEndTimeComboBox;
+	@UiField CheckBox mondayCheckBox;
+	@UiField CheckBox tuesdayCheckBox;
+	@UiField CheckBox wednesdayCheckBox;
+	@UiField CheckBox thursdayCheckBox;
+	@UiField CheckBox fridayCheckBox;
 
 	public AddSectionViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -111,6 +119,36 @@ public class AddSectionViewImpl extends BaseViewImpl<AddSectionPresenter> implem
 	}
 	
 	@Override
+	public CheckBox getMondayCheckBox()
+	{
+		return mondayCheckBox;
+	}
+	
+	@Override
+	public CheckBox getTuesdayCheckBox()
+	{
+		return tuesdayCheckBox;
+	}
+	
+	@Override
+	public CheckBox getWednesdayCheckBox()
+	{
+		return wednesdayCheckBox;
+	}
+	
+	@Override
+	public CheckBox getThursdayCheckBox()
+	{
+		return thursdayCheckBox;
+	}
+	
+	@Override
+	public CheckBox getFridayCheckBox()
+	{
+		return fridayCheckBox;
+	}
+	
+	@Override
 	public Button getCancelButton()
 	{
 		return cancelButton;
@@ -138,5 +176,10 @@ public class AddSectionViewImpl extends BaseViewImpl<AddSectionPresenter> implem
 	public HasWidgets getViewRootPanel()
 	{
 		return addSectionPanel;
+	}
+	
+	@UiHandler("createButton")
+	void onCreateButtonClick(ClickEvent event) {
+		presenter.addSection();
 	}
 }

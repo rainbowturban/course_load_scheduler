@@ -12,6 +12,7 @@ import org.dselent.course_load_scheduler.client.view.AddSectionView;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.inject.Inject;
 
 public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSectionPresenter{
@@ -163,7 +164,7 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 	public void fillSectionTypes() {
 		ListBox type = view.getSectionTypeComboBox();
 
-		List<SectionsInfo> sectionTypes = retrieveTerm();
+		List<SectionsInfo> sectionTypes = retrieveType();
 		Iterator<SectionsInfo> iterator = sectionTypes.iterator();
 		
 		while(iterator.hasNext()) {
@@ -179,7 +180,7 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 		ListBox start = view.getSectionStartTimeComboBox();
 		
 
-		List<SectionsInfo> sectionStart = retrieveTerm();
+		List<SectionsInfo> sectionStart = retrieveTime();
 		Iterator<SectionsInfo> iterator = sectionStart.iterator();
 		
 		while(iterator.hasNext()) {
@@ -195,7 +196,7 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 		ListBox end = view.getSectionEndTimeComboBox();
 		
 
-		List<SectionsInfo> sectionEnd = retrieveTerm();
+		List<SectionsInfo> sectionEnd = retrieveTime();
 		Iterator<SectionsInfo> iterator = sectionEnd.iterator();
 		
 		while(iterator.hasNext()) {
@@ -205,11 +206,51 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 		
 		view.setSectionEndTimeComboBox(end);
 	}
+	
+	//determine which days are selected and stick them together as a string
+	@Override
+	public String determineDays() {
+		CheckBox monday = view.getMondayCheckBox();
+		CheckBox tuesday = view.getTuesdayCheckBox();
+		CheckBox wednesday = view.getWednesdayCheckBox();
+		CheckBox thursday = view.getThursdayCheckBox();
+		CheckBox friday = view.getFridayCheckBox();		
+		
+		StringBuilder days = new StringBuilder();
+		
+		if(monday.getValue()) {
+			days.append(monday.getText());
+		}
+		if(tuesday.getValue()) {
+			days.append(tuesday.getText());
+		}
+		if(wednesday.getValue()) {
+			days.append(wednesday.getText());
+		}
+		if(thursday.getValue()) {
+			days.append(thursday.getText());
+		}		
+		if(friday.getValue()) {
+			days.append(friday.getText());
+		}
+		
+		return days.toString();		
+	}
 
 	@Override
 	public void addSection() {
-		// TODO Auto-generated method stub
+		ListBox term = view.getTermComboBox();
+		ListBox type = view.getSectionTypeComboBox();
+		ListBox start = view.getSectionStartTimeComboBox();
+		ListBox end = view.getSectionEndTimeComboBox();
 		
+		//create the new section
+		SectionsInfo newSection = new SectionsInfo();
+		newSection.setTermsName(term.getItemText(term.getSelectedIndex()));
+		newSection.setSectionType(type.getItemText(type.getSelectedIndex()));
+		newSection.setStartTime(Time.valueOf(start.getItemText(start.getSelectedIndex())));
+		newSection.setEndTime(Time.valueOf(end.getItemText(end.getSelectedIndex())));
+		newSection.setDays(this.determineDays());
 	}
 
 }
