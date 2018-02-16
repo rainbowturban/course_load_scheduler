@@ -1,10 +1,14 @@
 package org.dselent.course_load_scheduler.client.gin;
 
 import org.dselent.course_load_scheduler.client.presenter.impl.AddCoursePresenterImpl;
+import org.dselent.course_load_scheduler.client.presenter.impl.AddSectionPresenterImpl;
+import org.dselent.course_load_scheduler.client.presenter.impl.EditCoursePresenterImpl;
 import org.dselent.course_load_scheduler.client.presenter.impl.IndexPresenterImpl;
 import org.dselent.course_load_scheduler.client.presenter.impl.LoginPresenterImpl;
 import org.dselent.course_load_scheduler.client.presenter.impl.ViewCoursesPresenterImpl;
 import org.dselent.course_load_scheduler.client.view.impl.AddCourseViewImpl;
+import org.dselent.course_load_scheduler.client.view.impl.AddSectionViewImpl;
+import org.dselent.course_load_scheduler.client.view.impl.EditCourseViewImpl;
 import org.dselent.course_load_scheduler.client.view.impl.IndexViewImpl;
 import org.dselent.course_load_scheduler.client.view.impl.LoginViewImpl;
 import org.dselent.course_load_scheduler.client.view.impl.ViewCoursesViewImpl;
@@ -39,10 +43,17 @@ public interface Injector extends Ginjector
     public LoginPresenterImpl getLoginPresenter();
     public ViewCoursesPresenterImpl getViewCoursesPresenter();
     public AddCoursePresenterImpl getAddCoursePresenter();
+    public EditCoursePresenterImpl getEditCoursePresenter();
+//    public EditSectionPresenterImpl getEditSectionPresenter();//Un-comment once this class exists!
+    public AddSectionPresenterImpl getAddSectionPresenter();
     
     //views
     public IndexViewImpl getIndexView();
     public LoginViewImpl getLoginView();
     public ViewCoursesViewImpl getViewCoursesView();
     public AddCourseViewImpl getAddCourseView();
+    public EditCourseViewImpl getEditCourseView();
+//  public EditSectionViewImpl getEditSectionView();//Un-comment once this class exists!
+    public AddSectionViewImpl getAddSectionView();
+    
 }

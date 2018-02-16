@@ -5,9 +5,10 @@
 	
 	</ui:style>
 	<g:HTMLPanel ui:field="baseContainer">
-		<g:VerticalPanel horizontalAlignment="ALIGN_CENTER">
+	
+	<g:VerticalPanel horizontalAlignment="ALIGN_CENTER">
 			<g:Cell horizontalAlignment="ALIGN_CENTER">
-				<g:Label text="Add New Course" horizontalAlignment="ALIGN_CENTER" width="292px" styleName="h1"/>
+				<g:Label text="Edit Course" horizontalAlignment="ALIGN_CENTER" width="292px" styleName="h1"/>
 			</g:Cell>
 			<g:Cell horizontalAlignment="ALIGN_CENTER">
 				<g:Grid>
@@ -32,15 +33,29 @@
 						<g:Label text="Required Frequency:"></g:Label>
 					</g:customCell>
 					<g:customCell>
-						<g:ListBox ui:field="frequencyDropdown"></g:ListBox>
+						<g:ListBox ui:field="frequencyDropdown"/>
+					</g:customCell>
+					
+				</g:row>
+				<g:row>
+					<g:customCell>
+						<g:StackPanel ui:field="sectionList"/>
+					</g:customCell>
+					<g:customCell>
+						<g:VerticalPanel>
+							<g:Button ui:field="addSection">Add Section</g:Button>
+							<g:Button text="Edit Section" ui:field="editSection"/>
+							<g:Button ui:field="removeSection">Remove Section</g:Button>
+						</g:VerticalPanel>
 					</g:customCell>
 				</g:row>
 			</g:Grid>
 			</g:Cell>
 			<g:HorizontalPanel>
 				<g:Button text="Cancel" ui:field="cancelButton"/>
-				<g:Button text="Create" ui:field="createButton"/>
+				<g:Button text="Submit Changes" ui:field="submitButton"/>
 			</g:HorizontalPanel>
 		</g:VerticalPanel>
+	
 	</g:HTMLPanel>
 </ui:UiBinder> 

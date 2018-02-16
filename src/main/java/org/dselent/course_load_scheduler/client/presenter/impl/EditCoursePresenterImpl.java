@@ -5,30 +5,27 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.dselent.course_load_scheduler.client.gin.Injector;
-import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.model.Frequency;
-import org.dselent.course_load_scheduler.client.presenter.AddCoursePresenter;
+import org.dselent.course_load_scheduler.client.presenter.EditCoursePresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
-import org.dselent.course_load_scheduler.client.view.AddCourseView;
+import org.dselent.course_load_scheduler.client.view.EditCourseView;
 
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.StackPanel;
 import com.google.inject.Inject;
 
-public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCoursePresenter{
+public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCoursePresenter{
 	//implementations of the helpful functions from the interface
 	
 	private IndexPresenter parentPresenter;
-	private AddCourseView view;
+	private EditCourseView view;
 	
 	
 	@Inject
-	public AddCoursePresenterImpl(IndexPresenter parentPresenter, AddCourseView view)
+	public EditCoursePresenterImpl(IndexPresenter parentPresenter, EditCourseView view)
 	{
 		this.view = view;
 		this.parentPresenter = parentPresenter;
@@ -36,6 +33,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 		
 		//fill the dropdown box
 		fillFrequencies();
+		fillSections();
 		
 	}
 	
@@ -63,7 +61,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 
 	//returns the view for the presenter
 	@Override
-	public AddCourseView getView() {
+	public EditCourseView getView() {
 		return view;
 	}
 	
@@ -79,6 +77,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 		this.parentPresenter = parentPresenter;
 	}
 	
+	//gets values from DB 
 	@Override
 	public List<Frequency> retrieveFequencies() {
 		//TODO: fetch frequencies from the DB
@@ -105,7 +104,6 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 		return freqs;
 	}
 	
-	
 	//gets the frequencies from the database and fills the dropdown with them. 
 	@Override
 	public void fillFrequencies() {
@@ -124,34 +122,50 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 			box.addItem(f.getFrequency(), Integer.toString(f.getId()));
 		}
 		
-		view.setFrequencyDropdown(box);
-		
+		//view.setFrequencyDropdown(box);
 	}
 	
+	
+	//gets the sections for this course and fills the list with them
 	@Override
-	public boolean submitNewCourse() {
-		//TODO: send request to the DB to add course
-		//TODO: check for valid name? Or would that be on the DB side?
+	public void fillSections() {
+		//TODO: get sections and info from DB
+		//TODO: What to do about sections not in schedule? They do not have a professor associated with them yet.
+		//name in header
+		//professor???
+	}
+	
+	
+	@Override
+	public boolean submitCourseEdit() {
+		Courses updatedCourse = new Courses();
+		updatedCourse.setTitle(view.getCourseNameField().getText());
+		updatedCourse.setNumber(view.getCourseNumberField().getText());
+		updatedCourse.setFrequencyID(view.getFrequencyDropdown().getSelectedIndex());//TODO: dropdown id not necessarily equal to db id!!**
+		
+		
 		int fIndex = view.getFrequencyDropdown().getSelectedIndex();
 		
 		if(fIndex >= 0) {
-			//since index is valid, fill out object
-			Courses newCourse = new Courses();
-			newCourse.setFrequencyID(Integer.parseInt(view.getFrequencyDropdown().getValue(fIndex)));
-			newCourse.setTitle(view.getCourseNameField().getText());
-			newCourse.setNumber(view.getCourseNumberField().getText());
+			//since index is valid, fill object
+			Courses editCourse = new Courses();
+			editCourse.setFrequencyID(Integer.parseInt(view.getFrequencyDropdown().getValue(fIndex)));
+			editCourse.setTitle(view.getCourseNameField().getText());
+			editCourse.setNumber(view.getCourseNumberField().getText());
+			editCourse.setId(0);//TODO: Get courseID on main page and pass it to this page via event??
 			
-			//TODO: send out to DB to add!
-			Window.alert("If this accesses the DB, it would send a request for a course with Name: "+newCourse.getTitle() +
-					", Number: "+newCourse.getNumber() + ", FrequencyId: " + newCourse.getFrequencyID());
+			//TODO: send out to DB to edit!
+			Window.alert("If this accesses the DB, it would send a request to edit a course with Name: "+editCourse.getTitle() +
+					", Number: "+editCourse.getNumber() + ", FrequencyId: " + editCourse.getFrequencyID());
 			
 			
 			return true;//returns if course adding was successful or not
 		}
 		else {//Frequency was not selected
-			Window.alert("A Freqeuncy must be selected to create a course.");
+			Window.alert("A Freqeuncy must be selected to edit a course.");
 			return false;
 		}
+		
 	}
 	
 	
@@ -163,6 +177,30 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 		viewCoursePresenter.go(parentPresenter.getView().getViewRootPanel());
 	}
 	
+	//sends request to remove section from the DB.
+	@Override
+	public void removeSection() {
+		//TODO: send request to database
+		
+		
+	}
 	
+	@Override
+	public void loadEditSectionPage() {
+		final Injector injector = Injector.INSTANCE;
+		/*EditSectionPresenterImpl editSectionPresenter = injector.getEditSectionPresenter();
+		editSectionPresenter.init();
+		editSectionPresenter.go(parentPresenter.getView().getViewRootPanel());*/
+		Window.alert("Edit section didn't exist yet, when I wrote this, so the stuff is commented out for when it exists!");
+		
+	}
 	
+	@Override
+	public void loadAddSectionPage() {
+		final Injector injector = Injector.INSTANCE;
+		AddSectionPresenterImpl addSectionPresenter = injector.getAddSectionPresenter();
+		addSectionPresenter.init();
+		addSectionPresenter.go(parentPresenter.getView().getViewRootPanel());
+	}
+
 }

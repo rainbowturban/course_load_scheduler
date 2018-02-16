@@ -53,25 +53,31 @@ public class AddCourseViewImpl extends BaseViewImpl<AddCoursePresenter> implemen
 		return baseContainer;
 	}
 	
+	//getter for dropdown
+	@Override
+	public ListBox getFrequencyDropdown() {
+		return frequencyDropdown;
+	}
+	@Override
+	public void setFrequencyDropdown(ListBox dropdown) {
+		frequencyDropdown = dropdown;
+	}
 	
-	
-
-	
-	
-	
-	
+	//getters for text fields
+	@Override
+	public TextBox getCourseNameField() {
+		return courseNameField;
+	}
+	@Override
+	public TextBox getCourseNumberField() {
+		return courseNumberField;
+	}
 	
 	
 	
 	@UiHandler("createButton")
 	void onCreateButtonClick(ClickEvent event) {
-		//TODO: check for valid name? Or would that be on the DB side?
-		Courses newCourse = new Courses();
-		newCourse.setFrequencyID(frequencyDropdown.getSelectedIndex());//TODO: This does not necessarily align with DB index!!
-		newCourse.setTitle(courseNameField.getText());
-		newCourse.setNumber(courseNumberField.getText());
-		
-		boolean success = presenter.submitNewCourse(newCourse);
+		boolean success = presenter.submitNewCourse();
 		
 		if(!success) {
 			Window.alert("Course addition failed.");

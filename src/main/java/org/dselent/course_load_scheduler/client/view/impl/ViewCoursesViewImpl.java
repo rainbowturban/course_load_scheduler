@@ -84,32 +84,29 @@ public class ViewCoursesViewImpl extends BaseViewImpl<ViewCoursesPresenter> impl
 	//Moves to the Add Course page
 	@UiHandler("addCourseButton")
 	void onAddCourseButtonClick(ClickEvent event) {
-		//TODO: redirect to another page or cue popup
-		presenter.loadAddPage(true);
+		presenter.loadAddPage();
 	}
 	
 	//Moves to the View/Edit Course Page
 	@UiHandler("editCourseButton")
 	void onEditCourseButtonClick(ClickEvent event) {
-		//TODO: redirect to another page or cue popup
-		
 		int index = courseList.getSelectedIndex();//what is to be removed? get the index.
 		if(index >= 0) {//returns -1 when nothing is selected--doesn't break program, but throws exception
 			presenter.loadEditPage(index);
 		}
-		
-		Window.alert("Edit Course button! Either a new page or popup here.");
 	}
 	
 	@UiHandler("removeCourseButton")
 	void onRemoveCourseButtonClick(ClickEvent event) {
 		int index = courseList.getSelectedIndex();//what is to be removed? get the index.
 		
-		//TODO: get the information for the course entry in the database and remove it
-		//TODO: only remove from list when it gets confirmation??
-
-		if(index >= 0) {//returns -1 when nothing is selected--doesn't break program, but throws exception
-			courseList.remove(index);//<--helpful for removing?!?
+		if(index >= 0) {//returns -1 when nothing is selected--doesn't break program, but throws exception if it tries to remove it
+			//TODO: get the information for the course entry in the database and remove it
+			boolean success = presenter.removeCourse(index);
+			//TODO: only remove from list when it gets confirmation??
+			if(success) {
+				courseList.remove(index);
+			}
 		}
 	}
 	

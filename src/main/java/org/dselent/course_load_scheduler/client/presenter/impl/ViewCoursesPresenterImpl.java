@@ -117,6 +117,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	@Override
 	public void fillCourses() {
 		StackPanel panel = view.getCourseList();
+		panel.clear();
 		
 		List<CourseInfo> courses = retrieveCourses();
 		Iterator<CourseInfo> iterator = courses.iterator();
@@ -131,7 +132,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		}
 		
 		
-		view.setCourseList(panel);
+		//view.setCourseList(panel);
 	}
 
 	
@@ -140,24 +141,39 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	public void loadEditPage(int courseIndex) {
 		//TODO: load the edit page somehow??? Send an event, perhaps?
 		//event would have information as follows?: If user is admin (although they should be),
-		//what course is being edited, either as in  index or the course's info from the page.
-		parentPresenter.showLoadScreen();
+		//what course is being edited, as an index and the course's info from the page.
+
+
+		final Injector injector = Injector.INSTANCE;
+		EditCoursePresenterImpl editCoursePresenter = injector.getEditCoursePresenter();
+		editCoursePresenter.init();
+		editCoursePresenter.go(parentPresenter.getView().getViewRootPanel());
+		
 	}
 	
 	//loads the page to add a course (TODO: work out parameters)
 	@Override
-	public void loadAddPage(boolean admin) {
-		//TODO: load the add page somehow??? Send an event, perhaps?
+	public void loadAddPage() {
+		//TODO: Should this be an event?
 		//event would have information as follows?: If user is admin (although they should be),
+		
 		
 		final Injector injector = Injector.INSTANCE;
 		AddCoursePresenterImpl addCoursePresenter = injector.getAddCoursePresenter();
 		addCoursePresenter.init();
 		addCoursePresenter.go(parentPresenter.getView().getViewRootPanel());
-		
-		//parentPresenter.showLoadScreen();
 	}
 	
 	
+	//sends the index of a course to be removed from the database.
+	//returns true if it was removed successfully, false otherwise.
+	@Override
+	public boolean removeCourse(int index) {
+		//TODO: Send remove request/event to server
+		//TODO: ensure it is real course ID, not only the index on the list
+		
+		//TODO: based on the request, return either true or false. For now, returns only true.
+		return true;
+	}
 	
 }
