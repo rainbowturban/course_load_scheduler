@@ -76,14 +76,7 @@ public class AddCourseViewImpl extends BaseViewImpl<AddCoursePresenter> implemen
 	
 	@UiHandler("createButton")
 	void onCreateButtonClick(ClickEvent event) {
-		boolean success = presenter.submitNewCourse();
-		
-		if(!success) {
-			Window.alert("Course addition failed.");
-		}
-		else {
-			presenter.returnToViewCourses();
-		}
+		presenter.submitNewCourse();
 	}
 	
 	@UiHandler("cancelButton")

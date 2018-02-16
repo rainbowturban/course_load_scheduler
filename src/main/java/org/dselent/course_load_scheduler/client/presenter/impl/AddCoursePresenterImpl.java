@@ -129,7 +129,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	}
 	
 	@Override
-	public boolean submitNewCourse() {
+	public void submitNewCourse() {
 		int fIndex = view.getFrequencyDropdown().getSelectedIndex();
 		
 		if(fIndex >= 0) {
@@ -144,11 +144,10 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 					", Number: "+newCourse.getNumber() + ", FrequencyId: " + newCourse.getFrequencyID());
 			
 			
-			return true;//returns if course adding was successful or not
+			returnToViewCourses();//returns if course adding was successful or not
 		}
 		else {//Frequency was not selected
 			Window.alert("A Freqeuncy must be selected to create a course.");
-			return false;
 		}
 	}
 	

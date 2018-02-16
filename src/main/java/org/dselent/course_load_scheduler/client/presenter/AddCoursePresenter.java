@@ -16,7 +16,7 @@ public interface AddCoursePresenter extends BasePresenter{
 	
 	public void returnToViewCourses();
 	
-	public boolean submitNewCourse();
+	public void submitNewCourse();
 	
 	public List<Frequency> retrieveFequencies();
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
+import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.model.Frequency;
@@ -49,8 +51,19 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		HandlerRegistration registration;
 		
 		//TODO: implement event listeners down here
-		//registration = eventBus.addHandler(InvalidLoginEvent.TYPE, this);
-		//eventBusRegistration.put(InvalidLoginEvent.TYPE, registration);
+		registration = eventBus.addHandler(LoadEditCourseEvent.TYPE, this);
+		eventBusRegistration.put(LoadEditCourseEvent.TYPE, registration);
+	}
+	
+	@Override
+	public void onLoadEditCoursePage(LoadEditCourseEvent evt) {
+		//**Extract the course info
+		//**use it to fill the text fields and set the freqeuncy
+		//then fetch+display the sections
+		Window.alert("handled the event!");
+		this.init();
+		this.go(parentPresenter.getView().getViewRootPanel());
+		
 	}
 	
 	@Override

@@ -1,6 +1,7 @@
 package org.dselent.course_load_scheduler.client.event_handler;
 
 import org.dselent.course_load_scheduler.client.event.InvalidLoginEvent;
+import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.event.SendLoginEvent;
 
 /**
@@ -14,11 +15,16 @@ import org.dselent.course_load_scheduler.client.event.SendLoginEvent;
  * 
  */
 public abstract class EventHandlerAdapter
-implements InvalidLoginEventHandler, SendLoginEventHandler
+implements InvalidLoginEventHandler, SendLoginEventHandler, LoadEditCourseEventHandler
 {
 	@Override
 	public void onInvalidLogin(InvalidLoginEvent evt) {}
 	
 	@Override
 	public void onSendLogin(SendLoginEvent evt) {}
+	
+	@Override
+	public void onLoadEditCoursePage(LoadEditCourseEvent evt) {}
+	
+	
 }

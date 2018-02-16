@@ -37,6 +37,6 @@ public class LoadEditCourseEvent extends GwtEvent<LoadEditCourseEventHandler>{
 	@Override
 	protected void dispatch(LoadEditCourseEventHandler handler)
 	{
-		handler.onLoadEditPage(this);
+		handler.onLoadEditCoursePage(this);
 	}
 }

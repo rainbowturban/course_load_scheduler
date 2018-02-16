@@ -4,14 +4,12 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.HasWidgets;
 
-import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.presenter.ViewCoursesPresenter;
 import org.dselent.course_load_scheduler.client.view.ViewCoursesView;
 
@@ -87,23 +85,12 @@ public class ViewCoursesViewImpl extends BaseViewImpl<ViewCoursesPresenter> impl
 	//Moves to the View/Edit Course Page
 	@UiHandler("editCourseButton")
 	void onEditCourseButtonClick(ClickEvent event) {
-		int index = courseList.getSelectedIndex();//what is to be removed? get the index.
-		if(index >= 0) {//returns -1 when nothing is selected--doesn't break program, but throws exception
-			presenter.loadEditPage(index);
-		}
+		presenter.loadEditPage();
 	}
 	
 	@UiHandler("removeCourseButton")
 	void onRemoveCourseButtonClick(ClickEvent event) {
-		boolean success = presenter.removeCourse(courseList.getSelectedIndex());
-		int index = courseList.getSelectedIndex();//what is to be removed? get the index.
-		
-		//TODO: Send correct Index--for DB not just the clientSide
-		
-		if(success) {
-			courseList.remove(index);
-		}
-		
+		presenter.removeCourse();
 	}
 	
 }

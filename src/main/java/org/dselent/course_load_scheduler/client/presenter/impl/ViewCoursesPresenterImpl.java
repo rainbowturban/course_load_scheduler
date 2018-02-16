@@ -1,5 +1,7 @@
 package org.dselent.course_load_scheduler.client.presenter.impl;
 
+import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
+import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
 
@@ -138,16 +140,29 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	
 	//loads the page to edit with the provided index/course (TODO: work out parameters)
 	@Override
-	public void loadEditPage(int courseIndex) {
+	public void loadEditPage() {
 		//TODO: load the edit page somehow??? Send an event, perhaps?
 		//event would have information as follows?: If user is admin (although they should be),
 		//what course is being edited, as an index and the course's info from the page.
-
-
-		final Injector injector = Injector.INSTANCE;
-		EditCoursePresenterImpl editCoursePresenter = injector.getEditCoursePresenter();
-		editCoursePresenter.init();
-		editCoursePresenter.go(parentPresenter.getView().getViewRootPanel());
+		
+		int index = view.getCourseList().getSelectedIndex();//what is to be removed? get the index.
+		if(index >= 0) {//-1 when nothing is selected--doesn't break program, but throws exception
+			LoadEditCourseAction action = new LoadEditCourseAction();
+			//TODO:********************Fill action with courseInfo and course object!! How?
+			final Injector injector = Injector.INSTANCE;
+			EditCoursePresenterImpl editCoursePresenter = injector.getEditCoursePresenter();
+			editCoursePresenter.init();
+			
+			LoadEditCourseEvent evt = new LoadEditCourseEvent(action);
+			
+			eventBus.fireEvent(evt);
+			
+			/*
+			final Injector injector = Injector.INSTANCE;
+			EditCoursePresenterImpl editCoursePresenter = injector.getEditCoursePresenter();
+			editCoursePresenter.init();
+			editCoursePresenter.go(parentPresenter.getView().getViewRootPanel());*/
+		}
 		
 	}
 	
@@ -168,18 +183,18 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	//sends the index of a course to be removed from the database.
 	//returns true if it was removed successfully, false otherwise.
 	@Override
-	public boolean removeCourse(int index) {
-		boolean success =  false;
-		if(index >= 0) {//returns -1 when nothing is selected--doesn't break program, but throws exception if it tries to remove it
-			//TODO: get the information for the course entry in the database and remove it
-			
-			//TODO: Send remove request/event to server
-			
-			success = true;//should change based on DB access
-
-		}
+	public void removeCourse() {
+		int index = view.getCourseList().getSelectedIndex();//what is to be removed? get the index.
 		
-		return success;
+		if(index >= 0) {
+			//TODO: Send correct Index--for DB not just the clientSide
+			boolean success = true;//this will be the return value from the request
+			
+			
+			if(success) {
+				view.getCourseList().remove(index);
+			}
+		}
 	}
 	
 }

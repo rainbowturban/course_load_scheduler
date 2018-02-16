@@ -16,13 +16,13 @@ public interface ViewCoursesPresenter extends BasePresenter {
 	public void fillCourses();
 	
 	//loads the page to edit with the provided index/course (TODO: work out parameters)
-	public void loadEditPage(int courseIndex);
+	public void loadEditPage();
 	
 	//loads the page to add a course (TODO: work out parameters)
 	public void loadAddPage();
 	
 	//sends the index of a course to be removed from the database.
 	//returns true if it was removed successfully, false otherwise.
-	public boolean removeCourse(int index);
+	public void removeCourse();
 	
 }
