@@ -1,0 +1,37 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	
+	</ui:style>
+	<g:HTMLPanel>
+		<g:VerticalPanel height="304px" width="450px">
+			<g:Label text="Create New Account" width="452px" height="22px"/>
+			<g:HorizontalPanel>
+				<g:VerticalPanel>
+					<g:Label text="First Name:"/>
+					<g:TextBox/>
+				</g:VerticalPanel>
+				<g:VerticalPanel>
+					<g:Label text="Last Name:"/>
+					<g:TextBox/>
+				</g:VerticalPanel>
+			</g:HorizontalPanel>
+			<g:Label text="Faculty Type:"/>
+			<g:ListBox width="340px" ui:field="comboBox"/>
+			<g:Label text="Email"/>
+			<g:TextBox width="341px"/>
+			<g:HorizontalPanel>
+				<g:VerticalPanel>
+					<g:Label text="Password"/>
+					<g:TextBox/>
+				</g:VerticalPanel>
+				<g:VerticalPanel>
+				<g:Label text="Varify Password"/>
+				<g:TextBox/>
+			</g:VerticalPanel>
+			</g:HorizontalPanel>
+			<g:Button text="Submit" ui:field="button">New B,bjhlb'utton</g:Button>
+		</g:VerticalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

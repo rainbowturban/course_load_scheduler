@@ -1,0 +1,23 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	
+	</ui:style>
+	<g:HTMLPanel>
+		<g:VerticalPanel width="277px" height="295px">
+			<g:Label text="Edit Account "/>
+			<g:Label text="First Name:"/>
+			<g:TextBox/>
+			<g:Label text="Last Name:"/>
+			<g:TextBox/>
+			<g:Label text="Edit Faculty Type:"/>
+			<g:ListBox width="168px"/>
+			<g:Label text="Edit Password:"/>
+			<g:TextBox/>
+			<g:Label text="Confirm New Password"/>
+			<g:TextBox/>
+			<g:Button>Submit </g:Button>
+		</g:VerticalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 
