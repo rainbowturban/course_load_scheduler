@@ -17,73 +17,74 @@ import com.google.gwt.user.client.ui.PasswordTextBox;
 
 public class LoginPageViewImpl extends BaseViewImpl<LoginPagePresenter> implements LoginPageView {
 
+	interface LoginPageViewImplUiBinder extends UiBinder<Widget, LoginPageViewImpl> {
+	}
 	private static LoginPageViewImplUiBinder uiBinder = GWT.create(LoginPageViewImplUiBinder.class);
-	@UiField TextBox userNameTextBox;
-	@UiField Label userNameLabel;
-	@UiField Image logoImage;
-	@UiField Label loginTitle;
-	@UiField Label passwordLabel;
-	@UiField PasswordTextBox passwordTextBox;
 	@UiField Button createAccountButton;
 	@UiField Button loginButton;
 	@UiField VerticalPanel loginPagePanel;
+	@UiField Label loginTitle;
+	@UiField Image logoImage;
+	@UiField Label passwordLabel;
+	@UiField PasswordTextBox passwordTextBox;
+	@UiField Label userNameLabel;
 
-	interface LoginPageViewImplUiBinder extends UiBinder<Widget, LoginPageViewImpl> {
-	}
+	@UiField TextBox userNameTextBox;
 
 	public LoginPageViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
-	}
-
-	public TextBox getUserNameTextBox() {
-		return userNameTextBox;
-	}
-
-	public void setUserNameTextBox(TextBox userNameTextBox) {
-		this.userNameTextBox = userNameTextBox;
-	}
-
-	public PasswordTextBox getPasswordTextBox() {
-		return passwordTextBox;
-	}
-
-	public void setPasswordTextBox(PasswordTextBox passwordTextBox) {
-		this.passwordTextBox = passwordTextBox;
 	}
 
 	public Button getCreateAccountButton() {
 		return createAccountButton;
 	}
 
-	public void setCreateAccountButton(Button createAccountButton) {
-		this.createAccountButton = createAccountButton;
-	}
-
 	public Button getLoginButton() {
 		return loginButton;
+	}
+
+	public PasswordTextBox getPasswordTextBox() {
+		return passwordTextBox;
+	}
+
+	public TextBox getUserNameTextBox() {
+		return userNameTextBox;
+	}
+
+	@Override
+	public HasWidgets getViewRootPanel() {
+		return loginPagePanel;
+	}
+
+	@Override
+	public Widget getWidgetContainer() {
+		return this;
+	}
+
+	public void setCreateAccountButton(Button createAccountButton) {
+		this.createAccountButton = createAccountButton;
 	}
 
 	public void setLoginButton(Button loginButton) {
 		this.loginButton = loginButton;
 	}
 
+	public void setPasswordTextBox(PasswordTextBox passwordTextBox) {
+		this.passwordTextBox = passwordTextBox;
+	}
+	
 	@Override
 	public void setPresenter(LoginPagePresenter presenter) {
 		this.presenter = presenter;		
 	}
 	
-	@Override
-	public void showErrorMessages(String errorMessages) {
-		Window.alert(errorMessages);		
-	}
-	@Override
-	public Widget getWidgetContainer() {
-		return this;
+	public void setUserNameTextBox(TextBox userNameTextBox) {
+		this.userNameTextBox = userNameTextBox;
 	}
 
 	@Override
-	public HasWidgets getViewRootPanel() {
-		return loginPagePanel;
+	public void showErrorMessages(String errorMessages) {
+		Window.alert(errorMessages);		
 	}
 
 }
