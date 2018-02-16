@@ -5,5 +5,37 @@
 	
 	</ui:style>
 	<g:HTMLPanel>
+		<g:VerticalPanel>
+			<g:Label text="Navigation bar"/>
+			<g:Label text="Manage Users" direction="RTL" styleName="center"/>
+		</g:VerticalPanel>
+		<g:HorizontalPanel width="542px" height="330px" styleName="center">
+			<g:VerticalPanel>
+				<g:Label text="Last Name" width="78px" height="18px"/>
+				<g:Grid/>
+			</g:VerticalPanel>
+			<g:VerticalPanel>
+				<g:Label text="First Name" width="86px" height="18px"/>
+				<g:Grid/>
+			</g:VerticalPanel>
+			<g:VerticalPanel>
+				<g:Label text="Email" width="67px" height="19px"/>
+				<g:Grid/>
+			</g:VerticalPanel>
+			<g:VerticalPanel>
+				<g:Label text="Rank" width="42px" height="18px"/>
+				<g:Grid>
+					<g:row>
+						<g:customCell>
+							<g:ListBox/>
+						</g:customCell>
+					</g:row>
+				</g:Grid>
+			</g:VerticalPanel>
+			<g:VerticalPanel>
+				<g:Label text="Status" height="24px"/>
+				<g:Grid/>
+			</g:VerticalPanel>
+		</g:HorizontalPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 
