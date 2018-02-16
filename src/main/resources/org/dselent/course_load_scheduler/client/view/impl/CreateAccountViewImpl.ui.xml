@@ -32,6 +32,8 @@
 		<g:ListBox ui:field="facultyTypeComboBox" width="356px" />
 		<g:Label text="Email:" ui:field="emailLabel" />
 		<g:TextBox ui:field="emailTextBox" width="356px" />
+		<g:Label text="Username:" ui:field="userNameLabel"/>
+		<g:TextBox width="356px" ui:field="userNameTextBox"/>
 		<g:HorizontalPanel>
 			<g:VerticalPanel>
 				<g:Label text="Password:" ui:field="passwordLabel" />
@@ -39,9 +41,8 @@
 					width="173px" />
 			</g:VerticalPanel>
 			<g:VerticalPanel>
-				<g:Label text="Comfirm password:" ui:field="confirmPasswordLabel" />
-				<g:PasswordTextBox ui:field="comfirmPasswordTextBox"
-					width="173px" />
+				<g:Label text="Confirm password:" ui:field="confirmPasswordLabel" />
+				<g:PasswordTextBox ui:field="confirmPasswordTextBox" width="173px"/>
 			</g:VerticalPanel>
 		</g:HorizontalPanel>
 		<g:Cell horizontalAlignment="ALIGN_RIGHT">

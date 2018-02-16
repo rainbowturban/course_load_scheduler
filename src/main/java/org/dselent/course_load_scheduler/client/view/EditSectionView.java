@@ -1,12 +1,13 @@
 package org.dselent.course_load_scheduler.client.view;
 
-import org.dselent.course_load_scheduler.client.presenter.AddSectionPresenter;
+import org.dselent.course_load_scheduler.client.presenter.EditSectionPresenter;
+
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 
-public interface AddSectionView  extends BaseView<AddSectionPresenter>{
+public interface EditSectionView extends BaseView<EditSectionPresenter> {
 	ListBox getTermComboBox();
 	void setTermComboBox(ListBox termBoxCombo);
 	TextBox getGeneratedNameTextBox();
@@ -25,6 +26,6 @@ public interface AddSectionView  extends BaseView<AddSectionPresenter>{
 	CheckBox getThursdayCheckBox();
 	CheckBox getFridayCheckBox();
 	Button getCancelButton();
-	Button getCreateButton();
-	
+	Button getSubmitButton();
+
 }

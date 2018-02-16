@@ -1,7 +1,7 @@
 package org.dselent.course_load_scheduler.client.view.impl;
 
-import org.dselent.course_load_scheduler.client.presenter.AddSectionPresenter;
-import org.dselent.course_load_scheduler.client.view.AddSectionView;
+import org.dselent.course_load_scheduler.client.presenter.EditSectionPresenter;
+import org.dselent.course_load_scheduler.client.view.EditSectionView;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -9,44 +9,42 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.user.client.ui.CheckBox;
 
+public class EditSectionViewImpl extends BaseViewImpl<EditSectionPresenter> implements EditSectionView {
 
-public class AddSectionViewImpl extends BaseViewImpl<AddSectionPresenter> implements AddSectionView {
-
-	private static AddSectionViewImplUiBinder uiBinder = GWT.create(AddSectionViewImplUiBinder.class);
+	private static EditSectionViewImplUiBinder uiBinder = GWT.create(EditSectionViewImplUiBinder.class);
+	interface EditSectionViewImplUiBinder extends UiBinder<Widget, EditSectionViewImpl> {}
 	
-	interface AddSectionViewImplUiBinder extends UiBinder<Widget, AddSectionViewImpl> {	}
-	
+	@UiField Label editSectionTitle;
 	@UiField Label termLabel;
-	@UiField Label addSectionTitle;
 	@UiField Label generatedNameLabel;
 	@UiField Label generatedCRNLabel;
 	@UiField Label sectionTypeLabel;
+	@UiField Label sectionStartTimeLabel;
+	@UiField Label sectionEndTimeLabel;
+	@UiField Button submitButton;
 	@UiField ListBox termComboBox;
 	@UiField TextBox generatedNameTextBox;
 	@UiField TextBox generatedCRNTextBox;
 	@UiField ListBox sectionTypeComboBox;
-	@UiField VerticalPanel addSectionPanel;
-	@UiField Button cancelButton;
-	@UiField Button createButton;
-	@UiField Label sectionStartTimeLabel;
 	@UiField ListBox sectionStartTimeComboBox;
-	@UiField Label sectionEndTimeLabel;
 	@UiField ListBox sectionEndTimeComboBox;
 	@UiField CheckBox mondayCheckBox;
 	@UiField CheckBox tuesdayCheckBox;
 	@UiField CheckBox wednesdayCheckBox;
 	@UiField CheckBox thursdayCheckBox;
 	@UiField CheckBox fridayCheckBox;
+	@UiField Button cancelButton;
+	@UiField VerticalPanel editSectionPanel;
 
-	public AddSectionViewImpl() {
+	public EditSectionViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 	
@@ -155,13 +153,13 @@ public class AddSectionViewImpl extends BaseViewImpl<AddSectionPresenter> implem
 	}
 	
 	@Override
-	public Button getCreateButton()
+	public Button getSubmitButton()
 	{
-		return createButton;
+		return submitButton;
 	}
 	
 	@Override
-	public void setPresenter(AddSectionPresenter presenter)
+	public void setPresenter(EditSectionPresenter presenter)
 	{
 		this.presenter = presenter;
 	}
@@ -175,11 +173,11 @@ public class AddSectionViewImpl extends BaseViewImpl<AddSectionPresenter> implem
 	@Override
 	public HasWidgets getViewRootPanel()
 	{
-		return addSectionPanel;
+		return editSectionPanel;
 	}
-	
-	@UiHandler("createButton")
-	void onCreateButtonClick(ClickEvent event) {
-		presenter.addSection();
+
+	@UiHandler("submitButton")
+	void onSubmitButtonClick(ClickEvent event) {
+		presenter.editSection();
 	}
 }

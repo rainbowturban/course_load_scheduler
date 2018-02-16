@@ -2,25 +2,26 @@ package org.dselent.course_load_scheduler.client.presenter.impl;
 
 import java.sql.Time;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Iterator;
-import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
+import java.util.List;
+
 import org.dselent.course_load_scheduler.client.model.SectionsInfo;
-import org.dselent.course_load_scheduler.client.presenter.AddSectionPresenter;
-import org.dselent.course_load_scheduler.client.view.AddSectionView;
+import org.dselent.course_load_scheduler.client.presenter.EditSectionPresenter;
+import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
+import org.dselent.course_load_scheduler.client.view.EditSectionView;
 
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.CheckBox;
 import com.google.inject.Inject;
 
-public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSectionPresenter{
+public class EditSectionPresenterImpl extends BasePresenterImpl implements EditSectionPresenter {
 	private IndexPresenter parentPresenter;
-	private AddSectionView view;
+	private EditSectionView view;
 
 	@Inject
-	public AddSectionPresenterImpl(IndexPresenter parentPresenter, AddSectionView view)
+	public EditSectionPresenterImpl(IndexPresenter parentPresenter, EditSectionView view)
 	{
 		this.view = view;
 		this.parentPresenter = parentPresenter;
@@ -56,7 +57,7 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 	}
 
 	@Override
-	public AddSectionView getView() {
+	public EditSectionView getView() {
 		return view;
 	}
 
@@ -193,62 +194,62 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 
 		List<SectionsInfo> sectionTerms = retrieveTerm();
 		Iterator<SectionsInfo> iterator = sectionTerms.iterator();
-		
+
 		while(iterator.hasNext()) {
 			SectionsInfo sectionsInfo = iterator.next();
 			term.addItem(sectionsInfo.getTermsName());
 		}
-		
+
 		view.setTermComboBox(term);
 	}
-	
+
 	@Override
 	public void fillSectionTypes() {
 		ListBox type = view.getSectionTypeComboBox();
 
 		List<SectionsInfo> sectionTypes = retrieveType();
 		Iterator<SectionsInfo> iterator = sectionTypes.iterator();
-		
+
 		while(iterator.hasNext()) {
 			SectionsInfo sectionsInfo = iterator.next();
 			type.addItem(sectionsInfo.getSectionType());			
 		}
-				
+
 		view.setSectionTypeComboBox(type);
 	}
-	
+
 	@Override
 	public void fillSectionStart() {
 		ListBox start = view.getSectionStartTimeComboBox();
-		
+
 
 		List<SectionsInfo> sectionStart = retrieveTime();
 		Iterator<SectionsInfo> iterator = sectionStart.iterator();
-		
+
 		while(iterator.hasNext()) {
 			SectionsInfo sectionsInfo = iterator.next();
 			start.addItem(sectionsInfo.getStartTime().toString());			
 		}
-		
+
 		view.setSectionStartTimeComboBox(start);
 	}
-	
+
 	@Override
 	public void fillSectionEnd() {
 		ListBox end = view.getSectionEndTimeComboBox();
-		
+
 
 		List<SectionsInfo> sectionEnd = retrieveTime();
 		Iterator<SectionsInfo> iterator = sectionEnd.iterator();
-		
+
 		while(iterator.hasNext()) {
 			SectionsInfo sectionsInfo = iterator.next();
 			end.addItem(sectionsInfo.getEndTime().toString());			
 		}
-		
+
 		view.setSectionEndTimeComboBox(end);
 	}
-	
+
 	//determine which days are selected and stick them together as a string
 	@Override
 	public String determineDays() {
@@ -257,9 +258,9 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 		CheckBox wednesday = view.getWednesdayCheckBox();
 		CheckBox thursday = view.getThursdayCheckBox();
 		CheckBox friday = view.getFridayCheckBox();		
-		
+
 		StringBuilder days = new StringBuilder();
-		
+
 		if(monday.getValue()) {
 			days.append(monday.getText());
 		}
@@ -275,17 +276,17 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 		if(friday.getValue()) {
 			days.append(friday.getText());
 		}
-		
+
 		return days.toString();		
 	}
 
 	@Override
-	public void addSection() {
+	public void editSection() {
 		ListBox term = view.getTermComboBox();
 		ListBox type = view.getSectionTypeComboBox();
 		ListBox start = view.getSectionStartTimeComboBox();
 		ListBox end = view.getSectionEndTimeComboBox();
-		
+
 		//create the new section
 		SectionsInfo newSection = new SectionsInfo();
 		newSection.setTermsName(term.getItemText(term.getSelectedIndex()));
@@ -296,4 +297,3 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 	}
 
 }
-

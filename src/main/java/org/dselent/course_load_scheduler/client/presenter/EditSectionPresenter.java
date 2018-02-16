@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 
-public interface AddSectionPresenter extends BasePresenter{
+public interface EditSectionPresenter extends BasePresenter{
 	
 	IndexPresenter getParentPresenter();
 	void setParentPresenter(IndexPresenter parentPresenter);
-	void addSection();
+	void editSection();
 	
 	List<SectionsInfo> retrieveTerm();
 	List<SectionsInfo> retrieveType();
@@ -18,5 +18,4 @@ public interface AddSectionPresenter extends BasePresenter{
 	void fillSectionStart();
 	void fillSectionEnd();
 	String determineDays();
-
 }
