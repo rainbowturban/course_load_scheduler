@@ -15,10 +15,10 @@ public interface ViewCoursesPresenter extends BasePresenter {
 	//injects the code for the variable element of the page into
 	public void fillCourses();
 
-	//loads the page to edit with the provided index/course (TODO: work out parameters)
+	//loads the page to edit with the provided index/course
 	public void loadEditPage();
 
-	//loads the page to add a course (TODO: work out parameters)
+	//loads the page to add a course
 	public void loadAddPage();
 
 	//sends the index of a course to be removed from the database.

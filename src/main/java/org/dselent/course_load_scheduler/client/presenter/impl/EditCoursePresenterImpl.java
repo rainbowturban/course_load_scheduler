@@ -70,12 +70,9 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	
 	@Override
 	public void onLoadEditCoursePage(LoadEditCourseEvent evt) {
-		//**Extract the course info
-		//**use it to fill the text fields and set the frequency
-		//then fetch+display the sections
-		//fill the dropdown box
 		course = evt.getAction().getCourseInfo();
 		
+		//fill frequency tables, sections, and the fields with the information from the course
 		int index = fillFrequencies(evt.getAction().getCourse().getFrequencyID());
 		fillSections();
 		view.getCourseNameField().setText(evt.getAction().getCourse().getTitle());
@@ -225,7 +222,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 			editCourse.setFrequencyID(Integer.parseInt(view.getFrequencyDropdown().getValue(fIndex)));
 			editCourse.setTitle(view.getCourseNameField().getText());
 			editCourse.setNumber(view.getCourseNumberField().getText());
-			editCourse.setId(0);//TODO: Get courseID on main page and pass it to this page via event??
+			editCourse.setId(course.getCourseId());
 			
 			//TODO: send out to DB to edit!
 			Window.alert("If this accesses the DB, it would send a request to edit a course with Name: "+editCourse.getTitle() +
@@ -257,7 +254,6 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 			//TODO: Send correct Index--for DB not just the clientSide
 			boolean success = true;//this will be the return value from the request
 			
-			
 			if(success) {
 				view.getSectionList().remove(index);
 			}
@@ -267,23 +263,19 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	@Override
 	public void loadEditSectionPage() {
 		int index = view.getSectionList().getSelectedIndex();
-		//TODO: Make an event for this, to provide the name of the course and stuff, and the current section info
 		if(index >= 0) {
-			
 			//create and send event:
 			LoadEditSectionAction action = new LoadEditSectionAction();
 			action.setCourseInfo(course);
 			
-		//	sections.listIterator(index);
+			Iterator<SectionsInfo> si = sections.listIterator(index);
 			
-			//action.setSectionInfo(new sectionsInfo());
+			SectionsInfo section = si.next();
+			
+			action.setSectionInfo(section);
 			
 			eventBus.fireEvent(new LoadEditSectionEvent(action));
-			
-			//&&&editSectionPresenter.go(parentPresenter.getView().getViewRootPanel());
 		}
-		
-		
 	}
 	
 	@Override
@@ -293,7 +285,6 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		
 		LoadAddSectionEvent evt = new LoadAddSectionEvent(action);
 		eventBus.fireEvent(evt);
-		
 	}
 
 }

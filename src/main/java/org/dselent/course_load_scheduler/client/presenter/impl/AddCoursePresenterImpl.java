@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.SubmitNewCourseAction;
+import org.dselent.course_load_scheduler.client.event.LoadAddCourseEvent;
+import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.SubmitNewCourseEvent;
-import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.model.Frequency;
 import org.dselent.course_load_scheduler.client.presenter.AddCoursePresenter;
@@ -24,7 +26,6 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	
 	private IndexPresenter parentPresenter;
 	private AddCourseView view;
-	
 	
 	@Inject
 	public AddCoursePresenterImpl(IndexPresenter parentPresenter, AddCourseView view)
@@ -50,6 +51,8 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 		HandlerRegistration registration;
 		
 		//implement any event listeners down here
+		registration = eventBus.addHandler(LoadAddCourseEvent.TYPE, this);
+		eventBusRegistration.put(LoadAddCourseEvent.TYPE, registration);
 	}
 	
 	@Override
@@ -57,6 +60,13 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 		container.clear();
 		container.add(view.getWidgetContainer());
 	}
+	
+	@Override
+	public void onLoadAddCourse(LoadAddCourseEvent evt) {
+		this.go(parentPresenter.getView().getViewRootPanel());
+	}
+	
+	
 
 	//returns the view for the presenter
 	@Override
@@ -111,13 +121,11 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 
 		ListBox box = view.getFrequencyDropdown();
 		box.clear();
-		
 		Iterator<Frequency> iterator = freqs.iterator();
 		
 		
 		while(iterator.hasNext()) {
 			Frequency f = iterator.next();
-
 			//add to frequency dropdown
 			box.addItem(f.getFrequency(), Integer.toString(f.getId()));
 		}
@@ -145,8 +153,8 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 			SubmitNewCourseEvent evt = new SubmitNewCourseEvent(action);
 			eventBus.fireEvent(evt);//to be handled by the Database
 			
-			Window.alert("If this accesses the DB, it would send a request for a course with Name: "+newCourse.getTitle() +
-					", Number: "+newCourse.getNumber() + ", FrequencyId: " + newCourse.getFrequencyID());
+			//Window.alert("If this accesses the DB, it would send a request for a course with Name: "+newCourse.getTitle() +
+			//		", Number: "+newCourse.getNumber() + ", FrequencyId: " + newCourse.getFrequencyID());
 			
 			returnToViewCourses();//returns if course adding was successful or not
 		}
@@ -162,12 +170,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 		view.getCourseNameField().setText("");
 		view.getCourseNumberField().setText("");
 
-		final Injector injector = Injector.INSTANCE;
-		ViewCoursesPresenterImpl viewCoursePresenter = injector.getViewCoursesPresenter();
-		viewCoursePresenter.init();
-		viewCoursePresenter.go(parentPresenter.getView().getViewRootPanel());
+		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(true)));
 	}
-	
-	
 	
 }

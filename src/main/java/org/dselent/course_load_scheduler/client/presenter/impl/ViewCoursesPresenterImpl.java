@@ -31,7 +31,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	private ViewCoursesView view;
 	
 	private List<CourseInfo> courses = new ArrayList<CourseInfo>();		
-
+	private boolean adminUser = false;
 
 	@Inject
 	public ViewCoursesPresenterImpl(IndexPresenter parentPresenter, ViewCoursesView view)
@@ -49,7 +49,8 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		retrieveCourses();
 		fillCourses();
 		
-		if(!evt.getAction().getAdminUser()) {
+		adminUser = evt.getAction().getAdminUser();
+		if(!adminUser) {
 			view.getRemoveCourseButton().setVisible(false);
 			view.getEditCourseButton().setVisible(false);
 			view.getAddCourseButton().setVisible(false);
