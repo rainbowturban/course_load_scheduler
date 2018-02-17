@@ -46,8 +46,9 @@
 	position: absolute;
 	width: 500px;
 	height: 250px;
+	color: Black;
 	margin-left: 250px;
-	background-color: Gray;
+	background-color: Silver;
 }
 
 .login-panel {
