@@ -4,6 +4,7 @@ import org.dselent.course_load_scheduler.client.event.InvalidAccountCreationEven
 import org.dselent.course_load_scheduler.client.event.InvalidLoginEvent;
 import org.dselent.course_load_scheduler.client.event.LoadAddSectionEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
+import org.dselent.course_load_scheduler.client.event.LoadEditSectionEvent;
 import org.dselent.course_load_scheduler.client.event.SendCreateAccountEvent;
 import org.dselent.course_load_scheduler.client.event.SendLoginEvent;
 
@@ -23,7 +24,8 @@ InvalidLoginEventHandler,
 SendCreateAccountEventHandler,
 SendLoginEventHandler,
 LoadEditCourseEventHandler,
-LoadAddSectionEventHandler
+LoadAddSectionEventHandler,
+LoadEditSectionEventHandler
 {
 	@Override
 	public void onInvalidAccountCreation(InvalidAccountCreationEvent evt) {}
@@ -42,6 +44,9 @@ LoadAddSectionEventHandler
 	
 	@Override
 	public void onLoadAddSection(LoadAddSectionEvent evt) {}
+	
+	@Override
+	public void onLoadEditSection(LoadEditSectionEvent evt) {}
 
 	
 }
