@@ -2,8 +2,8 @@ package org.dselent.course_load_scheduler.client.presenter.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+//import java.util.regex.Matcher;
+//import java.util.regex.Pattern;
 
 import org.dselent.course_load_scheduler.client.action.InvalidAccountCreationAction;
 import org.dselent.course_load_scheduler.client.action.SendCreateAccountAction;
@@ -169,7 +169,7 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 	PasswordLengthException, PasswordCharacterException, PasswordMatchException {
 
 		checkEmptyString(password);
-		checkForSpecialCharacter(password);
+		//		checkForSpecialCharacter(password);
 		if(password.length() < 8) {
 			throw new PasswordLengthException();
 		}
@@ -179,13 +179,13 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 	}
 
 	//check for a non-alphanumeric character
-	private void checkForSpecialCharacter(String password) throws PasswordCharacterException {
-//		Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
-//		Matcher m = p.matcher(password);
-//		if(!m.find()) {
-//			throw new PasswordCharacterException();
-//		}
-	}
+	//	private void checkForSpecialCharacter(String password) throws PasswordCharacterException {
+	//		Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+	//		Matcher m = p.matcher(password);
+	//		if(!m.find()) {
+	//			throw new PasswordCharacterException();
+	//		}
+	//	}
 
 	private void checkEmptyString(String string) throws EmptyStringException{
 		if(string == null || string.equals(""))

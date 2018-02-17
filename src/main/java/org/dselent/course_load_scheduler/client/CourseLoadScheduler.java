@@ -81,7 +81,7 @@ public class CourseLoadScheduler implements EntryPoint
 		
 		
 		
-		//Kayla Stuff
+		/*//Kayla Stuff
 		EditSectionPresenterImpl editSectionPresenter = injector.getEditSectionPresenter();
 		editSectionPresenter.init();
 		//LoginView loginView = loginPresenter.getView();	
@@ -89,7 +89,7 @@ public class CourseLoadScheduler implements EntryPoint
 		//indexPresenter.go(RootPanel.get("indexContainer"));
 		indexPresenter.go(root);
 		editSectionPresenter.go(indexView.getViewRootPanel());
-		
+		*/
 		
 	}
 }

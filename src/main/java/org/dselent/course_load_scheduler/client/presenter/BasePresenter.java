@@ -32,7 +32,7 @@ public interface BasePresenter
 	BaseView<? extends BasePresenter> getView();
 	
 	/**
-	 * Returns the modesl associated with the presenter
+	 * Returns the models associated with the presenter
 	 */
 	Model getModel();
 	

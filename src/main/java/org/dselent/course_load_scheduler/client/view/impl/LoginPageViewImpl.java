@@ -14,6 +14,8 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.PasswordTextBox;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.event.dom.client.ClickEvent;
 
 public class LoginPageViewImpl extends BaseViewImpl<LoginPagePresenter> implements LoginPageView {
 
@@ -87,4 +89,12 @@ public class LoginPageViewImpl extends BaseViewImpl<LoginPagePresenter> implemen
 		Window.alert(errorMessages);		
 	}
 
+	@UiHandler("loginButton")
+	void onLoginButtonClick(ClickEvent event) {
+		presenter.login();
+	}
+	@UiHandler("createAccountButton")
+	void onCreateAccountButtonClick(ClickEvent event) {
+		//parentPresenter.getView().getViewRootPanel();
+	}
 }
