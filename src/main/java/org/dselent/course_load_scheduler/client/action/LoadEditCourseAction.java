@@ -17,6 +17,14 @@ public class LoadEditCourseAction {
 	private CourseInfo courseInfo;
 	private Courses course;//This should by the same course as the one in CourseInfo
 	
+	public LoadEditCourseAction() {
+		courseInfo = null;
+	}
+	
+	public LoadEditCourseAction(CourseInfo course) {
+		courseInfo = course;
+	}
+	
 	public CourseInfo getCourseInfo() {
 		return courseInfo;
 	}

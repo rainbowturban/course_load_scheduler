@@ -21,7 +21,7 @@ public interface EditCoursePresenter  extends BasePresenter{
 	public boolean submitCourseEdit();
 	
 	//gets the sections for this course and fills the list with them
-	public List<SectionsInfo> retrieveSections();
+	public void retrieveSections();
 	public void fillSections();
 	
 	//section button methods

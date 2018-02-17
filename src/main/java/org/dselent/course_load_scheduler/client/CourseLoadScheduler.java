@@ -38,11 +38,17 @@ public class CourseLoadScheduler implements EntryPoint
 		*/
 		
 		
+		AdminCalendarPresenterImpl adminCalendarPresenter = injector.getAdminCalendarPresenter();
+		adminCalendarPresenter.init();
+		
 		ViewCoursesPresenterImpl viewCoursePresenter = injector.getViewCoursesPresenter();
 		viewCoursePresenter.init();
 		
 		EditCoursePresenterImpl editCoursePresenter = injector.getEditCoursePresenter();
 		editCoursePresenter.init();
+		
+		AddCoursePresenterImpl addCoursePresenter = injector.getAddCoursePresenter();
+		addCoursePresenter.init();
 		
 		AddSectionPresenterImpl addSectionPresenter = injector.getAddSectionPresenter();
 		addSectionPresenter.init();
