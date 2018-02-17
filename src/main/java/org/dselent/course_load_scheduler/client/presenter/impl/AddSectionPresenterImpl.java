@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
+import org.dselent.course_load_scheduler.client.event.LoadAddSectionEvent;
 import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 import org.dselent.course_load_scheduler.client.presenter.AddSectionPresenter;
 import org.dselent.course_load_scheduler.client.view.AddSectionView;
@@ -42,10 +43,8 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 	public void bind()
 	{
 		HandlerRegistration registration;
-
-		//button events for when they click on create or cancel buttons
-		//		registration = eventBus.addHandler(InvalidLoginEvent.TYPE, this);
-		//		eventBusRegistration.put(InvalidLoginEvent.TYPE, registration);
+				registration = eventBus.addHandler(LoadAddSectionEvent.TYPE, this);
+				eventBusRegistration.put(LoadAddSectionEvent.TYPE, registration);
 	}
 
 	@Override
@@ -279,6 +278,16 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 		return days.toString();		
 	}
 
+	//variable to hold info from course
+	private SectionsInfo fromCourse = new SectionsInfo();
+	@Override
+	public void onLoadAddSection(LoadAddSectionEvent evt) {
+		//Gather info from course
+		fromCourse.setCoursesNumber(evt.getAction().getCourseInfo().getCoursesNumber());
+		fromCourse.setCoursesTitle(evt.getAction().getCourseInfo().getCoursesTitle());
+
+	}
+	
 	@Override
 	public void addSection() {
 		ListBox term = view.getTermComboBox();
@@ -293,6 +302,9 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 		newSection.setStartTime(Time.valueOf(start.getItemText(start.getSelectedIndex())));
 		newSection.setEndTime(Time.valueOf(end.getItemText(end.getSelectedIndex())));
 		newSection.setDays(this.determineDays());
+		newSection.setCoursesNumber(fromCourse.getCoursesNumber());
+		newSection.setCoursesTitle(fromCourse.getCoursesTitle());
+		
 	}
 
 }

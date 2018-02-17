@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.dselent.course_load_scheduler.client.event.LoadAddSectionEvent;
+import org.dselent.course_load_scheduler.client.event.LoadEditSectionEvent;
 import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 import org.dselent.course_load_scheduler.client.presenter.EditSectionPresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
@@ -43,10 +45,8 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 	public void bind()
 	{
 		HandlerRegistration registration;
-
-		//button events for when they click on create or cancel buttons
-		//		registration = eventBus.addHandler(InvalidLoginEvent.TYPE, this);
-		//		eventBusRegistration.put(InvalidLoginEvent.TYPE, registration);
+		registration = eventBus.addHandler(LoadEditSectionEvent.TYPE, this);
+		eventBusRegistration.put(LoadEditSectionEvent.TYPE, registration);
 	}
 
 	@Override
@@ -83,13 +83,13 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 
 		SectionsInfo section2 = new SectionsInfo();
 		section2.setTermsName("B Term");
-		
+
 		SectionsInfo section3 = new SectionsInfo();
 		section3.setTermsName("C Term");
-		
+
 		SectionsInfo section4 = new SectionsInfo();
 		section4.setTermsName("D Term");
-		
+
 		SectionsInfo section5 = new SectionsInfo();
 		section5.setTermsName("E Term");
 
@@ -149,27 +149,27 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		SectionsInfo section3 = new SectionsInfo();
 		section3.setStartTime(new Time(10,0,0));
 		section3.setEndTime(new Time(10,50,0));
-		
+
 		SectionsInfo section4 = new SectionsInfo();
 		section4.setStartTime(new Time(11,0,0));
 		section4.setEndTime(new Time(11,50,0));
-		
+
 		SectionsInfo section5 = new SectionsInfo();
 		section5.setStartTime(new Time(12,0,0));
 		section5.setEndTime(new Time(12,50,0));
-		
+
 		SectionsInfo section6 = new SectionsInfo();
 		section6.setStartTime(new Time(13,0,0));
 		section6.setEndTime(new Time(13,50,0));
-		
+
 		SectionsInfo section7 = new SectionsInfo();
 		section7.setStartTime(new Time(14,0,0));
 		section7.setEndTime(new Time(14,50,0));
-		
+
 		SectionsInfo section8 = new SectionsInfo();
 		section8.setStartTime(new Time(15,0,0));
 		section8.setEndTime(new Time(15,50,0));
-		
+
 		SectionsInfo section9 = new SectionsInfo();
 		section9.setStartTime(new Time(16,0,0));
 		section9.setEndTime(new Time(16,50,0));
@@ -280,6 +280,16 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		return days.toString();		
 	}
 
+	//variable to hold info from course
+	private SectionsInfo fromCourse = new SectionsInfo();
+	@Override
+	public void onLoadAddSection(LoadAddSectionEvent evt) {
+		//Gather info from course
+		fromCourse.setCoursesNumber(evt.getAction().getCourseInfo().getCoursesNumber());
+		fromCourse.setCoursesTitle(evt.getAction().getCourseInfo().getCoursesTitle());
+
+	}
+
 	@Override
 	public void editSection() {
 		ListBox term = view.getTermComboBox();
@@ -294,6 +304,9 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		newSection.setStartTime(Time.valueOf(start.getItemText(start.getSelectedIndex())));
 		newSection.setEndTime(Time.valueOf(end.getItemText(end.getSelectedIndex())));
 		newSection.setDays(this.determineDays());
+		newSection.setCoursesNumber(fromCourse.getCoursesNumber());
+		newSection.setCoursesTitle(fromCourse.getCoursesTitle());
+
 	}
 
 }
