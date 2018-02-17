@@ -26,5 +26,6 @@ public interface AddSectionView  extends BaseView<AddSectionPresenter>{
 	CheckBox getFridayCheckBox();
 	Button getCancelButton();
 	Button getCreateButton();
+	void setPresenter(AddSectionPresenter presenter);
 	
 }
