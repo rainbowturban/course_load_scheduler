@@ -35,8 +35,9 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	private IndexPresenter parentPresenter;
 	private EditCourseView view;
 	
-	private int startingFrequencyIndex = -1;
+	//private int startingFrequencyIndex = -1;
 	private CourseInfo course;
+	private List<SectionsInfo> sections = new ArrayList<SectionsInfo>();
 	
 	
 	@Inject
@@ -166,10 +167,11 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	
 	//gets the sections for this course and fills the list with them
 	@Override
-	public List<SectionsInfo> retrieveSections() {
+	public void retrieveSections() {
 		//TODO:*** send event to get sections from database
+		
 		//In place of that, Example values are used.
-		List<SectionsInfo> sections = new ArrayList<SectionsInfo>();
+		sections = new ArrayList<SectionsInfo>();
 		
 		SectionsInfo s1 = new SectionsInfo();
 		s1.setSectionType("Lab");
@@ -184,16 +186,13 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		sections.add(s1);
 		sections.add(s2);
 		
-		
-		return sections;
-		
 	}
 	
 	
 	//gets the sections for this course and fills the list with them
 	@Override
 	public void fillSections() {
-		List<SectionsInfo> sections = retrieveSections();
+		retrieveSections();
 
 		StackPanel panel = view.getSectionList();
 		panel.clear();

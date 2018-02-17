@@ -1,6 +1,7 @@
 package org.dselent.course_load_scheduler.client.view.impl;
 
 import org.dselent.course_load_scheduler.client.presenter.CreateAccountPresenter;
+import org.dselent.course_load_scheduler.client.presenter.impl.ManageUserPresenterImpl;
 import org.dselent.course_load_scheduler.client.view.CreateAccountView;
 
 import com.google.gwt.core.client.GWT;
@@ -131,8 +132,12 @@ public class CreateAccountViewImpl extends BaseViewImpl<CreateAccountPresenter> 
 	}
 
 
+<<<<<<< HEAD
+
+=======
 	@UiHandler("submitButton")
 	void onSubmitButtonClick(ClickEvent event) {
 		presenter.createAccount();
 	}
+>>>>>>> branch 'master' of https://github.com/WPI-CS3733-Team3/course_load_scheduler.git
 }

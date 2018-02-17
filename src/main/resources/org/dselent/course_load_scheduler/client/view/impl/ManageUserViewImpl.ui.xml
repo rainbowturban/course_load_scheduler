@@ -4,38 +4,37 @@
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel>
+	<g:HTMLPanel ui:field="rootPanel">
+	
 		<g:VerticalPanel>
+		<!-- NAV STUFF -->
+            <g:Cell horizontalAlignment="ALIGN_CENTER">
+            		<g:HorizontalPanel>
+                <g:Button text="WPI Logo"></g:Button>
+                <g:Button text="Home" styleName="navButton" ui:field="homeButton"></g:Button>
+                <g:Button text="Schedule" styleName="navButton" ui:field="scheduleButton"></g:Button>
+                <g:Button text="Courses" styleName="navButton" ui:field="coursesButton"></g:Button>
+                <g:Button text="Account" styleName="navButton" ui:field="accountButton"></g:Button>
+            </g:HorizontalPanel>
+            </g:Cell>
 			<g:Label text="Navigation bar"/>
-			<g:Label text="Manage Users" direction="RTL" styleName="center"/>
+			<g:Label text="Manage Users" width="355px" styleName="courseTitle"/>
 		</g:VerticalPanel>
-		<g:HorizontalPanel width="542px" height="330px" styleName="center">
-			<g:VerticalPanel>
-				<g:Label text="Last Name" width="78px" height="18px"/>
-				<g:Grid/>
-			</g:VerticalPanel>
-			<g:VerticalPanel>
-				<g:Label text="First Name" width="86px" height="18px"/>
-				<g:Grid/>
-			</g:VerticalPanel>
-			<g:VerticalPanel>
-				<g:Label text="Email" width="67px" height="19px"/>
-				<g:Grid/>
-			</g:VerticalPanel>
-			<g:VerticalPanel>
-				<g:Label text="Rank" width="42px" height="18px"/>
-				<g:Grid>
-					<g:row>
-						<g:customCell>
-							<g:ListBox/>
-						</g:customCell>
-					</g:row>
-				</g:Grid>
-			</g:VerticalPanel>
-			<g:VerticalPanel>
-				<g:Label text="Status" height="24px"/>
-				<g:Grid/>
-			</g:VerticalPanel>
-		</g:HorizontalPanel>
+		<g:Grid>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Last Name" width="78px" height="18px"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="First Name" width="86px" height="18px"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="Email" width="67px" height="19px"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="Rank" width="177px" height="18px"/>
+				</g:customCell>
+			</g:row>
+		</g:Grid>
 	</g:HTMLPanel>
 </ui:UiBinder> 

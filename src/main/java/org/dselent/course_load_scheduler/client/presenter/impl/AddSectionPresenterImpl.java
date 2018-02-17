@@ -5,8 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
+import org.dselent.course_load_scheduler.client.action.LoadAddCourseAction;
+import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
+import org.dselent.course_load_scheduler.client.event.LoadAddCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadAddSectionEvent;
+import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.gin.Injector;
+import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 import org.dselent.course_load_scheduler.client.presenter.AddSectionPresenter;
 import org.dselent.course_load_scheduler.client.view.AddSectionView;
@@ -282,12 +287,15 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 
 	//variable to hold info from course
 	private SectionsInfo fromCourse = new SectionsInfo();
+	private CourseInfo course = new CourseInfo();
 	@Override
 	public void onLoadAddSection(LoadAddSectionEvent evt) {
 		//Gather info from course
 		fromCourse.setCoursesNumber(evt.getAction().getCourseInfo().getCoursesNumber());
 		fromCourse.setCoursesTitle(evt.getAction().getCourseInfo().getCoursesTitle());
-
+		
+		//Info to return to edit course page
+		course = evt.getAction().getCourseInfo();
 	}
 
 	@Override
@@ -307,10 +315,7 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 		newSection.setCoursesNumber(fromCourse.getCoursesNumber());
 		newSection.setCoursesTitle(fromCourse.getCoursesTitle());
 
-		final Injector injector = Injector.INSTANCE;
-		ViewCoursesPresenterImpl viewCoursesPresenter = injector.getViewCoursesPresenter();
-		viewCoursesPresenter.init();
-		viewCoursesPresenter.go(parentPresenter.getView().getViewRootPanel());
+		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course)));
 		
 		Window.alert("when you connect this to the DB, you will have a section with Term: " + newSection.getTermsName() + 
 				" Section Type: " + newSection.getSectionType() + 
@@ -324,13 +329,7 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 	//loads courses page (viewing) (TODO: work out parameters, determine between Admin/User??)
 	@Override
 	public void cancelAddSection() {
-		//TODO: Should this be an event?
-		//event would have information as follows?: If user is admin (although they should be),
-
-		final Injector injector = Injector.INSTANCE;
-		ViewCoursesPresenterImpl viewCoursesPresenter = injector.getViewCoursesPresenter();
-		viewCoursesPresenter.init();
-		viewCoursesPresenter.go(parentPresenter.getView().getViewRootPanel());
+		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course)));
 		
 		Window.alert("The section was not created");
 	}

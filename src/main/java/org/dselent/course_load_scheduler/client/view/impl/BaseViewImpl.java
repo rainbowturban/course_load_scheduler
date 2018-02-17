@@ -7,4 +7,5 @@ import com.google.gwt.user.client.ui.Composite;
 public abstract class BaseViewImpl<P extends BasePresenter> extends Composite implements BaseView<P>
 {
 	protected P presenter;
+
 }

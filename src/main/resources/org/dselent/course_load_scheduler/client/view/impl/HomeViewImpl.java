@@ -5,14 +5,14 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ManageUserViewImpl extends Composite {
+public class HomeViewImpl extends Composite {
 
-	private static ManageUserViewImplUiBinder uiBinder = GWT.create(ManageUserViewImplUiBinder.class);
+	private static HomeViewImplUiBinder uiBinder = GWT.create(HomeViewImplUiBinder.class);
 
-	interface ManageUserViewImplUiBinder extends UiBinder<Widget, ManageUserViewImpl> {
+	interface HomeViewImplUiBinder extends UiBinder<Widget, HomeViewImpl> {
 	}
 
-	public ManageUserViewImpl() {
+	public HomeViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 

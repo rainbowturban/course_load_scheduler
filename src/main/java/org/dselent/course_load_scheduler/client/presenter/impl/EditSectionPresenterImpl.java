@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
+import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditSectionEvent;
 import org.dselent.course_load_scheduler.client.gin.Injector;
+import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 import org.dselent.course_load_scheduler.client.presenter.EditSectionPresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
@@ -283,12 +286,15 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 
 	//variable to hold info from course
 	private SectionsInfo fromCourse = new SectionsInfo();
+	private CourseInfo course = new CourseInfo();
 	@Override
 	public void onLoadEditSection(LoadEditSectionEvent evt) {
 		//Gather info from course
 		fromCourse.setCoursesNumber(evt.getAction().getCourseInfo().getCoursesNumber());
 		fromCourse.setCoursesTitle(evt.getAction().getCourseInfo().getCoursesTitle());
-
+		
+		//Info to return to edit course page
+		course = evt.getAction().getCourseInfo();
 	}
 
 	@Override
@@ -308,10 +314,7 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		newSection.setCoursesNumber(fromCourse.getCoursesNumber());
 		newSection.setCoursesTitle(fromCourse.getCoursesTitle());
 
-		final Injector injector = Injector.INSTANCE;
-		ViewCoursesPresenterImpl viewCoursesPresenter = injector.getViewCoursesPresenter();
-		viewCoursesPresenter.init();
-		viewCoursesPresenter.go(parentPresenter.getView().getViewRootPanel());
+		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course)));
 
 		Window.alert("when you connect this to the DB, your section will be edited to have Term: " + newSection.getTermsName() + 
 				" Section Type: " + newSection.getSectionType() +  
@@ -324,13 +327,7 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 	//loads courses page (viewing) (TODO: work out parameters, determine between Admin/User??)
 	@Override
 	public void cancelEditSection() {
-		//TODO: Should this be an event?
-		//event would have information as follows?: If user is admin (although they should be),
-
-		final Injector injector = Injector.INSTANCE;
-		ViewCoursesPresenterImpl viewCoursesPresenter = injector.getViewCoursesPresenter();
-		viewCoursesPresenter.init();
-		viewCoursesPresenter.go(parentPresenter.getView().getViewRootPanel());
+		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course)));
 		
 		Window.alert("The section was not edited");
 	}

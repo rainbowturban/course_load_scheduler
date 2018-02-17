@@ -8,6 +8,12 @@ public interface AdminCalendarPresenter extends BasePresenter
 {
 	IndexPresenter getParentPresenter();
 	void setParentPresenter(IndexPresenter parentPresenter);
+<<<<<<< HEAD
+	
+
+	
+}
+=======
 	void fillRequests();
 	List<RequestTables> retrieveRequests();
 	//loads Home page (TODO: work out parameters, differentiate btwn admin and user homepages?)
@@ -19,3 +25,4 @@ public interface AdminCalendarPresenter extends BasePresenter
     //loads Account page (TODO: work out parameters, differentiate btwn admin and user homepages?)
     void loadAccountPage();
 }
+>>>>>>> branch 'master' of https://github.com/WPI-CS3733-Team3/course_load_scheduler.git
