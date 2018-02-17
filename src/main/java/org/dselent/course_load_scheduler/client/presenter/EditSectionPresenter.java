@@ -18,4 +18,5 @@ public interface EditSectionPresenter extends BasePresenter{
 	void fillSectionStart();
 	void fillSectionEnd();
 	String determineDays();
+	void cancelEditSection();
 }

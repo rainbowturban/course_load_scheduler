@@ -109,7 +109,7 @@ public class AddSectionViewImpl extends BaseViewImpl<AddSectionPresenter> implem
 	@Override
 	public ListBox getSectionEndTimeComboBox()
 	{
-		return sectionStartTimeComboBox;
+		return sectionEndTimeComboBox;
 	}
 	
 	@Override
@@ -181,5 +181,10 @@ public class AddSectionViewImpl extends BaseViewImpl<AddSectionPresenter> implem
 	@UiHandler("createButton")
 	void onCreateButtonClick(ClickEvent event) {
 		presenter.addSection();
+	}
+	
+	@UiHandler("cancelButton")
+	void onCancelButtonClick(ClickEvent event) {
+		presenter.cancelAddSection();
 	}
 }

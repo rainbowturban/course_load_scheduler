@@ -1,6 +1,8 @@
 package org.dselent.course_load_scheduler.client;
 
 import org.dselent.course_load_scheduler.client.gin.Injector;
+import org.dselent.course_load_scheduler.client.presenter.impl.AddSectionPresenterImpl;
+import org.dselent.course_load_scheduler.client.presenter.impl.EditSectionPresenterImpl;
 import org.dselent.course_load_scheduler.client.presenter.impl.IndexPresenterImpl;
 import org.dselent.course_load_scheduler.client.presenter.impl.LoginPresenterImpl;
 import org.dselent.course_load_scheduler.client.presenter.impl.ViewCoursesPresenterImpl;
@@ -59,13 +61,13 @@ public class CourseLoadScheduler implements EntryPoint
 		IndexView indexView = indexPresenter.getView();		
 		
 		
-		LoginPresenterImpl loginPresenter = injector.getLoginPresenter();
-		loginPresenter.init();
-		//LoginView loginView = loginPresenter.getView();	
-		
-		//indexPresenter.go(RootPanel.get("indexContainer"));
-		indexPresenter.go(root);
-		loginPresenter.go(indexView.getViewRootPanel());
+//		LoginPresenterImpl loginPresenter = injector.getLoginPresenter();
+//		loginPresenter.init();
+//		//LoginView loginView = loginPresenter.getView();	
+//		
+//		//indexPresenter.go(RootPanel.get("indexContainer"));
+//		indexPresenter.go(root);
+//		loginPresenter.go(indexView.getViewRootPanel());
 		
 		/*/Testing stuff for Hannah's page
 		//---------------------------------------------------------------
@@ -76,5 +78,18 @@ public class CourseLoadScheduler implements EntryPoint
 		indexPresenter.go(root);
 		coursePresenter.go(indexView.getViewRootPanel());
 		//----------------------------------------------------------*/
+		
+		
+		
+		//Kayla Stuff
+		EditSectionPresenterImpl editSectionPresenter = injector.getEditSectionPresenter();
+		editSectionPresenter.init();
+		//LoginView loginView = loginPresenter.getView();	
+		
+		//indexPresenter.go(RootPanel.get("indexContainer"));
+		indexPresenter.go(root);
+		editSectionPresenter.go(indexView.getViewRootPanel());
+		
+		
 	}
 }
