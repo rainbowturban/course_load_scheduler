@@ -3,6 +3,7 @@ package org.dselent.course_load_scheduler.client.presenter;
 import java.util.List;
 
 import org.dselent.course_load_scheduler.client.model.Frequency;
+import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 
 public interface EditCoursePresenter  extends BasePresenter{
 	//helpful functions, like managing event requests to move to different pages and loading information into the dropdowns
@@ -20,6 +21,7 @@ public interface EditCoursePresenter  extends BasePresenter{
 	public boolean submitCourseEdit();
 	
 	//gets the sections for this course and fills the list with them
+	public List<SectionsInfo> retrieveSections();
 	public void fillSections();
 	
 	//section button methods

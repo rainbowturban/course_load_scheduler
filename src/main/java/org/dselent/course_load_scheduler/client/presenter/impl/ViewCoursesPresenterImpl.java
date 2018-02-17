@@ -144,6 +144,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		//TODO: load the edit page somehow??? Send an event, perhaps?
 		//event would have information as follows?: If user is admin (although they should be),
 		//what course is being edited, as an index and the course's info from the page.
+		
 		int index = view.getCourseList().getSelectedIndex();//what is to be removed? get the index.
 		if(index >= 0) {//-1 when nothing is selected--doesn't break program, but throws exception
 			LoadEditCourseAction action = new LoadEditCourseAction();

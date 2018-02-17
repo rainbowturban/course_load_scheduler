@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.dselent.course_load_scheduler.client.action.LoadAddSectionAction;
 import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
+import org.dselent.course_load_scheduler.client.event.LoadAddSectionEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.gin.Injector;
+import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.model.Frequency;
 import org.dselent.course_load_scheduler.client.model.SectionsInfo;
@@ -29,6 +32,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	private EditCourseView view;
 	
 	private int startingFrequencyIndex = -1;
+	private CourseInfo course;
 	
 	
 	@Inject
@@ -55,7 +59,6 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	{
 		HandlerRegistration registration;
 		
-		//TODO: implement event listeners down here
 		registration = eventBus.addHandler(LoadEditCourseEvent.TYPE, this);
 		eventBusRegistration.put(LoadEditCourseEvent.TYPE, registration);
 	}
@@ -66,13 +69,13 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		//**use it to fill the text fields and set the frequency
 		//then fetch+display the sections
 		//fill the dropdown box
+		course = evt.getAction().getCourseInfo();
 		
 		int index = fillFrequencies(evt.getAction().getCourse().getFrequencyID());
 		fillSections();
 		view.getCourseNameField().setText(evt.getAction().getCourse().getTitle());
 		view.getCourseNumberField().setText(evt.getAction().getCourse().getNumber());
 		view.getFrequencyDropdown().setSelectedIndex(index);
-		
 		
 		this.go(parentPresenter.getView().getViewRootPanel());
 		
@@ -159,8 +162,22 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	
 	//gets the sections for this course and fills the list with them
 	@Override
-	public void retrieveSections() {
-		//***
+	public List<SectionsInfo> retrieveSections() {
+		//TODO:*** send event to get sections from database
+	
+		//In place of that, Example values are used.
+		List<SectionsInfo> sections = new ArrayList<SectionsInfo>();
+		
+		SectionsInfo s1 = new SectionsInfo();
+		s1.setCoursesNumber(course.getCoursesNumber());
+		s1.setCoursesTitle(course.getCoursesTitle());
+		s1.setSectionType("Lab");
+		s1.setTermsName("A");
+		
+		sections.add(s1);
+		
+		
+		return sections;
 		
 	}
 	
@@ -267,7 +284,14 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		final Injector injector = Injector.INSTANCE;
 		AddSectionPresenterImpl addSectionPresenter = injector.getAddSectionPresenter();
 		addSectionPresenter.init();
-		addSectionPresenter.go(parentPresenter.getView().getViewRootPanel());
+
+		LoadAddSectionAction action = new LoadAddSectionAction();
+		action.setCourseInfo(course);
+		
+		
+		LoadAddSectionEvent evt = new LoadAddSectionEvent(action);
+		
+		
 	}
 
 }
