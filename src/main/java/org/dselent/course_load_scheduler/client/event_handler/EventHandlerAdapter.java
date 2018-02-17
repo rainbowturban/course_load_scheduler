@@ -20,7 +20,9 @@ SendLoginEventHandler,
 LoadEditCourseEventHandler,
 LoadAddSectionEventHandler,
 LoadEditSectionEventHandler,
-SubmitNewCourseEventHandler
+SubmitNewCourseEventHandler,
+LoadViewCoursesEventHandler,
+LoadAddCourseEventHandler
 
 {
 	@Override
@@ -46,5 +48,11 @@ SubmitNewCourseEventHandler
 
 	@Override
 	public void onSubmitNewCourse(SubmitNewCourseEvent evt) {}
+	
+	@Override
+	public void onLoadViewCourses(LoadViewCoursesEvent evt) {}
+	
+	@Override
+	public void onLoadAddCourse(LoadAddCourseEvent evt) {}
 	
 }

@@ -6,8 +6,12 @@ import java.util.List;
 
 import org.dselent.course_load_scheduler.client.action.LoadAddSectionAction;
 import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
+import org.dselent.course_load_scheduler.client.action.LoadEditSectionAction;
+import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.event.LoadAddSectionEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
+import org.dselent.course_load_scheduler.client.event.LoadEditSectionEvent;
+import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.Courses;
@@ -164,21 +168,18 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	@Override
 	public List<SectionsInfo> retrieveSections() {
 		//TODO:*** send event to get sections from database
-	
 		//In place of that, Example values are used.
 		List<SectionsInfo> sections = new ArrayList<SectionsInfo>();
 		
 		SectionsInfo s1 = new SectionsInfo();
-		s1.setCoursesNumber(course.getCoursesNumber());
-		s1.setCoursesTitle(course.getCoursesTitle());
 		s1.setSectionType("Lab");
 		s1.setTermsName("A");
+		s1.setSectionsName("A01");
 		
 		SectionsInfo s2 = new SectionsInfo();
-		s2.setCoursesNumber(course.getCoursesNumber());
-		s2.setCoursesTitle(course.getCoursesTitle());
 		s2.setSectionType("Conference");
 		s2.setTermsName("A");
+		s2.setSectionsName("A02");
 		
 		sections.add(s1);
 		sections.add(s2);
@@ -192,21 +193,20 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	//gets the sections for this course and fills the list with them
 	@Override
 	public void fillSections() {
-		/*List<SectionsInfo> sections = retrieveSections();
+		List<SectionsInfo> sections = retrieveSections();
 
 		StackPanel panel = view.getSectionList();
 		panel.clear();
 		
 		Iterator<SectionsInfo> iterator = sections.iterator();
-		
 		while(iterator.hasNext()) {
 			SectionsInfo s = iterator.next();
 
 			//add to sections list
-			Label label = new Label(s.toString());
-			panel.add(label, "Test title");
+			Label label = new Label(s.getSectionType());
+			panel.add(label, s.getSectionsName());
 
-		}*/
+		}
 	}
 	
 	
@@ -215,7 +215,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		Courses updatedCourse = new Courses();
 		updatedCourse.setTitle(view.getCourseNameField().getText());
 		updatedCourse.setNumber(view.getCourseNumberField().getText());
-		updatedCourse.setFrequencyID(view.getFrequencyDropdown().getSelectedIndex());//TODO: dropdown id not necessarily equal to db id!!**
+		updatedCourse.setFrequencyID(Integer.parseInt(view.getFrequencyDropdown().getValue(view.getFrequencyDropdown().getSelectedIndex())));
 		
 		
 		int fIndex = view.getFrequencyDropdown().getSelectedIndex();
@@ -245,10 +245,8 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	
 	@Override
 	public void returnToViewCourses() {
-		final Injector injector = Injector.INSTANCE;
-		ViewCoursesPresenterImpl viewCoursePresenter = injector.getViewCoursesPresenter();
-		viewCoursePresenter.init();
-		viewCoursePresenter.go(parentPresenter.getView().getViewRootPanel());
+		LoadViewCoursesEvent evt = new LoadViewCoursesEvent(new LoadViewCoursesAction(true));
+		eventBus.fireEvent(evt);
 	}
 	
 	//sends request to remove section from the DB.
@@ -269,24 +267,28 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	
 	@Override
 	public void loadEditSectionPage() {
+		int index = view.getSectionList().getSelectedIndex();
 		//TODO: Make an event for this, to provide the name of the course and stuff, and the current section info
+		if(index >= 0) {
+			
+			//create and send event:
+			LoadEditSectionAction action = new LoadEditSectionAction();
+			action.setCourseInfo(course);
+			
+		//	sections.listIterator(index);
+			
+			//action.setSectionInfo(new sectionsInfo());
+			
+			eventBus.fireEvent(new LoadEditSectionEvent(action));
+			
+			//&&&editSectionPresenter.go(parentPresenter.getView().getViewRootPanel());
+		}
 		
-		final Injector injector = Injector.INSTANCE;
-		/*EditSectionPresenterImpl editSectionPresenter = injector.getEditSectionPresenter();
-		editSectionPresenter.init();
-		editSectionPresenter.go(parentPresenter.getView().getViewRootPanel());*/
-		Window.alert("Edit section didn't exist yet, when I wrote this, so the stuff is commented out for when it exists!");
 		
 	}
 	
 	@Override
 	public void loadAddSectionPage() {
-		//TODO: Make an event for this, to provide the name of the course and stuff
-		
-		final Injector injector = Injector.INSTANCE;
-		AddSectionPresenterImpl addSectionPresenter = injector.getAddSectionPresenter();
-		addSectionPresenter.init();
-
 		LoadAddSectionAction action = new LoadAddSectionAction();
 		action.setCourseInfo(course);
 		

@@ -1,11 +1,9 @@
 package org.dselent.course_load_scheduler.client.event;
 
 import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
-import org.dselent.course_load_scheduler.client.event_handler.InvalidLoginEventHandler;
 import org.dselent.course_load_scheduler.client.event_handler.LoadEditCourseEventHandler;
 
 import com.google.gwt.event.shared.GwtEvent;
-import com.google.gwt.event.shared.GwtEvent.Type;
 
 public class LoadEditCourseEvent extends GwtEvent<LoadEditCourseEventHandler>{
 	public static Type<LoadEditCourseEventHandler> TYPE = new Type<LoadEditCourseEventHandler>();

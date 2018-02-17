@@ -1,12 +1,8 @@
 package org.dselent.course_load_scheduler.client;
 
 import org.dselent.course_load_scheduler.client.gin.Injector;
-import org.dselent.course_load_scheduler.client.presenter.impl.AddSectionPresenterImpl;
-import org.dselent.course_load_scheduler.client.presenter.impl.EditSectionPresenterImpl;
-import org.dselent.course_load_scheduler.client.presenter.impl.IndexPresenterImpl;
-import org.dselent.course_load_scheduler.client.presenter.impl.LoginPresenterImpl;
-import org.dselent.course_load_scheduler.client.presenter.impl.ViewCoursesPresenterImpl;
-import org.dselent.course_load_scheduler.client.view.IndexView;
+import org.dselent.course_load_scheduler.client.presenter.impl.*;
+import org.dselent.course_load_scheduler.client.view.*;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 
@@ -69,7 +65,22 @@ public class CourseLoadScheduler implements EntryPoint
 //		indexPresenter.go(root);
 //		loginPresenter.go(indexView.getViewRootPanel());
 		
-		/*/Testing stuff for Hannah's page
+		
+		ViewCoursesPresenterImpl viewCoursePresenter = injector.getViewCoursesPresenter();
+		viewCoursePresenter.init();
+		
+		EditCoursePresenterImpl editCoursePresenter = injector.getEditCoursePresenter();
+		editCoursePresenter.init();
+		
+		AddSectionPresenterImpl addSectionPresenter = injector.getAddSectionPresenter();
+		addSectionPresenter.init();
+
+		EditSectionPresenterImpl editSectionPresenter = injector.getEditSectionPresenter();
+		editSectionPresenter.init();
+
+		
+		
+		//Testing stuff for Hannah's page
 		//---------------------------------------------------------------
 		ViewCoursesPresenterImpl coursePresenter = injector.getViewCoursesPresenter();
 		coursePresenter.init();
@@ -77,19 +88,19 @@ public class CourseLoadScheduler implements EntryPoint
 		//indexPresenter.go(RootPanel.get("indexContainer"));
 		indexPresenter.go(root);
 		coursePresenter.go(indexView.getViewRootPanel());
-		//----------------------------------------------------------*/
+		//----------------------------------------------------------/
 		
 		
 		
 		//Kayla Stuff
-		EditSectionPresenterImpl editSectionPresenter = injector.getEditSectionPresenter();
+		/*EditSectionPresenterImpl editSectionPresenter = injector.getEditSectionPresenter();
 		editSectionPresenter.init();
 		//LoginView loginView = loginPresenter.getView();	
 		
 		//indexPresenter.go(RootPanel.get("indexContainer"));
 		indexPresenter.go(root);
 		editSectionPresenter.go(indexView.getViewRootPanel());
-		
+		*/
 		
 	}
 }
