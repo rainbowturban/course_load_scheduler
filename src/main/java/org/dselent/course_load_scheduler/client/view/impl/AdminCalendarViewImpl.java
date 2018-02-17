@@ -30,7 +30,7 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
 	@UiField VerticalPanel infoPanel;
 	@UiField VerticalPanel courseInfoPanel;
 	@UiField ScrollPanel calendarPanel;
-	@UiField VerticalPanel requestsMainPanel;
+	@UiField VerticalPanel requestsPanel;
 	@UiField ScrollPanel requestsScrollPanel;
 	@UiField ListBox viewSelect;
 	@UiField ListBox yearSelect;
@@ -38,7 +38,6 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
 	@UiField TabPanel schedulePanel;
 	@UiField ScrollPanel tablePanel;
 	@UiField Label courseName;
-	@UiField VerticalPanel requestsPanel;
 
 	interface AdminCalendarViewImplUiBinder extends UiBinder<Widget, AdminCalendarViewImpl> {
 	}
@@ -63,9 +62,6 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
 		return baseContainer;
 	}
 	
-	@Override
-	public VerticalPanel getRequestsPanel() {
-		return requestsPanel;
-	}
+	
 
 }
