@@ -12,7 +12,7 @@ public interface EditCoursePresenter  extends BasePresenter{
 	public void setParentPresenter(IndexPresenter parentPresenter);
 	
 	public List<Frequency> retrieveFequencies();//gets values from DB
-	public void fillFrequencies();//puts them into view
+	public int fillFrequencies(int startingFrequencyValue);//puts them into view--takes a parameter for a starting value to set to, and returns the local index of it
 	
 	public void returnToViewCourses();
 	

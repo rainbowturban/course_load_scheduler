@@ -9,6 +9,7 @@ import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.model.Frequency;
+import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 import org.dselent.course_load_scheduler.client.presenter.EditCoursePresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.EditCourseView;
@@ -16,7 +17,9 @@ import org.dselent.course_load_scheduler.client.view.EditCourseView;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.StackPanel;
 import com.google.inject.Inject;
 
 public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCoursePresenter{
@@ -24,6 +27,8 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	
 	private IndexPresenter parentPresenter;
 	private EditCourseView view;
+	
+	private int startingFrequencyIndex = -1;
 	
 	
 	@Inject
@@ -34,7 +39,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		view.setPresenter(this);
 		
 		//fill the dropdown box
-		fillFrequencies();
+		fillFrequencies(-1);
 		fillSections();
 		
 	}
@@ -58,10 +63,17 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	@Override
 	public void onLoadEditCoursePage(LoadEditCourseEvent evt) {
 		//**Extract the course info
-		//**use it to fill the text fields and set the freqeuncy
+		//**use it to fill the text fields and set the frequency
 		//then fetch+display the sections
-		Window.alert("handled the event!");
-		this.init();
+		//fill the dropdown box
+		
+		int index = fillFrequencies(evt.getAction().getCourse().getFrequencyID());
+		fillSections();
+		view.getCourseNameField().setText(evt.getAction().getCourse().getTitle());
+		view.getCourseNumberField().setText(evt.getAction().getCourse().getNumber());
+		view.getFrequencyDropdown().setSelectedIndex(index);
+		
+		
 		this.go(parentPresenter.getView().getViewRootPanel());
 		
 	}
@@ -120,7 +132,8 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	
 	//gets the frequencies from the database and fills the dropdown with them. 
 	@Override
-	public void fillFrequencies() {
+	public int fillFrequencies(int startingFrequencyValue) {
+		int startingFrequencyIndex = -1;
 		List<Frequency> freqs = retrieveFequencies();
 
 		ListBox box = view.getFrequencyDropdown();
@@ -128,15 +141,27 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		
 		Iterator<Frequency> iterator = freqs.iterator();
 		
-		
+		int index = 0;
 		while(iterator.hasNext()) {
 			Frequency f = iterator.next();
 
 			//add to frequency dropdown
 			box.addItem(f.getFrequency(), Integer.toString(f.getId()));
+			if(f.getId() == startingFrequencyValue) {
+				startingFrequencyIndex = index;
+			}
+			index++;
 		}
 		
-		//view.setFrequencyDropdown(box);
+		return startingFrequencyIndex;
+	}
+	
+	
+	//gets the sections for this course and fills the list with them
+	@Override
+	public void retrieveSections() {
+		//***
+		
 	}
 	
 	
@@ -147,6 +172,25 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		//TODO: What to do about sections not in schedule? They do not have a professor associated with them yet.
 		//name in header
 		//professor???
+		
+		
+		//TODO: *******Display the sections!
+		List<SectionsInfo> sections = retrieveSections();
+
+		StackPanel panel = view.getSectionList();
+		panel.clear();
+		
+		Iterator<SectionsInfo> iterator = sections.iterator();
+		
+		int index = 0;
+		while(iterator.hasNext()) {
+			SectionsInfo s = iterator.next();
+
+			//add to sections list
+			Label label = new Label(s.toString());
+			panel.add(label, s.getSectionsName() +": "+ s.getFacultyLastName());
+
+		}
 	}
 	
 	
@@ -194,6 +238,11 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	//sends request to remove section from the DB.
 	@Override
 	public void removeSection() {
+		//**CHeck if index is valid
+		
+		//**send to db
+		
+		//if success, remove from client-side list.
 		//TODO: send request to database
 		
 		

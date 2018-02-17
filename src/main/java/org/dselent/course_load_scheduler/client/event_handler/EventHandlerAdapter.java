@@ -2,6 +2,7 @@ package org.dselent.course_load_scheduler.client.event_handler;
 
 import org.dselent.course_load_scheduler.client.event.InvalidAccountCreationEvent;
 import org.dselent.course_load_scheduler.client.event.InvalidLoginEvent;
+import org.dselent.course_load_scheduler.client.event.LoadAddSectionEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.event.SendCreateAccountEvent;
 import org.dselent.course_load_scheduler.client.event.SendLoginEvent;
@@ -17,7 +18,12 @@ import org.dselent.course_load_scheduler.client.event.SendLoginEvent;
  * 
  */
 public abstract class EventHandlerAdapter
-implements InvalidAccountCreationEventHandler, InvalidLoginEventHandler, SendCreateAccountEventHandler, SendLoginEventHandler, LoadEditCourseEventHandler
+implements InvalidAccountCreationEventHandler,
+InvalidLoginEventHandler,
+SendCreateAccountEventHandler,
+SendLoginEventHandler,
+LoadEditCourseEventHandler,
+LoadAddSectionEventHandler
 {
 	@Override
 	public void onInvalidAccountCreation(InvalidAccountCreationEvent evt) {}
@@ -33,6 +39,9 @@ implements InvalidAccountCreationEventHandler, InvalidLoginEventHandler, SendCre
 	
 	@Override
 	public void onCreateAccount(SendCreateAccountEvent evt) {}
+	
+	@Override
+	public void onLoadAddSection(LoadAddSectionEvent evt) {}
 
 	
 }

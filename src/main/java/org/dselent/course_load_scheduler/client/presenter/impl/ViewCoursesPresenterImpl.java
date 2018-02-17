@@ -4,7 +4,7 @@ import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
 import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
-
+import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.presenter.ViewCoursesPresenter;
 import org.dselent.course_load_scheduler.client.view.ViewCoursesView;
@@ -147,6 +147,16 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		int index = view.getCourseList().getSelectedIndex();//what is to be removed? get the index.
 		if(index >= 0) {//-1 when nothing is selected--doesn't break program, but throws exception
 			LoadEditCourseAction action = new LoadEditCourseAction();
+			Courses courses = new Courses();
+			//TODO:***************FILL this with actual ways to get this information!
+			courses.setFrequencyID(4);
+			courses.setTitle("Testing...");
+			courses.setNumber("Number...");
+			
+			action.setCourse(courses);
+			
+			
+			
 			//TODO:********************Fill action with courseInfo and course object!! How?
 			final Injector injector = Injector.INSTANCE;
 			EditCoursePresenterImpl editCoursePresenter = injector.getEditCoursePresenter();
@@ -204,9 +214,9 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 
 
 		final Injector injector = Injector.INSTANCE;
-		HomePresenterImpl homePresenter = injector.getHomePresenter();
-		homePresenter.init();
-		homePresenter.go(parentPresenter.getView().getViewRootPanel());
+		//HomePresenterImpl homePresenter = injector.getHomePresenter();
+		//homePresenter.init();
+		//homePresenter.go(parentPresenter.getView().getViewRootPanel());
 	}
 
 	//loads schedule page (TODO: work out parameters, determine between Admin/User??)
@@ -217,9 +227,9 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 
 
 		final Injector injector = Injector.INSTANCE;
-		SchedulePresenterImpl schedulePresenter = injector.getSchedulePresenter();
-		schedulePresenter.init();
-		schedulePresenter.go(parentPresenter.getView().getViewRootPanel());
+		//SchedulePresenterImpl schedulePresenter = injector.getSchedulePresenter();
+		//schedulePresenter.init();
+		//schedulePresenter.go(parentPresenter.getView().getViewRootPanel());
 	}
 	
 	//loads courses page (viewing) (TODO: work out parameters, determine between Admin/User??)
@@ -230,9 +240,9 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 
 
 		final Injector injector = Injector.INSTANCE;
-		ViewCoursesPresenterImpl viewCoursesPresenter = injector.getViewCoursesPresenter();
-		viewCoursesPresenter.init();
-		viewCoursesPresenter.go(parentPresenter.getView().getViewRootPanel());
+		//ViewCoursesPresenterImpl viewCoursesPresenter = injector.getViewCoursesPresenter();
+		//viewCoursesPresenter.init();
+		//viewCoursesPresenter.go(parentPresenter.getView().getViewRootPanel());
 	}
 	
 	//loads account page (TODO: work out parameters, determine between Admin/User??)
@@ -243,9 +253,9 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 
 
 		final Injector injector = Injector.INSTANCE;
-		AccountPresenterImpl accountPresenter = injector.getAccountPresenter();
-		accountPresenter.init();
-		accountPresenter.go(parentPresenter.getView().getViewRootPanel());
+		//AccountPresenterImpl accountPresenter = injector.getAccountPresenter();
+		//accountPresenter.init();
+		//accountPresenter.go(parentPresenter.getView().getViewRootPanel());
 	}
 
 }
