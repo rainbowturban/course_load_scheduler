@@ -313,11 +313,11 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 		viewCoursesPresenter.go(parentPresenter.getView().getViewRootPanel());
 		
 		Window.alert("when you connect this to the DB, you will have a section with Term: " + newSection.getTermsName() + 
-				"Section Type: " + newSection.getSectionType() + 
-				"Start Time: " + newSection.getStartTime() +
-				"End Time: " + newSection.getEndTime() +
-				"Days: " + newSection.getDays() +
-				"For the course: " + newSection.getCoursesNumber() + newSection.getCoursesTitle());
+				" Section Type: " + newSection.getSectionType() + 
+				" Start Time: " + newSection.getStartTime() +
+				" End Time: " + newSection.getEndTime() +
+				" Days: " + newSection.getDays() +
+				" For the course: " + newSection.getCoursesNumber() + newSection.getCoursesTitle());
 
 	}
 
@@ -332,7 +332,7 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 		viewCoursesPresenter.init();
 		viewCoursesPresenter.go(parentPresenter.getView().getViewRootPanel());
 		
-		Window.alert("The section was not edited");
+		Window.alert("The section was not created");
 	}
 }
 

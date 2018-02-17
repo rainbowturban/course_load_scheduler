@@ -314,11 +314,11 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		viewCoursesPresenter.go(parentPresenter.getView().getViewRootPanel());
 
 		Window.alert("when you connect this to the DB, your section will be edited to have Term: " + newSection.getTermsName() + 
-				"Section Type: " + newSection.getSectionType() + 
-				"Start Time: " + newSection.getStartTime() +
-				"End Time: " + newSection.getEndTime() +
-				"Days: " + newSection.getDays() +
-				"For the course: " + newSection.getCoursesNumber() + newSection.getCoursesTitle());
+				" Section Type: " + newSection.getSectionType() +  
+				" Start Time: " + newSection.getStartTime() +
+				" End Time: " + newSection.getEndTime() +
+				" Days: " + newSection.getDays() +
+				" For the course: " + newSection.getCoursesNumber() + newSection.getCoursesTitle());
 	}
 
 	//loads courses page (viewing) (TODO: work out parameters, determine between Admin/User??)
