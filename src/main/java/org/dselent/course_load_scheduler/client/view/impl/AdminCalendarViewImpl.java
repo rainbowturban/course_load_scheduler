@@ -5,12 +5,14 @@ import org.dselent.course_load_scheduler.client.presenter.AdminCalendarPresenter
 import org.dselent.course_load_scheduler.client.view.AdminCalendarView;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
@@ -25,7 +27,6 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
 	private static AdminCalendarViewImplUiBinder uiBinder = GWT.create(AdminCalendarViewImplUiBinder.class);
 	@UiField HTMLPanel baseContainer;
 	@UiField HorizontalPanel calendarBody;
-	@UiField SimplePanel navigationBar;
 	@UiField SimplePanel pageTitle;
 	@UiField VerticalPanel infoPanel;
 	@UiField VerticalPanel courseInfoPanel;
@@ -39,6 +40,30 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
 	@UiField ScrollPanel tablePanel;
 	@UiField Label courseName;
 	@UiField VerticalPanel requestsPanel;
+	@UiField Button homeButton;
+    @UiField Button scheduleButton;
+    @UiField Button coursesButton;
+    @UiField Button accountButton;
+    
+    @UiHandler("homeButton")
+    void onHomeButtonClick(ClickEvent event) {
+        presenter.loadHomePage();
+    }
+    
+    @UiHandler("scheduleButton")
+    void onScheduleButtonClick(ClickEvent event) {
+        presenter.loadSchedulePage();
+    }
+    
+    @UiHandler("coursesButton")
+    void onCoursesButtonClick(ClickEvent event) {
+        presenter.loadViewCoursesPage();
+    }
+    
+    @UiHandler("accountButton")
+    void onAccountButtonClick(ClickEvent event) {
+        presenter.loadAccountPage();
+    }
 
 	interface AdminCalendarViewImplUiBinder extends UiBinder<Widget, AdminCalendarViewImpl> {
 	}

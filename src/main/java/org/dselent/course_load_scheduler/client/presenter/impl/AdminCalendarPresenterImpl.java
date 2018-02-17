@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.model.RequestTables;
 import org.dselent.course_load_scheduler.client.presenter.AdminCalendarPresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
@@ -155,4 +156,47 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 
 		//view.setCourseList(panel);
 	}
+	
+	//loads the home page (TODO: work out parameters, determine between Admin/User??)
+    @Override
+    public void loadHomePage() {/*
+        //TODO: Should this be an event?
+        //event would have information as follows?: If user is admin (although they should be),
+        final Injector injector = Injector.INSTANCE;
+        HomePresenterImpl homePresenter = injector.getHomePresenter();
+        homePresenter.init();
+        homePresenter.go(parentPresenter.getView().getViewRootPanel());*/
+    }
+    //loads schedule page (TODO: work out parameters, determine between Admin/User??)
+    @Override
+    public void loadSchedulePage() {/*
+        //TODO: Should this be an event?
+        //event would have information as follows?: If user is admin (although they should be),
+        final Injector injector = Injector.INSTANCE;
+        SchedulePresenterImpl schedulePresenter = injector.getSchedulePresenter();
+        schedulePresenter.init();
+        schedulePresenter.go(parentPresenter.getView().getViewRootPanel());*/
+    }
+    
+    //loads courses page (viewing) (TODO: work out parameters, determine between Admin/User??)
+    @Override
+    public void loadViewCoursesPage() {
+        //TODO: Should this be an event?
+        //event would have information as follows?: If user is admin (although they should be),
+        final Injector injector = Injector.INSTANCE;
+        ViewCoursesPresenterImpl viewCoursesPresenter = injector.getViewCoursesPresenter();
+        viewCoursesPresenter.init();
+        viewCoursesPresenter.go(parentPresenter.getView().getViewRootPanel());
+    }
+    
+    //loads account page (TODO: work out parameters, determine between Admin/User??)
+    @Override
+    public void loadAccountPage() {/*
+        //TODO: Should this be an event?
+        //event would have information as follows?: If user is admin (although they should be),
+        final Injector injector = Injector.INSTANCE;
+        AccountPresenterImpl accountPresenter = injector.getAccountPresenter();
+        accountPresenter.init();
+        accountPresenter.go(parentPresenter.getView().getViewRootPanel());*/
+    }
 }
