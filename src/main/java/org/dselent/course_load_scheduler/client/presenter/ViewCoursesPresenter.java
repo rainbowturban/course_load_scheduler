@@ -29,7 +29,7 @@ public interface ViewCoursesPresenter extends BasePresenter {
 	void loadHomePage();
 
 	//loads Schedule page (TODO: work out parameters, differentiate btwn admin and user homepages?)
-	void loadSchedulePage();
+	void loadCalendarPage();
 
 	//loads Course page (TODO: work out parameters, differentiate btwn admin and user homepages?)
 	void loadViewCoursesPage();

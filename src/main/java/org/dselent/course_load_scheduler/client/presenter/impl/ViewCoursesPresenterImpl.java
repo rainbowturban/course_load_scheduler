@@ -1,11 +1,7 @@
 package org.dselent.course_load_scheduler.client.presenter.impl;
 
-import org.dselent.course_load_scheduler.client.action.LoadAddCourseAction;
-import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
-import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
-import org.dselent.course_load_scheduler.client.event.LoadAddCourseEvent;
-import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
-import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
+import org.dselent.course_load_scheduler.client.action.*;
+import org.dselent.course_load_scheduler.client.event.*;
 import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.Courses;
@@ -192,10 +188,10 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 
 	//loads schedule page (TODO: how to differentiate between admin/user??)
 	@Override
-	public void loadSchedulePage() {
+	public void loadCalendarPage() {
 
 		//If admin user, some logic here
-		//eventBus.fireEvent(new LoadAdminCalendarEvent(new LoadAdminCalendarAction()));
+		eventBus.fireEvent(new LoadCalendarEvent(new LoadCalendarAction(adminUser))); 
 
 		//If normal user, some logic here
 		//normal schedule presenter here when created
@@ -204,7 +200,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	//loads courses page (viewing) (TODO: work out parameters, determine between Admin/User??)
 	@Override
 	public void loadViewCoursesPage() {
-		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction()));
+		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(adminUser)));
 	}
 
 	//loads account page (TODO: work out parameters, determine between Admin/User??)

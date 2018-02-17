@@ -1,6 +1,7 @@
 package org.dselent.course_load_scheduler.client.presenter.impl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 //import java.util.regex.Matcher;
 //import java.util.regex.Pattern;
@@ -14,13 +15,17 @@ import org.dselent.course_load_scheduler.client.exceptions.EmptyStringException;
 import org.dselent.course_load_scheduler.client.exceptions.PasswordCharacterException;
 import org.dselent.course_load_scheduler.client.exceptions.PasswordLengthException;
 import org.dselent.course_load_scheduler.client.exceptions.PasswordMatchException;
+import org.dselent.course_load_scheduler.client.model.CourseInfo;
+import org.dselent.course_load_scheduler.client.model.FacultyType;
 import org.dselent.course_load_scheduler.client.presenter.CreateAccountPresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.CreateAccountView;
 
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.StackPanel;
 import com.google.inject.Inject;
 
 public class CreateAccountPresenterImpl extends BasePresenterImpl implements CreateAccountPresenter {
@@ -71,6 +76,28 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 	@Override
 	public void setParentPresenter(IndexPresenter parentPresenter) {
 		this.parentPresenter = parentPresenter;
+	}
+	
+	public void populateComboBox() {
+		ListBox box = view.getFacultyTypeComboBox();
+		box.clear();
+
+		List<FacultyType> courses = retrieveFacultyTypes();
+		Iterator<FacultyType> iterator = courses.iterator();
+
+
+		while(iterator.hasNext()) {
+			FacultyType type = iterator.next();
+			
+			box.addItem(type.getType(), Integer.toString(type.getId()));
+		}
+		
+		view.setFacultyTypeComboBox(box);
+	}
+
+	private List<FacultyType> retrieveFacultyTypes() {
+		return null;
+		
 	}
 
 	@Override
