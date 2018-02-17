@@ -1,6 +1,8 @@
 package org.dselent.course_load_scheduler.client.presenter.impl;
 
+import org.dselent.course_load_scheduler.client.action.LoadAddCourseAction;
 import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
+import org.dselent.course_load_scheduler.client.event.LoadAddCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
@@ -141,15 +143,8 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	//loads the page to edit with the provided index/course (TODO: work out parameters)
 	@Override
 	public void loadEditPage() {
-		//TODO: load the edit page somehow??? Send an event, perhaps?
-		//event would have information as follows?: If user is admin (although they should be),
-		//what course is being edited, as an index and the course's info from the page.
-		
 		int index = view.getCourseList().getSelectedIndex();//what is to be removed? get the index.
 		if(index >= 0) {//-1 when nothing is selected
-			final Injector injector = Injector.INSTANCE;
-			EditCoursePresenterImpl editCoursePresenter = injector.getEditCoursePresenter();
-			editCoursePresenter.init();
 			
 			LoadEditCourseAction action = new LoadEditCourseAction();
 			Courses courses = new Courses();
@@ -157,26 +152,18 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 			courses.setFrequencyID(4);
 			courses.setTitle("Testing...");
 			courses.setNumber("Number...");
-			
 			action.setCourse(courses);
 			
 			LoadEditCourseEvent evt = new LoadEditCourseEvent(action);
-			
 			eventBus.fireEvent(evt);
 		}
 	}
 
-	//loads the page to add a course (TODO: work out parameters)
+	//loads the page to add a course
 	@Override
-	public void loadAddPage() {
-		//TODO: Should this be an event?
-		//event would have information as follows?: If user is admin (although they should be),
-
-
-		final Injector injector = Injector.INSTANCE;
-		AddCoursePresenterImpl addCoursePresenter = injector.getAddCoursePresenter();
-		addCoursePresenter.init();
-		addCoursePresenter.go(parentPresenter.getView().getViewRootPanel());
+	public void loadAddPage() {		
+		eventBus.fireEvent(new LoadAddCourseEvent(new LoadAddCourseAction()));
+		
 	}
 
 
@@ -189,7 +176,6 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		if(index >= 0) {
 			//TODO: Send correct Index--for DB not just the clientSide
 			boolean success = true;//this will be the return value from the request
-			
 			
 			if(success) {
 				view.getCourseList().remove(index);

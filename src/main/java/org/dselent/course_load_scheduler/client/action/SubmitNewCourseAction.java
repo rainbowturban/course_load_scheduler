@@ -9,7 +9,6 @@ public class SubmitNewCourseAction {
 		return course;
 	}
 
-
 	public void setCourse(Courses courses) {
 		this.course = courses;
 	}
