@@ -1,21 +1,7 @@
 package org.dselent.course_load_scheduler.client.gin;
 
-import org.dselent.course_load_scheduler.client.presenter.impl.AddCoursePresenterImpl;
-import org.dselent.course_load_scheduler.client.presenter.impl.AddSectionPresenterImpl;
-import org.dselent.course_load_scheduler.client.presenter.impl.CreateAccountPresenterImpl;
-import org.dselent.course_load_scheduler.client.presenter.impl.EditCoursePresenterImpl;
-import org.dselent.course_load_scheduler.client.presenter.impl.IndexPresenterImpl;
-import org.dselent.course_load_scheduler.client.presenter.impl.LoginPagePresenterImpl;
-import org.dselent.course_load_scheduler.client.presenter.impl.LoginPresenterImpl;
-import org.dselent.course_load_scheduler.client.presenter.impl.ViewCoursesPresenterImpl;
-import org.dselent.course_load_scheduler.client.view.impl.AddCourseViewImpl;
-import org.dselent.course_load_scheduler.client.view.impl.AddSectionViewImpl;
-import org.dselent.course_load_scheduler.client.view.impl.CreateAccountViewImpl;
-import org.dselent.course_load_scheduler.client.view.impl.EditCourseViewImpl;
-import org.dselent.course_load_scheduler.client.view.impl.IndexViewImpl;
-import org.dselent.course_load_scheduler.client.view.impl.LoginPageViewImpl;
-import org.dselent.course_load_scheduler.client.view.impl.LoginViewImpl;
-import org.dselent.course_load_scheduler.client.view.impl.ViewCoursesViewImpl;
+import org.dselent.course_load_scheduler.client.presenter.impl.*;
+import org.dselent.course_load_scheduler.client.view.impl.*;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
@@ -50,8 +36,9 @@ public interface Injector extends Ginjector
     public ViewCoursesPresenterImpl getViewCoursesPresenter();
     public AddCoursePresenterImpl getAddCoursePresenter();
     public EditCoursePresenterImpl getEditCoursePresenter();
-//    public EditSectionPresenterImpl getEditSectionPresenter();//Un-comment once this class exists!
+    public EditSectionPresenterImpl getEditSectionPresenter();
     public AddSectionPresenterImpl getAddSectionPresenter();
+    public AdminCalendarPresenterImpl getAdminCalendarPresenter();
     
     //views
     public IndexViewImpl getIndexView();
@@ -61,7 +48,8 @@ public interface Injector extends Ginjector
     public ViewCoursesViewImpl getViewCoursesView();
     public AddCourseViewImpl getAddCourseView();
     public EditCourseViewImpl getEditCourseView();
-//  public EditSectionViewImpl getEditSectionView();//Un-comment once this class exists!
+    public EditSectionViewImpl getEditSectionView();
     public AddSectionViewImpl getAddSectionView();
+    public AdminCalendarViewImpl getAdminCalendarView();
     
 }

@@ -6,11 +6,15 @@
 	</ui:style>
 	<g:HTMLPanel ui:field="baseContainer">
 		<g:VerticalPanel width="100%" height="100%">
-			<g:Cell height="15%">
-				<g:SimplePanel height="100%" ui:field="navigationBar">
-					<g:Label text="NAVIGATION BAR" width="100%" height="100%" horizontalAlignment="ALIGN_CENTER"/>
-				</g:SimplePanel>
-			</g:Cell>
+			<g:Cell horizontalAlignment="ALIGN_CENTER" height="15%">
+                <g:HorizontalPanel>
+	                <g:Button text="WPI Logo"></g:Button>
+	                <g:Button text="Home" styleName="navButton" ui:field="homeButton"></g:Button>
+	                <g:Button text="Schedule" styleName="navButton" ui:field="scheduleButton"></g:Button>
+	                <g:Button text="Courses" styleName="navButton" ui:field="coursesButton"></g:Button>
+	                <g:Button text="Account" styleName="navButton" ui:field="accountButton"></g:Button>
+	            </g:HorizontalPanel>
+         	</g:Cell>
 			<g:Cell height="15%">
 				<g:SimplePanel height="100%" ui:field="pageTitle">
 					<g:Label text="Edit Schedule" width="100%" height="100%" horizontalAlignment="ALIGN_CENTER" styleName="page-title"/>
@@ -141,10 +145,10 @@
 					</g:SimplePanel>
 					</g:Cell>
 					<g:Cell width="19%">
-						<g:VerticalPanel ui:field="requestsPanel" width="100%">
+						<g:VerticalPanel ui:field="requestsMainPanel" width="100%">
 						<g:Label text="Scheduling Requests"/>
 						<g:ScrollPanel ui:field="requestsScrollPanel">
-							<g:VerticalPanel width="100%" height="100%"/>
+							<g:VerticalPanel width="100%" height="100%" ui:field="requestsPanel"/>
 						</g:ScrollPanel>
 					</g:VerticalPanel>
 					</g:Cell>
@@ -152,4 +156,4 @@
 			</g:Cell>
 		</g:VerticalPanel>
 	</g:HTMLPanel>
-</ui:UiBinder> 
+</ui:UiBinder>

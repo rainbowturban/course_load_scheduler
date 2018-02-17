@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.dselent.course_load_scheduler.client.action.SubmitNewCourseAction;
+import org.dselent.course_load_scheduler.client.event.SubmitNewCourseEvent;
 import org.dselent.course_load_scheduler.client.gin.Injector;
-import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.model.Frequency;
 import org.dselent.course_load_scheduler.client.presenter.AddCoursePresenter;
@@ -15,9 +16,7 @@ import org.dselent.course_load_scheduler.client.view.AddCourseView;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.StackPanel;
 import com.google.inject.Inject;
 
 public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCoursePresenter{
@@ -50,9 +49,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	{
 		HandlerRegistration registration;
 		
-		//TODO: implement event listeners down here
-		//registration = eventBus.addHandler(InvalidLoginEvent.TYPE, this);
-		//eventBusRegistration.put(InvalidLoginEvent.TYPE, registration);
+		//implement any event listeners down here
 	}
 	
 	@Override
@@ -82,6 +79,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	@Override
 	public List<Frequency> retrieveFequencies() {
 		//TODO: fetch frequencies from the DB
+		
 		//**In place of that, sample values are used
 		List<Frequency> freqs = new ArrayList<Frequency>();
 		
@@ -139,10 +137,16 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 			newCourse.setTitle(view.getCourseNameField().getText());
 			newCourse.setNumber(view.getCourseNumberField().getText());
 			
-			//TODO: *DB Event: send out to DB to add!
+			//creates event, which is currently not handled
+			SubmitNewCourseAction action = new SubmitNewCourseAction();
+			action.setCourse(newCourse);
+			
+			
+			SubmitNewCourseEvent evt = new SubmitNewCourseEvent(action);
+			eventBus.fireEvent(evt);//to be handled by the Database
+			
 			Window.alert("If this accesses the DB, it would send a request for a course with Name: "+newCourse.getTitle() +
 					", Number: "+newCourse.getNumber() + ", FrequencyId: " + newCourse.getFrequencyID());
-			
 			
 			returnToViewCourses();//returns if course adding was successful or not
 		}
@@ -154,8 +158,10 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	
 	@Override
 	public void returnToViewCourses() {
-		
-		//TODO:!!!!!!!!! Replace with an Event!
+		//first, clear the text in the textFields
+		view.getCourseNameField().setText("");
+		view.getCourseNumberField().setText("");
+
 		final Injector injector = Injector.INSTANCE;
 		ViewCoursesPresenterImpl viewCoursePresenter = injector.getViewCoursesPresenter();
 		viewCoursePresenter.init();

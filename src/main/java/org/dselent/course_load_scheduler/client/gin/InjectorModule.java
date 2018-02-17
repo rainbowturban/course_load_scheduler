@@ -1,37 +1,9 @@
 package org.dselent.course_load_scheduler.client.gin;
 
-import org.dselent.course_load_scheduler.client.presenter.AddCoursePresenter;
-import org.dselent.course_load_scheduler.client.presenter.AddSectionPresenter;
-import org.dselent.course_load_scheduler.client.presenter.CreateAccountPresenter;
-import org.dselent.course_load_scheduler.client.presenter.EditCoursePresenter;
-import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
-import org.dselent.course_load_scheduler.client.presenter.LoginPagePresenter;
-import org.dselent.course_load_scheduler.client.presenter.LoginPresenter;
-import org.dselent.course_load_scheduler.client.presenter.ViewCoursesPresenter;
-import org.dselent.course_load_scheduler.client.presenter.impl.AddCoursePresenterImpl;
-import org.dselent.course_load_scheduler.client.presenter.impl.AddSectionPresenterImpl;
-import org.dselent.course_load_scheduler.client.presenter.impl.CreateAccountPresenterImpl;
-import org.dselent.course_load_scheduler.client.presenter.impl.EditCoursePresenterImpl;
-import org.dselent.course_load_scheduler.client.presenter.impl.IndexPresenterImpl;
-import org.dselent.course_load_scheduler.client.presenter.impl.LoginPagePresenterImpl;
-import org.dselent.course_load_scheduler.client.presenter.impl.LoginPresenterImpl;
-import org.dselent.course_load_scheduler.client.presenter.impl.ViewCoursesPresenterImpl;
-import org.dselent.course_load_scheduler.client.view.AddCourseView;
-import org.dselent.course_load_scheduler.client.view.AddSectionView;
-import org.dselent.course_load_scheduler.client.view.CreateAccountView;
-import org.dselent.course_load_scheduler.client.view.EditCourseView;
-import org.dselent.course_load_scheduler.client.view.IndexView;
-import org.dselent.course_load_scheduler.client.view.LoginPageView;
-import org.dselent.course_load_scheduler.client.view.LoginView;
-import org.dselent.course_load_scheduler.client.view.ViewCoursesView;
-import org.dselent.course_load_scheduler.client.view.impl.AddCourseViewImpl;
-import org.dselent.course_load_scheduler.client.view.impl.AddSectionViewImpl;
-import org.dselent.course_load_scheduler.client.view.impl.CreateAccountViewImpl;
-import org.dselent.course_load_scheduler.client.view.impl.EditCourseViewImpl;
-import org.dselent.course_load_scheduler.client.view.impl.IndexViewImpl;
-import org.dselent.course_load_scheduler.client.view.impl.LoginPageViewImpl;
-import org.dselent.course_load_scheduler.client.view.impl.LoginViewImpl;
-import org.dselent.course_load_scheduler.client.view.impl.ViewCoursesViewImpl;
+import org.dselent.course_load_scheduler.client.presenter.*;
+import org.dselent.course_load_scheduler.client.presenter.impl.*;
+import org.dselent.course_load_scheduler.client.view.*;
+import org.dselent.course_load_scheduler.client.view.impl.*;
 
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.inject.client.AbstractGinModule;
@@ -59,8 +31,9 @@ public class InjectorModule extends AbstractGinModule
 		bind(ViewCoursesPresenter.class).to(ViewCoursesPresenterImpl.class).in(Singleton.class);
 		bind(AddCoursePresenter.class).to(AddCoursePresenterImpl.class).in(Singleton.class);
 		bind(EditCoursePresenter.class).to(EditCoursePresenterImpl.class).in(Singleton.class);
-		//        bind(EditSectionPresenter.class).to(EditSectionPresenterImpl.class).in(Singleton.class);//Un-comment when class exists!
+		bind(EditSectionPresenter.class).to(EditSectionPresenterImpl.class).in(Singleton.class);
 		bind(AddSectionPresenter.class).to(AddSectionPresenterImpl.class).in(Singleton.class);
+		bind(AdminCalendarPresenter.class).to(AdminCalendarPresenterImpl.class).in(Singleton.class);
 
 		// views
 		bind(IndexView.class).to(IndexViewImpl.class).in(Singleton.class);
@@ -70,8 +43,9 @@ public class InjectorModule extends AbstractGinModule
 		bind(ViewCoursesView.class).to(ViewCoursesViewImpl.class).in(Singleton.class);
 		bind(AddCourseView.class).to(AddCourseViewImpl.class).in(Singleton.class);
 		bind(EditCourseView.class).to(EditCourseViewImpl.class).in(Singleton.class);
-		//        bind(EditSectionView.class).to(EditSectionViewImpl.class).in(Singleton.class);//Un-comment when class exists!
+		bind(EditSectionView.class).to(EditSectionViewImpl.class).in(Singleton.class);
 		bind(AddSectionView.class).to(AddSectionViewImpl.class).in(Singleton.class);
+		bind(AdminCalendarView.class).to(AdminCalendarViewImpl.class).in(Singleton.class);
 	}
 
 	/*

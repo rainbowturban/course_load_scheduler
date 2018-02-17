@@ -16,6 +16,8 @@ import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.event.dom.client.ClickEvent;
 
 public class CreateAccountViewImpl extends BaseViewImpl<CreateAccountPresenter> implements CreateAccountView {
 
@@ -126,9 +128,16 @@ public class CreateAccountViewImpl extends BaseViewImpl<CreateAccountPresenter> 
 
 	@Override
 	public void showErrorMessages(String errorMessages) {
-		Window.alert(errorMessages);				
+		Window.alert(errorMessages);
 	}
 
 
+<<<<<<< HEAD
 
+=======
+	@UiHandler("submitButton")
+	void onSubmitButtonClick(ClickEvent event) {
+		presenter.createAccount();
+	}
+>>>>>>> branch 'master' of https://github.com/WPI-CS3733-Team3/course_load_scheduler.git
 }

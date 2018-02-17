@@ -2,18 +2,18 @@ package org.dselent.course_load_scheduler.client.presenter.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+//import java.util.regex.Matcher;
+//import java.util.regex.Pattern;
 
-import org.dselent.course_load_scheduler.client.action.InvalidLoginAction;
-import org.dselent.course_load_scheduler.client.action.SendLoginAction;
+import org.dselent.course_load_scheduler.client.action.InvalidAccountCreationAction;
+import org.dselent.course_load_scheduler.client.action.SendCreateAccountAction;
 import org.dselent.course_load_scheduler.client.errorstring.InvalidAccountCreationStrings;
-import org.dselent.course_load_scheduler.client.errorstring.InvalidLoginStrings;
-import org.dselent.course_load_scheduler.client.event.InvalidLoginEvent;
-import org.dselent.course_load_scheduler.client.event.SendLoginEvent;
+import org.dselent.course_load_scheduler.client.event.InvalidAccountCreationEvent;
+import org.dselent.course_load_scheduler.client.event.SendCreateAccountEvent;
 import org.dselent.course_load_scheduler.client.exceptions.EmptyStringException;
 import org.dselent.course_load_scheduler.client.exceptions.PasswordCharacterException;
 import org.dselent.course_load_scheduler.client.exceptions.PasswordLengthException;
+import org.dselent.course_load_scheduler.client.exceptions.PasswordMatchException;
 import org.dselent.course_load_scheduler.client.presenter.CreateAccountPresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.CreateAccountView;
@@ -48,8 +48,8 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 	{
 		HandlerRegistration registration;
 
-		//registration = eventBus.addHandler(InvalidLoginEvent.TYPE, this);
-		//eventBusRegistration.put(InvalidLoginEvent.TYPE, registration);
+		registration = eventBus.addHandler(InvalidAccountCreationEvent.TYPE, this);
+		eventBusRegistration.put(InvalidAccountCreationEvent.TYPE, registration);
 	}
 
 	@Override
@@ -99,66 +99,93 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 
 			List<String> invalidReasonList = new ArrayList<>();
 
-			//Add checks for null firstName, lastName, and Email, and check for pw and confirmPW to match
 			try
 			{
-				validateUserName(userName);
+				validateForNullString(firstName);
+			}catch(EmptyStringException e){
+				invalidReasonList.add(InvalidAccountCreationStrings.NULL_FIRST_NAME);
+				validFirstName = false;
 			}
-			catch(EmptyStringException e)
+
+			try
 			{
-				invalidReasonList.add(InvalidLoginStrings.NULL_USER_NAME);
+				validateForNullString(lastName);
+			}catch(EmptyStringException e){
+				invalidReasonList.add(InvalidAccountCreationStrings.NULL_LAST_NAME);
+				validLastName = false;
+			}
+
+			try
+			{
+				validateForNullString(email);
+			}catch(EmptyStringException e){
+				invalidReasonList.add(InvalidAccountCreationStrings.NULL_EMAIL);
+				validEmail = false;
+			}
+
+			try
+			{
+				validateForNullString(userName);
+			}catch(EmptyStringException e){
+				invalidReasonList.add(InvalidAccountCreationStrings.NULL_USER_NAME);
 				validUserName = false;
 			}
 
 			try
 			{
-				validatePassword(password);
-			}
-			catch(EmptyStringException e)
-			{
-				invalidReasonList.add(InvalidLoginStrings.NULL_PASSWORD);
+				validatePassword(password, confirmPassword);
+			} catch(EmptyStringException e) {
+				invalidReasonList.add(InvalidAccountCreationStrings.NULL_PASSWORD);
 				validPassword = false;
-			}catch(PasswordLengthException e) {
+			} catch(PasswordLengthException e) {
 				invalidReasonList.add(InvalidAccountCreationStrings.TOO_SHORT);
 				validPassword = false;
-			}catch(PasswordCharacterException e) {
+			} catch(PasswordCharacterException e) {
 				invalidReasonList.add(InvalidAccountCreationStrings.NO_SPECIAL_CHARACTERS);
 				validPassword = false;
-
+			} catch(PasswordMatchException e) {
+				invalidReasonList.add(InvalidAccountCreationStrings.NO_MATCH);
+				validPassword = false;
 			}
-			if(validUserName && validPassword)
+
+			if(validFirstName && validLastName && validEmail && validUserName && validPassword)
 			{
-				sendCreateAccount(userName, password);
+				sendCreateAccount(firstName, lastName, facultyType, email, userName, password);
 			}
 			else
 			{
-				InvalidLoginAction ila = new InvalidLoginAction(invalidReasonList);
-				InvalidLoginEvent ile = new InvalidLoginEvent(ila);
+				InvalidAccountCreationAction ila = new InvalidAccountCreationAction(invalidReasonList);
+				InvalidAccountCreationEvent ile = new InvalidAccountCreationEvent(ila);
 				eventBus.fireEvent(ile);
 			}
 		}
 	}
 
-	private void validateUserName(String userName) throws EmptyStringException {
-		checkEmptyString(userName);
+	private void validateForNullString(String string) throws EmptyStringException {
+		checkEmptyString(string);
 	}
 
-	private void validatePassword(String password) throws EmptyStringException, PasswordLengthException, PasswordCharacterException{
+	private void validatePassword(String password, String confirmPassword) throws EmptyStringException,
+	PasswordLengthException, PasswordCharacterException, PasswordMatchException {
+
 		checkEmptyString(password);
-		checkForSpecialCharacter(password);
+		//		checkForSpecialCharacter(password);
 		if(password.length() < 8) {
 			throw new PasswordLengthException();
+		}
+		if(!password.equals(confirmPassword)) {
+			throw new PasswordMatchException();
 		}
 	}
 
 	//check for a non-alphanumeric character
-	private void checkForSpecialCharacter(String password) throws PasswordCharacterException {
-		Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
-		Matcher m = p.matcher(password);
-		if(!m.find()) {
-			throw new PasswordCharacterException();
-		}
-	}
+	//	private void checkForSpecialCharacter(String password) throws PasswordCharacterException {
+	//		Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+	//		Matcher m = p.matcher(password);
+	//		if(!m.find()) {
+	//			throw new PasswordCharacterException();
+	//		}
+	//	}
 
 	private void checkEmptyString(String string) throws EmptyStringException{
 		if(string == null || string.equals(""))
@@ -167,8 +194,9 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 		}		
 	}
 
-	private void sendCreateAccount(String userName, String password) {
-		SendCreateAccountAction scaa = new SendCreateAccountAction(userName, password);
+	private void sendCreateAccount(String firstName, String lastName, String facultyType, String email, String userName, String password) {
+
+		SendCreateAccountAction scaa = new SendCreateAccountAction(firstName, lastName, facultyType, email, userName, password);
 		SendCreateAccountEvent scae = new SendCreateAccountEvent(scaa);
 		eventBus.fireEvent(scae);
 	}

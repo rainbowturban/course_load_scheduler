@@ -1,10 +1,9 @@
 package org.dselent.course_load_scheduler.client;
 
 import org.dselent.course_load_scheduler.client.gin.Injector;
-import org.dselent.course_load_scheduler.client.presenter.impl.IndexPresenterImpl;
-import org.dselent.course_load_scheduler.client.presenter.impl.LoginPresenterImpl;
-import org.dselent.course_load_scheduler.client.presenter.impl.ViewCoursesPresenterImpl;
-import org.dselent.course_load_scheduler.client.view.IndexView;
+import org.dselent.course_load_scheduler.client.presenter.impl.*;
+import org.dselent.course_load_scheduler.client.view.*;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 
@@ -20,36 +19,6 @@ public class CourseLoadScheduler implements EntryPoint
 	public void onModuleLoad()
 	{
 		RootLayoutPanel root = RootLayoutPanel.get();
-		
-		//SimplePanelExample simplePanelExample = new SimplePanelExample();
-		//root.add(simplePanelExample);
-		
-		//SimplePanelExample2 simplePanelExample2 = new SimplePanelExample2();
-		//root.add(simplePanelExample2);
-		
-		//HTMLPanelExample htmlPanelExample = new HTMLPanelExample();
-		//root.add(htmlPanelExample);
-		
-		//FlowPanelExample flowPanelExample = new FlowPanelExample();
-		//root.add(flowPanelExample);
-		
-		//VerticalPanelExample verticalPanelExample = new VerticalPanelExample();
-		//root.add(verticalPanelExample);
-		
-		//HorizontalPanelExample horizontalPanelExample = new HorizontalPanelExample();
-		//root.add(horizontalPanelExample);
-		
-		//DockLayoutPanelExample dockLayoutPanelExample = new DockLayoutPanelExample();
-		//root.add(dockLayoutPanelExample);
-		
-		//GridExample gridExample = new GridExample();
-		//root.add(gridExample);
-
-		//TabLayoutPanelExample tabLayoutPanelExample = new TabLayoutPanelExample();
-		//root.add(tabLayoutPanelExample);
-		
-		//ExamplesPanel examplesPanel = new ExamplesPanel();
-		//root.add(examplesPanel);
 
 		// Get the injector, which injected objects can be retrieved from
 		final Injector injector = Injector.INSTANCE;
@@ -58,7 +27,7 @@ public class CourseLoadScheduler implements EntryPoint
 		indexPresenter.init();
 		IndexView indexView = indexPresenter.getView();		
 		
-		
+		/*
 		LoginPresenterImpl loginPresenter = injector.getLoginPresenter();
 		loginPresenter.init();
 		//LoginView loginView = loginPresenter.getView();	
@@ -66,15 +35,49 @@ public class CourseLoadScheduler implements EntryPoint
 		//indexPresenter.go(RootPanel.get("indexContainer"));
 		indexPresenter.go(root);
 		loginPresenter.go(indexView.getViewRootPanel());
+		*/
 		
-		/*/Testing stuff for Hannah's page
+		
+		AdminCalendarPresenterImpl adminCalendarPresenter = injector.getAdminCalendarPresenter();
+		adminCalendarPresenter.init();
+		
+		ViewCoursesPresenterImpl viewCoursePresenter = injector.getViewCoursesPresenter();
+		viewCoursePresenter.init();
+		
+		EditCoursePresenterImpl editCoursePresenter = injector.getEditCoursePresenter();
+		editCoursePresenter.init();
+		
+		AddCoursePresenterImpl addCoursePresenter = injector.getAddCoursePresenter();
+		addCoursePresenter.init();
+		
+		AddSectionPresenterImpl addSectionPresenter = injector.getAddSectionPresenter();
+		addSectionPresenter.init();
+
+		EditSectionPresenterImpl editSectionPresenter = injector.getEditSectionPresenter();
+		editSectionPresenter.init();
+
+		
+		
+		//Testing stuff for Hannah's page
 		//---------------------------------------------------------------
-		ViewCoursesPresenterImpl coursePresenter = injector.getViewCoursesPresenter();
+		//ViewCoursesPresenterImpl coursePresenter = injector.getViewCoursesPresenter();
+		AdminCalendarPresenterImpl coursePresenter = injector.getAdminCalendarPresenter();
 		coursePresenter.init();
 		
 		//indexPresenter.go(RootPanel.get("indexContainer"));
 		indexPresenter.go(root);
 		coursePresenter.go(indexView.getViewRootPanel());
-		//----------------------------------------------------------*/
+		//----------------------------------------------------------/
+		
+		/*
+		//Kayla Stuff
+		/*EditSectionPresenterImpl editSectionPresenter = injector.getEditSectionPresenter();
+		editSectionPresenter.init();
+		//LoginView loginView = loginPresenter.getView();	
+		
+		//indexPresenter.go(RootPanel.get("indexContainer"));
+		indexPresenter.go(root);
+		editSectionPresenter.go(indexView.getViewRootPanel());
+		*/
 	}
 }

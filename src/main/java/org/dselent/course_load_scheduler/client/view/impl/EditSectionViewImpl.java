@@ -107,7 +107,7 @@ public class EditSectionViewImpl extends BaseViewImpl<EditSectionPresenter> impl
 	@Override
 	public ListBox getSectionEndTimeComboBox()
 	{
-		return sectionStartTimeComboBox;
+		return sectionEndTimeComboBox;
 	}
 	
 	@Override
@@ -179,5 +179,10 @@ public class EditSectionViewImpl extends BaseViewImpl<EditSectionPresenter> impl
 	@UiHandler("submitButton")
 	void onSubmitButtonClick(ClickEvent event) {
 		presenter.editSection();
+	}
+	
+	@UiHandler("cancelButton")
+	void onCancelButtonClick(ClickEvent event) {
+		presenter.cancelEditSection();
 	}
 }

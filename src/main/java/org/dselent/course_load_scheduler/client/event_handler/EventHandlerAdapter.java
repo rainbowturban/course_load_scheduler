@@ -1,8 +1,6 @@
 package org.dselent.course_load_scheduler.client.event_handler;
 
-import org.dselent.course_load_scheduler.client.event.InvalidLoginEvent;
-import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
-import org.dselent.course_load_scheduler.client.event.SendLoginEvent;
+import org.dselent.course_load_scheduler.client.event.*;
 
 /**
  * Adapter class for convenience
@@ -15,8 +13,21 @@ import org.dselent.course_load_scheduler.client.event.SendLoginEvent;
  * 
  */
 public abstract class EventHandlerAdapter
-implements InvalidLoginEventHandler, SendLoginEventHandler, LoadEditCourseEventHandler
+implements InvalidAccountCreationEventHandler,
+InvalidLoginEventHandler,
+SendCreateAccountEventHandler,
+SendLoginEventHandler,
+LoadEditCourseEventHandler,
+LoadAddSectionEventHandler,
+LoadEditSectionEventHandler,
+SubmitNewCourseEventHandler,
+LoadViewCoursesEventHandler,
+LoadAddCourseEventHandler
+
 {
+	@Override
+	public void onInvalidAccountCreation(InvalidAccountCreationEvent evt) {}
+
 	@Override
 	public void onInvalidLogin(InvalidLoginEvent evt) {}
 	
@@ -26,5 +37,22 @@ implements InvalidLoginEventHandler, SendLoginEventHandler, LoadEditCourseEventH
 	@Override
 	public void onLoadEditCoursePage(LoadEditCourseEvent evt) {}
 	
+	@Override
+	public void onCreateAccount(SendCreateAccountEvent evt) {}
+	
+	@Override
+	public void onLoadAddSection(LoadAddSectionEvent evt) {}
+	
+	@Override
+	public void onLoadEditSection(LoadEditSectionEvent evt) {}
+
+	@Override
+	public void onSubmitNewCourse(SubmitNewCourseEvent evt) {}
+	
+	@Override
+	public void onLoadViewCourses(LoadViewCoursesEvent evt) {}
+	
+	@Override
+	public void onLoadAddCourse(LoadAddCourseEvent evt) {}
 	
 }
