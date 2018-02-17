@@ -37,7 +37,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		fillCourses();
 
 		//TODO:***Remove buttons if not admin user! (or only have view button, depending on how stuff is implemented)**
-		/*if(userAdmin){		
+		/*if(!userAdmin){		
 			view.getRemoveCourseButton().setVisible(false);
 			view.getEditCourseButton().setVisible(false);
 			view.getAddCourseButton().setVisible(false);
@@ -146,7 +146,11 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		//what course is being edited, as an index and the course's info from the page.
 		
 		int index = view.getCourseList().getSelectedIndex();//what is to be removed? get the index.
-		if(index >= 0) {//-1 when nothing is selected--doesn't break program, but throws exception
+		if(index >= 0) {//-1 when nothing is selected
+			final Injector injector = Injector.INSTANCE;
+			EditCoursePresenterImpl editCoursePresenter = injector.getEditCoursePresenter();
+			editCoursePresenter.init();
+			
 			LoadEditCourseAction action = new LoadEditCourseAction();
 			Courses courses = new Courses();
 			//TODO:***************FILL this with actual ways to get this information!
@@ -156,22 +160,9 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 			
 			action.setCourse(courses);
 			
-			
-			
-			//TODO:********************Fill action with courseInfo and course object!! How?
-			final Injector injector = Injector.INSTANCE;
-			EditCoursePresenterImpl editCoursePresenter = injector.getEditCoursePresenter();
-			editCoursePresenter.init();
-			
 			LoadEditCourseEvent evt = new LoadEditCourseEvent(action);
 			
 			eventBus.fireEvent(evt);
-			
-			/*
-			final Injector injector = Injector.INSTANCE;
-			EditCoursePresenterImpl editCoursePresenter = injector.getEditCoursePresenter();
-			editCoursePresenter.init();
-			editCoursePresenter.go(parentPresenter.getView().getViewRootPanel());*/
 		}
 	}
 

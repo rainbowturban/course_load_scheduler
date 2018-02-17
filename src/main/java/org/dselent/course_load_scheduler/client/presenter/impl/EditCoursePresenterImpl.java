@@ -174,7 +174,14 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		s1.setSectionType("Lab");
 		s1.setTermsName("A");
 		
+		SectionsInfo s2 = new SectionsInfo();
+		s2.setCoursesNumber(course.getCoursesNumber());
+		s2.setCoursesTitle(course.getCoursesTitle());
+		s2.setSectionType("Conference");
+		s2.setTermsName("A");
+		
 		sections.add(s1);
+		sections.add(s2);
 		
 		
 		return sections;
@@ -185,29 +192,21 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	//gets the sections for this course and fills the list with them
 	@Override
 	public void fillSections() {
-		//TODO: get sections and info from DB
-		//TODO: What to do about sections not in schedule? They do not have a professor associated with them yet.
-		//name in header
-		//professor???
-		
-		
-		//TODO: *******Display the sections!
-		List<SectionsInfo> sections = retrieveSections();
+		/*List<SectionsInfo> sections = retrieveSections();
 
 		StackPanel panel = view.getSectionList();
 		panel.clear();
 		
 		Iterator<SectionsInfo> iterator = sections.iterator();
 		
-		int index = 0;
 		while(iterator.hasNext()) {
 			SectionsInfo s = iterator.next();
 
 			//add to sections list
 			Label label = new Label(s.toString());
-			panel.add(label, s.getSectionsName() +": "+ s.getFacultyLastName());
+			panel.add(label, "Test title");
 
-		}
+		}*/
 	}
 	
 	
@@ -255,14 +254,17 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	//sends request to remove section from the DB.
 	@Override
 	public void removeSection() {
-		//**CHeck if index is valid
+		int index = view.getSectionList().getSelectedIndex();//what is to be removed? get the index.
 		
-		//**send to db
-		
-		//if success, remove from client-side list.
-		//TODO: send request to database
-		
-		
+		if(index >= 0) {
+			//TODO: Send correct Index--for DB not just the clientSide
+			boolean success = true;//this will be the return value from the request
+			
+			
+			if(success) {
+				view.getSectionList().remove(index);
+			}
+		}
 	}
 	
 	@Override
@@ -288,9 +290,8 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		LoadAddSectionAction action = new LoadAddSectionAction();
 		action.setCourseInfo(course);
 		
-		
 		LoadAddSectionEvent evt = new LoadAddSectionEvent(action);
-		
+		eventBus.fireEvent(evt);
 		
 	}
 
