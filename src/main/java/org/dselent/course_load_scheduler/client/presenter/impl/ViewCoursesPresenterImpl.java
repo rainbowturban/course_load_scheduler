@@ -197,17 +197,18 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		//homePresenter.go(parentPresenter.getView().getViewRootPanel());
 	}
 
-	//loads schedule page (TODO: work out parameters, determine between Admin/User??)
+	//loads schedule page (TODO: how to differentiate between admin/user??)
 	@Override
 	public void loadSchedulePage() {
-		//TODO: Should this be an event?
-		//event would have information as follows?: If user is admin (although they should be),
 
-
+		//If admin user
 		final Injector injector = Injector.INSTANCE;
-		//SchedulePresenterImpl schedulePresenter = injector.getSchedulePresenter();
-		//schedulePresenter.init();
-		//schedulePresenter.go(parentPresenter.getView().getViewRootPanel());
+		AdminCalendarPresenterImpl adminCalendarPresenter = injector.getAdminCalendarPresenter();
+		adminCalendarPresenter.init();
+		adminCalendarPresenter.go(parentPresenter.getView().getViewRootPanel());
+		
+		//If normal user
+		//normal schedule presenter here when created
 	}
 	
 	//loads courses page (viewing) (TODO: work out parameters, determine between Admin/User??)
