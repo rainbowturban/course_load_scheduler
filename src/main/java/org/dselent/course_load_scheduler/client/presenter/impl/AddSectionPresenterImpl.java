@@ -14,6 +14,7 @@ import org.dselent.course_load_scheduler.client.view.AddSectionView;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.inject.Inject;
 
@@ -310,6 +311,13 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 		ViewCoursesPresenterImpl viewCoursesPresenter = injector.getViewCoursesPresenter();
 		viewCoursesPresenter.init();
 		viewCoursesPresenter.go(parentPresenter.getView().getViewRootPanel());
+		
+		Window.alert("when you connect this to the DB, you will have a section with Term: " + newSection.getTermsName() + 
+				" Section Type: " + newSection.getSectionType() + 
+				" Start Time: " + newSection.getStartTime() +
+				" End Time: " + newSection.getEndTime() +
+				" Days: " + newSection.getDays() +
+				" For the course: " + newSection.getCoursesNumber() + newSection.getCoursesTitle());
 
 	}
 
@@ -323,6 +331,8 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 		ViewCoursesPresenterImpl viewCoursesPresenter = injector.getViewCoursesPresenter();
 		viewCoursesPresenter.init();
 		viewCoursesPresenter.go(parentPresenter.getView().getViewRootPanel());
+		
+		Window.alert("The section was not created");
 	}
 }
 

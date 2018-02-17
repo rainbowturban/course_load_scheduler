@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.dselent.course_load_scheduler.client.event.LoadAddSectionEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditSectionEvent;
 import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.model.SectionsInfo;
@@ -14,6 +13,7 @@ import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.EditSectionView;
 
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.ListBox;
@@ -284,7 +284,7 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 	//variable to hold info from course
 	private SectionsInfo fromCourse = new SectionsInfo();
 	@Override
-	public void onLoadAddSection(LoadAddSectionEvent evt) {
+	public void onLoadEditSection(LoadEditSectionEvent evt) {
 		//Gather info from course
 		fromCourse.setCoursesNumber(evt.getAction().getCourseInfo().getCoursesNumber());
 		fromCourse.setCoursesTitle(evt.getAction().getCourseInfo().getCoursesTitle());
@@ -307,23 +307,32 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		newSection.setDays(this.determineDays());
 		newSection.setCoursesNumber(fromCourse.getCoursesNumber());
 		newSection.setCoursesTitle(fromCourse.getCoursesTitle());
-		
+
 		final Injector injector = Injector.INSTANCE;
 		ViewCoursesPresenterImpl viewCoursesPresenter = injector.getViewCoursesPresenter();
 		viewCoursesPresenter.init();
 		viewCoursesPresenter.go(parentPresenter.getView().getViewRootPanel());
-	}
-	
-	//loads courses page (viewing) (TODO: work out parameters, determine between Admin/User??)
-		@Override
-		public void cancelEditSection() {
-			//TODO: Should this be an event?
-			//event would have information as follows?: If user is admin (although they should be),
 
-			final Injector injector = Injector.INSTANCE;
-			ViewCoursesPresenterImpl viewCoursesPresenter = injector.getViewCoursesPresenter();
-			viewCoursesPresenter.init();
-			viewCoursesPresenter.go(parentPresenter.getView().getViewRootPanel());
-		}
+		Window.alert("when you connect this to the DB, your section will be edited to have Term: " + newSection.getTermsName() + 
+				" Section Type: " + newSection.getSectionType() +  
+				" Start Time: " + newSection.getStartTime() +
+				" End Time: " + newSection.getEndTime() +
+				" Days: " + newSection.getDays() +
+				" For the course: " + newSection.getCoursesNumber() + newSection.getCoursesTitle());
+	}
+
+	//loads courses page (viewing) (TODO: work out parameters, determine between Admin/User??)
+	@Override
+	public void cancelEditSection() {
+		//TODO: Should this be an event?
+		//event would have information as follows?: If user is admin (although they should be),
+
+		final Injector injector = Injector.INSTANCE;
+		ViewCoursesPresenterImpl viewCoursesPresenter = injector.getViewCoursesPresenter();
+		viewCoursesPresenter.init();
+		viewCoursesPresenter.go(parentPresenter.getView().getViewRootPanel());
+		
+		Window.alert("The section was not edited");
+	}
 
 }
