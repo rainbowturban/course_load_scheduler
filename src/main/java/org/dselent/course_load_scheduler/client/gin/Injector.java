@@ -36,7 +36,7 @@ public interface Injector extends Ginjector
     public ViewCoursesPresenterImpl getViewCoursesPresenter();
     public AddCoursePresenterImpl getAddCoursePresenter();
     public EditCoursePresenterImpl getEditCoursePresenter();
-//    public EditSectionPresenterImpl getEditSectionPresenter();//Un-comment once this class exists!
+    public EditSectionPresenterImpl getEditSectionPresenter();
     public AddSectionPresenterImpl getAddSectionPresenter();
     public AdminCalendarPresenterImpl getAdminCalendarPresenter();
     
@@ -48,7 +48,7 @@ public interface Injector extends Ginjector
     public ViewCoursesViewImpl getViewCoursesView();
     public AddCourseViewImpl getAddCourseView();
     public EditCourseViewImpl getEditCourseView();
-//  public EditSectionViewImpl getEditSectionView();//Un-comment once this class exists!
+    public EditSectionViewImpl getEditSectionView();
     public AddSectionViewImpl getAddSectionView();
     public AdminCalendarViewImpl getAdminCalendarView();
     

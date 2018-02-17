@@ -107,7 +107,7 @@ public class EditSectionViewImpl extends BaseViewImpl<EditSectionPresenter> impl
 	@Override
 	public ListBox getSectionEndTimeComboBox()
 	{
-		return sectionStartTimeComboBox;
+		return sectionEndTimeComboBox;
 	}
 	
 	@Override
