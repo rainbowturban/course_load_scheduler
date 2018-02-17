@@ -148,7 +148,6 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	//loads the page to edit with the provided index/course
 	@Override
 	public void loadEditPage() {
-		int index = view.getCourseList().getSelectedIndex();//what is to be removed? get the index.
 
 		int index = view.getCourseList().getSelectedIndex();//get index of course to edit
 		if(index >= 0) {//-1 when nothing is selected			
