@@ -5,4 +5,7 @@ public interface AdminCalendarPresenter extends BasePresenter
 {
 	IndexPresenter getParentPresenter();
 	void setParentPresenter(IndexPresenter parentPresenter);
+	
+
+	
 }
