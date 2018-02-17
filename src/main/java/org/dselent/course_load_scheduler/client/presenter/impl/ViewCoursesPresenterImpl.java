@@ -29,6 +29,8 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 
 	private IndexPresenter parentPresenter;
 	private ViewCoursesView view;
+	
+	private List<CourseInfo> courses = new ArrayList<CourseInfo>();		
 
 
 	@Inject
@@ -38,15 +40,24 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		this.parentPresenter = parentPresenter;
 		view.setPresenter(this);
 
+		retrieveCourses();
 		fillCourses();
-
-		//TODO:***Remove buttons if not admin user! (or only have view button, depending on how stuff is implemented)**
-		/*if(!userAdmin){		
+	}
+	
+	@Override
+	public void onLoadViewCourses(LoadViewCoursesEvent evt) {
+		retrieveCourses();
+		fillCourses();
+		
+		if(!evt.getAction().getAdminUser()) {
 			view.getRemoveCourseButton().setVisible(false);
 			view.getEditCourseButton().setVisible(false);
 			view.getAddCourseButton().setVisible(false);
-		}*/
+		}
+		
+		this.go(parentPresenter.getView().getViewRootPanel());
 	}
+	
 
 	@Override
 	public void init()
@@ -59,9 +70,9 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	{
 		HandlerRegistration registration;
 
-		//button events for when they click on edit or remove buttons
-		//registration = eventBus.addHandler(InvalidLoginEvent.TYPE, this);
-		//eventBusRegistration.put(InvalidLoginEvent.TYPE, registration);
+		//events for when this page is loaded
+		registration = eventBus.addHandler(LoadViewCoursesEvent.TYPE, this);
+		eventBusRegistration.put(LoadViewCoursesEvent.TYPE, registration);
 	}
 
 	@Override
@@ -91,8 +102,8 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 
 	//gets information about courses to fill the page with
 	@Override
-	public List<CourseInfo> retrieveCourses() {
-		List<CourseInfo> courses = new ArrayList<CourseInfo>();		
+	public void retrieveCourses() {
+		courses = new ArrayList<CourseInfo>();		
 
 		//TODO: instead of this, access DB to get courses
 		CourseInfo course1 = new CourseInfo();
@@ -114,9 +125,6 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		courses.add(course1);
 		courses.add(course2);
 		courses.add(course3);
-
-
-		return courses;
 	}
 
 	//injects the code for the variable element of the page into
@@ -125,9 +133,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		StackPanel panel = view.getCourseList();
 		panel.clear();
 
-		List<CourseInfo> courses = retrieveCourses();
 		Iterator<CourseInfo> iterator = courses.iterator();
-
 
 		while(iterator.hasNext()) {
 			CourseInfo courseInfo = iterator.next();
@@ -136,26 +142,19 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 			Label label = new Label("Required Frequency: " + courseInfo.getFrequency());
 			panel.add(label, courseInfo.getCoursesNumber() +": "+ courseInfo.getCoursesTitle());
 		}
-
-
-		//view.setCourseList(panel);
 	}
 
 
-	//loads the page to edit with the provided index/course (TODO: work out parameters)
+	//loads the page to edit with the provided index/course
 	@Override
 	public void loadEditPage() {
 		int index = view.getCourseList().getSelectedIndex();//what is to be removed? get the index.
-		if(index >= 0) {//-1 when nothing is selected
 
-			LoadEditCourseAction action = new LoadEditCourseAction();
-			Courses courses = new Courses();
-			//TODO:***************FILL this with actual ways to get this information!
-			courses.setFrequencyID(4);
-			courses.setTitle("Testing...");
-			courses.setNumber("Number...");
-			action.setCourse(courses);
-
+		int index = view.getCourseList().getSelectedIndex();//get index of course to edit
+		if(index >= 0) {//-1 when nothing is selected			
+			Iterator<CourseInfo> ci = courses.listIterator(index);
+			CourseInfo course = ci.next();
+			LoadEditCourseAction action = new LoadEditCourseAction(course);
 			LoadEditCourseEvent evt = new LoadEditCourseEvent(action);
 			eventBus.fireEvent(evt);
 		}
@@ -165,7 +164,6 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	@Override
 	public void loadAddPage() {		
 		eventBus.fireEvent(new LoadAddCourseEvent(new LoadAddCourseAction()));
-
 	}
 
 
