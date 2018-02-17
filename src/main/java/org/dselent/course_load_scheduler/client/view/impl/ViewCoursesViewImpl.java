@@ -104,7 +104,7 @@ public class ViewCoursesViewImpl extends BaseViewImpl<ViewCoursesPresenter> impl
 	
 	@UiHandler("scheduleButton")
 	void onScheduleButtonClick(ClickEvent event) {
-		presenter.loadSchedulePage();
+		presenter.loadCalendarPage();
 	}
 	
 	@UiHandler("coursesButton")

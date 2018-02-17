@@ -131,9 +131,16 @@ public class CreateAccountViewImpl extends BaseViewImpl<CreateAccountPresenter> 
 		Window.alert(errorMessages);
 	}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4834805425ca539cc10c5c37d359e4ed512c833c
 	@UiHandler("submitButton")
 	void onSubmitButtonClick(ClickEvent event) {
 		presenter.createAccount();
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4834805425ca539cc10c5c37d359e4ed512c833c
 }
