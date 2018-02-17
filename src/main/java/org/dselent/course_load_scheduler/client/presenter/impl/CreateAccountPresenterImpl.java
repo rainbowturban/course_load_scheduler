@@ -48,8 +48,8 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 	{
 		HandlerRegistration registration;
 
-		//registration = eventBus.addHandler(InvalidLoginEvent.TYPE, this);
-		//eventBusRegistration.put(InvalidLoginEvent.TYPE, registration);
+		registration = eventBus.addHandler(InvalidAccountCreationEvent.TYPE, this);
+		eventBusRegistration.put(InvalidAccountCreationEvent.TYPE, registration);
 	}
 
 	@Override

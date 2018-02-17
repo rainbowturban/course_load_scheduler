@@ -47,8 +47,8 @@ public class LoginPagePresenterImpl extends BasePresenterImpl implements LoginPa
 	{
 		HandlerRegistration registration;
 
-		//registration = eventBus.addHandler(InvalidLoginEvent.TYPE, this);
-		//eventBusRegistration.put(InvalidLoginEvent.TYPE, registration);
+		registration = eventBus.addHandler(InvalidLoginEvent.TYPE, this);
+		eventBusRegistration.put(InvalidLoginEvent.TYPE, registration);
 	}
 
 	@Override
