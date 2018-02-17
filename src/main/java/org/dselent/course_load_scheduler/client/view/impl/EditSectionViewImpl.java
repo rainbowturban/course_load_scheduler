@@ -180,4 +180,9 @@ public class EditSectionViewImpl extends BaseViewImpl<EditSectionPresenter> impl
 	void onSubmitButtonClick(ClickEvent event) {
 		presenter.editSection();
 	}
+	
+	@UiHandler("cancelButton")
+	void onCancelButtonClick(ClickEvent event) {
+		presenter.cancelEditSection();
+	}
 }
