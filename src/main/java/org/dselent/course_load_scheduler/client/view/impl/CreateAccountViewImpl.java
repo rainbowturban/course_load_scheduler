@@ -132,12 +132,8 @@ public class CreateAccountViewImpl extends BaseViewImpl<CreateAccountPresenter> 
 	}
 
 
-<<<<<<< HEAD
-
-=======
 	@UiHandler("submitButton")
 	void onSubmitButtonClick(ClickEvent event) {
 		presenter.createAccount();
 	}
->>>>>>> branch 'master' of https://github.com/WPI-CS3733-Team3/course_load_scheduler.git
 }
