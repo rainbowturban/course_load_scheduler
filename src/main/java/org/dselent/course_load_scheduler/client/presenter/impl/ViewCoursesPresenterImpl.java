@@ -2,8 +2,10 @@ package org.dselent.course_load_scheduler.client.presenter.impl;
 
 import org.dselent.course_load_scheduler.client.action.LoadAddCourseAction;
 import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
+import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.event.LoadAddCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
+import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.Courses;
@@ -145,7 +147,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	public void loadEditPage() {
 		int index = view.getCourseList().getSelectedIndex();//what is to be removed? get the index.
 		if(index >= 0) {//-1 when nothing is selected
-			
+
 			LoadEditCourseAction action = new LoadEditCourseAction();
 			Courses courses = new Courses();
 			//TODO:***************FILL this with actual ways to get this information!
@@ -153,7 +155,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 			courses.setTitle("Testing...");
 			courses.setNumber("Number...");
 			action.setCourse(courses);
-			
+
 			LoadEditCourseEvent evt = new LoadEditCourseEvent(action);
 			eventBus.fireEvent(evt);
 		}
@@ -163,7 +165,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	@Override
 	public void loadAddPage() {		
 		eventBus.fireEvent(new LoadAddCourseEvent(new LoadAddCourseAction()));
-		
+
 	}
 
 
@@ -172,11 +174,11 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	@Override
 	public void removeCourse() {
 		int index = view.getCourseList().getSelectedIndex();//what is to be removed? get the index.
-		
+
 		if(index >= 0) {
 			//TODO: Send correct Index--for DB not just the clientSide
 			boolean success = true;//this will be the return value from the request
-			
+
 			if(success) {
 				view.getCourseList().remove(index);
 			}
@@ -187,54 +189,30 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	//loads the home page (TODO: work out parameters, determine between Admin/User??)
 	@Override
 	public void loadHomePage() {
-		//TODO: Should this be an event?
-		//event would have information as follows?: If user is admin (although they should be),
-
-
-		final Injector injector = Injector.INSTANCE;
-		//HomePresenterImpl homePresenter = injector.getHomePresenter();
-		//homePresenter.init();
-		//homePresenter.go(parentPresenter.getView().getViewRootPanel());
+		//eventBus.fireEvent(new LoadHomeEvent(new LoadHomeAction()));
 	}
 
 	//loads schedule page (TODO: how to differentiate between admin/user??)
 	@Override
 	public void loadSchedulePage() {
 
-		//If admin user
-		final Injector injector = Injector.INSTANCE;
-		AdminCalendarPresenterImpl adminCalendarPresenter = injector.getAdminCalendarPresenter();
-		adminCalendarPresenter.init();
-		adminCalendarPresenter.go(parentPresenter.getView().getViewRootPanel());
-		
-		//If normal user
+		//If admin user, some logic here
+		//eventBus.fireEvent(new LoadAdminCalendarEvent(new LoadAdminCalendarAction()));
+
+		//If normal user, some logic here
 		//normal schedule presenter here when created
 	}
-	
+
 	//loads courses page (viewing) (TODO: work out parameters, determine between Admin/User??)
 	@Override
 	public void loadViewCoursesPage() {
-		//TODO: Should this be an event?
-		//event would have information as follows?: If user is admin (although they should be),
-
-
-		final Injector injector = Injector.INSTANCE;
-		//ViewCoursesPresenterImpl viewCoursesPresenter = injector.getViewCoursesPresenter();
-		//viewCoursesPresenter.init();
-		//viewCoursesPresenter.go(parentPresenter.getView().getViewRootPanel());
+		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction()));
 	}
-	
+
 	//loads account page (TODO: work out parameters, determine between Admin/User??)
 	@Override
 	public void loadAccountPage() {
-		//TODO: Should this be an event?
-		//event would have information as follows?: If user is admin (although they should be),
-
-
-		final Injector injector = Injector.INSTANCE;
-		//AccountPresenterImpl accountPresenter = injector.getAccountPresenter();
-		//accountPresenter.init();
-		//accountPresenter.go(parentPresenter.getView().getViewRootPanel());
+		//eventBus.fireEvent(new LoadAccountEvent(new LoadAccountAction()));
 	}
 
 }
