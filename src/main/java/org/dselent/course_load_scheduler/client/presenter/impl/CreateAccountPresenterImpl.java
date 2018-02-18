@@ -102,7 +102,17 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 	}
 
 	private List<FacultyType> retrieveFacultyTypes() {
-		return null;
+		FacultyType admin = new FacultyType();
+		admin.setId(0);
+		admin.setType("ADMIN");
+		FacultyType user = new FacultyType();
+		user.setId(0);
+		user.setType("ADMIN");
+		
+		List<FacultyType> ret = new ArrayList<FacultyType>();
+		ret.add(admin);
+		ret.add(user);
+		return ret;
 		
 	}
 
