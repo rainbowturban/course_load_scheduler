@@ -1,23 +1,41 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-	<ui:style>
-	
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:w="urn:import:com.google.gwt.widget.client" xmlns:p1="urn:import:com.google.gwt.user.cellview.client">
+<ui:style>
+
 	</ui:style>
-	<g:HTMLPanel ui:field="rootPanel">
-		<g:VerticalPanel/>
-		<!-- NAV STUFF -->
-            <g:Cell horizontalAlignment="ALIGN_CENTER">
-            		<g:HorizontalPanel>
-                <g:Image url="WEB-INF/classes/org/dselent/course_load_scheduler/client/view/images/WPI_Inst_Prim_FulClr_med.png" height="5%"/>
-                <g:Button text="Home" styleName="navButton" ui:field="homeButton" height="38px" width="56px"></g:Button>
-                <g:Button text="Schedule" styleName="navButton" ui:field="scheduleButton" height="38px"></g:Button>
-                <g:Button text="Courses" styleName="navButton" ui:field="coursesButton" height="38px"></g:Button>
-                <g:Button text="Account" styleName="navButton" ui:field="accountButton" height="38px"></g:Button>
-            </g:HorizontalPanel>
-            </g:Cell>
-			<g:Label text="Navigation bar"/>
-			<g:Label text="Manage Users" width="355px" styleName="courseTitle"/>
-	<g:VerticalPanel/>
-	</g:HTMLPanel>
+<g:HTMLPanel ui:field="rootPanel">
+	<g:VerticalPanel width="435px">
+	<!-- NAV STUFF -->
+	<g:Cell horizontalAlignment="ALIGN_CENTER">
+		<g:HorizontalPanel>
+			<g:Image
+				url="WEB-INF/classes/org/dselent/course_load_scheduler/client/view/images/WPI_Inst_Prim_FulClr_med.png"
+				height="5%" />
+			<g:Button text="Home" styleName="navButton" ui:field="homeButton"
+				height="38px" width="56px"></g:Button>
+			<g:Button text="Schedule" styleName="navButton" ui:field="scheduleButton"
+				height="38px"></g:Button>
+			<g:Button text="Courses" styleName="navButton" ui:field="coursesButton"
+				height="38px"></g:Button>
+			<g:Button text="Account" styleName="navButton" ui:field="accountButton"
+				height="38px"></g:Button>
+		</g:HorizontalPanel>
+	</g:Cell>
+	<g:Label text="Welcome!" width="355px" styleName="page-title" />
+	<g:Grid>
+		<g:row>
+			<g:customCell>
+				<g:Label text="Number of Courses" styleName="gwt-DialogBox" height="22px" width="139px"/>
+			</g:customCell>
+			<g:customCell>
+				<g:Label text="Faculty" width="65px" height="22px"/>
+			</g:customCell>
+			<g:customCell>
+				<g:Label text="Courses Assigned " width="129px" height="23px"/>
+			</g:customCell>
+		</g:row>
+	</g:Grid>
+	</g:VerticalPanel>
+</g:HTMLPanel>
 </ui:UiBinder> 
