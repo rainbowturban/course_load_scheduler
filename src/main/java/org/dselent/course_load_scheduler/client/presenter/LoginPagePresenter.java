@@ -5,4 +5,5 @@ public interface LoginPagePresenter extends BasePresenter {
 	IndexPresenter getParentPresenter();
 	void setParentPresenter(IndexPresenter parentPresenter);
 	void login();
+	void loadCreateAccount();
 }

@@ -15,7 +15,6 @@ import org.dselent.course_load_scheduler.client.exceptions.EmptyStringException;
 import org.dselent.course_load_scheduler.client.exceptions.PasswordCharacterException;
 import org.dselent.course_load_scheduler.client.exceptions.PasswordLengthException;
 import org.dselent.course_load_scheduler.client.exceptions.PasswordMatchException;
-import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.FacultyType;
 import org.dselent.course_load_scheduler.client.presenter.CreateAccountPresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
@@ -23,9 +22,7 @@ import org.dselent.course_load_scheduler.client.view.CreateAccountView;
 
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.HasWidgets;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.StackPanel;
 import com.google.inject.Inject;
 
 public class CreateAccountPresenterImpl extends BasePresenterImpl implements CreateAccountPresenter {
