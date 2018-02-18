@@ -58,7 +58,7 @@ public class InjectorModule extends AbstractGinModule
 		bind(HomeView.class).to(HomeViewImpl.class).in(Singleton.class);
 		bind(ManageUserView.class).to(ManageUserViewImpl.class).in(Singleton.class);
 		bind(ExampleView.class).to(ExampleViewImpl.class).in(Singleton.class);
-		        
+
 		//services
 		bind(UserService.class).to(UserServiceImpl.class).in(Singleton.class);
 	}
