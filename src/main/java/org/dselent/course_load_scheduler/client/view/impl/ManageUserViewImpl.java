@@ -29,22 +29,22 @@ public class ManageUserViewImpl extends BaseViewImpl<ManageUserPresenter> implem
     
     @UiHandler("homeButton")
     void onHomeButtonClick(ClickEvent event) {
-       // presenter.loadAccountPage();
+        presenter.loadViewHomePage();
     }
     
     @UiHandler("scheduleButton")
     void onScheduleButtonClick(ClickEvent event) {
-        //presenter.loadSchedulePage();
+        presenter.loadSchedulePage();
     }
     
     @UiHandler("coursesButton")
     void onCoursesButtonClick(ClickEvent event) {
-        //presenter.loadViewCoursesPage();
+        presenter.loadViewCoursesPage();
     }
     
     @UiHandler("accountButton")
     void onAccountButtonClick(ClickEvent event) {
-       // presenter.loadAccountPage();
+        presenter.loadAccountPage();
     }
     
  
