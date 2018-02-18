@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.dselent.course_load_scheduler.client.action.LoadHomePageAction;
+import org.dselent.course_load_scheduler.client.action.LoadScheduleAction;
+import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
+import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
+import org.dselent.course_load_scheduler.client.event.LoadScheduleEvent;
+import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.model.Faculty;
 import org.dselent.course_load_scheduler.client.model.RequestTables;
@@ -50,8 +56,8 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	{
 		HandlerRegistration registration;
 		
-		//registration = eventBus.addHandler(InvalidLoginEvent.TYPE, this);
-		//eventBusRegistration.put(InvalidLoginEvent.TYPE, registration);
+		registration = eventBus.addHandler(LoadScheduleEvent.TYPE, this);
+		eventBusRegistration.put(LoadScheduleEvent.TYPE, registration);
 	}
 		
 	@Override
@@ -221,36 +227,21 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		//view.setCourseList(panel);
 	}
 	
-	//loads the home page (TODO: work out parameters, determine between Admin/User??)
+	//loads the home page
     @Override
-    public void loadHomePage() {/*
-        //TODO: Should this be an event?
-        //event would have information as follows?: If user is admin (although they should be),
-        final Injector injector = Injector.INSTANCE;
-        HomePresenterImpl homePresenter = injector.getHomePresenter();
-        homePresenter.init();
-        homePresenter.go(parentPresenter.getView().getViewRootPanel());*/
+    public void loadHomePage() {
+    	eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction(true)));
     }
-    //loads schedule page (TODO: work out parameters, determine between Admin/User??)
+    //loads schedule page
     @Override
-    public void loadSchedulePage() {/*
-        //TODO: Should this be an event?
-        //event would have information as follows?: If user is admin (although they should be),
-        final Injector injector = Injector.INSTANCE;
-        SchedulePresenterImpl schedulePresenter = injector.getSchedulePresenter();
-        schedulePresenter.init();
-        schedulePresenter.go(parentPresenter.getView().getViewRootPanel());*/
+    public void loadSchedulePage() {
+        eventBus.fireEvent(new LoadScheduleEvent(new LoadScheduleAction(true)));
     }
     
-    //loads courses page (viewing) (TODO: work out parameters, determine between Admin/User??)
+    //loads courses page (viewing)
     @Override
     public void loadViewCoursesPage() {
-        //TODO: Should this be an event?
-        //event would have information as follows?: If user is admin (although they should be),
-        final Injector injector = Injector.INSTANCE;
-        ViewCoursesPresenterImpl viewCoursesPresenter = injector.getViewCoursesPresenter();
-        viewCoursesPresenter.init();
-        viewCoursesPresenter.go(parentPresenter.getView().getViewRootPanel());
+        eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(true)));
     }
     
     //loads account page (TODO: work out parameters, determine between Admin/User??)
@@ -263,4 +254,15 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
         accountPresenter.init();
         accountPresenter.go(parentPresenter.getView().getViewRootPanel());*/
     }
+    
+    @Override
+	public void onLoadSchedulePage(LoadScheduleEvent evt) {
+		if(evt.getAction().getAdminUser()) {//if not admin, should not load the page
+			//initialize stuff
+			fillInfo();
+			fillRequests();
+			
+			this.go(parentPresenter.getView().getViewRootPanel());
+		}
+	}
 }

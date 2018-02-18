@@ -25,16 +25,16 @@ public interface ViewCoursesPresenter extends BasePresenter {
 	//returns true if it was removed successfully, false otherwise.
 	public void removeCourse();
 
-	//loads Home page (TODO: work out parameters, differentiate btwn admin and user homepages?)
+	//loads Home page
 	void loadHomePage();
 
-	//loads Schedule page (TODO: work out parameters, differentiate btwn admin and user homepages?)
-	void loadCalendarPage();
+	//loads Schedule page
+	void loadSchedulePage();
 
-	//loads Course page (TODO: work out parameters, differentiate btwn admin and user homepages?)
+	//loads Course page
 	void loadViewCoursesPage();
 
-	//loads Account page (TODO: work out parameters, differentiate btwn admin and user homepages?)
+	//loads Account page
 	void loadAccountPage();
 
 }

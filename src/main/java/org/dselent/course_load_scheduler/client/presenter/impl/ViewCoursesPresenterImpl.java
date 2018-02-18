@@ -130,7 +130,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		course3.setFrequencyId(4);
 		course3.setCourseId(3);
 
-		courses = new ArrayList<CourseInfo>();
+		ArrayList<CourseInfo> courses = new ArrayList<CourseInfo>();
 
 		courses.add(course1);
 		courses.add(course2);
@@ -204,21 +204,16 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction(adminUser)));
 	}
 
-	//loads schedule page (TODO: how to differentiate between admin/user??)
+	//loads schedule page
 	@Override
-	public void loadCalendarPage() {
-
-		//If admin user, some logic here
-		eventBus.fireEvent(new LoadCalendarEvent(new LoadCalendarAction(adminUser))); 
-
-		//If normal user, some logic here
-		//normal schedule presenter here when created
+	public void loadSchedulePage() {
+		eventBus.fireEvent(new LoadScheduleEvent(new LoadScheduleAction(adminUser))); 
 	}
-
-	//loads courses page (viewing)
+	
+	//loads schedule page
 	@Override
 	public void loadViewCoursesPage() {
-		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(adminUser)));
+		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(adminUser))); 
 	}
 
 	//loads account page (TODO: work out parameters, determine between Admin/User??)
