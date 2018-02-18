@@ -27,8 +27,8 @@ public class ManageUserPresenterImpl extends BasePresenterImpl implements Manage
 		HandlerRegistration registration;
 
 		//button events for when they click on create or cancel buttons
-		//		registration = eventBus.addHandler(InvalidLoginEvent.TYPE, this);
-		//		eventBusRegistration.put(InvalidLoginEvent.TYPE, registration);
+				registration = eventBus.addHandler(ManageUserPageEvent.TYPE, this);
+				eventBusRegistration.put(ManageUserPageEvent.TYPE, registration);
 	}
 
 	public IndexPresenter getParentPresenter() {
