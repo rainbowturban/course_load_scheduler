@@ -29,22 +29,22 @@ public class HomeViewImpl extends BaseViewImpl<HomePresenter> implements HomeVie
     
     @UiHandler("homeButton")
     void onHomeButtonClick(ClickEvent event) {
-       // presenter.loadAccountPage();
+       presenter.loadHomePage();
     }
     
     @UiHandler("scheduleButton")
     void onScheduleButtonClick(ClickEvent event) {
-        //presenter.loadSchedulePage();
+        presenter.loadSchedulePage();
     }
     
     @UiHandler("coursesButton")
     void onCoursesButtonClick(ClickEvent event) {
-        //presenter.loadViewCoursesPage();
+        presenter.loadViewCoursesPage();
     }
     
     @UiHandler("accountButton")
     void onAccountButtonClick(ClickEvent event) {
-       // presenter.loadAccountPage();
+       presenter.loadAccountPage();
     }
     
 	interface HomeViewImplUiBinder extends UiBinder<Widget, HomeViewImpl> {

@@ -4,4 +4,10 @@ public interface HomePresenter extends BasePresenter{
 	IndexPresenter getParentPresenter();
 	void setParentPresenter(IndexPresenter parentPresenter);
 	void home();
+	
+	//nav stuff
+	public void loadAccountPage();
+	public void loadSchedulePage();
+	public void loadViewCoursesPage();
+	public void loadHomePage();
 }

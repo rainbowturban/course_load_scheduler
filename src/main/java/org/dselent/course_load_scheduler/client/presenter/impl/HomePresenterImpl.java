@@ -2,7 +2,14 @@ package org.dselent.course_load_scheduler.client.presenter.impl;
 
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.HomeView;
+import org.dselent.course_load_scheduler.client.action.LoadHomePageAction;
+import org.dselent.course_load_scheduler.client.action.LoadScheduleAction;
+import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
+import org.dselent.course_load_scheduler.client.action.ManageUserPageAction;
 import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
+import org.dselent.course_load_scheduler.client.event.LoadScheduleEvent;
+import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
+import org.dselent.course_load_scheduler.client.event.ManageUserPageEvent;
 import org.dselent.course_load_scheduler.client.presenter.HomePresenter;
 
 import com.google.gwt.event.shared.HandlerRegistration;
@@ -12,6 +19,8 @@ import com.google.inject.Inject;
 public class HomePresenterImpl extends BasePresenterImpl implements HomePresenter{
 	private IndexPresenter parentPresenter;
 	private HomeView view;
+	
+	private boolean adminUser = false;
 	
 	@Inject
 	public HomePresenterImpl(IndexPresenter parentPresenter, HomeView view)
@@ -51,6 +60,7 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	
 	@Override
 	public void onLoadHomePage(LoadHomePageEvent evt) {
+		adminUser = evt.getAction().isAdminUser();
 		
 		this.go(parentPresenter.getView().getViewRootPanel());
 	}
@@ -64,4 +74,25 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	public void setParentPresenter(IndexPresenter parentPresenter) {
 		this.parentPresenter = parentPresenter;
 	}
+	
+	@Override
+	public void loadAccountPage() {
+		eventBus.fireEvent(new ManageUserPageEvent(new ManageUserPageAction(adminUser)));
+	}
+	
+	@Override
+	public void loadSchedulePage() {
+		eventBus.fireEvent(new LoadScheduleEvent(new LoadScheduleAction(adminUser)));
+	}
+	
+	@Override
+	public void loadViewCoursesPage() {
+		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(adminUser))); 
+	}
+
+	@Override
+	public void loadHomePage() {
+		eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction(adminUser)));
+	}
+	
 }
