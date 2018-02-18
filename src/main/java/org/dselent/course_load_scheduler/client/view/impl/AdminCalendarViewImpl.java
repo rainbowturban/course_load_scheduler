@@ -36,7 +36,6 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
 	@UiField VerticalPanel requestsMainPanel;
 	@UiField ScrollPanel requestsScrollPanel;
 	@UiField ListBox viewSelect;
-	@UiField ListBox yearSelect;
 	@UiField ListBox termSelect;
 	@UiField TabPanel schedulePanel;
 	@UiField ScrollPanel tablePanel;
@@ -135,11 +134,6 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
 	@Override
 	public ListBox getScheduleSelectBox() {
 		return viewSelect;
-	}
-
-	@Override
-	public ListBox getYearSelectBox() {
-		return yearSelect;
 	}
 
 	@Override
