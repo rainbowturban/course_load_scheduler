@@ -5,7 +5,7 @@
 
 	</ui:style>
 <g:HTMLPanel ui:field="rootPanel">
-	<g:VerticalPanel>
+	<g:VerticalPanel width="435px">
 	<!-- NAV STUFF -->
 	<g:Cell horizontalAlignment="ALIGN_CENTER">
 		<g:HorizontalPanel>
@@ -22,8 +22,20 @@
 				height="38px"></g:Button>
 		</g:HorizontalPanel>
 	</g:Cell>
-	<g:Label text="Navigation bar" />
-	<g:Label text="Manage Users" width="355px" styleName="courseTitle" />
+	<g:Label text="Welcome!" width="355px" styleName="page-title" />
+	<g:Grid>
+		<g:row>
+			<g:customCell>
+				<g:Label text="Number of Courses" styleName="gwt-DialogBox" height="22px" width="139px"/>
+			</g:customCell>
+			<g:customCell>
+				<g:Label text="Faculty" width="65px" height="22px"/>
+			</g:customCell>
+			<g:customCell>
+				<g:Label text="Courses Assigned " width="129px" height="23px"/>
+			</g:customCell>
+		</g:row>
+	</g:Grid>
 	</g:VerticalPanel>
 </g:HTMLPanel>
 </ui:UiBinder> 
