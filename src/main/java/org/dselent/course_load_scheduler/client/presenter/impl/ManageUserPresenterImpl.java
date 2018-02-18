@@ -59,19 +59,5 @@ public class ManageUserPresenterImpl extends BasePresenterImpl implements Manage
 	public void setParentPresenter(IndexPresenter parentPresenter) {
 		this.parentPresenter = parentPresenter;
 	}
-<<<<<<< HEAD
-	@Override
-	public BaseView<? extends BasePresenter> getView() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public void manageUser() {
-		// TODO Auto-generated method stub
-		
-	}
-=======
->>>>>>> branch 'master' of https://github.com/WPI-CS3733-Team3/course_load_scheduler.git
-
 	
 }
