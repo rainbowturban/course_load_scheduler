@@ -4,7 +4,7 @@
 	<ui:style>
 	
 	</ui:style>
-	<g:HTMLPanel>
+	<g:HTMLPanel ui:field="rootPanel">
 		<g:VerticalPanel/>
 		<!-- NAV STUFF -->
             <g:Cell horizontalAlignment="ALIGN_CENTER">
