@@ -1,6 +1,6 @@
 package org.dselent.course_load_scheduler.client.action;
 
-public class SubmitRemoveCourseAction {
+public class SubmitRemoveCourseAction extends Action{
 int id;
 	
 	public SubmitRemoveCourseAction() {

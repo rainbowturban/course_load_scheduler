@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.dselent.course_load_scheduler.client.event_handler.EventHandlerAdapter;
-import org.dselent.course_load_scheduler.client.model.Model;
 import org.dselent.course_load_scheduler.client.presenter.BasePresenter;
 
 import com.google.gwt.event.shared.GwtEvent;
@@ -33,12 +32,6 @@ public abstract class BasePresenterImpl extends EventHandlerAdapter implements B
 	
 	@Override
 	public void init(){};
-	
-	@Override
-	public Model getModel()
-	{
-		return null;
-	}
 	
 	@Override
 	public void bind() {};
