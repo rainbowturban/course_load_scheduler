@@ -68,6 +68,12 @@ public class CourseLoadScheduler implements EntryPoint
 		ManageUserPresenterImpl manageUserPresenter = injector.getManageUserPresenter();
 		manageUserPresenter.init();
 		
+		//Selent's additional pages
+		ExamplePresenterImpl examplePresenter = injector.getExamplePresenter();
+		examplePresenter.init();
+		
+		UserServiceImpl userService = injector.getUserService();
+		userService.init();
 		
 		//Testing stuff for Hannah's page
 		//---------------------------------------------------------------

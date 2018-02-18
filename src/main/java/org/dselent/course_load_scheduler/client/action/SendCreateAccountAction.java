@@ -1,6 +1,6 @@
 package org.dselent.course_load_scheduler.client.action;
 
-public class SendCreateAccountAction 
+public class SendCreateAccountAction extends Action
 {
 	private String firstName;
 	private String lastName;

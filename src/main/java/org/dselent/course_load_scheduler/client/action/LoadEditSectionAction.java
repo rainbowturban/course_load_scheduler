@@ -3,7 +3,7 @@ package org.dselent.course_load_scheduler.client.action;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 
-public class LoadEditSectionAction {
+public class LoadEditSectionAction extends Action{
 	private CourseInfo courseInfo;
 	private SectionsInfo sectionInfo;
 

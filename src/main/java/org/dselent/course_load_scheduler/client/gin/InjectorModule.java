@@ -1,9 +1,15 @@
 package org.dselent.course_load_scheduler.client.gin;
 
+import org.dselent.course_load_scheduler.client.presenter.ExamplePresenter;
+import org.dselent.course_load_scheduler.client.presenter.impl.ExamplePresenterImpl;
 import org.dselent.course_load_scheduler.client.presenter.*;
 import org.dselent.course_load_scheduler.client.presenter.impl.*;
 import org.dselent.course_load_scheduler.client.view.*;
 import org.dselent.course_load_scheduler.client.view.impl.*;
+import org.dselent.course_load_scheduler.client.service.UserService;
+import org.dselent.course_load_scheduler.client.service.impl.UserServiceImpl;
+import org.dselent.course_load_scheduler.client.view.ExampleView;
+import org.dselent.course_load_scheduler.client.view.impl.ExampleViewImpl; 
 
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.inject.client.AbstractGinModule;
@@ -36,6 +42,7 @@ public class InjectorModule extends AbstractGinModule
 		bind(AdminCalendarPresenter.class).to(AdminCalendarPresenterImpl.class).in(Singleton.class);
 		bind(HomePresenter.class).to(HomePresenterImpl.class).in(Singleton.class);
 		bind(ManageUserPresenter.class).to(ManageUserPresenterImpl.class).in(Singleton.class);
+		bind(ExamplePresenter.class).to(ExamplePresenterImpl.class).in(Singleton.class);
 
 		// views
 		bind(IndexView.class).to(IndexViewImpl.class).in(Singleton.class);
@@ -50,6 +57,10 @@ public class InjectorModule extends AbstractGinModule
 		bind(AdminCalendarView.class).to(AdminCalendarViewImpl.class).in(Singleton.class);
 		bind(HomeView.class).to(HomeViewImpl.class).in(Singleton.class);
 		bind(ManageUserView.class).to(ManageUserViewImpl.class).in(Singleton.class);
+		bind(ExampleView.class).to(ExampleViewImpl.class).in(Singleton.class);
+		        
+		//services
+		bind(UserService.class).to(UserServiceImpl.class).in(Singleton.class);
 	}
 
 	/*

@@ -2,7 +2,6 @@ package org.dselent.course_load_scheduler.client.presenter.impl;
 
 import javax.inject.Inject;
 
-import org.dselent.course_load_scheduler.client.model.Model;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.IndexView;
 import com.google.gwt.dom.client.Style;
@@ -31,13 +30,6 @@ public class IndexPresenterImpl extends BasePresenterImpl implements IndexPresen
 	public IndexView getView()
 	{
 		return view;
-	}
-	
-	// Currently no model
-	@Override
-	public Model getModel()
-	{
-		return null;
 	}
 	
 	@Override
