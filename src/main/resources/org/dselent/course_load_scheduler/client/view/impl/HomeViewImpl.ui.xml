@@ -18,6 +18,6 @@
             </g:Cell>
 			<g:Label text="Navigation bar"/>
 			<g:Label text="Manage Users" width="355px" styleName="courseTitle"/>
-	
+	<g:VerticalPanel/>
 	</g:HTMLPanel>
 </ui:UiBinder> 
