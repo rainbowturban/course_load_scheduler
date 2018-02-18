@@ -31,7 +31,8 @@ GetFrequenciesEventHandler,
 GetSectionsEventHandler,
 SubmitRemoveSectionEventHandler,
 GetCoursesEventHandler,
-SubmitRemoveCourseEventHandler
+SubmitRemoveCourseEventHandler,
+LoadScheduleEventHandler
 
 {
 	@Override
@@ -90,4 +91,7 @@ SubmitRemoveCourseEventHandler
 
 	@Override
 	public void onSubmitRemoveSection(SubmitRemoveSectionEvent evt) {}
+	
+	@Override
+	public void onLoadSchedulePage(LoadScheduleEvent evt) {}
 }

@@ -198,10 +198,10 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	}
 
 	//NAV BAR STUFF
-	//loads the home page (TODO: work out parameters, determine between Admin/User??)
+	//loads the home page
 	@Override
 	public void loadHomePage() {
-		//eventBus.fireEvent(new LoadHomeEvent(new LoadHomeAction()));
+		eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction(adminUser)));
 	}
 
 	//loads schedule page (TODO: how to differentiate between admin/user??)
@@ -215,7 +215,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		//normal schedule presenter here when created
 	}
 
-	//loads courses page (viewing) (TODO: work out parameters, determine between Admin/User??)
+	//loads courses page (viewing)
 	@Override
 	public void loadViewCoursesPage() {
 		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(adminUser)));
