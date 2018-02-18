@@ -48,20 +48,38 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
     @UiField Button accountButton;
     @UiField Button addCourseButton;
     @UiField PopupPanel addCoursePanel;
-    @UiField Button cancelButton;
+    @UiField Button addCourseCancelButton;
     @UiField Button addButton;
+    @UiField PopupPanel makeRequestPanel;
+    @UiField Button makeRequestCancelButton;
+    @UiField Button makeRequestButton;
     
     @UiHandler("addCourseButton")
     void onAddCourseButtonClick(ClickEvent event)
     {
     		addCoursePanel.show();
     		addCoursePanel.setVisible(true);
+    		addCoursePanel.center();
     }
     
-    @UiHandler("cancelButton")
-    void onCancelButtonClick(ClickEvent event)
+    @UiHandler("makeRequestButton")
+    void onMakeRequestButtonClick(ClickEvent event)
+    {
+    		makeRequestPanel.show();
+    		makeRequestPanel.setVisible(true);
+    		makeRequestPanel.center();
+    }
+    
+    @UiHandler("addCourseCancelButton")
+    void onAddCourseCancelButtonClick(ClickEvent event)
     {
     		addCoursePanel.hide();
+    }
+    
+    @UiHandler("makeRequestCancelButton")
+    void onMakeRequestCancelButtonClick(ClickEvent event)
+    {
+    		makeRequestPanel.hide();
     }
     
     @UiHandler("homeButton")
@@ -90,6 +108,7 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
 	public AdminCalendarViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 		addCoursePanel.hide();
+		makeRequestPanel.hide();
 		
 	}
 	
