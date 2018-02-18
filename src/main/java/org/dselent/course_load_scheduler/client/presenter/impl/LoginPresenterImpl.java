@@ -30,7 +30,7 @@ public class LoginPresenterImpl extends BasePresenterImpl implements LoginPresen
 		view.setPresenter(this);
 		loginClickInProgress = false;
 	}
-	
+
 	@Override
 	public void init()
 	{
@@ -41,11 +41,11 @@ public class LoginPresenterImpl extends BasePresenterImpl implements LoginPresen
 	public void bind()
 	{
 		HandlerRegistration registration;
-		
+
 		registration = eventBus.addHandler(InvalidLoginEvent.TYPE, this);
 		eventBusRegistration.put(InvalidLoginEvent.TYPE, registration);
 	}
-		
+
 	@Override
 	public void go(HasWidgets container)
 	{
@@ -58,7 +58,7 @@ public class LoginPresenterImpl extends BasePresenterImpl implements LoginPresen
 	{
 		return view;
 	}
-	
+
 	@Override
 	public IndexPresenter getParentPresenter()
 	{
@@ -70,7 +70,7 @@ public class LoginPresenterImpl extends BasePresenterImpl implements LoginPresen
 	{
 		this.parentPresenter = parentPresenter;
 	}
-	
+
 	@Override
 	public void login()
 	{
@@ -79,15 +79,15 @@ public class LoginPresenterImpl extends BasePresenterImpl implements LoginPresen
 			loginClickInProgress = true;
 			view.getLoginButton().setEnabled(false);
 			parentPresenter.showLoadScreen();
-			
+
 			String userName = view.getNameTextBox().getText();
 			String password = view.getPasswordTextBox().getText();
-			
+
 			boolean validUserName = true;
 			boolean validPassword = true;
 
 			List<String> invalidReasonList = new ArrayList<>();
-			
+
 			try
 			{
 				validateLoginUserName(userName);
@@ -107,7 +107,7 @@ public class LoginPresenterImpl extends BasePresenterImpl implements LoginPresen
 				invalidReasonList.add(InvalidLoginStrings.NULL_PASSWORD);
 				validPassword = false;
 			}
-			
+
 			if(validUserName && validPassword)
 			{
 				sendLogin(userName, password);
@@ -120,24 +120,25 @@ public class LoginPresenterImpl extends BasePresenterImpl implements LoginPresen
 			}
 		}
 	}
-	
+
 	private void sendLogin(String userName, String password)
 	{
+		HasWidgets container = parentPresenter.getView().getViewRootPanel();
 		SendLoginAction sla = new SendLoginAction(userName, password);
-		SendLoginEvent sle = new SendLoginEvent(sla);
+		SendLoginEvent sle = new SendLoginEvent(sla, container);
 		eventBus.fireEvent(sle);
 	}
-	
+
 	private void validateLoginUserName(String userName) throws EmptyStringException
 	{
 		checkEmptyString(userName);
 	}
-	
+
 	private void validateLoginPassword(String password) throws EmptyStringException
 	{
 		checkEmptyString(password);
 	}
-	
+
 	private void checkEmptyString(String string) throws EmptyStringException
 	{
 		if(string == null || string.equals(""))
@@ -145,19 +146,19 @@ public class LoginPresenterImpl extends BasePresenterImpl implements LoginPresen
 			throw new EmptyStringException();
 		}
 	}
-	
+
 	/*
 	 * Currently only sent by itself
 	 * Probably did not need the event bus for this
 	 * Useful for example purposes without involving server-side
-	*/
+	 */
 	@Override
 	public void onInvalidLogin(InvalidLoginEvent evt)
 	{
 		parentPresenter.hideLoadScreen();
 		view.getLoginButton().setEnabled(true);
 		loginClickInProgress = false;
-		
+
 		InvalidLoginAction ila = evt.getAction();
 		view.showErrorMessages(ila.toString());
 	}
