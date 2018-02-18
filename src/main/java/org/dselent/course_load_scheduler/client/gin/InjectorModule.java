@@ -34,6 +34,8 @@ public class InjectorModule extends AbstractGinModule
 		bind(EditSectionPresenter.class).to(EditSectionPresenterImpl.class).in(Singleton.class);
 		bind(AddSectionPresenter.class).to(AddSectionPresenterImpl.class).in(Singleton.class);
 		bind(AdminCalendarPresenter.class).to(AdminCalendarPresenterImpl.class).in(Singleton.class);
+		bind(HomePresenter.class).to(HomePresenterImpl.class).in(Singleton.class);
+		bind(ManageUserPresenter.class).to(ManageUserPresenterImpl.class).in(Singleton.class);
 
 		// views
 		bind(IndexView.class).to(IndexViewImpl.class).in(Singleton.class);
@@ -46,6 +48,8 @@ public class InjectorModule extends AbstractGinModule
 		bind(EditSectionView.class).to(EditSectionViewImpl.class).in(Singleton.class);
 		bind(AddSectionView.class).to(AddSectionViewImpl.class).in(Singleton.class);
 		bind(AdminCalendarView.class).to(AdminCalendarViewImpl.class).in(Singleton.class);
+		bind(HomeView.class).to(HomeViewImpl.class).in(Singleton.class);
+		bind(ManageUserView.class).to(ManageUserViewImpl.class).in(Singleton.class);
 	}
 
 	/*

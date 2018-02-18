@@ -39,6 +39,8 @@ public interface Injector extends Ginjector
     public EditSectionPresenterImpl getEditSectionPresenter();
     public AddSectionPresenterImpl getAddSectionPresenter();
     public AdminCalendarPresenterImpl getAdminCalendarPresenter();
+    public HomePresenterImpl getHomePresenter();
+    public ManageUserPresenterImpl getManageUserPresenter();
     
     //views
     public IndexViewImpl getIndexView();
@@ -51,5 +53,7 @@ public interface Injector extends Ginjector
     public EditSectionViewImpl getEditSectionView();
     public AddSectionViewImpl getAddSectionView();
     public AdminCalendarViewImpl getAdminCalendarView();
+    public HomeViewImpl getHomeView();
+    public ManageUserViewImpl getManageUserView();
     
 }

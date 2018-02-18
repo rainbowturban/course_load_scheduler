@@ -37,7 +37,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 		view.setPresenter(this);
 		
 		//fill the dropdown box
-		fillFrequencies();
+		//fillFrequencies();
 		
 	}
 	

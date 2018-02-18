@@ -35,15 +35,15 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		this.parentPresenter = parentPresenter;
 		view.setPresenter(this);
 
-		retrieveCourses();
-		fillCourses();
+		//retrieveCourses();
+		//fillCourses();
 	}
 	
 	@Override
 	public void onLoadViewCourses(LoadViewCoursesEvent evt) {
 		retrieveCourses();
 		fillCourses();
-		
+		Window.alert("Got event!");
 		//specifies for both cases, since the page brings over what it had been working on
 		adminUser = evt.getAction().getAdminUser();
 		if(!adminUser) {
@@ -106,8 +106,9 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	//gets information about courses to fill the page with
 	@Override
 	public void retrieveCourses() {
+		Window.alert("retrieve courses!");
 		eventBus.fireEvent(new GetCoursesEvent(new GetCoursesAction()));
-
+		Window.alert("fired event!");
 		//TODO: instead of this, access DB to get courses
 		CourseInfo course1 = new CourseInfo();
 		course1.setCoursesNumber("CS3733");
@@ -130,7 +131,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		course3.setFrequencyId(4);
 		course3.setCourseId(3);
 
-		courses = new ArrayList<CourseInfo>();
+		ArrayList<CourseInfo> courses = new ArrayList<CourseInfo>();
 
 		courses.add(course1);
 		courses.add(course2);
@@ -140,6 +141,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	//injects the code for the variable element of the page into
 	@Override
 	public void fillCourses() {
+		Window.alert("fill courses!");
 		StackPanel panel = view.getCourseList();
 		panel.clear();
 
@@ -206,14 +208,14 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 
 	//loads schedule page
 	@Override
-	public void loadCalendarPage() {
-		eventBus.fireEvent(new LoadCalendarEvent(new LoadCalendarAction(adminUser))); 
+	public void loadSchedulePage() {
+		eventBus.fireEvent(new LoadScheduleEvent(new LoadScheduleAction(adminUser)));
 	}
-
-	//loads courses page (viewing)
+	
+	//loads schedule page
 	@Override
 	public void loadViewCoursesPage() {
-		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(adminUser)));
+		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(adminUser))); 
 	}
 
 	//loads account page

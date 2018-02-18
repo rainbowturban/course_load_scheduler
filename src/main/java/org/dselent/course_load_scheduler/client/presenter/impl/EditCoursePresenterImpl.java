@@ -54,8 +54,8 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		view.setPresenter(this);
 		
 		//fill the dropdown box
-		fillFrequencies(-1);
-		fillSections();
+		//fillFrequencies(-1);
+		//fillSections();
 		
 	}
 	
