@@ -9,6 +9,7 @@ import java.util.List;
 import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.model.Faculty;
 import org.dselent.course_load_scheduler.client.model.RequestTables;
+import org.dselent.course_load_scheduler.client.model.Terms;
 import org.dselent.course_load_scheduler.client.presenter.AdminCalendarPresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.AdminCalendarView;
@@ -122,15 +123,58 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		ListBox viewSelect = view.getScheduleSelectBox();
 		viewSelect.clear();
 		List<Faculty> roster = getRoster();
-		Iterator<Faculty> iterator = roster.iterator();
-		while(iterator.hasNext()) {
-			Faculty facultyInfo = iterator.next();
+		Iterator<Faculty> rosterIterator = roster.iterator();
+		while(rosterIterator.hasNext()) {
+			Faculty facultyInfo = rosterIterator.next();
 			viewSelect.addItem(facultyInfo.getFirstName() + " " + facultyInfo.getLastName());
-		}		
-		ListBox yearSelect = view.getYearSelectBox();
+		}
 		ListBox termSelect = view.getTermSelectBox();
+		List<Terms> terms = getTerms();
+		Iterator<Terms> termsIterator = terms.iterator();
+		while(termsIterator.hasNext()) {
+			Terms termInfo = termsIterator.next();
+			termSelect.addItem(termInfo.getName());
+		}
 	}
 	
+	@Override
+	public List<Terms> getTerms() {
+		List<Terms> termList = new ArrayList<Terms>();
+		Terms terma = new Terms();
+		terma.setId(1);
+		terma.setName("A");
+		termList.add(terma);
+		Terms termb = new Terms();
+		termb.setId(1);
+		termb.setName("B");
+		termList.add(termb);
+		Terms termf = new Terms();
+		termf.setId(1);
+		termf.setName("F");
+		termList.add(termf);
+		Terms termc = new Terms();
+		termc.setId(1);
+		termc.setName("C");
+		termList.add(termc);
+		Terms termd = new Terms();
+		termd.setId(1);
+		termd.setName("D");
+		termList.add(termd);
+		Terms terms = new Terms();
+		terms.setId(1);
+		terms.setName("S");
+		termList.add(terms);
+		Terms terme1 = new Terms();
+		terme1.setId(1);
+		terme1.setName("E1");
+		termList.add(terme1);
+		Terms terme2 = new Terms();
+		terme2.setId(1);
+		terme2.setName("E2");
+		termList.add(terme2);
+		return termList;
+	}
+
 	@Override
 	public List<RequestTables> retrieveRequests() {
 		List<RequestTables> requests = new ArrayList<RequestTables>();		
