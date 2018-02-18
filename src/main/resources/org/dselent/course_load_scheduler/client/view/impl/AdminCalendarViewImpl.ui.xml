@@ -198,7 +198,7 @@
 		<g:PopupPanel autoHideEnabled="true" previewingAllNativeEvents="true" width="473px" ui:field="makeRequestPanel" visible="false" glassEnabled="true">
 			<g:HTMLPanel width="100%" height="300px">
 				<g:Label height="51px" horizontalAlignment="ALIGN_CENTER" styleName="label" text="Make Request"/>
-				<g:Label height="36px" styleName="sublabel" text="Select Request Type" width="369px"/>
+				<g:Label height="36px" styleName="sublabel" text="Select Section:" width="369px" ui:field="requestSectionSelectBox"/>
 				<g:ListBox styleName="ListBox"/>
 				<g:Label height="36px" styleName="sublabel" text="Request Details:" width="153px"/>
 				<g:TextBox width="417px" height="65px"/>

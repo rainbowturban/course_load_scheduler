@@ -52,6 +52,7 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
     @UiField PopupPanel makeRequestPanel;
     @UiField Button makeRequestCancelButton;
     @UiField Button makeRequestButton;
+    @UiField Label requestSectionSelectBox;
     
     @UiHandler("addCourseButton")
     void onAddCourseButtonClick(ClickEvent event)
