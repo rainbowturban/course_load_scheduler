@@ -50,6 +50,12 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	}
 	
 	@Override
+	public void onLoadHomePage(LoadHomePageEvent evt) {
+		
+		this.go(parentPresenter.getView().getViewRootPanel());
+	}
+	
+	@Override
 	public void home() {
 		// TODO Auto-generated method stub
 		

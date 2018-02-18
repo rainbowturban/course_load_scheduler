@@ -41,7 +41,6 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	
 	@Override
 	public void onLoadViewCourses(LoadViewCoursesEvent evt) {
-		retrieveCourses();
 		fillCourses();
 		Window.alert("Got event!");
 		//specifies for both cases, since the page brings over what it had been working on
@@ -141,6 +140,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	//injects the code for the variable element of the page into
 	@Override
 	public void fillCourses() {
+		retrieveCourses();
 		Window.alert("fill courses!");
 		StackPanel panel = view.getCourseList();
 		panel.clear();
