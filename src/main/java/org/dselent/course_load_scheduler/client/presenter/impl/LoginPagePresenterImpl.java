@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.dselent.course_load_scheduler.client.action.InvalidLoginAction;
 import org.dselent.course_load_scheduler.client.action.LoadCreateAccountAction;
+import org.dselent.course_load_scheduler.client.action.LoadHomePageAction;
 import org.dselent.course_load_scheduler.client.action.SendLoginAction;
 import org.dselent.course_load_scheduler.client.errorstring.InvalidLoginStrings;
 import org.dselent.course_load_scheduler.client.event.InvalidLoginEvent;
 import org.dselent.course_load_scheduler.client.event.LoadCreateAccountEvent;
+import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
 import org.dselent.course_load_scheduler.client.event.SendLoginEvent;
 import org.dselent.course_load_scheduler.client.exceptions.EmptyStringException;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
@@ -68,6 +70,12 @@ public class LoginPagePresenterImpl extends BasePresenterImpl implements LoginPa
 	public void loadCreateAccount() {
 		eventBus.fireEvent(new LoadCreateAccountEvent(new LoadCreateAccountAction()));
 	}
+	
+	@Override
+	public void loadHomePage() {
+		eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction()));
+	}
+	
 	public void setParentPresenter(IndexPresenter parentPresenter) {
 		this.parentPresenter = parentPresenter;
 	}

@@ -6,4 +6,6 @@ public interface LoginPagePresenter extends BasePresenter {
 	void setParentPresenter(IndexPresenter parentPresenter);
 	void login();
 	void loadCreateAccount();
+	void loadHomePage();
+	
 }

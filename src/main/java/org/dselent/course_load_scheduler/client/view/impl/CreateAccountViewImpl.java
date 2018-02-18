@@ -1,7 +1,6 @@
 package org.dselent.course_load_scheduler.client.view.impl;
 
 import org.dselent.course_load_scheduler.client.presenter.CreateAccountPresenter;
-import org.dselent.course_load_scheduler.client.presenter.impl.ManageUserPresenterImpl;
 import org.dselent.course_load_scheduler.client.view.CreateAccountView;
 
 import com.google.gwt.core.client.GWT;
