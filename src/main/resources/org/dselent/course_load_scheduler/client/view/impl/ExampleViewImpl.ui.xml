@@ -1,0 +1,71 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+	<g:Grid ui:field="mainPanel">
+		<g:row>
+			<g:customCell>
+				<g:Label ui:field="userIdLabel" text="User ID:"/>
+			</g:customCell>
+			<g:customCell>
+				<g:Label ui:field="userIdField"/>
+			</g:customCell>
+		</g:row>
+		<g:row>
+			<g:customCell>
+				<g:Label ui:field="userNameLabel" text="User Name:"/>
+			</g:customCell>
+			<g:customCell>
+				<g:Label ui:field="userNameField"/>
+			</g:customCell>
+		</g:row>
+		<g:row>
+			<g:customCell>
+				<g:Label ui:field="firstNameLabel" text="First Name:"/>
+			</g:customCell>
+			<g:customCell>
+				<g:Label ui:field="firstNameField"/>
+			</g:customCell>
+		</g:row>
+		<g:row>
+			<g:customCell>
+				<g:Label ui:field="lastNameLabel" text="Last Name:"/>
+			</g:customCell>
+			<g:customCell>
+				<g:Label ui:field="lastNameField"/>
+			</g:customCell>
+		</g:row>
+		<g:row>
+			<g:customCell>
+				<g:Label ui:field="emailLabel" text="Email:"/>
+			</g:customCell>
+			<g:customCell>
+				<g:Label ui:field="emailField"/>
+			</g:customCell>
+		</g:row>
+		<g:row>
+			<g:customCell>
+				<g:Label ui:field="userStateIdLabel" text="User State ID:"/>
+			</g:customCell>
+			<g:customCell>
+				<g:Label ui:field="userStateIdField"/>
+			</g:customCell>
+		</g:row>
+		<g:row>
+			<g:customCell>
+				<g:Label ui:field="createdAtLabel" text="Created At:"/>
+			</g:customCell>
+			<g:customCell>
+				<g:Label ui:field="createdAtField"/>
+			</g:customCell>
+		</g:row>
+		<g:row>
+			<g:customCell>
+				<g:Label ui:field="updatedAtLabel" text="Updated At:"/>
+			</g:customCell>
+			<g:customCell>
+				<g:Label ui:field="updatedAtField"/>
+			</g:customCell>
+		</g:row>
+	</g:Grid>
+</ui:UiBinder> 

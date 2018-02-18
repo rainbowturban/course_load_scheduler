@@ -31,7 +31,7 @@
 
 <g:VerticalPanel>
 	<g:HTMLPanel ui:field="mainPanel"/>
-	<g:Image ui:field="loadingImage" url="WEB-INF/classes/org/dselent/course_load_scheduler/client/view/images/loading.gif" addStyleNames="{style.loading-image}"/>
+	<g:Image ui:field="loadingImage" url="loading.gif" addStyleNames="{style.loading-image}"/>
 	<g:PopupPanel ui:field="glassLoadingPanel" addStyleNames="{style.loading-glass-panel}, {style.gwt-popup-panel-glass}"/>
 </g:VerticalPanel>
 
