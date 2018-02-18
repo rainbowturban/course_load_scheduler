@@ -42,7 +42,6 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	@Override
 	public void onLoadViewCourses(LoadViewCoursesEvent evt) {
 		fillCourses();
-		Window.alert("Got event!");
 		//specifies for both cases, since the page brings over what it had been working on
 		adminUser = evt.getAction().getAdminUser();
 		if(!adminUser) {
@@ -105,10 +104,10 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	//gets information about courses to fill the page with
 	@Override
 	public void retrieveCourses() {
-		Window.alert("retrieve courses!");
-		eventBus.fireEvent(new GetCoursesEvent(new GetCoursesAction()));
-		Window.alert("fired event!");
-		//TODO: instead of this, access DB to get courses
+		//fires event to get courses
+		//eventBus.fireEvent(new GetCoursesEvent(new GetCoursesAction()));
+		
+		//uses example values instead of response from service
 		CourseInfo course1 = new CourseInfo();
 		course1.setCoursesNumber("CS3733");
 		course1.setCoursesTitle("Software Engineering");
@@ -130,7 +129,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		course3.setFrequencyId(4);
 		course3.setCourseId(3);
 
-		ArrayList<CourseInfo> courses = new ArrayList<CourseInfo>();
+		courses = new ArrayList<CourseInfo>();
 
 		courses.add(course1);
 		courses.add(course2);
@@ -141,7 +140,6 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	@Override
 	public void fillCourses() {
 		retrieveCourses();
-		Window.alert("fill courses!");
 		StackPanel panel = view.getCourseList();
 		panel.clear();
 
@@ -221,7 +219,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	//loads account page
 	@Override
 	public void loadAccountPage() {
-		//eventBus.fireEvent(new LoadAccountEvent(new LoadAccountAction(adminUser)));
+		eventBus.fireEvent(new ManageUserPageEvent(new ManageUserPageAction(adminUser)));
 	}
 
 }

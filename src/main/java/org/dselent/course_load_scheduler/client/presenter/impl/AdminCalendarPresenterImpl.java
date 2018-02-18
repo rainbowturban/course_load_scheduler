@@ -9,9 +9,11 @@ import java.util.List;
 import org.dselent.course_load_scheduler.client.action.LoadHomePageAction;
 import org.dselent.course_load_scheduler.client.action.LoadScheduleAction;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
+import org.dselent.course_load_scheduler.client.action.ManageUserPageAction;
 import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
 import org.dselent.course_load_scheduler.client.event.LoadScheduleEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
+import org.dselent.course_load_scheduler.client.event.ManageUserPageEvent;
 import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.model.Faculty;
 import org.dselent.course_load_scheduler.client.model.RequestTables;
@@ -288,15 +290,10 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
         eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(true)));
     }
     
-    //loads account page (TODO: work out parameters, determine between Admin/User??)
+    //loads account page
     @Override
-    public void loadAccountPage() {/*
-        //TODO: Should this be an event?
-        //event would have information as follows?: If user is admin (although they should be),
-        final Injector injector = Injector.INSTANCE;
-        AccountPresenterImpl accountPresenter = injector.getAccountPresenter();
-        accountPresenter.init();
-        accountPresenter.go(parentPresenter.getView().getViewRootPanel());*/
+    public void loadAccountPage() {
+    	eventBus.fireEvent(new ManageUserPageEvent(new ManageUserPageAction(true)));
     }
     
     @Override
