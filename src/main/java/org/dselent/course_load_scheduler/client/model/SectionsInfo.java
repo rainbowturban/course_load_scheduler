@@ -4,6 +4,15 @@ import java.sql.Time;
 
 public class SectionsInfo extends Model{
 	// attributes
+	private Integer sectionsId;
+	public Integer getSectionsId() {
+		return sectionsId;
+	}
+
+	public void setSectionsId(Integer sectionsId) {
+		this.sectionsId = sectionsId;
+	}
+
 	private String termsName;
 	private String sectionType;
 	private String days;
@@ -109,6 +118,7 @@ public class SectionsInfo extends Model{
 		result = prime * result + ((facultyFirstName == null) ? 0 : facultyFirstName.hashCode());
 		result = prime * result + ((facultyLastName == null) ? 0 : facultyLastName.hashCode());
 		result = prime * result + ((sectionType == null) ? 0 : sectionType.hashCode());
+		result = prime * result + ((sectionsId == null) ? 0 : sectionsId.hashCode());
 		result = prime * result + ((sectionsName == null) ? 0 : sectionsName.hashCode());
 		result = prime * result + ((startTime == null) ? 0 : startTime.hashCode());
 		result = prime * result + ((termsName == null) ? 0 : termsName.hashCode());
@@ -176,6 +186,13 @@ public class SectionsInfo extends Model{
 		} else if (!sectionType.equals(other.sectionType)) {
 			return false;
 		}
+		if (sectionsId == null) {
+			if (other.sectionsId != null) {
+				return false;
+			}
+		} else if (!sectionsId.equals(other.sectionsId)) {
+			return false;
+		}
 		if (sectionsName == null) {
 			if (other.sectionsName != null) {
 				return false;
@@ -200,13 +217,12 @@ public class SectionsInfo extends Model{
 		return true;
 	}
 
-	//toString
 	@Override
 	public String toString() {
-		return "SectionsInfo [termsName=" + termsName + ", sectionType=" + sectionType + ", days=" + days
-				+ ", coursesNumber=" + coursesNumber + ", coursesTitle=" + coursesTitle + ", startTime=" + startTime
-				+ ", endTime=" + endTime + ", sectionsName=" + sectionsName + ", facultyFirstName="
-				+ facultyFirstName + ", facultyLastName=" + facultyLastName + "]";
+		return "SectionsInfo [sectionsId=" + sectionsId + ", termsName=" + termsName + ", sectionType=" + sectionType
+				+ ", days=" + days + ", coursesNumber=" + coursesNumber + ", coursesTitle=" + coursesTitle
+				+ ", startTime=" + startTime + ", endTime=" + endTime + ", sectionsName=" + sectionsName
+				+ ", facultyFirstName=" + facultyFirstName + ", facultyLastName=" + facultyLastName + "]";
 	}
 
 }

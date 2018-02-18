@@ -21,6 +21,8 @@ import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TabPanel;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.Hidden;
 
 public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> implements AdminCalendarView {
 
@@ -44,6 +46,23 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
     @UiField Button scheduleButton;
     @UiField Button coursesButton;
     @UiField Button accountButton;
+    @UiField Button addCourseButton;
+    @UiField PopupPanel addCoursePanel;
+    @UiField Button cancelButton;
+    @UiField Button addButton;
+    
+    @UiHandler("addCourseButton")
+    void onAddCourseButtonClick(ClickEvent event)
+    {
+    		addCoursePanel.show();
+    		addCoursePanel.setVisible(true);
+    }
+    
+    @UiHandler("cancelButton")
+    void onCancelButtonClick(ClickEvent event)
+    {
+    		addCoursePanel.hide();
+    }
     
     @UiHandler("homeButton")
     void onHomeButtonClick(ClickEvent event) {
@@ -70,6 +89,8 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
 
 	public AdminCalendarViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
+		addCoursePanel.hide();
+		
 	}
 	
 	@Override

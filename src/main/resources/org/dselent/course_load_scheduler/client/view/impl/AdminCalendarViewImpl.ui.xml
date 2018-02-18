@@ -5,7 +5,7 @@
 	
 	</ui:style>
 	<g:HTMLPanel ui:field="baseContainer">
-		<g:VerticalPanel width="100%" height="100%">
+		<g:VerticalPanel width="994px" height="589px">
 			<g:Cell horizontalAlignment="ALIGN_CENTER" height="15%">
                 <g:HorizontalPanel>
 	                <g:Button text="WPI Logo"></g:Button>
@@ -21,7 +21,7 @@
 				</g:SimplePanel>
 			</g:Cell>
 			<g:Cell height="70%">
-				<g:HorizontalPanel width="100%" height="100%" ui:field="calendarBody">
+				<g:HorizontalPanel width="1033px" height="100%" ui:field="calendarBody">
 					<g:Cell width="14%">
 						<g:VerticalPanel ui:field="infoPanel" width="100%">
 						<g:Label text="View Schedule For"/>
@@ -30,6 +30,7 @@
 						<g:ListBox ui:field="yearSelect"/>
 						<g:Label text="Term"/>
 						<g:ListBox ui:field="termSelect"/>
+						<g:Button ui:field="addCourseButton">Add Class</g:Button>
 					</g:VerticalPanel>
 					</g:Cell>
 					<g:Cell width="1%">
@@ -140,7 +141,7 @@
 					</g:TabPanel>
 					</g:Cell>
 					<g:Cell width="1%">
-						<g:SimplePanel height="100%" width="1">
+						<g:SimplePanel height="100%" width="11px">
 						<g:Label width="100%" height="100%" styleName="divider"/>
 					</g:SimplePanel>
 					</g:Cell>
@@ -155,5 +156,44 @@
 				</g:HorizontalPanel>
 			</g:Cell>
 		</g:VerticalPanel>
+		<g:PopupPanel ui:field="addCoursePanel" width="418" autoHideEnabled="true" visible="false" previewingAllNativeEvents="true">
+							<g:HTMLPanel ui:field="mainPanel" height="406px">
+								<g:Label text="Add Class to Schedule&#10;" height="51px" styleName="label" horizontalAlignment="ALIGN_CENTER"/>
+								<g:Label text="Course" width="104px" height="36px" styleName="sublabel"/>
+								<g:ListBox styleName="ListBox"/>
+								<g:Label height="36px" styleName="sublabel" text="Term/Semester" width="153px"/>
+								<g:ListBox styleName="ListBox"/>
+								<g:Label height="36px" styleName="sublabel" text="Instructor&#10;" width="153px"/>
+								<g:ListBox styleName="ListBox"/>
+								<g:HorizontalPanel width="465px" height="37px">
+									<g:Label text="Start Time:" horizontalAlignment="ALIGN_CENTER" width="140px"/>
+									<g:Label text="End Time:" horizontalAlignment="ALIGN_CENTER" width="177px"/>
+								</g:HorizontalPanel>
+								<g:HorizontalPanel height="37px" width="465px">
+									<g:Cell horizontalAlignment="ALIGN_CENTER">
+										<g:ListBox/>
+									</g:Cell>
+									<g:Cell horizontalAlignment="ALIGN_CENTER">
+										<g:ListBox/>
+									</g:Cell>
+								</g:HorizontalPanel>
+								<g:Label height="36px" styleName="sublabel" text="Days:" width="153px"/>
+								<g:HorizontalPanel width="352px" height="51px" horizontalAlignment="ALIGN_RIGHT">
+									<g:CheckBox text="M" width="29px" height="46px"/>
+									<g:CheckBox text="T"/>
+									<g:CheckBox text="W" height="28px"/>
+									<g:CheckBox text="T"/>
+									<g:CheckBox text="F"/>
+								</g:HorizontalPanel>
+								<g:HorizontalPanel width="465px" height="82px">
+									<g:Cell horizontalAlignment="ALIGN_CENTER">
+										<g:Button width="114px" height="46px" text="Cancel" ui:field="cancelButton"/>
+									</g:Cell>
+									<g:Cell horizontalAlignment="ALIGN_CENTER">
+										<g:Button height="46px" width="114px" text="Create" ui:field="addButton"/>
+									</g:Cell>
+								</g:HorizontalPanel>
+							</g:HTMLPanel>
+						</g:PopupPanel>
 	</g:HTMLPanel>
 </ui:UiBinder>
