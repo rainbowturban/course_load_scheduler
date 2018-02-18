@@ -34,7 +34,7 @@ GetCoursesEventHandler,
 SubmitRemoveCourseEventHandler,
 LoadScheduleEventHandler,
 ManageUserPageEventHandler,
-RecieveLoginEventHandler
+ReceiveLoginEventHandler
 
 {
 	@Override
@@ -101,5 +101,5 @@ RecieveLoginEventHandler
 	public void onManageUserPage(ManageUserPageEvent evt) {}
 	
 	@Override
-	+	public void onReceiveLogin(ReceiveLoginEvent evt) {}
+	public void onReceiveLogin(ReceiveLoginEvent evt) {}
 }
