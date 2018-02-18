@@ -106,7 +106,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	//gets information about courses to fill the page with
 	@Override
 	public void retrieveCourses() {
-		courses = new ArrayList<CourseInfo>();		
+		eventBus.fireEvent(new GetCoursesEvent(new GetCoursesAction()));
 
 		//TODO: instead of this, access DB to get courses
 		CourseInfo course1 = new CourseInfo();
@@ -125,11 +125,12 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 
 		CourseInfo course3 = new CourseInfo();
 		course3.setCoursesNumber("CS####");
-		course3.setCoursesTitle("Something...");
+		course3.setCoursesTitle("Something");
 		course3.setFrequency("Test value3");
 		course3.setFrequencyId(4);
 		course3.setCourseId(3);
 
+		courses = new ArrayList<CourseInfo>();
 
 		courses.add(course1);
 		courses.add(course2);
@@ -182,7 +183,12 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		int index = view.getCourseList().getSelectedIndex();//what is to be removed? get the index.
 
 		if(index >= 0) {
-			//TODO: Send correct Index--for DB not just the clientSide
+			Iterator<CourseInfo> ci = courses.listIterator(index);
+			
+			int i = ci.next().getCourseId();
+			
+			eventBus.fireEvent(new SubmitRemoveCourseEvent(new SubmitRemoveCourseAction(i)));
+			
 			boolean success = true;//this will be the return value from the request
 
 			if(success) {
@@ -192,10 +198,10 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	}
 
 	//NAV BAR STUFF
-	//loads the home page (TODO: work out parameters, determine between Admin/User??)
+	//loads the home page
 	@Override
 	public void loadHomePage() {
-		//eventBus.fireEvent(new LoadHomeEvent(new LoadHomeAction()));
+		eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction(adminUser)));
 	}
 
 	//loads schedule page (TODO: how to differentiate between admin/user??)
@@ -209,7 +215,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		//normal schedule presenter here when created
 	}
 
-	//loads courses page (viewing) (TODO: work out parameters, determine between Admin/User??)
+	//loads courses page (viewing)
 	@Override
 	public void loadViewCoursesPage() {
 		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(adminUser)));

@@ -124,13 +124,27 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
 
 	@Override
 	public HasWidgets getViewRootPanel() {
-		// TODO Auto-generated method stub
 		return baseContainer;
 	}
 	
 	@Override
 	public VerticalPanel getRequestsPanel() {
 		return requestsPanel;
+	}
+	
+	@Override
+	public ListBox getScheduleSelectBox() {
+		return viewSelect;
+	}
+
+	@Override
+	public ListBox getYearSelectBox() {
+		return yearSelect;
+	}
+
+	@Override
+	public ListBox getTermSelectBox() {
+		return termSelect;
 	}
 
 }
