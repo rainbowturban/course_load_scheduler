@@ -23,7 +23,9 @@ LoadEditSectionEventHandler,
 SubmitNewCourseEventHandler,
 LoadViewCoursesEventHandler,
 LoadAddCourseEventHandler,
-SubmitEditCourseEventHandler
+SubmitEditCourseEventHandler,
+LoadCreateAccountEventHandler,
+LoadHomePageEventHandler
 
 {
 	@Override
@@ -58,5 +60,11 @@ SubmitEditCourseEventHandler
 	
 	@Override
 	public void onSubmitEditCourse(SubmitEditCourseEvent evt) {}
+
+	@Override
+	public void onLoadCreateAccount(LoadCreateAccountEvent evt) {}
+	
+	@Override
+	public void onLoadHomePage(LoadHomePageEvent evt) {}
 	
 }

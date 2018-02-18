@@ -59,6 +59,5 @@ public class ManageUserPresenterImpl extends BasePresenterImpl implements Manage
 	public void setParentPresenter(IndexPresenter parentPresenter) {
 		this.parentPresenter = parentPresenter;
 	}
-
 	
 }
