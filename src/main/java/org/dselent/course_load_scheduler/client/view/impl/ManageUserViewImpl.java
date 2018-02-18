@@ -70,8 +70,5 @@ public class ManageUserViewImpl extends BaseViewImpl<ManageUserPresenter> implem
 	public HasWidgets getViewRootPanel() {
 		return rootPanel;
 	}
-
-
-
 	
 }

@@ -65,6 +65,11 @@ public class ManageUserPresenterImpl extends BasePresenterImpl implements Manage
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public void manageUser() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	
 }
