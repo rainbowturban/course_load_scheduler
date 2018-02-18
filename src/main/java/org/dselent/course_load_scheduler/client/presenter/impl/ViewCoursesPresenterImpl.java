@@ -204,15 +204,10 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction(adminUser)));
 	}
 
-	//loads schedule page (TODO: how to differentiate between admin/user??)
+	//loads schedule page
 	@Override
 	public void loadCalendarPage() {
-
-		//If admin user, some logic here
 		eventBus.fireEvent(new LoadCalendarEvent(new LoadCalendarAction(adminUser))); 
-
-		//If normal user, some logic here
-		//normal schedule presenter here when created
 	}
 
 	//loads courses page (viewing)
@@ -221,10 +216,10 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(adminUser)));
 	}
 
-	//loads account page (TODO: work out parameters, determine between Admin/User??)
+	//loads account page
 	@Override
 	public void loadAccountPage() {
-		//eventBus.fireEvent(new LoadAccountEvent(new LoadAccountAction()));
+		//eventBus.fireEvent(new LoadAccountEvent(new LoadAccountAction(adminUser)));
 	}
 
 }
