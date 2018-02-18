@@ -28,7 +28,7 @@
 							<g:ListBox ui:field="viewSelect" />
 							<g:Label text="Term" />
 							<g:ListBox ui:field="termSelect" />
-							<g:Button ui:field="addCourseButton">Add Class</g:Button>
+							<g:Button ui:field="addCourseButton">Add Course</g:Button>
 						</g:VerticalPanel>
 					</g:Cell>
 					<g:Cell width="1%">
@@ -146,6 +146,7 @@
 					<g:Cell width="19%">
 						<g:VerticalPanel ui:field="requestsMainPanel" width="100%">
 							<g:Label text="Scheduling Requests" />
+							<g:Button ui:field="makeRequestButton">Make Request</g:Button>
 							<g:ScrollPanel ui:field="requestsScrollPanel">
 								<g:VerticalPanel width="100%" height="100%" ui:field="requestsPanel" />
 							</g:ScrollPanel>
@@ -155,8 +156,8 @@
 			</g:Cell>
 		</g:VerticalPanel>
 
-		<g:PopupPanel ui:field="addCoursePanel" width="420px" autoHideEnabled="true" visible="false" previewingAllNativeEvents="true">
-			<g:HTMLPanel ui:field="mainPanel" height="420px">
+		<g:PopupPanel ui:field="addCoursePanel" width="418" autoHideEnabled="true" previewingAllNativeEvents="true" visible="false" height="418" glassEnabled="true">
+			<g:HTMLPanel ui:field="mainPanel" height="450px">
 				<g:Label text="Add Class to Schedule&#10;" height="51px" styleName="label" horizontalAlignment="ALIGN_CENTER" />
 				<g:Label text="Course" width="104px" height="36px" styleName="sublabel" />
 				<g:ListBox styleName="ListBox" />
@@ -186,7 +187,7 @@
 				</g:HorizontalPanel>
 				<g:HorizontalPanel width="465px" height="82px">
 					<g:Cell horizontalAlignment="ALIGN_CENTER">
-						<g:Button width="114px" height="46px" text="Cancel" ui:field="cancelButton" />
+						<g:Button width="114px" height="46px" text="Cancel" ui:field="addCourseCancelButton"/>
 					</g:Cell>
 					<g:Cell horizontalAlignment="ALIGN_CENTER">
 						<g:Button height="46px" width="114px" text="Create" ui:field="addButton" />
@@ -206,6 +207,6 @@
 					<g:Button height="46px" text="Create" width="114px"/>
 				</g:HorizontalPanel>
 			</g:HTMLPanel>
-		</g:PopupPanel>
+ 		</g:PopupPanel>
 	</g:HTMLPanel>
 </ui:UiBinder>
