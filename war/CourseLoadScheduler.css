@@ -145,3 +145,6 @@
 .request-status-unresolved {
 	background-color: #FFFF99;
 }
+.calendar-cell {
+	border: 1px;
+}

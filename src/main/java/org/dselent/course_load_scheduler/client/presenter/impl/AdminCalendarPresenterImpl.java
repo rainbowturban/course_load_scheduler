@@ -15,14 +15,17 @@ import org.dselent.course_load_scheduler.client.event.LoadScheduleEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.ManageUserPageEvent;
 import org.dselent.course_load_scheduler.client.gin.Injector;
+import org.dselent.course_load_scheduler.client.model.EndTime;
 import org.dselent.course_load_scheduler.client.model.Faculty;
 import org.dselent.course_load_scheduler.client.model.RequestTables;
+import org.dselent.course_load_scheduler.client.model.StartTime;
 import org.dselent.course_load_scheduler.client.model.Terms;
 import org.dselent.course_load_scheduler.client.presenter.AdminCalendarPresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.AdminCalendarView;
 
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -46,8 +49,10 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		
 		fillInfo();
 		fillRequests();
+		fillCourseInfo();
+		fillCalendar();
 	}
-	
+
 	@Override
 	public void init()
 	{
@@ -88,6 +93,133 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		this.parentPresenter = parentPresenter;
 	}
 	
+	@Override
+	public void fillCalendar() {
+		Grid calendar = view.getCalendarGrid();
+		calendar.clear();
+		calendar.resizeRows(2);
+		List<StartTime> startTimes = getStartTimes();
+		Iterator<StartTime> startTimesIterator = startTimes.iterator();
+		while(startTimesIterator.hasNext()) {
+			StartTime startTimeInfo = startTimesIterator.next();
+			calendar.insertRow(calendar.getRowCount());
+			calendar.setWidget(calendar.getRowCount()-1, 0, new Label(startTimeInfo.getTime().toString()));
+		}
+		calendar.removeRow(1);
+	}
+	
+	@Override
+	public void fillCourseInfo() {
+		ListBox startTimeSelect = view.getStartTimeSelectBox();
+		startTimeSelect.clear();
+		List<StartTime> startTimes = getStartTimes();
+		Iterator<StartTime> startTimesIterator = startTimes.iterator();
+		while(startTimesIterator.hasNext()) {
+			StartTime startTimeInfo = startTimesIterator.next();
+			startTimeSelect.addItem(startTimeInfo.getTime().toString());
+		}
+		ListBox endTimeSelect = view.getEndTimeSelectBox();
+		endTimeSelect.clear();
+		List<EndTime> endTimes = getEndTimes();
+		Iterator<EndTime> endTimesIterator = endTimes.iterator();
+		while(endTimesIterator.hasNext()) {
+			EndTime endTimeInfo = endTimesIterator.next();
+			endTimeSelect.addItem(endTimeInfo.getTime().toString());
+		}
+		ListBox instructorSelect = view.getCourseInstrutorSelectBox();
+		instructorSelect.clear();
+		List<Faculty> roster = getRoster();
+		Iterator<Faculty> rosterIterator = roster.iterator();
+		while(rosterIterator.hasNext()) {
+			Faculty facultyInfo = rosterIterator.next();
+			instructorSelect.addItem(facultyInfo.getFirstName() + " " + facultyInfo.getLastName());
+		}
+	}
+	
+	@Override
+	public List<EndTime> getEndTimes() {
+		List<EndTime> endTimes = new ArrayList<EndTime>();
+		EndTime time8 = new EndTime();
+		time8.setId(1);
+		time8.setTime(new Time(31800000));
+		EndTime time9 = new EndTime();
+		time9.setId(2);
+		time9.setTime(new Time(35400000));
+		EndTime time10 = new EndTime();
+		time10.setId(3);
+		time10.setTime(new Time(39000000));
+		EndTime time11 = new EndTime();
+		time11.setId(4);
+		time11.setTime(new Time(42600000));
+		EndTime time12 = new EndTime();
+		time12.setId(5);
+		time12.setTime(new Time(46200000));
+		EndTime time13 = new EndTime();
+		time13.setId(6);
+		time13.setTime(new Time(49800000));
+		EndTime time14 = new EndTime();
+		time14.setId(7);
+		time14.setTime(new Time(53400000));
+		EndTime time15 = new EndTime();
+		time15.setId(8);
+		time15.setTime(new Time(57000000));
+		EndTime time16 = new EndTime();
+		time16.setId(9);
+		time16.setTime(new Time(60600000));
+		endTimes.add(time8);
+		endTimes.add(time9);
+		endTimes.add(time10);
+		endTimes.add(time11);
+		endTimes.add(time12);
+		endTimes.add(time13);
+		endTimes.add(time14);
+		endTimes.add(time15);
+		endTimes.add(time16);
+		return endTimes;
+	}
+
+	@Override
+	public List<StartTime> getStartTimes() {
+		List<StartTime> startTimes = new ArrayList<StartTime>();
+		StartTime time8 = new StartTime();
+		time8.setId(1);
+		time8.setTime(new Time(28800000));
+		StartTime time9 = new StartTime();
+		time9.setId(2);
+		time9.setTime(new Time(32400000));
+		StartTime time10 = new StartTime();
+		time10.setId(3);
+		time10.setTime(new Time(36000000));
+		StartTime time11 = new StartTime();
+		time11.setId(4);
+		time11.setTime(new Time(39600000));
+		StartTime time12 = new StartTime();
+		time12.setId(5);
+		time12.setTime(new Time(43200000));
+		StartTime time13 = new StartTime();
+		time13.setId(6);
+		time13.setTime(new Time(46800000));
+		StartTime time14 = new StartTime();
+		time14.setId(7);
+		time14.setTime(new Time(50400000));
+		StartTime time15 = new StartTime();
+		time15.setId(8);
+		time15.setTime(new Time(54000000));
+		StartTime time16 = new StartTime();
+		time16.setId(9);
+		time16.setTime(new Time(57600000));
+		startTimes.add(time8);
+		startTimes.add(time9);
+		startTimes.add(time10);
+		startTimes.add(time11);
+		startTimes.add(time12);
+		startTimes.add(time13);
+		startTimes.add(time14);
+		startTimes.add(time15);
+		startTimes.add(time16);
+		return startTimes;
+	}
+
 	@Override
 	public List<Faculty> getRoster() {
 		List<Faculty> roster = new ArrayList<Faculty>();

@@ -23,6 +23,7 @@ import com.google.gwt.user.client.ui.TabPanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.Hidden;
+import com.google.gwt.user.client.ui.Grid;
 
 public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> implements AdminCalendarView {
 
@@ -53,6 +54,12 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
     @UiField Button makeRequestCancelButton;
     @UiField Button makeRequestButton;
     @UiField Label requestSectionSelectBox;
+    @UiField Button saveCourseInfo;
+    @UiField Button deleteCourse;
+    @UiField ListBox startTimeSelect;
+    @UiField ListBox endTimeSelect;
+    @UiField ListBox instructorSelect;
+    @UiField Grid calendarGrid;
     
     @UiHandler("addCourseButton")
     void onAddCourseButtonClick(ClickEvent event)
@@ -142,4 +149,23 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
 		return termSelect;
 	}
 
+	@Override
+	public ListBox getCourseInstrutorSelectBox() {
+		return instructorSelect;
+	}
+	
+	@Override
+	public ListBox getStartTimeSelectBox() {
+		return startTimeSelect;
+	}
+	
+	@Override
+	public ListBox getEndTimeSelectBox() {
+		return endTimeSelect;
+	}
+	
+	@Override
+	public Grid getCalendarGrid() {
+		return calendarGrid;
+	}
 }

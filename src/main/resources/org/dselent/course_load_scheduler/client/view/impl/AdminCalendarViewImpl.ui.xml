@@ -6,7 +6,7 @@
 	</ui:style>
 	<g:HTMLPanel ui:field="baseContainer">
 		<g:VerticalPanel width="100%" height="100%">
-			<g:Cell horizontalAlignment="ALIGN_CENTER" height="15%">
+			<g:Cell horizontalAlignment="ALIGN_CENTER" height="5%">
 				<g:HorizontalPanel>
 					<g:Button text="WPI Logo"></g:Button>
 					<g:Button text="Home" styleName="navButton" ui:field="homeButton"></g:Button>
@@ -20,7 +20,7 @@
 					<g:Label text="Edit Schedule" width="100%" height="100%" horizontalAlignment="ALIGN_CENTER" styleName="page-title" />
 				</g:SimplePanel>
 			</g:Cell>
-			<g:Cell height="70%">
+			<g:Cell height="80%">
 				<g:HorizontalPanel width="100%" height="100%" ui:field="calendarBody">
 					<g:Cell width="14%">
 						<g:VerticalPanel ui:field="infoPanel" width="100%">
@@ -39,14 +39,14 @@
 					<g:Cell width="14%">
 						<g:VerticalPanel ui:field="courseInfoPanel" width="100%">
 							<g:Label text="Course Information" styleName="section-title" />
-							<g:Label ui:field="courseName" text="course name" />
+							<g:Label ui:field="courseName" text="N/A" />
 							<g:Cell width="100%">
 								<g:HorizontalPanel width="100%">
 									<g:Cell width="50%" verticalAlignment="ALIGN_MIDDLE">
 										<g:Label text="Section" width="50%" />
 									</g:Cell>
 									<g:Cell width="50%">
-										<g:TextBox text="sec" width="85%" />
+										<g:TextBox text="N/A" width="85%" />
 									</g:Cell>
 								</g:HorizontalPanel>
 							</g:Cell>
@@ -96,7 +96,10 @@
 							<g:Label text="Instructor" />
 							<g:ListBox ui:field="instructorSelect" />
 							<g:Cell horizontalAlignment="ALIGN_RIGHT">
-								<g:Button>Delete</g:Button>
+								<g:HorizontalPanel horizontalAlignment="ALIGN_LEFT">
+									<g:Button ui:field="saveCourseInfo">Save</g:Button>
+									<g:Button ui:field="deleteCourse">Delete</g:Button>
+								</g:HorizontalPanel>
 							</g:Cell>
 						</g:VerticalPanel>
 					</g:Cell>
@@ -109,7 +112,7 @@
 						<g:TabPanel ui:field="schedulePanel" width="100%" height="100%">
 							<g:Tab text="Calendar">
 								<g:ScrollPanel ui:field="calendarPanel" width="100%" height="100%">
-									<g:Grid width="100%" height="100%">
+									<g:Grid width="100%" height="100%" ui:field="calendarGrid">
 										<g:row>
 											<g:customCell>
 												<g:Label text="Time" width="15%" />
@@ -163,7 +166,7 @@
 				<g:ListBox styleName="ListBox" />
 				<g:Label height="36px" styleName="sublabel" text="Term/Semester" width="153px" />
 				<g:ListBox styleName="ListBox" />
-				<g:Label height="36px" styleName="sublabel" text="Instructor&#10;" width="153px" />
+				<g:Label height="36px" styleName="sublabel" text="Instructor" width="153px" />
 				<g:ListBox styleName="ListBox" />
 				<g:HorizontalPanel width="465px" height="37px">
 					<g:Label text="Start Time:" horizontalAlignment="ALIGN_CENTER" width="140px" />
