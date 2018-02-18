@@ -5,7 +5,7 @@
 
 	</ui:style>
 <g:HTMLPanel ui:field="rootPanel">
-	<g:VerticalPanel />
+	<g:VerticalPanel>
 	<!-- NAV STUFF -->
 	<g:Cell horizontalAlignment="ALIGN_CENTER">
 		<g:HorizontalPanel>
@@ -24,6 +24,6 @@
 	</g:Cell>
 	<g:Label text="Navigation bar" />
 	<g:Label text="Manage Users" width="355px" styleName="courseTitle" />
-	<g:VerticalPanel />
+	</g:VerticalPanel>
 </g:HTMLPanel>
 </ui:UiBinder> 
