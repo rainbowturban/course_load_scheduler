@@ -57,6 +57,11 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 		registration = eventBus.addHandler(InvalidAccountCreationEvent.TYPE, this);
 		eventBusRegistration.put(InvalidAccountCreationEvent.TYPE, registration);
 	}
+	
+	@Override
+	public void onLoadCreateAccount(LoadCreateAccountEvent evt) {
+		this.go(parentPresenter.getView().getViewRootPanel());
+	}
 
 	@Override
 	public void go(HasWidgets container)

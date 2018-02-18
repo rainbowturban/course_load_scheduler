@@ -128,6 +128,10 @@ public class LoginPagePresenterImpl extends BasePresenterImpl implements LoginPa
 			if(validUserName && validPassword)
 			{
 				sendLogin(userName, password);
+				//For the sake of seeing the rest of the program so far, it redirects to home here (will not in final draft)
+				//also assumes you are an admin
+				eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction(true)));
+				parentPresenter.hideLoadScreen();
 			}
 			else
 			{
