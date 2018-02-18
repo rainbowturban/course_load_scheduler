@@ -1,7 +1,6 @@
 package org.dselent.course_load_scheduler.client.model;
 
 import java.sql.Timestamp;
-import java.time.Instant;
 
 
 public class User extends Model
@@ -13,8 +12,8 @@ public class User extends Model
 	private Integer facultyId;
 	private String encryptedPassword;
 	private String passwordSalt;
-	private Instant createdAt;
-	private Instant updatedAt;
+	private Timestamp createdAt;
+	private Timestamp updatedAt;
 	private Boolean deleted;
 	
 	public Integer getId()
@@ -67,40 +66,24 @@ public class User extends Model
 		this.passwordSalt = passwordSalt;
 	}
 
-	public Instant getCreatedAt()
+	public Timestamp getCreatedAt()
 	{
 		return createdAt;
 	}
 
-	public void setCreatedAt(Instant createdAt)
+	public void setCreatedAt(Timestamp createdAt)
 	{
 		this.createdAt = createdAt;
 	}
-	
-	public void setCreatedAt(Timestamp createdAt)
-	{
-		if(createdAt != null)
-		{
-			this.createdAt = createdAt.toInstant();
-		}
-	}
 
-	public Instant getUpdatedAt()
+	public Timestamp getUpdatedAt()
 	{
 		return updatedAt;
 	}
 
-	public void setUpdatedAt(Instant updatedAt)
-	{
-		this.updatedAt = updatedAt;
-	}
-	
 	public void setUpdatedAt(Timestamp updatedAt)
 	{
-		if(updatedAt != null)
-		{
-			this.updatedAt = updatedAt.toInstant();
-		}
+		this.updatedAt = updatedAt;
 	}
 	
 	public Boolean getDeleted()

@@ -1,11 +1,13 @@
 package org.dselent.course_load_scheduler.client.presenter.impl;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.dselent.course_load_scheduler.client.gin.Injector;
+import org.dselent.course_load_scheduler.client.model.Faculty;
 import org.dselent.course_load_scheduler.client.model.RequestTables;
 import org.dselent.course_load_scheduler.client.presenter.AdminCalendarPresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
@@ -16,6 +18,7 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.inject.Inject;
 
@@ -32,6 +35,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		this.parentPresenter = parentPresenter;
 		view.setPresenter(this);
 		
+		fillInfo();
 		fillRequests();
 	}
 	
@@ -73,6 +77,58 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	public void setParentPresenter(IndexPresenter parentPresenter)
 	{
 		this.parentPresenter = parentPresenter;
+	}
+	
+	@Override
+	public List<Faculty> getRoster() {
+		List<Faculty> roster = new ArrayList<Faculty>();
+		Faculty faculty1 = new Faculty();
+		faculty1.setId(1);
+		faculty1.setFirstName("Douglas");
+		faculty1.setLastName("Selent");
+		faculty1.setEmail("dselent@wpi.edu");
+		faculty1.setFacultyTypeId(1);
+		faculty1.setCreatedAt(new Timestamp(0));
+		faculty1.setUpdatedAt(new Timestamp(0));
+		faculty1.setDeleted(false);
+		roster.add(faculty1);
+		
+		Faculty faculty2 = new Faculty();
+		faculty2.setId(2);
+		faculty2.setFirstName("Michael");
+		faculty2.setLastName("Ciaraldi");
+		faculty2.setEmail("mciaraldi@wpi.edu");
+		faculty2.setFacultyTypeId(1);
+		faculty2.setCreatedAt(new Timestamp(0));
+		faculty2.setUpdatedAt(new Timestamp(0));
+		faculty2.setDeleted(false);
+		roster.add(faculty2);
+		
+		Faculty faculty3 = new Faculty();
+		faculty3.setId(3);
+		faculty3.setFirstName("Peter");
+		faculty3.setLastName("Christopher");
+		faculty3.setEmail("pchristopher@wpi.edu");
+		faculty3.setFacultyTypeId(2);
+		faculty3.setCreatedAt(new Timestamp(0));
+		faculty3.setUpdatedAt(new Timestamp(0));
+		faculty3.setDeleted(false);
+		roster.add(faculty3);
+		return roster;
+	}
+	
+	@Override
+	public void fillInfo() {
+		ListBox viewSelect = view.getScheduleSelectBox();
+		viewSelect.clear();
+		List<Faculty> roster = getRoster();
+		Iterator<Faculty> iterator = roster.iterator();
+		while(iterator.hasNext()) {
+			Faculty facultyInfo = iterator.next();
+			viewSelect.addItem(facultyInfo.getFirstName() + " " + facultyInfo.getLastName());
+		}		
+		ListBox yearSelect = view.getYearSelectBox();
+		ListBox termSelect = view.getTermSelectBox();
 	}
 	
 	@Override
