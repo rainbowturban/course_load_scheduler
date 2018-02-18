@@ -88,8 +88,8 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 		ListBox box = view.getFacultyTypeComboBox();
 		box.clear();
 
-		List<FacultyType> courses = retrieveFacultyTypes();
-		Iterator<FacultyType> iterator = courses.iterator();
+		List<FacultyType> types = retrieveFacultyTypes();
+		Iterator<FacultyType> iterator = types.iterator();
 
 
 		while(iterator.hasNext()) {
