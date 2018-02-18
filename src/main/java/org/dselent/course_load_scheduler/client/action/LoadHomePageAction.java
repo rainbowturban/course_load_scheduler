@@ -1,6 +1,6 @@
 package org.dselent.course_load_scheduler.client.action;
 
-public class LoadHomePageAction {
+public class LoadHomePageAction extends Action{
 	boolean adminUser;//true if admin, false if not
 
 	public LoadHomePageAction(boolean adminUser) {

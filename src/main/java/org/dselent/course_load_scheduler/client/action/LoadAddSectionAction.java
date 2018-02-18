@@ -2,7 +2,7 @@ package org.dselent.course_load_scheduler.client.action;
 
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
 
-public class LoadAddSectionAction {
+public class LoadAddSectionAction extends Action {
 	private CourseInfo courseInfo;
 	
 	public CourseInfo getCourseInfo() {

@@ -1,6 +1,6 @@
 package org.dselent.course_load_scheduler.client.action;
 
-public class ManageUserPageAction {
+public class ManageUserPageAction extends Action{
 	boolean adminUser;//true if admin, false if not
 	
 	public ManageUserPageAction() {

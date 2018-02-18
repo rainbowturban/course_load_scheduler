@@ -2,7 +2,7 @@ package org.dselent.course_load_scheduler.client.action;
 
 import org.dselent.course_load_scheduler.client.model.Courses;
 
-public class SubmitEditCourseAction {
+public class SubmitEditCourseAction extends Action{
 	private Courses course;
 
 	public SubmitEditCourseAction() {

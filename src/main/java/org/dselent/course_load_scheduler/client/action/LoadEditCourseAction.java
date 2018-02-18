@@ -10,7 +10,7 @@ import org.dselent.course_load_scheduler.client.model.CourseInfo;
  * @author hjauris
  *
  */
-public class LoadEditCourseAction {
+public class LoadEditCourseAction extends Action{
 
 	//CourseInfo is for information display, course is for the ID's.
 	private CourseInfo courseInfo;
