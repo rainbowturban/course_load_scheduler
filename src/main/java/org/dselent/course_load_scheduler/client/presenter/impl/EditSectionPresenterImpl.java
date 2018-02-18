@@ -261,8 +261,33 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		CheckBox tuesday = view.getTuesdayCheckBox();
 		CheckBox wednesday = view.getWednesdayCheckBox();
 		CheckBox thursday = view.getThursdayCheckBox();
-		CheckBox friday = view.getFridayCheckBox();		
-
+		CheckBox friday = view.getFridayCheckBox();
+		
+		//Clear potentially checked boxes (depricated method, but couldn't seem to find better one?)
+		monday.setChecked(false);
+		tuesday.setChecked(false);
+		wednesday.setChecked(false);
+		thursday.setChecked(false);
+		friday.setChecked(false);
+		
+		//From given string of days, determine which days are checked
+		if(oldSection.getDays().contains("M")) {
+			monday.setChecked(true);
+		}
+		if(oldSection.getDays().contains("T")) {
+			tuesday.setChecked(true);
+		}
+		if(oldSection.getDays().contains("W")) {
+			wednesday.setChecked(true);
+		}
+		if(oldSection.getDays().contains("R")) {
+			thursday.setChecked(true);
+		}
+		if(oldSection.getDays().contains("F")) {
+			friday.setChecked(true);
+		}
+		
+		//Turn checked boxes back into list
 		StringBuilder days = new StringBuilder();
 
 		if(monday.getValue()) {
@@ -285,16 +310,21 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 	}
 
 	//variable to hold info from course
-	private SectionsInfo fromCourse = new SectionsInfo();
 	private CourseInfo course = new CourseInfo();
+	private SectionsInfo oldSection = new SectionsInfo();
 	@Override
 	public void onLoadEditSection(LoadEditSectionEvent evt) {
-		//Gather info from course
-		fromCourse.setCoursesNumber(evt.getAction().getCourseInfo().getCoursesNumber());
-		fromCourse.setCoursesTitle(evt.getAction().getCourseInfo().getCoursesTitle());
-		
 		//Info to return to edit course page
 		course = evt.getAction().getCourseInfo();
+		
+		//Gather old section info to edit
+		oldSection.setTermsName(evt.getAction().getSectionInfo().getTermsName());
+		oldSection.setSectionType(evt.getAction().getSectionInfo().getSectionType());
+		oldSection.setDays(evt.getAction().getSectionInfo().getDays());
+		oldSection.setEndTime(evt.getAction().getSectionInfo().getEndTime());
+		oldSection.setStartTime(evt.getAction().getSectionInfo().getStartTime());
+		oldSection.setCoursesNumber(evt.getAction().getSectionInfo().getCoursesNumber());
+		oldSection.setCoursesTitle(evt.getAction().getSectionInfo().getCoursesTitle());		
 		
 		this.go(parentPresenter.getView().getViewRootPanel());
 	}
@@ -313,8 +343,8 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		newSection.setStartTime(Time.valueOf(start.getItemText(start.getSelectedIndex())));
 		newSection.setEndTime(Time.valueOf(end.getItemText(end.getSelectedIndex())));
 		newSection.setDays(this.determineDays());
-		newSection.setCoursesNumber(fromCourse.getCoursesNumber());
-		newSection.setCoursesTitle(fromCourse.getCoursesTitle());
+		newSection.setCoursesNumber(oldSection.getCoursesNumber());
+		newSection.setCoursesTitle(oldSection.getCoursesTitle());
 
 		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course)));
 

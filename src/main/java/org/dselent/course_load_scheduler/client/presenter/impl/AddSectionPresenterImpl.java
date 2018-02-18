@@ -196,6 +196,7 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 	@Override
 	public void fillSectionTerms() {
 		ListBox term = view.getTermComboBox();
+		term.clear();
 
 		List<SectionsInfo> sectionTerms = retrieveTerm();
 		Iterator<SectionsInfo> iterator = sectionTerms.iterator();
@@ -211,6 +212,7 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 	@Override
 	public void fillSectionTypes() {
 		ListBox type = view.getSectionTypeComboBox();
+		type.clear();
 
 		List<SectionsInfo> sectionTypes = retrieveType();
 		Iterator<SectionsInfo> iterator = sectionTypes.iterator();
@@ -226,8 +228,8 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 	@Override
 	public void fillSectionStart() {
 		ListBox start = view.getSectionStartTimeComboBox();
-
-
+		start.clear();
+		
 		List<SectionsInfo> sectionStart = retrieveTime();
 		Iterator<SectionsInfo> iterator = sectionStart.iterator();
 
@@ -242,7 +244,7 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 	@Override
 	public void fillSectionEnd() {
 		ListBox end = view.getSectionEndTimeComboBox();
-
+		end.clear();
 
 		List<SectionsInfo> sectionEnd = retrieveTime();
 		Iterator<SectionsInfo> iterator = sectionEnd.iterator();
@@ -262,7 +264,7 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 		CheckBox tuesday = view.getTuesdayCheckBox();
 		CheckBox wednesday = view.getWednesdayCheckBox();
 		CheckBox thursday = view.getThursdayCheckBox();
-		CheckBox friday = view.getFridayCheckBox();		
+		CheckBox friday = view.getFridayCheckBox();
 
 		StringBuilder days = new StringBuilder();
 
