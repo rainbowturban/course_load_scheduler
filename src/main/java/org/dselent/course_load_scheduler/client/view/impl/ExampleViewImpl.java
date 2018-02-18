@@ -1,5 +1,5 @@
 package org.dselent.course_load_scheduler.client.view.impl;
-
+//XD
 import org.dselent.course_load_scheduler.client.presenter.ExamplePresenter;
 import org.dselent.course_load_scheduler.client.view.ExampleView;
 import org.dselent.course_load_scheduler.client.view.impl.BaseViewImpl;
