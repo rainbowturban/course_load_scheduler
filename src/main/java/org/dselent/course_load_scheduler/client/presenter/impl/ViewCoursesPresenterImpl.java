@@ -10,6 +10,7 @@ import org.dselent.course_load_scheduler.client.view.ViewCoursesView;
 import java.util.ArrayList;
 import java.util.Iterator;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.inject.Inject;
 import java.util.List;
@@ -25,7 +26,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	private ViewCoursesView view;
 	
 	private List<CourseInfo> courses = new ArrayList<CourseInfo>();		
-	private boolean adminUser = false;
+	private boolean adminUser = true;
 
 	@Inject
 	public ViewCoursesPresenterImpl(IndexPresenter parentPresenter, ViewCoursesView view)
@@ -43,12 +44,19 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		retrieveCourses();
 		fillCourses();
 		
+		//specifies for both cases, since the page brings over what it had been working on
 		adminUser = evt.getAction().getAdminUser();
 		if(!adminUser) {
 			view.getRemoveCourseButton().setVisible(false);
 			view.getEditCourseButton().setVisible(false);
 			view.getAddCourseButton().setVisible(false);
 		}
+		else {
+			view.getRemoveCourseButton().setVisible(true);
+			view.getEditCourseButton().setVisible(true);
+			view.getAddCourseButton().setVisible(true);
+		}
+		
 		
 		this.go(parentPresenter.getView().getViewRootPanel());
 	}
@@ -104,17 +112,23 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		CourseInfo course1 = new CourseInfo();
 		course1.setCoursesNumber("CS3733");
 		course1.setCoursesTitle("Software Engineering");
-		course1.setFrequency("4 Times/Year");
+		course1.setFrequency("TestValue1");
+		course1.setFrequencyId(1);
+		course1.setCourseId(1);
 
 		CourseInfo course2 = new CourseInfo();
 		course2.setCoursesNumber("CS2223");
 		course2.setCoursesTitle("Algorithms");
-		course2.setFrequency("2 Times/Year");
+		course2.setFrequency("TestValue 2");
+		course2.setFrequencyId(2);
+		course2.setCourseId(2);
 
 		CourseInfo course3 = new CourseInfo();
 		course3.setCoursesNumber("CS####");
 		course3.setCoursesTitle("Something...");
-		course3.setFrequency("-5 Times/Year");
+		course3.setFrequency("Test value3");
+		course3.setFrequencyId(4);
+		course3.setCourseId(3);
 
 
 		courses.add(course1);
@@ -143,11 +157,11 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	//loads the page to edit with the provided index/course
 	@Override
 	public void loadEditPage() {
-
 		int index = view.getCourseList().getSelectedIndex();//get index of course to edit
 		if(index >= 0) {//-1 when nothing is selected			
 			Iterator<CourseInfo> ci = courses.listIterator(index);
 			CourseInfo course = ci.next();
+			
 			LoadEditCourseAction action = new LoadEditCourseAction(course);
 			LoadEditCourseEvent evt = new LoadEditCourseEvent(action);
 			eventBus.fireEvent(evt);

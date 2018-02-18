@@ -296,6 +296,9 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 		
 		//Info to return to edit course page
 		course = evt.getAction().getCourseInfo();
+		
+		this.go(parentPresenter.getView().getViewRootPanel());
+		
 	}
 
 	@Override

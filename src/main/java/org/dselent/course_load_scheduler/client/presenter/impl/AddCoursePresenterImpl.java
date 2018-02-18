@@ -149,7 +149,6 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 			SubmitNewCourseAction action = new SubmitNewCourseAction();
 			action.setCourse(newCourse);
 			
-			
 			SubmitNewCourseEvent evt = new SubmitNewCourseEvent(action);
 			eventBus.fireEvent(evt);//to be handled by the Database
 			

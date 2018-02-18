@@ -22,7 +22,8 @@ LoadAddSectionEventHandler,
 LoadEditSectionEventHandler,
 SubmitNewCourseEventHandler,
 LoadViewCoursesEventHandler,
-LoadAddCourseEventHandler
+LoadAddCourseEventHandler,
+SubmitEditCourseEventHandler
 
 {
 	@Override
@@ -54,5 +55,8 @@ LoadAddCourseEventHandler
 	
 	@Override
 	public void onLoadAddCourse(LoadAddCourseEvent evt) {}
+	
+	@Override
+	public void onSubmitEditCourse(SubmitEditCourseEvent evt) {}
 	
 }

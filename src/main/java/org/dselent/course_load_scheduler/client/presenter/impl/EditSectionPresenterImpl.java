@@ -295,6 +295,8 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		
 		//Info to return to edit course page
 		course = evt.getAction().getCourseInfo();
+		
+		this.go(parentPresenter.getView().getViewRootPanel());
 	}
 
 	@Override

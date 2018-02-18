@@ -5,14 +5,14 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.dselent.course_load_scheduler.client.action.LoadAddSectionAction;
-import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
 import org.dselent.course_load_scheduler.client.action.LoadEditSectionAction;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
+import org.dselent.course_load_scheduler.client.action.SubmitEditCourseAction;
 import org.dselent.course_load_scheduler.client.event.LoadAddSectionEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditSectionEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
-import org.dselent.course_load_scheduler.client.gin.Injector;
+import org.dselent.course_load_scheduler.client.event.SubmitEditCourseEvent;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.model.Frequency;
@@ -73,13 +73,18 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		course = evt.getAction().getCourseInfo();
 		
 		//fill frequency tables, sections, and the fields with the information from the course
-		int index = fillFrequencies(evt.getAction().getCourse().getFrequencyID());
-		fillSections();
-		view.getCourseNameField().setText(evt.getAction().getCourse().getTitle());
-		view.getCourseNumberField().setText(evt.getAction().getCourse().getNumber());
-		view.getFrequencyDropdown().setSelectedIndex(index);
-		
-		this.go(parentPresenter.getView().getViewRootPanel());
+		if(course != null) {
+			int index = fillFrequencies(course.getFrequencyId());
+			fillSections();
+			view.getCourseNameField().setText(course.getCoursesTitle());
+			view.getCourseNumberField().setText(course.getCoursesNumber());
+			view.getFrequencyDropdown().setSelectedIndex(index);
+			
+			this.go(parentPresenter.getView().getViewRootPanel());
+		}
+		else {
+			Window.alert("A course must be selected to edit it.");
+		}
 		
 	}
 	
@@ -208,12 +213,6 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	
 	@Override
 	public boolean submitCourseEdit() {
-		Courses updatedCourse = new Courses();
-		updatedCourse.setTitle(view.getCourseNameField().getText());
-		updatedCourse.setNumber(view.getCourseNumberField().getText());
-		updatedCourse.setFrequencyID(Integer.parseInt(view.getFrequencyDropdown().getValue(view.getFrequencyDropdown().getSelectedIndex())));
-		
-		
 		int fIndex = view.getFrequencyDropdown().getSelectedIndex();
 		
 		if(fIndex >= 0) {
@@ -224,12 +223,10 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 			editCourse.setNumber(view.getCourseNumberField().getText());
 			editCourse.setId(course.getCourseId());
 			
-			//TODO: send out to DB to edit!
-			Window.alert("If this accesses the DB, it would send a request to edit a course with Name: "+editCourse.getTitle() +
-					", Number: "+editCourse.getNumber() + ", FrequencyId: " + editCourse.getFrequencyID());
-			
-			
-			return true;//returns if course adding was successful or not
+			//this event should go to the DB
+			eventBus.fireEvent(new SubmitEditCourseEvent(new SubmitEditCourseAction(editCourse)));
+
+			return true;//returns if sending request was successful
 		}
 		else {//Frequency was not selected
 			Window.alert("A Freqeuncy must be selected to edit a course.");
