@@ -11,6 +11,7 @@ import org.dselent.course_load_scheduler.client.errorstring.InvalidLoginStrings;
 import org.dselent.course_load_scheduler.client.event.InvalidLoginEvent;
 import org.dselent.course_load_scheduler.client.event.LoadCreateAccountEvent;
 import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
+import org.dselent.course_load_scheduler.client.event.LoadLoginPageEvent;
 import org.dselent.course_load_scheduler.client.event.SendLoginEvent;
 import org.dselent.course_load_scheduler.client.exceptions.EmptyStringException;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
@@ -50,7 +51,10 @@ public class LoginPagePresenterImpl extends BasePresenterImpl implements LoginPa
 	public void bind()
 	{
 		HandlerRegistration registration;
-
+		
+		registration = eventBus.addHandler(LoadLoginPageEvent.TYPE, this);
+		eventBusRegistration.put(LoadLoginPageEvent.TYPE, registration);
+		
 		registration = eventBus.addHandler(InvalidLoginEvent.TYPE, this);
 		eventBusRegistration.put(InvalidLoginEvent.TYPE, registration);
 	}

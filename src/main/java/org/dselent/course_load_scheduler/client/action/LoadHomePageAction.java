@@ -4,7 +4,6 @@ public class LoadHomePageAction {
 	boolean adminUser;//true if admin, false if not
 
 	public LoadHomePageAction(boolean adminUser) {
-		super();
 		this.adminUser = adminUser;
 	}
 

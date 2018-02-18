@@ -3,14 +3,13 @@ package org.dselent.course_load_scheduler.client.presenter.impl;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-//import java.util.regex.Matcher;
-//import java.util.regex.Pattern;
 
 import org.dselent.course_load_scheduler.client.action.InvalidAccountCreationAction;
 import org.dselent.course_load_scheduler.client.action.LoadLoginPageAction;
 import org.dselent.course_load_scheduler.client.action.SendCreateAccountAction;
 import org.dselent.course_load_scheduler.client.errorstring.InvalidAccountCreationStrings;
 import org.dselent.course_load_scheduler.client.event.InvalidAccountCreationEvent;
+import org.dselent.course_load_scheduler.client.event.LoadCreateAccountEvent;
 import org.dselent.course_load_scheduler.client.event.LoadLoginPageEvent;
 import org.dselent.course_load_scheduler.client.event.SendCreateAccountEvent;
 import org.dselent.course_load_scheduler.client.exceptions.EmptyStringException;
@@ -52,6 +51,9 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 	{
 		HandlerRegistration registration;
 
+		registration = eventBus.addHandler(LoadCreateAccountEvent.TYPE, this);
+		eventBusRegistration.put(LoadCreateAccountEvent.TYPE, registration);
+		
 		registration = eventBus.addHandler(InvalidAccountCreationEvent.TYPE, this);
 		eventBusRegistration.put(InvalidAccountCreationEvent.TYPE, registration);
 	}
