@@ -5,22 +5,21 @@
 	
 	</ui:style>
 	<g:HTMLPanel ui:field="rootPanel">
-	
-		<g:VerticalPanel>
+		<g:VerticalPanel styleName="center">
+			<g:VerticalPanel>
 		<!-- NAV STUFF -->
             <g:Cell horizontalAlignment="ALIGN_CENTER">
             		<g:HorizontalPanel>
                 <g:Image url="WEB-INF/classes/org/dselent/course_load_scheduler/client/view/images/WPI_Inst_Prim_FulClr_med.png" height="5%"/>
-                <g:Button text="Home" styleName="navButton" ui:field="homeButton" height="38px" width="56px"></g:Button>
-                <g:Button text="Schedule" styleName="navButton" ui:field="scheduleButton" height="38px"></g:Button>
-                <g:Button text="Courses" styleName="navButton" ui:field="coursesButton" height="38px"></g:Button>
-                <g:Button text="Account" styleName="navButton" ui:field="accountButton" height="38px"></g:Button>
+                <g:Button text="Home" styleName="navButton" ui:field="homeButton" height="38px" width="77px"></g:Button>
+                <g:Button text="Schedule" styleName="navButton" ui:field="scheduleButton" height="38px" width="73px"></g:Button>
+                <g:Button text="Courses" styleName="navButton" ui:field="coursesButton" height="38px" width="75px"></g:Button>
+                <g:Button text="Account" styleName="navButton" ui:field="accountButton" height="38px" width="74px"></g:Button>
             </g:HorizontalPanel>
             </g:Cell>
-			<g:Label text="Navigation bar"/>
-			<g:Label text="Manage Users" width="355px" styleName="courseTitle"/>
+			<g:Label text="Manage Users" width="355px" styleName="page-title"/>
 		</g:VerticalPanel>
-		<g:Grid>
+			<g:Grid>
 			<g:row>
 				<g:customCell>
 					<g:Label text="Last Name" width="78px" height="18px"/>
@@ -36,5 +35,6 @@
 				</g:customCell>
 			</g:row>
 		</g:Grid>
+		</g:VerticalPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 
