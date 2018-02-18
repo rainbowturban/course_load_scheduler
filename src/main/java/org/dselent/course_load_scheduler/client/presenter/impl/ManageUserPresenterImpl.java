@@ -1,5 +1,6 @@
 package org.dselent.course_load_scheduler.client.presenter.impl;
 
+import org.dselent.course_load_scheduler.client.event.ManageUserPageEvent;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.presenter.ManageUserPresenter;
 import org.dselent.course_load_scheduler.client.view.ManageUserView;
@@ -55,7 +56,11 @@ public class ManageUserPresenterImpl extends BasePresenterImpl implements Manage
 		// TODO Auto-generated method stub
 		
 	}
-	
+	@Override
+	public void onManageUserPage(ManageUserPageEvent evt) {
+		this.go(parentPresenter.getView().getViewRootPanel());
+	}
+
 	public void setParentPresenter(IndexPresenter parentPresenter) {
 		this.parentPresenter = parentPresenter;
 	}

@@ -1,5 +1,6 @@
 package org.dselent.course_load_scheduler.client.view.impl;
 
+import org.dselent.course_load_scheduler.client.event.ManageUserPageEvent;
 import org.dselent.course_load_scheduler.client.presenter.AdminCalendarPresenter;
 import org.dselent.course_load_scheduler.client.presenter.ManageUserPresenter;
 import org.dselent.course_load_scheduler.client.presenter.impl.ManageUserPresenterImpl;
@@ -59,8 +60,7 @@ public class ManageUserViewImpl extends BaseViewImpl<ManageUserPresenter> implem
 	public Widget getWidgetContainer() {
 		return this;
 	}
-
-
+	
 	@Override
 	public void setPresenter(ManageUserPresenter presenter) {
 		this.presenter = presenter;

@@ -32,7 +32,8 @@ GetSectionsEventHandler,
 SubmitRemoveSectionEventHandler,
 GetCoursesEventHandler,
 SubmitRemoveCourseEventHandler,
-LoadScheduleEventHandler
+LoadScheduleEventHandler,
+ManageUserPageEventHandler
 
 {
 	@Override
@@ -94,4 +95,7 @@ LoadScheduleEventHandler
 	
 	@Override
 	public void onLoadSchedulePage(LoadScheduleEvent evt) {}
+	
+	@Override 
+	public void onManageUserPage(ManageUserPageEvent evt) {}
 }
