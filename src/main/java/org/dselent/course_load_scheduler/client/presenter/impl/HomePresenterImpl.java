@@ -1,9 +1,8 @@
 package org.dselent.course_load_scheduler.client.presenter.impl;
 
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
-import org.dselent.course_load_scheduler.client.presenter.ManageUserPresenter;
 import org.dselent.course_load_scheduler.client.view.HomeView;
-import org.dselent.course_load_scheduler.client.view.ManageUserView;
+import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
 import org.dselent.course_load_scheduler.client.presenter.HomePresenter;
 
 import com.google.gwt.event.shared.HandlerRegistration;
@@ -27,9 +26,8 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	{
 		HandlerRegistration registration;
 
-		//button events for when they click on create or cancel buttons
-		//		registration = eventBus.addHandler(InvalidLoginEvent.TYPE, this);
-		//		eventBusRegistration.put(InvalidLoginEvent.TYPE, registration);
+		registration = eventBus.addHandler(LoadHomePageEvent.TYPE, this);
+		eventBusRegistration.put(LoadHomePageEvent.TYPE, registration);
 	}
 
 	public IndexPresenter getParentPresenter() {

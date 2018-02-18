@@ -4,15 +4,21 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.dselent.course_load_scheduler.client.action.GetFrequenciesAction;
+import org.dselent.course_load_scheduler.client.action.GetSectionsAction;
 import org.dselent.course_load_scheduler.client.action.LoadAddSectionAction;
 import org.dselent.course_load_scheduler.client.action.LoadEditSectionAction;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.SubmitEditCourseAction;
+import org.dselent.course_load_scheduler.client.action.SubmitRemoveSectionAction;
+import org.dselent.course_load_scheduler.client.event.GetFrequenciesEvent;
+import org.dselent.course_load_scheduler.client.event.GetSectionsEvent;
 import org.dselent.course_load_scheduler.client.event.LoadAddSectionEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditSectionEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.SubmitEditCourseEvent;
+import org.dselent.course_load_scheduler.client.event.SubmitRemoveSectionEvent;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.model.Frequency;
@@ -115,9 +121,10 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	//gets values from DB 
 	@Override
 	public List<Frequency> retrieveFequencies() {
+		//Sends event to DB to fetch frequencies
+		eventBus.fireEvent(new GetFrequenciesEvent(new GetFrequenciesAction()));
 		
-		//TODO: fetch frequencies from the DB
-		//**In place of that, sample values are used
+		//**In place of that currently being completed, sample values are used
 		List<Frequency> freqs = new ArrayList<Frequency>();
 		
 		Frequency f1 = new Frequency();
@@ -170,9 +177,15 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	//gets the sections for this course and fills the list with them
 	@Override
 	public void retrieveSections() {
-		//TODO:*** send event to get sections from database
+		//Sends event to DB to fetch sections
+		Courses c = new Courses();
+		c.setId(course.getCourseId());
+		c.setTitle(course.getCoursesTitle());
+		c.setNumber(course.getCoursesNumber());
 		
-		//In place of that, Example values are used.
+		eventBus.fireEvent(new GetSectionsEvent(new GetSectionsAction(c)));
+		
+		//In place of that completing, Example values are used.
 		sections = new ArrayList<SectionsInfo>();
 		
 		SectionsInfo s1 = new SectionsInfo();
@@ -215,8 +228,8 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	public boolean submitCourseEdit() {
 		int fIndex = view.getFrequencyDropdown().getSelectedIndex();
 		
-		if(fIndex >= 0) {
-			//since index is valid, fill object
+		if(fIndex >= 0  && (view.getCourseNameField().getText().length() > 0) && (view.getCourseNumberField().getText().length() > 0)) {
+			//since index is valid and fields are not empty, fill object
 			Courses editCourse = new Courses();
 			editCourse.setFrequencyID(Integer.parseInt(view.getFrequencyDropdown().getValue(fIndex)));
 			editCourse.setTitle(view.getCourseNameField().getText());
@@ -229,7 +242,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 			return true;//returns if sending request was successful
 		}
 		else {//Frequency was not selected
-			Window.alert("A Freqeuncy must be selected to edit a course.");
+			Window.alert("A Freqeuncy must be selected to edit a course, and no text fields can be empty.");
 			return false;
 		}
 		
@@ -248,7 +261,11 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		int index = view.getSectionList().getSelectedIndex();//what is to be removed? get the index.
 		
 		if(index >= 0) {
-			//TODO: Send correct Index--for DB not just the clientSide
+			Iterator<SectionsInfo> si = sections.listIterator(index);
+			SectionsInfo s = si.next();
+			
+			eventBus.fireEvent(new SubmitRemoveSectionEvent(new SubmitRemoveSectionAction(s.getSectionsId())));
+
 			boolean success = true;//this will be the return value from the request
 			
 			if(success) {
