@@ -55,7 +55,18 @@ public class CourseLoadScheduler implements EntryPoint
 
 		EditSectionPresenterImpl editSectionPresenter = injector.getEditSectionPresenter();
 		editSectionPresenter.init();
+		
+		CreateAccountPresenterImpl createAcctPresenter = injector.getCreateAccountPresenter();
+		createAcctPresenter.init();
+		
+		HomePresenterImpl homePresenter = injector.getHomePresenter();
+		homePresenter.init();
+		
+		LoginPagePresenterImpl loginPagePresenter = injector.getLoginPagePresenter();
+		loginPagePresenter.init();
 
+		ManageUserPresenterImpl manageUserPresenter = injector.getManageUserPresenter();
+		manageUserPresenter.init();
 		
 		
 		//Testing stuff for Hannah's page
