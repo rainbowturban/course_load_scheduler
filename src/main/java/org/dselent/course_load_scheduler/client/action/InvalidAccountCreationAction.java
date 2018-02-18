@@ -10,7 +10,7 @@ import java.util.List;
  * @author dselent
  *
  */
-public class InvalidAccountCreationAction 
+public class InvalidAccountCreationAction extends Action
 {
 	private List<String> reasonList;
 	
