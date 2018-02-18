@@ -93,8 +93,10 @@ public class LoginPageViewImpl extends BaseViewImpl<LoginPagePresenter> implemen
 	void onLoginButtonClick(ClickEvent event) {
 		presenter.login();
 	}
+	
 	@UiHandler("createAccountButton")
 	void onCreateAccountButtonClick(ClickEvent event) {
-		//parentPresenter.getView().getViewRootPanel();
+		presenter.loadCreateAccount();
 	}
+
 }
