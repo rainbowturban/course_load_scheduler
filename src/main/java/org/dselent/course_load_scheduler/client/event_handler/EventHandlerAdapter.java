@@ -25,7 +25,12 @@ LoadViewCoursesEventHandler,
 LoadAddCourseEventHandler,
 SubmitEditCourseEventHandler,
 LoadCreateAccountEventHandler,
-LoadHomePageEventHandler
+LoadHomePageEventHandler,
+GetFrequenciesEventHandler,
+GetSectionsEventHandler,
+SubmitRemoveSectionEventHandler,
+GetCoursesEventHandler,
+SubmitRemoveCourseEventHandler
 
 {
 	@Override
@@ -67,4 +72,18 @@ LoadHomePageEventHandler
 	@Override
 	public void onLoadHomePage(LoadHomePageEvent evt) {}
 	
+	@Override
+	public void onGetFrequencies(GetFrequenciesEvent evt) {}
+	
+	@Override
+	public void onGetSections(GetSectionsEvent evt) {}
+	
+	@Override
+	public void onSubmitRemoveSection(SubmitRemoveSectionEvent evt) {}
+	
+	@Override
+	public void onGetCourses(GetCoursesEvent evt) {}
+	
+	@Override
+	public void onSubmitRemoveCourse(SubmitRemoveCourseEvent evt) {}
 }

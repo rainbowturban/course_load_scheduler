@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.dselent.course_load_scheduler.client.action.GetFrequenciesAction;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.SubmitNewCourseAction;
+import org.dselent.course_load_scheduler.client.event.GetFrequenciesEvent;
 import org.dselent.course_load_scheduler.client.event.LoadAddCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.SubmitNewCourseEvent;
@@ -88,9 +90,10 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	
 	@Override
 	public List<Frequency> retrieveFequencies() {
-		//TODO: fetch frequencies from the DB
+		//Sends event to DB to fetch frequencies
+		eventBus.fireEvent(new GetFrequenciesEvent(new GetFrequenciesAction()));
 		
-		//**In place of that, sample values are used
+		//**In place of that being completed, sample values are used
 		List<Frequency> freqs = new ArrayList<Frequency>();
 		
 		Frequency f1 = new Frequency();
@@ -138,7 +141,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	public void submitNewCourse() {
 		int fIndex = view.getFrequencyDropdown().getSelectedIndex();
 		
-		if(fIndex >= 0) {
+		if((fIndex >= 0) && (view.getCourseNameField().getText().length() > 0) && (view.getCourseNumberField().getText().length() > 0)) {
 			//since index is valid, fill out object
 			Courses newCourse = new Courses();
 			newCourse.setFrequencyID(Integer.parseInt(view.getFrequencyDropdown().getValue(fIndex)));
@@ -152,13 +155,10 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 			SubmitNewCourseEvent evt = new SubmitNewCourseEvent(action);
 			eventBus.fireEvent(evt);//to be handled by the Database
 			
-			//Window.alert("If this accesses the DB, it would send a request for a course with Name: "+newCourse.getTitle() +
-			//		", Number: "+newCourse.getNumber() + ", FrequencyId: " + newCourse.getFrequencyID());
-			
 			returnToViewCourses();//returns if course adding was successful or not
 		}
 		else {//Frequency was not selected
-			Window.alert("A Freqeuncy must be selected to create a course.");
+			Window.alert("A Freqeuncy must be selected to create a course, and textFields cannot be empty.");
 		}
 	}
 	
