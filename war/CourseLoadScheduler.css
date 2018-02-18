@@ -136,3 +136,12 @@
 	padding: 5%, 25%;
 	background: #A9B0B7;
 }
+.request-status-approved {
+	background-color: #9999FF;
+}
+.request-status-rejected {
+	background-color: #FF9999;
+}
+.request-status-unresolved {
+	background-color: #FFFF99;
+}

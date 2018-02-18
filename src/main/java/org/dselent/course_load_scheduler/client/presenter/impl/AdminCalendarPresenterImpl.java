@@ -10,8 +10,11 @@ import org.dselent.course_load_scheduler.client.model.RequestTables;
 import org.dselent.course_load_scheduler.client.presenter.AdminCalendarPresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.AdminCalendarView;
+S
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.inject.Inject;
@@ -125,19 +128,21 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		List<RequestTables> requests = retrieveRequests();
 		Iterator<RequestTables> iterator = requests.iterator();
 
-
 		while(iterator.hasNext()) {
 			VerticalPanel newPanel = new VerticalPanel();
 			RequestTables requestInfo = iterator.next();
-			Label userIdLabel = new Label("user id: " + requestInfo.getRequestsUserId());
-			newPanel.add(userIdLabel);
-			Label statusLabel = new Label("status: " + requestInfo.getRequestStatus());
-			newPanel.add(statusLabel);
+			HorizontalPanel userStatusPanel = new HorizontalPanel();
+			Label userIdLabel = new Label(requestInfo.getRequestsUserId().toString());
+			userStatusPanel.add(userIdLabel);
+			userStatusPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+			Label statusLabel = new Label(requestInfo.getRequestStatus());
+			statusLabel.setStyleName("request-status-" + requestInfo.getRequestStatus().toLowerCase());
+			userStatusPanel.add(statusLabel);
+			userStatusPanel.setWidth("100%");
+			newPanel.add(userStatusPanel);
 			if (requestInfo.getCoursesNumber() != null) {
-				Label courseNumberLabel = new Label("course number: " + requestInfo.getCoursesNumber());
-				newPanel.add(courseNumberLabel);
-				Label courseTitleLabel = new Label("course name: " + requestInfo.getCoursesTitle());
-				newPanel.add(courseTitleLabel);
+				Label courseLabel = new Label("Course: " + requestInfo.getCoursesNumber() + " - " + requestInfo.getCoursesTitle());
+				newPanel.add(courseLabel);
 			}
 			Label termsLabel = new Label("term: " + requestInfo.getTermsName());
 			newPanel.add(termsLabel);
