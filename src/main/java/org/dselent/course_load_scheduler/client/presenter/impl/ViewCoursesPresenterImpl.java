@@ -209,7 +209,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	//loads schedule page
 	@Override
 	public void loadSchedulePage() {
-		eventBus.fireEvent(new LoadScheduleEvent(new LoadScheduleAction(adminUser))); 
+		eventBus.fireEvent(new LoadScheduleEvent(new LoadScheduleAction(adminUser)));
 	}
 	
 	//loads schedule page
@@ -218,10 +218,10 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(adminUser))); 
 	}
 
-	//loads account page (TODO: work out parameters, determine between Admin/User??)
+	//loads account page
 	@Override
 	public void loadAccountPage() {
-		//eventBus.fireEvent(new LoadAccountEvent(new LoadAccountAction()));
+		//eventBus.fireEvent(new LoadAccountEvent(new LoadAccountAction(adminUser)));
 	}
 
 }
