@@ -9,7 +9,6 @@ public interface AdminCalendarView extends BaseView<AdminCalendarPresenter> {
 	
 	VerticalPanel getRequestsPanel();
 	ListBox getScheduleSelectBox();
-	ListBox getYearSelectBox();
 	ListBox getTermSelectBox();
 	
 }
