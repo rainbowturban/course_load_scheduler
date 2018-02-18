@@ -1,12 +1,18 @@
 package org.dselent.course_load_scheduler.client.gin;
 
+import org.dselent.course_load_scheduler.client.presenter.impl.ExamplePresenterImpl;
 import org.dselent.course_load_scheduler.client.presenter.impl.*;
 import org.dselent.course_load_scheduler.client.view.impl.*;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;
+import org.dselent.course_load_scheduler.client.presenter.impl.IndexPresenterImpl;
+import org.dselent.course_load_scheduler.client.presenter.impl.LoginPresenterImpl;
++import org.dselent.course_load_scheduler.client.service.impl.UserServiceImpl;
++import org.dselent.course_load_scheduler.client.view.impl.ExampleViewImpl;
+import org.dselent.course_load_scheduler.client.view.impl.IndexViewImpl;
+import org.dselent.course_load_scheduler.client.view.impl.LoginViewImpl;
 
 /**
  * Interface required by gin due to lack of runtime reflections
@@ -31,6 +37,7 @@ public interface Injector extends Ginjector
     // presenters
     public IndexPresenterImpl getIndexPresenter();
     public LoginPresenterImpl getLoginPresenter();
+    public ExamplePresenterImpl getExamplePresenter();
     public LoginPagePresenterImpl getLoginPagePresenter();
     public CreateAccountPresenterImpl getCreateAccountPresenter();
     public ViewCoursesPresenterImpl getViewCoursesPresenter();
@@ -55,5 +62,8 @@ public interface Injector extends Ginjector
     public AdminCalendarViewImpl getAdminCalendarView();
     public HomeViewImpl getHomeView();
     public ManageUserViewImpl getManageUserView();
-    
+    public ExampleViewImpl geExampleView();
+        
+    // services
+    public UserServiceImpl getUserService();
 }
