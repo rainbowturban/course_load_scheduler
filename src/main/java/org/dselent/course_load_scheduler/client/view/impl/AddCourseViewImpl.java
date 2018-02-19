@@ -1,9 +1,6 @@
 package org.dselent.course_load_scheduler.client.view.impl;
 
-import org.dselent.course_load_scheduler.client.gin.Injector;
-import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.presenter.AddCoursePresenter;
-import org.dselent.course_load_scheduler.client.presenter.impl.AddCoursePresenterImpl;
 import org.dselent.course_load_scheduler.client.view.AddCourseView;
 
 import com.google.gwt.core.client.GWT;
@@ -12,7 +9,6 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.ListBox;

@@ -2,8 +2,6 @@ package org.dselent.course_load_scheduler.client.view;
 
 import org.dselent.course_load_scheduler.client.presenter.EditCoursePresenter;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.StackPanel;

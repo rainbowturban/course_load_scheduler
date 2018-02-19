@@ -5,12 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
-import org.dselent.course_load_scheduler.client.action.LoadAddCourseAction;
 import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
-import org.dselent.course_load_scheduler.client.event.LoadAddCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadAddSectionEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
-import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 import org.dselent.course_load_scheduler.client.presenter.AddSectionPresenter;
@@ -139,6 +136,7 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 	}
 
 	//gets start/end time info about sections
+	@SuppressWarnings("deprecation")
 	@Override
 	public List<SectionsInfo> retrieveTime(){
 		List<SectionsInfo> sections = new ArrayList<SectionsInfo>();

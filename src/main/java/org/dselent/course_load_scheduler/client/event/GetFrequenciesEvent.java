@@ -4,7 +4,6 @@ import org.dselent.course_load_scheduler.client.action.GetFrequenciesAction;
 import org.dselent.course_load_scheduler.client.event_handler.GetFrequenciesEventHandler;
 
 import com.google.gwt.event.shared.GwtEvent;
-import com.google.gwt.event.shared.GwtEvent.Type;
 
 public class GetFrequenciesEvent extends GwtEvent<GetFrequenciesEventHandler> {
 public static Type<GetFrequenciesEventHandler> TYPE = new Type<GetFrequenciesEventHandler>();

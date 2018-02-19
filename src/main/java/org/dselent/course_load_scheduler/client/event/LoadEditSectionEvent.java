@@ -4,7 +4,6 @@ import org.dselent.course_load_scheduler.client.action.LoadEditSectionAction;
 import org.dselent.course_load_scheduler.client.event_handler.LoadEditSectionEventHandler;
 
 import com.google.gwt.event.shared.GwtEvent;
-import com.google.gwt.event.shared.GwtEvent.Type;
 
 public class LoadEditSectionEvent extends GwtEvent<LoadEditSectionEventHandler>{
 	public static Type<LoadEditSectionEventHandler> TYPE = new Type<LoadEditSectionEventHandler>();

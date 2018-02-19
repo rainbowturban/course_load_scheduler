@@ -4,7 +4,6 @@ import org.dselent.course_load_scheduler.client.action.LoadScheduleAction;
 import org.dselent.course_load_scheduler.client.event_handler.LoadScheduleEventHandler;
 
 import com.google.gwt.event.shared.GwtEvent;
-import com.google.gwt.event.shared.GwtEvent.Type;
 
 public class LoadScheduleEvent extends GwtEvent<LoadScheduleEventHandler>{
 	public static Type<LoadScheduleEventHandler> TYPE = new Type<LoadScheduleEventHandler>();

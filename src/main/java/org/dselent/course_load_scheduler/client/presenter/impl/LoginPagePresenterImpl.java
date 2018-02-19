@@ -51,10 +51,10 @@ public class LoginPagePresenterImpl extends BasePresenterImpl implements LoginPa
 	public void bind()
 	{
 		HandlerRegistration registration;
-		
+
 		registration = eventBus.addHandler(LoadLoginPageEvent.TYPE, this);
 		eventBusRegistration.put(LoadLoginPageEvent.TYPE, registration);
-		
+
 		registration = eventBus.addHandler(InvalidLoginEvent.TYPE, this);
 		eventBusRegistration.put(InvalidLoginEvent.TYPE, registration);
 	}
@@ -74,12 +74,12 @@ public class LoginPagePresenterImpl extends BasePresenterImpl implements LoginPa
 	public void loadCreateAccount() {
 		eventBus.fireEvent(new LoadCreateAccountEvent(new LoadCreateAccountAction()));
 	}
-	
+
 	@Override
 	public void loadHomePage() {
 		eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction()));
 	}
-	
+
 	public void setParentPresenter(IndexPresenter parentPresenter) {
 		this.parentPresenter = parentPresenter;
 	}
@@ -144,8 +144,9 @@ public class LoginPagePresenterImpl extends BasePresenterImpl implements LoginPa
 
 	private void sendLogin(String userName, String password)
 	{
+		HasWidgets container = parentPresenter.getView().getViewRootPanel();
 		SendLoginAction sla = new SendLoginAction(userName, password);
-		SendLoginEvent sle = new SendLoginEvent(sla);
+		SendLoginEvent sle = new SendLoginEvent(sla, container);
 		eventBus.fireEvent(sle);
 	}
 

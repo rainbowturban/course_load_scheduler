@@ -1,6 +1,5 @@
 package org.dselent.course_load_scheduler.client.view.impl;
 
-import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.presenter.EditCoursePresenter;
 import org.dselent.course_load_scheduler.client.view.EditCourseView;
 

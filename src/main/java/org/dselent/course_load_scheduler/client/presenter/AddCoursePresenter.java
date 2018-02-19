@@ -2,7 +2,6 @@ package org.dselent.course_load_scheduler.client.presenter;
 
 import java.util.List;
 
-import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.model.Frequency;
 
 public interface AddCoursePresenter extends BasePresenter{

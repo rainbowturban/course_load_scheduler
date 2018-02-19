@@ -4,7 +4,6 @@ import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.event_handler.LoadViewCoursesEventHandler;
 
 import com.google.gwt.event.shared.GwtEvent;
-import com.google.gwt.event.shared.GwtEvent.Type;
 
 public class LoadViewCoursesEvent extends GwtEvent<LoadViewCoursesEventHandler>{
 	public static Type<LoadViewCoursesEventHandler> TYPE = new Type<LoadViewCoursesEventHandler>();

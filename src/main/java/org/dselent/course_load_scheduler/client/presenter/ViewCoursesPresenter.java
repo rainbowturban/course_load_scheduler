@@ -1,9 +1,5 @@
 package org.dselent.course_load_scheduler.client.presenter;
 
-import java.util.List;
-
-import org.dselent.course_load_scheduler.client.model.CourseInfo;
-
 public interface ViewCoursesPresenter extends BasePresenter {
 	//parent info
 	public IndexPresenter getParentPresenter();

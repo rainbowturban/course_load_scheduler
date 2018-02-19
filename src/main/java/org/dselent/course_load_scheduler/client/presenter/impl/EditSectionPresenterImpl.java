@@ -8,7 +8,6 @@ import java.util.List;
 import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
 import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditSectionEvent;
-import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 import org.dselent.course_load_scheduler.client.presenter.EditSectionPresenter;
@@ -138,6 +137,7 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 	}
 
 	//gets start/end time info about sections
+	@SuppressWarnings("deprecation")
 	@Override
 	public List<SectionsInfo> retrieveTime(){
 		List<SectionsInfo> sections = new ArrayList<SectionsInfo>();

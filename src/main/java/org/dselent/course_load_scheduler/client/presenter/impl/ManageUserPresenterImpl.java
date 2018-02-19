@@ -6,7 +6,6 @@ import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.ManageUserPageAction;
 import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
 import org.dselent.course_load_scheduler.client.event.LoadScheduleEvent;
-import org.dselent.course_load_scheduler.client.event.LoadSchedulePageEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.ManageUserPageEvent;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
@@ -75,25 +74,21 @@ public class ManageUserPresenterImpl extends BasePresenterImpl implements Manage
 	}
 	@Override
 	public void loadAccountPage() {
-		// TODO Auto-generated method stub
 		eventBus.fireEvent(new ManageUserPageEvent(new ManageUserPageAction(true)));
 		
 	}
 	@Override
 	public void loadSchedulePage() {
-		// TODO Auto-generated method stub
 		eventBus.fireEvent(new LoadScheduleEvent(new LoadScheduleAction(true)));
 		
 	}
 	@Override
 	public void loadViewCoursesPage() {
-		// TODO Auto-generated method stub
 		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(true)));
 		
 	}
 	@Override
 	public void loadViewHomePage() {
-		// TODO Auto-generated method stub
 		eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction(true)));
 		
 	}

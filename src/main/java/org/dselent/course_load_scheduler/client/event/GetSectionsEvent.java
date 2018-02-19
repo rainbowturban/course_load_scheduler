@@ -4,7 +4,6 @@ import org.dselent.course_load_scheduler.client.action.GetSectionsAction;
 import org.dselent.course_load_scheduler.client.event_handler.GetSectionsEventHandler;
 
 import com.google.gwt.event.shared.GwtEvent;
-import com.google.gwt.event.shared.GwtEvent.Type;
 
 public class GetSectionsEvent extends GwtEvent<GetSectionsEventHandler>{
 	public static Type<GetSectionsEventHandler> TYPE = new Type<GetSectionsEventHandler>();

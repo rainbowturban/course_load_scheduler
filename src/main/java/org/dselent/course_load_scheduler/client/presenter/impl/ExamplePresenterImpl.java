@@ -41,14 +41,14 @@ public class ExamplePresenterImpl extends BasePresenterImpl implements ExamplePr
 	@Override
 	public void go(HasWidgets container)
 	{
-		view.getUserIdField().setText(Integer.toString(userModel.getId()));
-		view.getUserNameField().setText(userModel.getUserName());
-		view.getFirstNameField().setText(userModel.getFirstName());
-		view.getLastNameField().setText(userModel.getLastName());
-		view.getEmailField().setText(userModel.getEmail());
-		view.getUserStateIdField().setText(Integer.toString(userModel.getUserStateId()));
-		view.getCreatedAtField().setText(userModel.getCreatedAt().toString());
-		view.getUpdatedAtField().setText(userModel.getUpdatedAt().toString());
+//		view.getUserIdField().setText(Integer.toString(userModel.getId()));
+//		view.getUserNameField().setText(userModel.getUserName());
+//		view.getFirstNameField().setText(userModel.getFirstName());
+//		view.getLastNameField().setText(userModel.getLastName());
+//		view.getEmailField().setText(userModel.getEmail());
+//		view.getUserStateIdField().setText(Integer.toString(userModel.getUserStateId()));
+//		view.getCreatedAtField().setText(userModel.getCreatedAt().toString());
+//		view.getUpdatedAtField().setText(userModel.getUpdatedAt().toString());
 		
 		container.clear();
 		container.add(view.getWidgetContainer());
@@ -60,13 +60,21 @@ public class ExamplePresenterImpl extends BasePresenterImpl implements ExamplePr
 		return view;
 	}
 	
+	public User getUserModel() {
+		return userModel;
+	}
+
+	public void setUserModel(User userModel) {
+		this.userModel = userModel;
+	}
+
 	@Override
 	public void onReceiveLogin(ReceiveLoginEvent evt)
 	{
 		HasWidgets container = evt.getContainer();
 		ReceiveLoginAction rla = evt.getAction();
 
-		userModel = rla.getModel();
+		setUserModel(rla.getModel());
 		
 		// show myself
 		go(container);

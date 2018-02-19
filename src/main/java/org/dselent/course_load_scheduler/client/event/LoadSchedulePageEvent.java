@@ -1,7 +1,7 @@
 package org.dselent.course_load_scheduler.client.event;
 import org.dselent.course_load_scheduler.client.action.LoadSchedulePageAction;
 import org.dselent.course_load_scheduler.client.event_handler.LoadSchedulePageEventHandler;
-import com.google.gwt.event.shared.EventHandler;
+
 import com.google.gwt.event.shared.GwtEvent;
 
 public class LoadSchedulePageEvent extends GwtEvent<LoadSchedulePageEventHandler>{
