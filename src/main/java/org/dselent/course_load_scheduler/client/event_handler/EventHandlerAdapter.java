@@ -34,7 +34,10 @@ GetCoursesEventHandler,
 SubmitRemoveCourseEventHandler,
 LoadScheduleEventHandler,
 ManageUserPageEventHandler,
-ReceiveLoginEventHandler
+ReceiveLoginEventHandler,
+ReceiveNewCourseEventHandler,
+ReceiveRemoveCourseEventHandler,
+ReceiveEditCourseEventHandler
 
 {
 	@Override
@@ -102,4 +105,13 @@ ReceiveLoginEventHandler
 	
 	@Override
 	public void onReceiveLogin(ReceiveLoginEvent evt) {}
+	
+	@Override
+	public void onReceiveNewCourse(ReceiveNewCourseEvent evt) {}
+	
+	@Override
+	public void onReceiveRemoveCourse(ReceiveRemoveCourseEvent evt) {}
+	
+	@Override
+	public void onReceiveEditCourse(ReceiveEditCourseEvent evt) {}
 }

@@ -8,6 +8,7 @@ public class CourseInfo {
 		private String coursesTitle;
 		private String sectionsName;
 		private Integer frequencyId;
+		private String frequency;
 		
 		public Integer getCourseId() {
 			return courseId;
@@ -25,8 +26,6 @@ public class CourseInfo {
 			this.frequencyId = frequencyId;
 		}
 
-
-		private String frequency;
 
 		// getters and setters
 		public String getTermsName() {
