@@ -1,8 +1,6 @@
 package org.dselent.course_load_scheduler.client.callback;
 
-import org.dselent.course_load_scheduler.client.action.ReceiveNewCourseAction;
 import org.dselent.course_load_scheduler.client.action.ReceiveRemoveCourseAction;
-import org.dselent.course_load_scheduler.client.event.ReceiveNewCourseEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveRemoveCourseEvent;
 import org.dselent.course_load_scheduler.client.translator.impl.RemoveCourseActionTranslatorImpl;
 import org.dselent.course_load_scheduler.client.utils.JSONHelper;
@@ -49,6 +47,5 @@ public class SubmitRemoveCourseCallback extends Callback<JSONValue>{
 	//		InvalidLoginEvent ile = new InvalidLoginEvent(ila);
 	//		eventBus.fireEvent(ile);
 	}
-{
 
 }
