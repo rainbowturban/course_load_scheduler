@@ -4,7 +4,9 @@ import org.dselent.course_load_scheduler.client.action.ReceiveNewCourseAction;
 import org.dselent.course_load_scheduler.client.action.SubmitEditCourseAction;
 import org.dselent.course_load_scheduler.client.action.SubmitNewCourseAction;
 import org.dselent.course_load_scheduler.client.action.SubmitRemoveCourseAction;
+import org.dselent.course_load_scheduler.client.callback.SubmitEditCourseCallback;
 import org.dselent.course_load_scheduler.client.callback.SubmitNewCourseCallback;
+import org.dselent.course_load_scheduler.client.callback.SubmitRemoveCourseCallback;
 import org.dselent.course_load_scheduler.client.event.ReceiveNewCourseEvent;
 import org.dselent.course_load_scheduler.client.event.SubmitEditCourseEvent;
 import org.dselent.course_load_scheduler.client.event.SubmitNewCourseEvent;
@@ -44,11 +46,11 @@ public class CourseServiceImpl extends BaseServiceImpl implements CourseService{
 	public void onSubmitNewCourse(SubmitNewCourseEvent evt)
 	{
 		SubmitNewCourseAction action = evt.getAction();
-		NewCourseActionTranslatorImpl loginActionTranslator = new NewCourseActionTranslatorImpl();
-		JSONObject json = loginActionTranslator.translateToJson(action);
-		SubmitNewCourseCallback loginCallback = new SubmitNewCourseCallback(eventBus);
+		NewCourseActionTranslatorImpl newActionTranslator = new NewCourseActionTranslatorImpl();
+		JSONObject json = newActionTranslator.translateToJson(action);
+		SubmitNewCourseCallback newCallback = new SubmitNewCourseCallback(eventBus);
 		
-		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.LOGIN, loginCallback, json);
+		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.LOGIN, newCallback, json);
 		request.send();
 	}
 	
@@ -56,24 +58,24 @@ public class CourseServiceImpl extends BaseServiceImpl implements CourseService{
 	public void onSubmitEditCourse(SubmitEditCourseEvent evt)
 	{
 		SubmitEditCourseAction action = evt.getAction();
-		EditCourseActionTranslatorImpl loginActionTranslator = new EditCourseActionTranslatorImpl();
-		JSONObject json = loginActionTranslator.translateToJson(action);
+		EditCourseActionTranslatorImpl editActionTranslator = new EditCourseActionTranslatorImpl();
+		JSONObject json = editActionTranslator.translateToJson(action);
 		SubmitEditCourseCallback editCallback = new SubmitEditCourseCallback(eventBus);
-//		
-//		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.LOGIN, loginCallback, json);
-//		request.send();
+		
+		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.LOGIN, editCallback, json);
+		request.send();
 	}
 	
 	@Override
 	public void onSubmitRemoveCourse(SubmitRemoveCourseEvent evt)
 	{
 		SubmitRemoveCourseAction action = evt.getAction();
-		RemoveCourseActionTranslatorImpl loginActionTranslator = new RemoveCourseActionTranslatorImpl();
-		JSONObject json = loginActionTranslator.translateToJson(action);
-//		SubmitRemoveCourseCallback removeCallback = new SubmitRemoveCourseCallback(eventBus);
-//		
-//		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.LOGIN, loginCallback, json);
-//		request.send();
+		RemoveCourseActionTranslatorImpl remActionTranslator = new RemoveCourseActionTranslatorImpl();
+		JSONObject json = remActionTranslator.translateToJson(action);
+		SubmitRemoveCourseCallback removeCallback = new SubmitRemoveCourseCallback(eventBus);
+		
+		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.LOGIN, removeCallback, json);
+		request.send();
 	}
 	
 	
