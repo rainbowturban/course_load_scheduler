@@ -2,23 +2,15 @@ package org.dselent.course_load_scheduler.client.event;
 
 import org.dselent.course_load_scheduler.client.action.SendCreateAccountAction;
 import org.dselent.course_load_scheduler.client.event_handler.SendCreateAccountEventHandler;
+import com.google.gwt.user.client.ui.HasWidgets;
 
-import com.google.gwt.event.shared.GwtEvent;
-
-public class SendCreateAccountEvent extends GwtEvent<SendCreateAccountEventHandler>
+public class SendCreateAccountEvent extends DisplayEvent<SendCreateAccountAction, SendCreateAccountEventHandler>
 {
 	public static Type<SendCreateAccountEventHandler> TYPE = new Type<SendCreateAccountEventHandler>();
 
-	private SendCreateAccountAction action;
-
-	public SendCreateAccountEvent(SendCreateAccountAction scaa)
+	public SendCreateAccountEvent(SendCreateAccountAction action, HasWidgets container)
 	{
-		this.action = scaa;
-	}
-
-	public SendCreateAccountAction getAction()
-	{
-		return action;
+		super(action, container);
 	}
 	
 	@Override

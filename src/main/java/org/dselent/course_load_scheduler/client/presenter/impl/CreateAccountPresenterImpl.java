@@ -53,11 +53,11 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 
 		registration = eventBus.addHandler(LoadCreateAccountEvent.TYPE, this);
 		eventBusRegistration.put(LoadCreateAccountEvent.TYPE, registration);
-		
+
 		registration = eventBus.addHandler(InvalidAccountCreationEvent.TYPE, this);
 		eventBusRegistration.put(InvalidAccountCreationEvent.TYPE, registration);
 	}
-	
+
 	@Override
 	public void onLoadCreateAccount(LoadCreateAccountEvent evt) {
 		this.go(parentPresenter.getView().getViewRootPanel());
@@ -78,17 +78,17 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 	public IndexPresenter getParentPresenter() {
 		return parentPresenter;
 	}
-	
+
 	@Override
 	public void loadLoginPage() {
 		eventBus.fireEvent(new LoadLoginPageEvent(new LoadLoginPageAction()));
 	}
-	
+
 	@Override
 	public void setParentPresenter(IndexPresenter parentPresenter) {
 		this.parentPresenter = parentPresenter;
 	}
-	
+
 	public void populateComboBox() {
 		ListBox box = view.getFacultyTypeComboBox();
 		box.clear();
@@ -99,10 +99,10 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 
 		while(iterator.hasNext()) {
 			FacultyType type = iterator.next();
-			
+
 			box.addItem(type.getType(), Integer.toString(type.getId()));
 		}
-		
+
 		view.setFacultyTypeComboBox(box);
 	}
 
@@ -113,12 +113,12 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 		FacultyType user = new FacultyType();
 		user.setId(0);
 		user.setType("ADMIN");
-		
+
 		List<FacultyType> ret = new ArrayList<FacultyType>();
 		ret.add(admin);
 		ret.add(user);
 		return ret;
-		
+
 	}
 
 	@Override
@@ -245,7 +245,7 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 	private void sendCreateAccount(String firstName, String lastName, String facultyType, String email, String userName, String password) {
 
 		SendCreateAccountAction scaa = new SendCreateAccountAction(firstName, lastName, facultyType, email, userName, password);
-		SendCreateAccountEvent scae = new SendCreateAccountEvent(scaa);
+		SendCreateAccountEvent scae = new SendCreateAccountEvent(scaa, view.getViewRootPanel());
 		eventBus.fireEvent(scae);
 	}
 }

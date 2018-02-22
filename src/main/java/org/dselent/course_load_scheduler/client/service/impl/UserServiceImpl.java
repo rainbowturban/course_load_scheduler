@@ -15,9 +15,9 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService
 {
 	public UserServiceImpl()
 	{
-		
+
 	}
-	
+
 	@Override
 	public void init()
 	{
@@ -28,11 +28,11 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService
 	public void bind()
 	{
 		HandlerRegistration registration;
-		
+
 		registration = eventBus.addHandler(SendLoginEvent.TYPE, this);
 		eventBusRegistration.put(SendLoginEvent.TYPE, registration);
 	}
-	
+
 	@Override
 	public void onSendLogin(SendLoginEvent evt)
 	{
@@ -40,7 +40,7 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService
 		LoginActionTranslatorImpl loginActionTranslator = new LoginActionTranslatorImpl();
 		JSONObject json = loginActionTranslator.translateToJson(action);
 		SendLoginCallback loginCallback = new SendLoginCallback(eventBus, evt.getContainer());
-		
+
 		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.LOGIN, loginCallback, json);
 		request.send();
 	}

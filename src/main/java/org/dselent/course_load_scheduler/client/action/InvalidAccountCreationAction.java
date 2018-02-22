@@ -24,6 +24,11 @@ public class InvalidAccountCreationAction extends Action
 		this.reasonList = reasonList;
 	}
 
+	public InvalidAccountCreationAction(String reason)
+	{
+			reasonList = new ArrayList<>();
+			reasonList.add(reason);
+	}
 	public boolean addReasons(List<String> reasonList)
 	{
 		return reasonList.addAll(reasonList);

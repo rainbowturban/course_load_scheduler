@@ -12,8 +12,10 @@ import org.dselent.course_load_scheduler.client.event.InvalidLoginEvent;
 import org.dselent.course_load_scheduler.client.event.LoadCreateAccountEvent;
 import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
 import org.dselent.course_load_scheduler.client.event.LoadLoginPageEvent;
+import org.dselent.course_load_scheduler.client.event.ReceiveCreateAccountEvent;
 import org.dselent.course_load_scheduler.client.event.SendLoginEvent;
 import org.dselent.course_load_scheduler.client.exceptions.EmptyStringException;
+import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.presenter.LoginPagePresenter;
 import org.dselent.course_load_scheduler.client.view.LoginPageView;
@@ -54,6 +56,10 @@ public class LoginPagePresenterImpl extends BasePresenterImpl implements LoginPa
 
 		registration = eventBus.addHandler(LoadLoginPageEvent.TYPE, this);
 		eventBusRegistration.put(LoadLoginPageEvent.TYPE, registration);
+		
+		//Capture event when a user creates their account, to take them to the login screen
+		registration = eventBus.addHandler(ReceiveCreateAccountEvent.TYPE, this);
+		eventBusRegistration.put(ReceiveCreateAccountEvent.TYPE, registration);
 
 		registration = eventBus.addHandler(InvalidLoginEvent.TYPE, this);
 		eventBusRegistration.put(InvalidLoginEvent.TYPE, registration);
@@ -142,6 +148,19 @@ public class LoginPagePresenterImpl extends BasePresenterImpl implements LoginPa
 		}
 	}
 
+	@Override
+	public void onReceiveCreateAccount(ReceiveCreateAccountEvent evt)
+	{
+		HasWidgets container = evt.getContainer();
+		
+		// show myself
+		go(container);
+		
+		// use injector to get to index presenter
+		// hide loading screen
+		Injector.INSTANCE.getIndexPresenter().hideLoadScreen();
+	}
+	
 	private void sendLogin(String userName, String password)
 	{
 		HasWidgets container = parentPresenter.getView().getViewRootPanel();

@@ -20,18 +20,12 @@ public class LoadLoginPageEvent extends GwtEvent<LoadLoginPageEventHandler>{
 		return action;
 	}
 
-	/*
-	 * 
-	 */
 	@Override
 	public Type<LoadLoginPageEventHandler> getAssociatedType()
 	{
 		return TYPE;
 	}
 
-	/*
-	 * 
-	 */
 	@Override
 	protected void dispatch(LoadLoginPageEventHandler handler)
 	{

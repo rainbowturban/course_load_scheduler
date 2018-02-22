@@ -88,6 +88,11 @@ public class CreateAccountViewImpl extends BaseViewImpl<CreateAccountPresenter> 
 		return this;
 	}
 
+	@UiHandler("submitButton")
+	void onSubmitButtonClick(ClickEvent event) {
+		presenter.createAccount();
+	}
+
 	public void setConfirmPasswordTextBox(PasswordTextBox confirmPasswordTextBox) {
 		this.confirmPasswordTextBox = confirmPasswordTextBox;
 	}
@@ -128,11 +133,6 @@ public class CreateAccountViewImpl extends BaseViewImpl<CreateAccountPresenter> 
 	@Override
 	public void showErrorMessages(String errorMessages) {
 		Window.alert(errorMessages);
-	}
-
-	@UiHandler("submitButton")
-	void onSubmitButtonClick(ClickEvent event) {
-		presenter.createAccount();
 	}
 
 }
