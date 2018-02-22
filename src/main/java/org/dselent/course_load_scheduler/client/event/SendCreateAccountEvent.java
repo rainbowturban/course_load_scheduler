@@ -20,19 +20,13 @@ public class SendCreateAccountEvent extends GwtEvent<SendCreateAccountEventHandl
 	{
 		return action;
 	}
-
-	/*
-	 * 
-	 */
+	
 	@Override
 	public Type<SendCreateAccountEventHandler> getAssociatedType()
 	{
 		return TYPE;
 	}
 
-	/*
-	 * 
-	 */
 	@Override
 	protected void dispatch(SendCreateAccountEventHandler handler)
 	{
