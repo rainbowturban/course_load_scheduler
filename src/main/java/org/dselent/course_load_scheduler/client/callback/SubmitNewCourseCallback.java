@@ -46,7 +46,5 @@ public class SubmitNewCourseCallback extends Callback<JSONValue>{
 	//		InvalidLoginAction ila = new InvalidLoginAction(sb.toString());
 	//		InvalidLoginEvent ile = new InvalidLoginEvent(ila);
 	//		eventBus.fireEvent(ile);
-	}
-
-	
+	}	
 }
