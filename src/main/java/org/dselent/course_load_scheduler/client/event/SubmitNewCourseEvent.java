@@ -6,35 +6,35 @@ import org.dselent.course_load_scheduler.client.event_handler.SubmitNewCourseEve
 import com.google.gwt.event.shared.GwtEvent;
 
 public class SubmitNewCourseEvent extends GwtEvent<SubmitNewCourseEventHandler>{
-		public static Type<SubmitNewCourseEventHandler> TYPE = new Type<SubmitNewCourseEventHandler>();
-		
-		private SubmitNewCourseAction action;
-		
-		public SubmitNewCourseEvent(SubmitNewCourseAction action)
-		{
-			this.action = action;
-		}
-		
-		public SubmitNewCourseAction getAction()
-		{
-			return action;
-		}
-		
-		/*
-		 * 
-		 */
-		@Override
-		public Type<SubmitNewCourseEventHandler> getAssociatedType()
-		{
-			return TYPE;
-		}
+	public static Type<SubmitNewCourseEventHandler> TYPE = new Type<SubmitNewCourseEventHandler>();
 
-		/*
-		 * 
-		 */
-		@Override
-		protected void dispatch(SubmitNewCourseEventHandler handler)
-		{
-			handler.onSubmitNewCourse(this);
-		}
+	private SubmitNewCourseAction action;
+
+	public SubmitNewCourseEvent(SubmitNewCourseAction action)
+	{
+		this.action = action;
+	}
+
+	public SubmitNewCourseAction getAction()
+	{
+		return action;
+	}
+
+	/*
+	 * 
+	 */
+	 @Override
+	 public Type<SubmitNewCourseEventHandler> getAssociatedType()
+	 {
+		 return TYPE;
+	 }
+
+	 /*
+	  * 
+	  */
+	 @Override
+	 protected void dispatch(SubmitNewCourseEventHandler handler)
+	 {
+		 handler.onSubmitNewCourse(this);
+	 }
 }
