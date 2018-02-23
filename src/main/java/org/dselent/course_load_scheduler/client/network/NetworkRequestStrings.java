@@ -6,6 +6,9 @@ public final class NetworkRequestStrings
 	public static final String BASE_REQUEST = "course_load_scheduler/";
 	public static String LOGIN = "user/login";
 	public static String CREATE_ACCOUNT = "user/create";
+	public static String NEW_COURSE = "course/create";
+	public static String EDIT_COURSE = "course/edit";
+	public static String REMOVE_COURSE = "course/remove";
 	
 	private NetworkRequestStrings() {};
 }

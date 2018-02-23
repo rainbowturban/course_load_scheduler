@@ -1,13 +1,11 @@
 package org.dselent.course_load_scheduler.client.service.impl;
 
-import org.dselent.course_load_scheduler.client.action.ReceiveNewCourseAction;
 import org.dselent.course_load_scheduler.client.action.SubmitEditCourseAction;
 import org.dselent.course_load_scheduler.client.action.SubmitNewCourseAction;
 import org.dselent.course_load_scheduler.client.action.SubmitRemoveCourseAction;
 import org.dselent.course_load_scheduler.client.callback.SubmitEditCourseCallback;
 import org.dselent.course_load_scheduler.client.callback.SubmitNewCourseCallback;
 import org.dselent.course_load_scheduler.client.callback.SubmitRemoveCourseCallback;
-import org.dselent.course_load_scheduler.client.event.ReceiveNewCourseEvent;
 import org.dselent.course_load_scheduler.client.event.SubmitEditCourseEvent;
 import org.dselent.course_load_scheduler.client.event.SubmitNewCourseEvent;
 import org.dselent.course_load_scheduler.client.event.SubmitRemoveCourseEvent;
@@ -50,7 +48,7 @@ public class CourseServiceImpl extends BaseServiceImpl implements CourseService{
 		JSONObject json = newActionTranslator.translateToJson(action);
 		SubmitNewCourseCallback newCallback = new SubmitNewCourseCallback(eventBus);
 		
-		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.LOGIN, newCallback, json);
+		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.NEW_COURSE, newCallback, json);
 		request.send();
 	}
 	
@@ -62,7 +60,7 @@ public class CourseServiceImpl extends BaseServiceImpl implements CourseService{
 		JSONObject json = editActionTranslator.translateToJson(action);
 		SubmitEditCourseCallback editCallback = new SubmitEditCourseCallback(eventBus);
 		
-		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.LOGIN, editCallback, json);
+		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.EDIT_COURSE, editCallback, json);
 		request.send();
 	}
 	
@@ -74,7 +72,7 @@ public class CourseServiceImpl extends BaseServiceImpl implements CourseService{
 		JSONObject json = remActionTranslator.translateToJson(action);
 		SubmitRemoveCourseCallback removeCallback = new SubmitRemoveCourseCallback(eventBus);
 		
-		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.LOGIN, removeCallback, json);
+		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.REMOVE_COURSE, removeCallback, json);
 		request.send();
 	}
 	
