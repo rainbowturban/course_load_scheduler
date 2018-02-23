@@ -52,13 +52,13 @@ public class LoginActionTranslatorImpl implements ActionTranslator<SendLoginActi
 
 		User user = new User();
 		user.setId(id);
-		user.setUserName(userName);
-		user.setFirstName(firstName);
-		user.setLastName(lastName);
-		user.setEmail(email);
-		user.setUserStateId(userStateId);
-		user.setCreatedAt(new Date(createdAt));
-		user.setUpdatedAt(new Date(updatedAt));
+//		user.setUserName(userName);
+//		user.setFirstName(firstName);
+//		user.setLastName(lastName);
+//		user.setEmail(email);
+//		user.setUserStateId(userStateId);
+//		user.setCreatedAt(new Date(createdAt));
+//		user.setUpdatedAt(new Date(updatedAt));
 
 		// possibly use builder pattern if it is a lot of data
 		ReceiveLoginAction action = new ReceiveLoginAction(user);	
