@@ -1,26 +1,26 @@
 package org.dselent.course_load_scheduler.client.translator.impl;
 
 import org.dselent.course_load_scheduler.client.action.ReceiveEditCourseAction;
-import org.dselent.course_load_scheduler.client.action.SubmitEditCourseAction;
+import org.dselent.course_load_scheduler.client.action.SendEditCourseAction;
 import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.receive.jsonkeys.ReceiveEditCourseKeys;
-import org.dselent.course_load_scheduler.client.send.jsonkeys.SubmitEditCourseKeys;
+import org.dselent.course_load_scheduler.client.send.jsonkeys.SendEditCourseKeys;
 import org.dselent.course_load_scheduler.client.translator.ActionTranslator;
 import org.dselent.course_load_scheduler.client.utils.JSONHelper;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 
-public class EditCourseActionTranslatorImpl implements ActionTranslator<SubmitEditCourseAction, ReceiveEditCourseAction>{
+public class EditCourseActionTranslatorImpl implements ActionTranslator<SendEditCourseAction, ReceiveEditCourseAction>{
 	@Override
-	public JSONObject translateToJson(SubmitEditCourseAction action)
+	public JSONObject translateToJson(SendEditCourseAction action)
 	{
 		JSONObject jsonObject = new JSONObject();
 
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SubmitEditCourseKeys.COURSE_ID), action.getCourseInfo().getId());
-		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SubmitEditCourseKeys.COURSE_NUMBER), action.getCourseInfo().getNumber());
-		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SubmitEditCourseKeys.COURSE_NAME), action.getCourseInfo().getTitle());
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SubmitEditCourseKeys.COURSE_FREQUENCY_ID), action.getCourseInfo().getFrequencyID());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditCourseKeys.COURSE_ID), action.getCourseInfo().getId());
+		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendEditCourseKeys.COURSE_NUMBER), action.getCourseInfo().getNumber());
+		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendEditCourseKeys.COURSE_NAME), action.getCourseInfo().getTitle());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditCourseKeys.COURSE_FREQUENCY_ID), action.getCourseInfo().getFrequencyID());
 		
 		return jsonObject;
 	}

@@ -1,17 +1,17 @@
 package org.dselent.course_load_scheduler.client.service.impl;
 
 import org.dselent.course_load_scheduler.client.action.SendGetCourseListAction;
-import org.dselent.course_load_scheduler.client.action.SubmitEditCourseAction;
-import org.dselent.course_load_scheduler.client.action.SubmitNewCourseAction;
-import org.dselent.course_load_scheduler.client.action.SubmitRemoveCourseAction;
+import org.dselent.course_load_scheduler.client.action.SendEditCourseAction;
+import org.dselent.course_load_scheduler.client.action.SendNewCourseAction;
+import org.dselent.course_load_scheduler.client.action.SendRemoveCourseAction;
 import org.dselent.course_load_scheduler.client.callback.SendGetCourseListCallback;
-import org.dselent.course_load_scheduler.client.callback.SubmitEditCourseCallback;
-import org.dselent.course_load_scheduler.client.callback.SubmitNewCourseCallback;
-import org.dselent.course_load_scheduler.client.callback.SubmitRemoveCourseCallback;
+import org.dselent.course_load_scheduler.client.callback.SendEditCourseCallback;
+import org.dselent.course_load_scheduler.client.callback.SendNewCourseCallback;
+import org.dselent.course_load_scheduler.client.callback.SendRemoveCourseCallback;
 import org.dselent.course_load_scheduler.client.event.SendGetCourseListEvent;
-import org.dselent.course_load_scheduler.client.event.SubmitEditCourseEvent;
-import org.dselent.course_load_scheduler.client.event.SubmitNewCourseEvent;
-import org.dselent.course_load_scheduler.client.event.SubmitRemoveCourseEvent;
+import org.dselent.course_load_scheduler.client.event.SendEditCourseEvent;
+import org.dselent.course_load_scheduler.client.event.SendNewCourseEvent;
+import org.dselent.course_load_scheduler.client.event.SendRemoveCourseEvent;
 import org.dselent.course_load_scheduler.client.network.NetworkRequest;
 import org.dselent.course_load_scheduler.client.network.NetworkRequestStrings;
 import org.dselent.course_load_scheduler.client.service.CourseService;
@@ -40,46 +40,46 @@ public class CourseServiceImpl extends BaseServiceImpl implements CourseService{
 	{
 		HandlerRegistration registration;
 		
-		registration = eventBus.addHandler(SubmitNewCourseEvent.TYPE, this);
-		eventBusRegistration.put(SubmitNewCourseEvent.TYPE, registration);
+		registration = eventBus.addHandler(SendNewCourseEvent.TYPE, this);
+		eventBusRegistration.put(SendNewCourseEvent.TYPE, registration);
 		
-		eventBusRegistration.put(SubmitEditCourseEvent.TYPE, eventBus.addHandler(SubmitEditCourseEvent.TYPE, this));
-		eventBusRegistration.put(SubmitRemoveCourseEvent.TYPE, eventBus.addHandler(SubmitRemoveCourseEvent.TYPE, this));
+		eventBusRegistration.put(SendEditCourseEvent.TYPE, eventBus.addHandler(SendEditCourseEvent.TYPE, this));
+		eventBusRegistration.put(SendRemoveCourseEvent.TYPE, eventBus.addHandler(SendRemoveCourseEvent.TYPE, this));
 		eventBusRegistration.put(SendGetCourseListEvent.TYPE, eventBus.addHandler(SendGetCourseListEvent.TYPE, this));
 		
 	}
 	
 	@Override
-	public void onSubmitNewCourse(SubmitNewCourseEvent evt)
+	public void onSendNewCourse(SendNewCourseEvent evt)
 	{
-		SubmitNewCourseAction action = evt.getAction();
+		SendNewCourseAction action = evt.getAction();
 		NewCourseActionTranslatorImpl newActionTranslator = new NewCourseActionTranslatorImpl();
 		JSONObject json = newActionTranslator.translateToJson(action);
-		SubmitNewCourseCallback newCallback = new SubmitNewCourseCallback(eventBus);
+		SendNewCourseCallback newCallback = new SendNewCourseCallback(eventBus);
 		
 		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.NEW_COURSE, newCallback, json);
 		request.send();
 	}
 	
 	@Override
-	public void onSubmitEditCourse(SubmitEditCourseEvent evt)
+	public void onSendEditCourse(SendEditCourseEvent evt)
 	{
-		SubmitEditCourseAction action = evt.getAction();
+		SendEditCourseAction action = evt.getAction();
 		EditCourseActionTranslatorImpl editActionTranslator = new EditCourseActionTranslatorImpl();
 		JSONObject json = editActionTranslator.translateToJson(action);
-		SubmitEditCourseCallback editCallback = new SubmitEditCourseCallback(eventBus);
+		SendEditCourseCallback editCallback = new SendEditCourseCallback(eventBus);
 		
 		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.EDIT_COURSE, editCallback, json);
 		request.send();
 	}
 	
 	@Override
-	public void onSubmitRemoveCourse(SubmitRemoveCourseEvent evt)
+	public void onSendRemoveCourse(SendRemoveCourseEvent evt)
 	{
-		SubmitRemoveCourseAction action = evt.getAction();
+		SendRemoveCourseAction action = evt.getAction();
 		RemoveCourseActionTranslatorImpl remActionTranslator = new RemoveCourseActionTranslatorImpl();
 		JSONObject json = remActionTranslator.translateToJson(action);
-		SubmitRemoveCourseCallback removeCallback = new SubmitRemoveCourseCallback(eventBus);
+		SendRemoveCourseCallback removeCallback = new SendRemoveCourseCallback(eventBus);
 		
 		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.REMOVE_COURSE, removeCallback, json);
 		request.send();

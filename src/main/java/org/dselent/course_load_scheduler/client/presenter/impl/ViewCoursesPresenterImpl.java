@@ -186,7 +186,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 			
 			int i = ci.next().getCourseId();
 			
-			eventBus.fireEvent(new SubmitRemoveCourseEvent(new SubmitRemoveCourseAction(i)));
+			eventBus.fireEvent(new SendRemoveCourseEvent(new SendRemoveCourseAction(i)));
 			
 			boolean success = true;//this will be the return value from the request
 

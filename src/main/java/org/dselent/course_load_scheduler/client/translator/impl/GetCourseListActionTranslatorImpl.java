@@ -40,7 +40,7 @@ public class GetCourseListActionTranslatorImpl implements ActionTranslator<SendG
 		List<CourseInfo> courseList = new ArrayList<CourseInfo>();
 		
 		for(int i = 0; i < jsonObject.isArray().size(); i++) {
-			JSONObject userObject = jsonObject.isArray().get(0).isObject();
+			JSONObject userObject = jsonObject.isArray().get(i).isObject();
 			CourseInfo course = new CourseInfo();
 
 			//extract the information for the object to return

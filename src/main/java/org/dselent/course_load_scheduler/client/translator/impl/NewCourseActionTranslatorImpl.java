@@ -1,25 +1,25 @@
 package org.dselent.course_load_scheduler.client.translator.impl;
 
 import org.dselent.course_load_scheduler.client.action.ReceiveNewCourseAction;
-import org.dselent.course_load_scheduler.client.action.SubmitNewCourseAction;
+import org.dselent.course_load_scheduler.client.action.SendNewCourseAction;
 import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.receive.jsonkeys.ReceiveNewCourseKeys;
-import org.dselent.course_load_scheduler.client.send.jsonkeys.SubmitNewCourseKeys;
+import org.dselent.course_load_scheduler.client.send.jsonkeys.SendNewCourseKeys;
 import org.dselent.course_load_scheduler.client.translator.ActionTranslator;
 import org.dselent.course_load_scheduler.client.utils.JSONHelper;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 
-public class NewCourseActionTranslatorImpl implements ActionTranslator<SubmitNewCourseAction, ReceiveNewCourseAction>{
+public class NewCourseActionTranslatorImpl implements ActionTranslator<SendNewCourseAction, ReceiveNewCourseAction>{
 	@Override
-	public JSONObject translateToJson(SubmitNewCourseAction action)
+	public JSONObject translateToJson(SendNewCourseAction action)
 	{
 		JSONObject jsonObject = new JSONObject();
 		
-		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SubmitNewCourseKeys.NUMBER), action.getCourseInfo().getNumber());
-		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SubmitNewCourseKeys.TITLE), action.getCourseInfo().getTitle());
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SubmitNewCourseKeys.FREQUENCY_ID), action.getCourseInfo().getFrequencyID());
+		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendNewCourseKeys.NUMBER), action.getCourseInfo().getNumber());
+		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendNewCourseKeys.TITLE), action.getCourseInfo().getTitle());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendNewCourseKeys.FREQUENCY_ID), action.getCourseInfo().getFrequencyID());
 		
 		return jsonObject;
 	}
