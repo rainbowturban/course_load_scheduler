@@ -11,7 +11,7 @@
             <g:Cell horizontalAlignment="ALIGN_CENTER">
             		<g:HorizontalPanel>
             			<g:SimplePanel>
-            				<g:Image url="WEB-INF/classes/org/dselent/course_load_scheduler/client/view/images/WPI_Inst_Prim_FulClr_med.png" height="35px" width="123px"/>
+            				<g:Image url="https://www.wpi.edu/sites/default/files/inline-image/Offices/Marketing-Communications/WPI_Inst_Prim_FulClr_PREVIEW.png" height="35px" width="123px"/>
             			</g:SimplePanel>
                 <g:Button text="Home" styleName="navButton" ui:field="homeButton" height="37px" width="77px"></g:Button>
                 <g:Button text="Schedule" styleName="navButton" ui:field="scheduleButton" height="38px" width="73px"></g:Button>
