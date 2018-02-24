@@ -9,6 +9,8 @@ import org.dselent.course_load_scheduler.client.view.ViewCoursesView;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.inject.Inject;
@@ -16,6 +18,7 @@ import java.util.List;
 
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.StackPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 
 
@@ -40,7 +43,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	
 	@Override
 	public void onLoadViewCourses(LoadViewCoursesEvent evt) {
-		fillCourses();
+		retrieveCourses();
 		//specifies for both cases, since the page brings over what it had been working on
 		adminUser = evt.getAction().getAdminUser();
 		if(!adminUser) {
@@ -58,6 +61,15 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		this.go(parentPresenter.getView().getViewRootPanel());
 	}
 	
+	@Override
+	public void onReceiveGetCourseList(ReceiveGetCourseListEvent evt) {
+		GWT.log("In ReceiveGetCourseList event handler--fired and received. About to fill courses. CourseList = "+evt.getAction().getCourseList());
+		courses = evt.getAction().getCourseList();
+		fillCourses();
+		
+		parentPresenter.hideLoadScreen();
+	}
+	
 
 	@Override
 	public void init()
@@ -73,6 +85,9 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		//events for when this page is loaded
 		registration = eventBus.addHandler(LoadViewCoursesEvent.TYPE, this);
 		eventBusRegistration.put(LoadViewCoursesEvent.TYPE, registration);
+		
+		registration = eventBus.addHandler(ReceiveGetCourseListEvent.TYPE, this);
+		eventBusRegistration.put(ReceiveGetCourseListEvent.TYPE, registration);
 	}
 
 	@Override
@@ -104,8 +119,12 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	@Override
 	public void retrieveCourses() {
 		//fires event to get courses
-		//eventBus.fireEvent(new GetCoursesEvent(new GetCoursesAction()));
-		
+		SendGetCourseListEvent evt = new SendGetCourseListEvent(new SendGetCourseListAction());
+		eventBus.fireEvent(evt);
+		System.out.println("Fired Event!");
+		GWT.log("Fired Event!");
+		parentPresenter.showLoadScreen();
+		/*
 		//uses example values instead of response from service
 		CourseInfo course1 = new CourseInfo();
 		course1.setCoursesNumber("CS3733");
@@ -132,13 +151,13 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 
 		courses.add(course1);
 		courses.add(course2);
-		courses.add(course3);
+		courses.add(course3);*/
 	}
 
 	//injects the code for the variable element of the page into
 	@Override
 	public void fillCourses() {
-		retrieveCourses();
+		//retrieveCourses();
 		StackPanel panel = view.getCourseList();
 		panel.clear();
 
@@ -148,8 +167,14 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 			CourseInfo courseInfo = iterator.next();
 
 			//create label and add it to the course list
-			Label label = new Label("Required Frequency: " + courseInfo.getFrequency());
-			panel.add(label, courseInfo.getCoursesNumber() +": "+ courseInfo.getCoursesTitle());
+			VerticalPanel vp = new VerticalPanel();
+			vp.add(new Label("Required Frequency: " + courseInfo.getFrequency()));
+			
+			Label id = new Label("" + courseInfo.getCourseId());
+			//id.setVisible(false);
+			vp.add(id);
+			
+			panel.add(vp, courseInfo.getCoursesNumber() +": "+ courseInfo.getCoursesTitle());
 		}
 	}
 
