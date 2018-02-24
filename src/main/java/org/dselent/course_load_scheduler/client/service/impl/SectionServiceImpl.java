@@ -3,8 +3,6 @@ package org.dselent.course_load_scheduler.client.service.impl;
 import org.dselent.course_load_scheduler.client.event.SubmitRemoveSectionEvent;
 import org.dselent.course_load_scheduler.client.service.SectionService;
 
-import com.google.gwt.event.shared.HandlerRegistration;
-
 public class SectionServiceImpl extends BaseServiceImpl implements SectionService{
 	public SectionServiceImpl(){}
 	
