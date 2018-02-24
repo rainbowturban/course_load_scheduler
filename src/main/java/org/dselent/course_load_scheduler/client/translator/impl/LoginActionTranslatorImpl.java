@@ -1,7 +1,5 @@
 package org.dselent.course_load_scheduler.client.translator.impl;
 
-import java.util.Date;
-
 import org.dselent.course_load_scheduler.client.action.ReceiveLoginAction;
 import org.dselent.course_load_scheduler.client.action.SendLoginAction;
 import org.dselent.course_load_scheduler.client.model.User;
@@ -39,26 +37,16 @@ public class LoginActionTranslatorImpl implements ActionTranslator<SendLoginActi
 		JSONObject userObject = jsonObject.isArray().get(0).isObject();
 
 		Integer id = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveLoginKeys.ID));
-		String userName = JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveLoginKeys.USER_NAME));
-		String firstName = JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveLoginKeys.FIRST_NAME));
-		String lastName = JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveLoginKeys.LAST_NAME));
-		String email = JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveLoginKeys.EMAIL));
-		Integer userStateId = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveLoginKeys.USER_STATE_ID));
-		Long createdAt = JSONHelper.getLongValue(userObject, JSONHelper.convertKeyName(ReceiveLoginKeys.CREATED_AT));
-		Long updatedAt = JSONHelper.getLongValue(userObject, JSONHelper.convertKeyName(ReceiveLoginKeys.UPDATED_AT));
+		Integer accountTypeId = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveLoginKeys.ACCOUNT_TYPE_ID));
+		String password = JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveLoginKeys.PASSWORD));
 
 		// TODO look into time conversion more
 		// put into JSONHelper?
 
 		User user = new User();
 		user.setId(id);
-//		user.setUserName(userName);
-//		user.setFirstName(firstName);
-//		user.setLastName(lastName);
-//		user.setEmail(email);
-//		user.setUserStateId(userStateId);
-//		user.setCreatedAt(new Date(createdAt));
-//		user.setUpdatedAt(new Date(updatedAt));
+		user.setAccountTypeId(accountTypeId);
+		user.setPassword(password);
 
 		// possibly use builder pattern if it is a lot of data
 		ReceiveLoginAction action = new ReceiveLoginAction(user);	

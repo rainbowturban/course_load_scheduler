@@ -6,18 +6,16 @@ public class SendCreateAccountAction extends Action
 	private String lastName;
 	private String facultyType;
 	private String email;
-	private String userName;
 	private String password;
 
 
 
-	public SendCreateAccountAction(String firstName, String lastName, String facultyType, String email, String userName, String password) {
+	public SendCreateAccountAction(String firstName, String lastName, String facultyType, String email, String password) {
 
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.facultyType = facultyType;
 		this.email = email;
-		this.userName = userName;
 		this.password = password;
 	}
 
@@ -35,10 +33,6 @@ public class SendCreateAccountAction extends Action
 
 	public String getEmail() {
 		return email;
-	}
-
-	public String getUserName() {
-		return userName;
 	}
 
 	public String getPassword() {

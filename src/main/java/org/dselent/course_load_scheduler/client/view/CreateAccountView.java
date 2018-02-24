@@ -9,8 +9,6 @@ import com.google.gwt.user.client.ui.TextBox;
 
 public interface CreateAccountView extends BaseView<CreateAccountPresenter> {
 	
-	TextBox getUserNameTextBox();
-	void setUserNameTextBox(TextBox userNameTextBox);
 	TextBox getFirstNameTextBox();
 	void setFirstNameTextBox(TextBox firstNameTextBox);
 	TextBox getLastNameTextBox();

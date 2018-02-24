@@ -109,10 +109,10 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 	private List<FacultyType> retrieveFacultyTypes() {
 		FacultyType admin = new FacultyType();
 		admin.setId(0);
-		admin.setType("ADMIN");
+		admin.setType("user");
 		FacultyType user = new FacultyType();
-		user.setId(0);
-		user.setType("ADMIN");
+		user.setId(1);
+		user.setType("admin");
 
 		List<FacultyType> ret = new ArrayList<FacultyType>();
 		ret.add(admin);
@@ -135,14 +135,12 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 			String email = view.getEmailTextBox().getText();
 			ListBox ftBox = view.getFacultyTypeComboBox();
 			String facultyType = ftBox.getValue(ftBox.getSelectedIndex());
-			String userName = view.getUserNameTextBox().getText();
 			String password = view.getPasswordTextBox().getText();
 			String confirmPassword = view.getConfirmPasswordTextBox().getText();
 
 			boolean validFirstName = true;
 			boolean validLastName = true;
 			boolean validEmail = true;
-			boolean validUserName = true;
 			boolean validPassword = true;
 
 			List<String> invalidReasonList = new ArrayList<>();
@@ -173,14 +171,6 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 
 			try
 			{
-				validateForNullString(userName);
-			}catch(EmptyStringException e){
-				invalidReasonList.add(InvalidAccountCreationStrings.NULL_USER_NAME);
-				validUserName = false;
-			}
-
-			try
-			{
 				validatePassword(password, confirmPassword);
 			} catch(EmptyStringException e) {
 				invalidReasonList.add(InvalidAccountCreationStrings.NULL_PASSWORD);
@@ -196,9 +186,9 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 				validPassword = false;
 			}
 
-			if(validFirstName && validLastName && validEmail && validUserName && validPassword)
+			if(validFirstName && validLastName && validEmail && validPassword)
 			{
-				sendCreateAccount(firstName, lastName, facultyType, email, userName, password);
+				sendCreateAccount(firstName, lastName, facultyType, email, password);
 			}
 			else
 			{
@@ -242,9 +232,9 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 		}		
 	}
 
-	private void sendCreateAccount(String firstName, String lastName, String facultyType, String email, String userName, String password) {
+	private void sendCreateAccount(String firstName, String lastName, String facultyType, String email, String password) {
 
-		SendCreateAccountAction scaa = new SendCreateAccountAction(firstName, lastName, facultyType, email, userName, password);
+		SendCreateAccountAction scaa = new SendCreateAccountAction(firstName, lastName, facultyType, email, password);
 		SendCreateAccountEvent scae = new SendCreateAccountEvent(scaa, view.getViewRootPanel());
 		eventBus.fireEvent(scae);
 	}

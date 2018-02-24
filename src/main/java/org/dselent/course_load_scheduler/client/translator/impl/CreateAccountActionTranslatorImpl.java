@@ -18,8 +18,10 @@ public class CreateAccountActionTranslatorImpl implements ActionTranslator<SendC
 	{
 		JSONObject jsonObject = new JSONObject();
 
-		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendCreateAccountKeys.EMAIL), action.getUserName());
+		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendCreateAccountKeys.EMAIL), action.getEmail());
 		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendCreateAccountKeys.PASSWORD), action.getPassword());
+		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendCreateAccountKeys.ACCOUNT_TYPE), action.getFacultyType());
+
 
 		return jsonObject;
 	}
@@ -37,15 +39,12 @@ public class CreateAccountActionTranslatorImpl implements ActionTranslator<SendC
 		JSONObject userObject = jsonObject.isArray().get(0).isObject();
 
 		//Server only sends email and password back
-		Integer admin = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveCreateAccountKeys.ADMIN));
+		Integer accountTypeId = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveCreateAccountKeys.ACCOUNT_TYPE_ID));
 		Integer id = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveCreateAccountKeys.ID));
 		String password = JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveCreateAccountKeys.PASSWORD));
 
-		// TODO look into time conversion more
-		// put into JSONHelper?
-
 		User user = new User();
-		user.setAdmin(admin);
+		user.setAccountTypeId(accountTypeId);
 		user.setId(id);
 		user.setPassword(password);
 

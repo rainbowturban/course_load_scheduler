@@ -4,7 +4,7 @@ public class User extends Model
 {
 
 	private Integer id;
-	private Integer admin;
+	private Integer accountTypeId;
 	private String password;
 	//private String passwordSalt;
 
@@ -18,12 +18,12 @@ public class User extends Model
 		this.id = id;
 	}
 
-	public Integer getAdmin() {
-		return admin;
+	public Integer getAccountTypeId() {
+		return accountTypeId;
 	}
 
-	public void setAdmin(Integer admin) {
-		this.admin = admin;
+	public void setAccountTypeId(Integer accountTypeId) {
+		this.accountTypeId = accountTypeId;
 	}
 
 	public String getPassword() {
@@ -38,7 +38,7 @@ public class User extends Model
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((admin == null) ? 0 : admin.hashCode());
+		result = prime * result + ((accountTypeId == null) ? 0 : accountTypeId.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		return result;
@@ -56,11 +56,11 @@ public class User extends Model
 			return false;
 		}
 		User other = (User) obj;
-		if (admin == null) {
-			if (other.admin != null) {
+		if (accountTypeId == null) {
+			if (other.accountTypeId != null) {
 				return false;
 			}
-		} else if (!admin.equals(other.admin)) {
+		} else if (!accountTypeId.equals(other.accountTypeId)) {
 			return false;
 		}
 		if (id == null) {
@@ -85,8 +85,8 @@ public class User extends Model
 		StringBuilder builder = new StringBuilder();
 		builder.append("User [id=");
 		builder.append(id);
-		builder.append(", admin=");
-		builder.append(admin);
+		builder.append(", accountTypeId=");
+		builder.append(accountTypeId);
 		builder.append(", password=");
 		builder.append(password);
 		builder.append("]");

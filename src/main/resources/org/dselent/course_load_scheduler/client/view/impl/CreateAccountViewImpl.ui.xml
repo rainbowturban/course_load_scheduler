@@ -32,8 +32,6 @@
 		<g:ListBox ui:field="facultyTypeComboBox" width="356px" />
 		<g:Label text="Email:" ui:field="emailLabel" />
 		<g:TextBox ui:field="emailTextBox" width="356px" />
-		<g:Label text="Username:" ui:field="userNameLabel"/>
-		<g:TextBox width="356px" ui:field="userNameTextBox"/>
 		<g:HorizontalPanel>
 			<g:VerticalPanel>
 				<g:Label text="Password:" ui:field="passwordLabel" />

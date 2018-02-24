@@ -38,9 +38,6 @@ public class CreateAccountViewImpl extends BaseViewImpl<CreateAccountPresenter> 
 	@UiField Label passwordLabel;
 	@UiField PasswordTextBox passwordTextBox;
 	@UiField Button submitButton;
-	@UiField Label userNameLabel;
-
-	@UiField TextBox userNameTextBox;
 
 	public CreateAccountViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -72,10 +69,6 @@ public class CreateAccountViewImpl extends BaseViewImpl<CreateAccountPresenter> 
 
 	public Button getSubmitButton() {
 		return submitButton;
-	}
-
-	public TextBox getUserNameTextBox() {
-		return userNameTextBox;
 	}
 
 	@Override
@@ -124,10 +117,6 @@ public class CreateAccountViewImpl extends BaseViewImpl<CreateAccountPresenter> 
 
 	public void setSubmitButton(Button submitButton) {
 		this.submitButton = submitButton;
-	}
-
-	public void setUserNameTextBox(TextBox userNameTextBox) {
-		this.userNameTextBox = userNameTextBox;
 	}
 
 	@Override
