@@ -12,6 +12,7 @@ public final class NetworkRequestStrings
 	public static String NEW_SECTION = "section/add";
 	public static String REMOVE_SECTION = "section/remove";
 	public static String EDIT_SECTION = "section/edit";
-	
+	public static String GET_COURSE_LIST = "course/view/all";
+
 	private NetworkRequestStrings() {};
 }

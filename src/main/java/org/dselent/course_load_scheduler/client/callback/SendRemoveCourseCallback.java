@@ -1,17 +1,17 @@
 package org.dselent.course_load_scheduler.client.callback;
 
-import org.dselent.course_load_scheduler.client.action.ReceiveEditCourseAction;
-import org.dselent.course_load_scheduler.client.event.ReceiveEditCourseEvent;
-import org.dselent.course_load_scheduler.client.translator.impl.EditCourseActionTranslatorImpl;
+import org.dselent.course_load_scheduler.client.action.ReceiveRemoveCourseAction;
+import org.dselent.course_load_scheduler.client.event.ReceiveRemoveCourseEvent;
+import org.dselent.course_load_scheduler.client.translator.impl.RemoveCourseActionTranslatorImpl;
 import org.dselent.course_load_scheduler.client.utils.JSONHelper;
 
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 
-public class SubmitEditCourseCallback extends Callback<JSONValue>{
+public class SendRemoveCourseCallback extends Callback<JSONValue>{
 	
-	public SubmitEditCourseCallback(SimpleEventBus eventBus)
+	public SendRemoveCourseCallback(SimpleEventBus eventBus)
 	{
 		super(eventBus);
 	}
@@ -20,10 +20,10 @@ public class SubmitEditCourseCallback extends Callback<JSONValue>{
 	public void onSuccess(JSONValue result)
 	{
 		JSONObject json = JSONHelper.getObjectValue(result);
-		EditCourseActionTranslatorImpl loginActionTranslator = new EditCourseActionTranslatorImpl();
-		ReceiveEditCourseAction action = loginActionTranslator.translateToAction(json);
+		RemoveCourseActionTranslatorImpl loginActionTranslator = new RemoveCourseActionTranslatorImpl();
+		ReceiveRemoveCourseAction action = loginActionTranslator.translateToAction(json);
 		
-		ReceiveEditCourseEvent event = new ReceiveEditCourseEvent(action);
+		ReceiveRemoveCourseEvent event = new ReceiveRemoveCourseEvent(action);
 		eventBus.fireEvent(event);
 	}
 	  
