@@ -6,7 +6,7 @@
 	</ui:style>
 	<g:VerticalPanel styleName="center" width="450" height="300" ui:field="createAccountPanel" horizontalAlignment="ALIGN_LEFT">
 		<g:Image height="20%"
-			url="WEB-INF/classes/org/dselent/course_load_scheduler/client/view/images/WPI_Inst_Prim_FulClr_med.png"
+			url="https://www.wpi.edu/sites/default/files/inline-image/Offices/Marketing-Communications/WPI_Inst_Prim_FulClr_PREVIEW.png"
 			width="" />
 		<g:Label text="Create Account" ui:field="createAccountLabel"
 			styleName="login-title" />
