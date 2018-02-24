@@ -1,10 +1,8 @@
 package org.dselent.course_load_scheduler.client.translator.impl;
 
-import java.sql.Time;
-
 import org.dselent.course_load_scheduler.client.action.ReceiveEditSectionAction;
 import org.dselent.course_load_scheduler.client.action.SendEditSectionAction;
-import org.dselent.course_load_scheduler.client.model.SectionsInfo;
+import org.dselent.course_load_scheduler.client.model.Sections;
 import org.dselent.course_load_scheduler.client.receive.jsonkeys.ReceiveEditSectionKeys;
 import org.dselent.course_load_scheduler.client.send.jsonkeys.SendEditSectionKeys;
 import org.dselent.course_load_scheduler.client.translator.ActionTranslator;
@@ -44,26 +42,24 @@ public class EditSectionActionTranslatorImpl implements ActionTranslator<SendEdi
 		//extract the information for the object to return
 		//TODO: Check for valid (non-null) values?
 		Integer id = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveEditSectionKeys.ID));
-		String termsName =  JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveEditSectionKeys.TERMS_NAME));
-		String sectionType = JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveEditSectionKeys.SECTION_TYPE));
-		String days = JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveEditSectionKeys.DAYS));
-		String coursesNumber = JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveEditSectionKeys.COURSES_NUMBER));
-		String coursesTitle = JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveEditSectionKeys.COURSES_TITLE));
-		Time startTime = Time.valueOf(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveEditSectionKeys.START_TIME)));
-		Time endTime = Time.valueOf(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveEditSectionKeys.END_TIME)));
+		Integer termsID =  JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveEditSectionKeys.TERMS_ID));
+		Integer sectionTypeID = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveEditSectionKeys.SECTION_TYPE_ID));
+		Integer daysID = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveEditSectionKeys.DAYS_ID));
+		Integer coursesID = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveEditSectionKeys.COURSES_ID));
+		Integer startID = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveEditSectionKeys.START_TIME_ID));
+		Integer endID = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveEditSectionKeys.END_TIME_ID));
 		String sectionsName = JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveEditSectionKeys.SECTIONS_NAME));
 
-		
-		SectionsInfo section = new SectionsInfo();
-		section.setSectionsId(id);
-		section.setTermsName(termsName);
-		section.setSectionType(sectionType);
-		section.setDays(days);
-		section.setCoursesNumber(coursesNumber);
-		section.setCoursesTitle(coursesTitle);
-		section.setStartTime(startTime);
-		section.setEndTime(endTime);
-		section.setSectionsName(sectionsName);
+		Sections section = new Sections();
+		section.setId(id);
+		section.setTermsID(termsID);
+		section.setSectionTypeID(sectionTypeID);
+		section.setDaysID(daysID);
+		section.setCoursesID(coursesID);
+		section.setStartID(startID);
+		section.setEndID(endID);
+		section.setName(sectionsName);
+
 
 		ReceiveEditSectionAction action = new ReceiveEditSectionAction(section);
 

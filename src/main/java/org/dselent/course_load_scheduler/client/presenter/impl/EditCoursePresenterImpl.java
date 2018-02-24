@@ -5,14 +5,14 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.dselent.course_load_scheduler.client.action.GetFrequenciesAction;
-import org.dselent.course_load_scheduler.client.action.GetSectionsAction;
+import org.dselent.course_load_scheduler.client.action.SendGetSectionsAction;
 import org.dselent.course_load_scheduler.client.action.LoadAddSectionAction;
 import org.dselent.course_load_scheduler.client.action.LoadEditSectionAction;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.SendRemoveSectionAction;
 import org.dselent.course_load_scheduler.client.action.SendEditCourseAction;
 import org.dselent.course_load_scheduler.client.event.GetFrequenciesEvent;
-import org.dselent.course_load_scheduler.client.event.GetSectionsEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetSectionsEvent;
 import org.dselent.course_load_scheduler.client.event.LoadAddSectionEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditSectionEvent;
@@ -183,7 +183,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		c.setTitle(course.getCoursesTitle());
 		c.setNumber(course.getCoursesNumber());
 		
-		eventBus.fireEvent(new GetSectionsEvent(new GetSectionsAction(c)));
+		eventBus.fireEvent(new SendGetSectionsEvent(new SendGetSectionsAction(c)));
 		
 		//In place of that completing, Example values are used.
 		sections = new ArrayList<SectionsInfo>();

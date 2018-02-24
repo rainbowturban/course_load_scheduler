@@ -4,5 +4,5 @@ import org.dselent.course_load_scheduler.client.event.SendRemoveSectionEvent;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface SendRemoveSectionEventHandler extends EventHandler{
-	public void onSubmitRemoveSection(SendRemoveSectionEvent evt);
+	public void onSendRemoveSection(SendRemoveSectionEvent evt);
 }

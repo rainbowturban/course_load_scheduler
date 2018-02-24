@@ -1,19 +1,19 @@
 package org.dselent.course_load_scheduler.client.action;
 
-import org.dselent.course_load_scheduler.client.model.SectionsInfo;
+import org.dselent.course_load_scheduler.client.model.Sections;
 
 public class ReceiveEditSectionAction extends Action{
-private SectionsInfo section;
+private Sections section;
 	
-	public ReceiveEditSectionAction(SectionsInfo section) {
+	public ReceiveEditSectionAction(Sections section) {
 		this.section = section;
 	}
 	
-	public SectionsInfo getSectionInfo() {
+	public Sections getSectionInfo() {
 		return section;
 	}
 
-	public void setSection(SectionsInfo sections) {
+	public void setSection(Sections sections) {
 		this.section = sections;
 	}
 

@@ -29,7 +29,7 @@ public static Type<SendEditSectionEventHandler> TYPE = new Type<SendEditSectionE
 	@Override
 	protected void dispatch(SendEditSectionEventHandler handler)
 	{
-		handler.onSubmitEditSection(this);
+		handler.onSendEditSection(this);
 	}
 
 }
