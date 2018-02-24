@@ -16,7 +16,7 @@ public class NewCourseActionTranslatorImpl implements ActionTranslator<SubmitNew
 	public JSONObject translateToJson(SubmitNewCourseAction action)
 	{
 		JSONObject jsonObject = new JSONObject();
-
+		
 		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SubmitNewCourseKeys.NUMBER), action.getCourseInfo().getNumber());
 		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SubmitNewCourseKeys.TITLE), action.getCourseInfo().getTitle());
 		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SubmitNewCourseKeys.FREQUENCY_ID), action.getCourseInfo().getFrequencyID());

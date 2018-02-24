@@ -17,6 +17,7 @@ public class EditCourseActionTranslatorImpl implements ActionTranslator<SubmitEd
 	{
 		JSONObject jsonObject = new JSONObject();
 
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SubmitEditCourseKeys.COURSE_ID), action.getCourseInfo().getId());
 		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SubmitEditCourseKeys.COURSE_NUMBER), action.getCourseInfo().getNumber());
 		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SubmitEditCourseKeys.COURSE_NAME), action.getCourseInfo().getTitle());
 		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SubmitEditCourseKeys.COURSE_FREQUENCY_ID), action.getCourseInfo().getFrequencyID());

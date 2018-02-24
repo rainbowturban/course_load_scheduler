@@ -1,11 +1,14 @@
 package org.dselent.course_load_scheduler.client.service.impl;
 
+import org.dselent.course_load_scheduler.client.action.SendGetCourseListAction;
 import org.dselent.course_load_scheduler.client.action.SubmitEditCourseAction;
 import org.dselent.course_load_scheduler.client.action.SubmitNewCourseAction;
 import org.dselent.course_load_scheduler.client.action.SubmitRemoveCourseAction;
+import org.dselent.course_load_scheduler.client.callback.SendGetCourseListCallback;
 import org.dselent.course_load_scheduler.client.callback.SubmitEditCourseCallback;
 import org.dselent.course_load_scheduler.client.callback.SubmitNewCourseCallback;
 import org.dselent.course_load_scheduler.client.callback.SubmitRemoveCourseCallback;
+import org.dselent.course_load_scheduler.client.event.SendGetCourseListEvent;
 import org.dselent.course_load_scheduler.client.event.SubmitEditCourseEvent;
 import org.dselent.course_load_scheduler.client.event.SubmitNewCourseEvent;
 import org.dselent.course_load_scheduler.client.event.SubmitRemoveCourseEvent;
@@ -13,6 +16,7 @@ import org.dselent.course_load_scheduler.client.network.NetworkRequest;
 import org.dselent.course_load_scheduler.client.network.NetworkRequestStrings;
 import org.dselent.course_load_scheduler.client.service.CourseService;
 import org.dselent.course_load_scheduler.client.translator.impl.EditCourseActionTranslatorImpl;
+import org.dselent.course_load_scheduler.client.translator.impl.GetCourseListActionTranslatorImpl;
 import org.dselent.course_load_scheduler.client.translator.impl.NewCourseActionTranslatorImpl;
 import org.dselent.course_load_scheduler.client.translator.impl.RemoveCourseActionTranslatorImpl;
 
@@ -38,6 +42,11 @@ public class CourseServiceImpl extends BaseServiceImpl implements CourseService{
 		
 		registration = eventBus.addHandler(SubmitNewCourseEvent.TYPE, this);
 		eventBusRegistration.put(SubmitNewCourseEvent.TYPE, registration);
+		
+		eventBusRegistration.put(SubmitEditCourseEvent.TYPE, eventBus.addHandler(SubmitEditCourseEvent.TYPE, this));
+		eventBusRegistration.put(SubmitRemoveCourseEvent.TYPE, eventBus.addHandler(SubmitRemoveCourseEvent.TYPE, this));
+		eventBusRegistration.put(SendGetCourseListEvent.TYPE, eventBus.addHandler(SendGetCourseListEvent.TYPE, this));
+		
 	}
 	
 	@Override
@@ -73,6 +82,18 @@ public class CourseServiceImpl extends BaseServiceImpl implements CourseService{
 		SubmitRemoveCourseCallback removeCallback = new SubmitRemoveCourseCallback(eventBus);
 		
 		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.REMOVE_COURSE, removeCallback, json);
+		request.send();
+	}
+	
+	@Override
+	public void onSendGetCourseList(SendGetCourseListEvent evt)
+	{
+		SendGetCourseListAction action = evt.getAction();
+		GetCourseListActionTranslatorImpl courseListActionTranslator = new GetCourseListActionTranslatorImpl();
+		JSONObject json = courseListActionTranslator.translateToJson(action);
+		SendGetCourseListCallback courseListCallback = new SendGetCourseListCallback(eventBus);
+		
+		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.GET_COURSE_LIST, courseListCallback, json);
 		request.send();
 	}
 	
