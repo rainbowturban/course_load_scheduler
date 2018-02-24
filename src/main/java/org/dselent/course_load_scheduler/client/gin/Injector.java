@@ -9,6 +9,7 @@ import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;
 import org.dselent.course_load_scheduler.client.presenter.impl.IndexPresenterImpl;
 import org.dselent.course_load_scheduler.client.presenter.impl.LoginPresenterImpl;
+import org.dselent.course_load_scheduler.client.service.impl.CreateAccountServiceImpl;
 import org.dselent.course_load_scheduler.client.service.impl.UserServiceImpl;
 import org.dselent.course_load_scheduler.client.view.impl.ExampleViewImpl;
 import org.dselent.course_load_scheduler.client.view.impl.IndexViewImpl;
@@ -66,4 +67,5 @@ public interface Injector extends Ginjector
         
     // services
     public UserServiceImpl getUserService();
+    public CreateAccountServiceImpl getCreateAccountService();
 }

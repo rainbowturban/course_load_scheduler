@@ -24,11 +24,8 @@ import org.dselent.course_load_scheduler.client.translator.impl.RemoveSectionAct
 import com.google.gwt.json.client.JSONObject;
 
 public class SectionServiceImpl extends BaseServiceImpl implements SectionService{
-	public SectionServiceImpl()
-	{
-		
-	}
-
+	public SectionServiceImpl(){}
+	
 	@Override
 	public void init()
 	{
@@ -38,6 +35,7 @@ public class SectionServiceImpl extends BaseServiceImpl implements SectionServic
 	@Override
 	public void bind()
 	{
+
 		//Example code (old format)
 //		HandlerRegistration registration;
 //
@@ -71,9 +69,10 @@ public class SectionServiceImpl extends BaseServiceImpl implements SectionServic
 		RemoveSectionActionTranslatorImpl newActionTranslator = new RemoveSectionActionTranslatorImpl();
 		JSONObject json = newActionTranslator.translateToJson(action);
 		SendRemoveSectionCallback newCallback = new SendRemoveSectionCallback(eventBus);
-		
+				
 		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.REMOVE_SECTION, newCallback, json);
 		request.send();
+		//eventBusRegistration.put(SendRemoveSectionEvent.TYPE, eventBus.addHandler(SendRemoveSectionEvent.TYPE, this));		
 	}
 	
 	@Override

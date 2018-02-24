@@ -4,16 +4,16 @@ public final class NetworkRequestStrings
 {
 	public static final String SERVER_LOCATION = "http://localhost:8080/";
 	public static final String BASE_REQUEST = "course_load_scheduler/";
-	public static String LOGIN = "user/login";
-	public static String CREATE_ACCOUNT = "user/create";
-	public static String NEW_COURSE = "course/create";
-	public static String EDIT_COURSE = "course/edit";
-	public static String REMOVE_COURSE = "course/remove";
-	public static String NEW_SECTION = "section/add";
-	public static String REMOVE_SECTION = "section/remove";
-	public static String EDIT_SECTION = "section/edit";
-	public static String GET_ALL_SECTIONS = "section/view";
-	public static String GET_COURSE_LIST = "course/view/all";
+	public static final String LOGIN = "user/login";
+	public static final String CREATE_ACCOUNT = "user/create";
+	public static final String NEW_COURSE = "course/create";
+	public static final String EDIT_COURSE = "course/edit";
+	public static final String REMOVE_COURSE = "course/remove";
+	public static final String NEW_SECTION = "section/add";
+	public static final String REMOVE_SECTION = "section/remove";
+	public static final String EDIT_SECTION = "section/edit";
+	public static final String GET_ALL_SECTIONS = "section/view";
+	public static final String GET_COURSE_LIST = "course/view/all";
 
 	private NetworkRequestStrings() {};
 }

@@ -6,7 +6,9 @@ import org.dselent.course_load_scheduler.client.presenter.*;
 import org.dselent.course_load_scheduler.client.presenter.impl.*;
 import org.dselent.course_load_scheduler.client.view.*;
 import org.dselent.course_load_scheduler.client.view.impl.*;
+import org.dselent.course_load_scheduler.client.service.CreateAccountService;
 import org.dselent.course_load_scheduler.client.service.UserService;
+import org.dselent.course_load_scheduler.client.service.impl.CreateAccountServiceImpl;
 import org.dselent.course_load_scheduler.client.service.impl.UserServiceImpl;
 import org.dselent.course_load_scheduler.client.view.ExampleView;
 import org.dselent.course_load_scheduler.client.view.impl.ExampleViewImpl; 
@@ -61,6 +63,8 @@ public class InjectorModule extends AbstractGinModule
 		        
 		//services
 		bind(UserService.class).to(UserServiceImpl.class).in(Singleton.class);
+		bind(CreateAccountService.class).to(CreateAccountServiceImpl.class).in(Singleton.class);
+
 	}
 
 	/*
