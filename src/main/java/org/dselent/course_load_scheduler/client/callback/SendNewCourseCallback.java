@@ -9,9 +9,9 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 
-public class SubmitNewCourseCallback extends Callback<JSONValue>{
+public class SendNewCourseCallback extends Callback<JSONValue>{
 	
-	public SubmitNewCourseCallback(SimpleEventBus eventBus)
+	public SendNewCourseCallback(SimpleEventBus eventBus)
 	{
 		super(eventBus);
 	}

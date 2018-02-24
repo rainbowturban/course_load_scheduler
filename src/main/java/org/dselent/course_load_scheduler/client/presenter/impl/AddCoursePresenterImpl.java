@@ -6,11 +6,11 @@ import java.util.List;
 
 import org.dselent.course_load_scheduler.client.action.GetFrequenciesAction;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
-import org.dselent.course_load_scheduler.client.action.SubmitNewCourseAction;
+import org.dselent.course_load_scheduler.client.action.SendNewCourseAction;
 import org.dselent.course_load_scheduler.client.event.GetFrequenciesEvent;
 import org.dselent.course_load_scheduler.client.event.LoadAddCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
-import org.dselent.course_load_scheduler.client.event.SubmitNewCourseEvent;
+import org.dselent.course_load_scheduler.client.event.SendNewCourseEvent;
 import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.model.Frequency;
 import org.dselent.course_load_scheduler.client.presenter.AddCoursePresenter;
@@ -150,10 +150,10 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 			newCourse.setNumber(view.getCourseNumberField().getText());
 			
 			//creates event, which is currently not handled
-			SubmitNewCourseAction action = new SubmitNewCourseAction();
+			SendNewCourseAction action = new SendNewCourseAction();
 			action.setCourse(newCourse);
 			
-			SubmitNewCourseEvent evt = new SubmitNewCourseEvent(action);
+			SendNewCourseEvent evt = new SendNewCourseEvent(action);
 			eventBus.fireEvent(evt);//to be handled by the Database
 			
 			returnToViewCourses();//returns if course adding was successful or not
