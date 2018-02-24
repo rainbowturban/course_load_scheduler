@@ -10,7 +10,7 @@ import org.dselent.course_load_scheduler.client.action.LoadAddSectionAction;
 import org.dselent.course_load_scheduler.client.action.LoadEditSectionAction;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.SubmitEditCourseAction;
-import org.dselent.course_load_scheduler.client.action.SubmitRemoveSectionAction;
+import org.dselent.course_load_scheduler.client.action.SendRemoveSectionAction;
 import org.dselent.course_load_scheduler.client.event.GetFrequenciesEvent;
 import org.dselent.course_load_scheduler.client.event.GetSectionsEvent;
 import org.dselent.course_load_scheduler.client.event.LoadAddSectionEvent;
@@ -18,7 +18,7 @@ import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditSectionEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.SubmitEditCourseEvent;
-import org.dselent.course_load_scheduler.client.event.SubmitRemoveSectionEvent;
+import org.dselent.course_load_scheduler.client.event.SendRemoveSectionEvent;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.model.Frequency;
@@ -264,7 +264,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 			Iterator<SectionsInfo> si = sections.listIterator(index);
 			SectionsInfo s = si.next();
 			
-			eventBus.fireEvent(new SubmitRemoveSectionEvent(new SubmitRemoveSectionAction(s.getSectionsId())));
+			eventBus.fireEvent(new SendRemoveSectionEvent(new SendRemoveSectionAction(s.getSectionsId())));
 
 			boolean success = true;//this will be the return value from the request
 			

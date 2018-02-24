@@ -9,6 +9,9 @@ public final class NetworkRequestStrings
 	public static String NEW_COURSE = "course/create";
 	public static String EDIT_COURSE = "course/edit";
 	public static String REMOVE_COURSE = "course/remove";
+	public static String NEW_SECTION = "section/add";
+	public static String REMOVE_SECTION = "section/remove";
+	public static String EDIT_SECTION = "section/edit";
 	
 	private NetworkRequestStrings() {};
 }

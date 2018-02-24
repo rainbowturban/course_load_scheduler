@@ -29,7 +29,7 @@ LoadLoginPageEventHandler,
 LoadHomePageEventHandler,
 GetFrequenciesEventHandler,
 GetSectionsEventHandler,
-SubmitRemoveSectionEventHandler,
+SendRemoveSectionEventHandler,
 GetCoursesEventHandler,
 SubmitRemoveCourseEventHandler,
 LoadScheduleEventHandler,
@@ -38,7 +38,9 @@ ReceiveLoginEventHandler,
 ReceiveCreateAccountEventHandler,
 ReceiveNewCourseEventHandler,
 ReceiveRemoveCourseEventHandler,
-ReceiveEditCourseEventHandler
+ReceiveEditCourseEventHandler,
+SendEditSectionEventHandler,
+ReceiveEditSectionEventHandler
 
 {
 	@Override
@@ -96,7 +98,7 @@ ReceiveEditCourseEventHandler
 	public void onSubmitRemoveCourse(SubmitRemoveCourseEvent evt) {}
 
 	@Override
-	public void onSubmitRemoveSection(SubmitRemoveSectionEvent evt) {}
+	public void onSubmitRemoveSection(SendRemoveSectionEvent evt) {}
 	
 	@Override
 	public void onLoadSchedulePage(LoadScheduleEvent evt) {}
@@ -118,4 +120,10 @@ ReceiveEditCourseEventHandler
 	
 	@Override
 	public void onReceiveEditCourse(ReceiveEditCourseEvent evt) {}
+	
+	@Override
+	public void onSendEditSection(SendEditSectionEvent evt) {}
+	
+	@Override
+	public void onReceiveEditSection(ReceiveEditSectionEvent evt) {}
 }

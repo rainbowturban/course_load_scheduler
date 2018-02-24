@@ -315,6 +315,7 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		newSection.setDays(this.determineDays());
 		newSection.setCoursesNumber(fromCourse.getCoursesNumber());
 		newSection.setCoursesTitle(fromCourse.getCoursesTitle());
+		newSection.getSectionsId();
 
 		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course)));
 

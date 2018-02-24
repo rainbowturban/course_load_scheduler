@@ -1,13 +1,13 @@
 package org.dselent.course_load_scheduler.client.action;
 
-public class SubmitRemoveSectionAction extends Action{
+public class SendRemoveSectionAction extends Action{
 	int id;
 	
-	public SubmitRemoveSectionAction() {
+	public SendRemoveSectionAction() {
 		id = -1;
 	}
 	
-	public SubmitRemoveSectionAction(int id) {
+	public SendRemoveSectionAction(int id) {
 		this.id = id;
 	}
 	

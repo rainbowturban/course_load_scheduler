@@ -4,15 +4,8 @@ import java.sql.Time;
 
 public class SectionsInfo extends Model{
 	// attributes
+	
 	private Integer sectionsId;
-	public Integer getSectionsId() {
-		return sectionsId;
-	}
-
-	public void setSectionsId(Integer sectionsId) {
-		this.sectionsId = sectionsId;
-	}
-
 	private String termsName;
 	private String sectionType;
 	private String days;
@@ -25,6 +18,14 @@ public class SectionsInfo extends Model{
 	private String facultyLastName;
 
 	//setters and getters
+	public Integer getSectionsId() {
+		return sectionsId;
+	}
+
+	public void setSectionsId(Integer sectionsId) {
+		this.sectionsId = sectionsId;
+	}
+	
 	public String getTermsName() {
 		return termsName;
 	}
@@ -225,4 +226,5 @@ public class SectionsInfo extends Model{
 				+ ", facultyFirstName=" + facultyFirstName + ", facultyLastName=" + facultyLastName + "]";
 	}
 
+	
 }
