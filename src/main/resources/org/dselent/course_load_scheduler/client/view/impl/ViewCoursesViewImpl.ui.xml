@@ -10,7 +10,7 @@
 			<g:Cell horizontalAlignment="ALIGN_CENTER">
 				<g:HorizontalPanel>
 					<g:Cell horizontalAlignment="ALIGN_CENTER">
-						<g:Image url="WEB-INF/classes/org/dselent/course_load_scheduler/client/view/images/WPI_Inst_Prim_FulClr_med.png" width="25%" height="5%">
+						<g:Image url="https://www.wpi.edu/sites/default/files/inline-image/Offices/Marketing-Communications/WPI_Inst_Prim_FulClr_PREVIEW.png" width="25%" height="5%">
 						</g:Image>
 					</g:Cell>
 					<g:Cell horizontalAlignment="ALIGN_LEFT">

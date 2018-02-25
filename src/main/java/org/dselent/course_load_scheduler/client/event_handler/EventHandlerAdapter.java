@@ -20,18 +20,18 @@ SendLoginEventHandler,
 LoadEditCourseEventHandler,
 LoadAddSectionEventHandler,
 LoadEditSectionEventHandler,
-SubmitNewCourseEventHandler,
+SendNewCourseEventHandler,
 LoadViewCoursesEventHandler,
 LoadAddCourseEventHandler,
-SubmitEditCourseEventHandler,
+SendEditCourseEventHandler,
 LoadCreateAccountEventHandler,
 LoadLoginPageEventHandler,
 LoadHomePageEventHandler,
 GetFrequenciesEventHandler,
-GetSectionsEventHandler,
-SubmitRemoveSectionEventHandler,
-GetCoursesEventHandler,
-SubmitRemoveCourseEventHandler,
+SendGetSectionsEventHandler,
+SendRemoveSectionEventHandler,
+SendGetCourseListEventHandler,
+SendRemoveCourseEventHandler,
 LoadScheduleEventHandler,
 ManageUserPageEventHandler,
 ReceiveLoginEventHandler,
@@ -40,20 +40,27 @@ ReceiveNewCourseEventHandler,
 ReceiveRemoveCourseEventHandler,
 ReceiveEditCourseEventHandler,
 GetStartTimesEventHandler,
-ReceiveStartTimesEventHandler
+ReceiveStartTimesEventHandler,
+SendEditSectionEventHandler,
+ReceiveEditSectionEventHandler,
+ReceiveGetCourseListEventHandler,
+ReceiveRemoveSectionEventHandler,
+SendNewSectionEventHandler,
+ReceiveNewSectionEventHandler,
+ReceiveGetSectionsEventHandler
 
 {
 	@Override
 	public void onCreateAccount(SendCreateAccountEvent evt) {}
 
 	@Override
-	public void onGetCourses(GetCoursesEvent evt) {}
+	public void onSendGetCourseList(SendGetCourseListEvent evt) {}
 
 	@Override
 	public void onGetFrequencies(GetFrequenciesEvent evt) {}
 
 	@Override
-	public void onGetSections(GetSectionsEvent evt) {}
+	public void onSendGetSections(SendGetSectionsEvent evt) {}
 
 	@Override
 	public void onInvalidAccountCreation(InvalidAccountCreationEvent evt) {}
@@ -89,16 +96,16 @@ ReceiveStartTimesEventHandler
 	public void onSendLogin(SendLoginEvent evt) {}
 
 	@Override
-	public void onSubmitEditCourse(SubmitEditCourseEvent evt) {}
+	public void onSendEditCourse(SendEditCourseEvent evt) {}
 
 	@Override
-	public void onSubmitNewCourse(SubmitNewCourseEvent evt) {}
+	public void onSendNewCourse(SendNewCourseEvent evt) {}
 
 	@Override
-	public void onSubmitRemoveCourse(SubmitRemoveCourseEvent evt) {}
+	public void onSendRemoveCourse(SendRemoveCourseEvent evt) {}
 
 	@Override
-	public void onSubmitRemoveSection(SubmitRemoveSectionEvent evt) {}
+	public void onSendRemoveSection(SendRemoveSectionEvent evt) {}
 	
 	@Override
 	public void onLoadSchedulePage(LoadScheduleEvent evt) {}
@@ -126,4 +133,23 @@ ReceiveStartTimesEventHandler
 	
 	@Override
 	public void onReceiveStartTimes(ReceiveStartTimesEvent evt) {}
+	public void onSendEditSection(SendEditSectionEvent evt) {}
+	
+	@Override
+	public void onReceiveEditSection(ReceiveEditSectionEvent evt) {}
+
+	@Override
+	public void onReceiveGetCourseList(ReceiveGetCourseListEvent evt) {}
+	
+	@Override
+	public void onReceiveRemoveSection(ReceiveRemoveSectionEvent evt) {}
+	
+	@Override
+	public void onSendNewSection(SendNewSectionEvent evt) {}
+	
+	@Override
+	public void onReceiveNewSection(ReceiveNewSectionEvent evt) {}
+	
+	@Override
+	public void onReceiveGetSections(ReceiveGetSectionsEvent evt) {}
 }

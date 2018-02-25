@@ -10,7 +10,7 @@
 	<g:Cell horizontalAlignment="ALIGN_CENTER">
 		<g:HorizontalPanel>
 			<g:Image
-				url="WEB-INF/classes/org/dselent/course_load_scheduler/client/view/images/WPI_Inst_Prim_FulClr_med.png"
+				url="https://www.wpi.edu/sites/default/files/inline-image/Offices/Marketing-Communications/WPI_Inst_Prim_FulClr_PREVIEW.png"
 				height="5%" />
 			<g:Button text="Home" styleName="navButton" ui:field="homeButton"
 				height="38px" width="56px"></g:Button>
@@ -23,7 +23,7 @@
 		</g:HorizontalPanel>
 	</g:Cell>
 	<g:Label text="Welcome!" width="355px" styleName="page-title" />
-	<g:Grid>
+	<g:Grid ui:field="grid">
 		<g:row>
 			<g:customCell>
 				<g:Label text="Number of Courses" styleName="gwt-DialogBox" height="22px" width="139px"/>
