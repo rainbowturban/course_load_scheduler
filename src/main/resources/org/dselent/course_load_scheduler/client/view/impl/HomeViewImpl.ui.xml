@@ -23,7 +23,7 @@
 		</g:HorizontalPanel>
 	</g:Cell>
 	<g:Label text="Welcome!" width="355px" styleName="page-title" />
-	<g:Grid>
+	<g:Grid ui:field="grid">
 		<g:row>
 			<g:customCell>
 				<g:Label text="Number of Courses" styleName="gwt-DialogBox" height="22px" width="139px"/>
