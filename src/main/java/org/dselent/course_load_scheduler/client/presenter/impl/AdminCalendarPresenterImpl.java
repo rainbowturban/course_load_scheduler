@@ -70,7 +70,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		
 		registration = eventBus.addHandler(LoadScheduleEvent.TYPE, this);
 		eventBusRegistration.put(LoadScheduleEvent.TYPE, registration);
-		
+
 		registration = eventBus.addHandler(ReceiveStartTimesEvent.TYPE, this);
 		eventBusRegistration.put(ReceiveStartTimesEvent.TYPE, registration);
 	}
@@ -85,7 +85,8 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	@Override
 	public void onReceiveStartTimes(ReceiveStartTimesEvent evt) {
 		ReceiveStartTimesAction action = evt.getAction();
-		System.out.println("got the response for start times");
+		ArrayList<StartTime> startTimes = action.getStartTimes();
+		Window.alert("received start time event");
 	}
 
 	@Override
@@ -207,7 +208,11 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	public List<StartTime> getStartTimes() {
 		List<StartTime> startTimes = new ArrayList<StartTime>();
 		// TODO
-		eventBus.fireEvent(new GetStartTimesEvent(new GetStartTimesAction(new User())));
+		User temp = new User();
+		temp.setAccountTypeId(1);
+		temp.setId(1);
+		temp.setPassword("derp");
+		eventBus.fireEvent(new GetStartTimesEvent(new GetStartTimesAction(temp)));
 		StartTime time8 = new StartTime();
 		time8.setId(1);
 		time8.setTime(new Time(28800000));
