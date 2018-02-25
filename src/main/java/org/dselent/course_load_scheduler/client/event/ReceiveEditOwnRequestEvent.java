@@ -31,7 +31,7 @@ public class ReceiveEditOwnRequestEvent extends GwtEvent<ReceiveEditOwnRequestEv
 	@Override
 	protected void dispatch(ReceiveEditOwnRequestEventHandler handler)
 	{
-		handler.onReceiveEditCourse(this);
+		handler.onReceiveEditOwnRequest(this);
 	}
 
 }
