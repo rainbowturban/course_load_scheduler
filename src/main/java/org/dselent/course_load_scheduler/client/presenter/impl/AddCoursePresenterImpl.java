@@ -1,15 +1,15 @@
 package org.dselent.course_load_scheduler.client.presenter.impl;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.dselent.course_load_scheduler.client.action.GetFrequenciesAction;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
+import org.dselent.course_load_scheduler.client.action.SendGetFrequenciesAction;
 import org.dselent.course_load_scheduler.client.action.SendNewCourseAction;
-import org.dselent.course_load_scheduler.client.event.SendGetFrequenciesEvent;
 import org.dselent.course_load_scheduler.client.event.LoadAddCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
+import org.dselent.course_load_scheduler.client.event.ReceiveGetFrequenciesEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetFrequenciesEvent;
 import org.dselent.course_load_scheduler.client.event.SendNewCourseEvent;
 import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.model.Frequency;
@@ -55,6 +55,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 		//implement any event listeners down here
 		registration = eventBus.addHandler(LoadAddCourseEvent.TYPE, this);
 		eventBusRegistration.put(LoadAddCourseEvent.TYPE, registration);
+		eventBusRegistration.put(ReceiveGetFrequenciesEvent.TYPE, eventBus.addHandler(ReceiveGetFrequenciesEvent.TYPE, this));
 	}
 	
 	@Override
@@ -92,7 +93,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	@Override
 	public void retrieveFrequencies() {
 		//Sends event to DB to fetch frequencies
-		eventBus.fireEvent(new SendGetFrequenciesEvent(new GetFrequenciesAction()));
+		eventBus.fireEvent(new SendGetFrequenciesEvent(new SendGetFrequenciesAction()));
 		
 		//**In place of that being completed, sample values are used
 		/*List<Frequency> freqs = new ArrayList<Frequency>();
@@ -119,8 +120,8 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	
 	
 	@Override//*****************************************************************************
-	public void onReceiveGetFrequenciesEvent(ReceiveGetFrequenciesEvent evt) {
-		fillFrequencies(evt.getAction().getFrequencyList());
+	public void onReceiveGetFrequencies(ReceiveGetFrequenciesEvent evt) {
+		fillFrequencies(evt.getAction().getSections());
 	}
 	
 	//gets the frequencies from the database and fills the dropdown with them. 

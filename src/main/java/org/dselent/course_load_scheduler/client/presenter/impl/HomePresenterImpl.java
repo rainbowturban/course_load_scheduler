@@ -7,17 +7,17 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.dselent.course_load_scheduler.client.action.SendGetFacultyAction;
-import org.dselent.course_load_scheduler.client.action.GetFrequenciesAction;
 import org.dselent.course_load_scheduler.client.action.LoadHomePageAction;
 import org.dselent.course_load_scheduler.client.action.LoadScheduleAction;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.ManageUserPageAction;
 import org.dselent.course_load_scheduler.client.event.SendGetFacultyEvent;
-import org.dselent.course_load_scheduler.client.event.GetFrequenciesEvent;
 import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
 import org.dselent.course_load_scheduler.client.event.LoadScheduleEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.ManageUserPageEvent;
+import org.dselent.course_load_scheduler.client.event.ReceiveGetFacultyEvent;
+import org.dselent.course_load_scheduler.client.event.ReceiveGetFrequenciesEvent;
 import org.dselent.course_load_scheduler.client.model.Faculty;
 import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 import org.dselent.course_load_scheduler.client.presenter.HomePresenter;
@@ -52,6 +52,7 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 
 		registration = eventBus.addHandler(LoadHomePageEvent.TYPE, this);
 		eventBusRegistration.put(LoadHomePageEvent.TYPE, registration);
+		eventBusRegistration.put(ReceiveGetFacultyEvent.TYPE, eventBus.addHandler(ReceiveGetFacultyEvent.TYPE, this));
 	}
 
 	public IndexPresenter getParentPresenter() {

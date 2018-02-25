@@ -28,18 +28,12 @@ public class ReceiveGetFacultyEvent extends GwtEvent<ReceiveGetFacultyEventHandl
 		return action;
 	}
 
-	/*
-	 * 
-	 */
 	@Override
 	public Type<ReceiveGetFacultyEventHandler> getAssociatedType()
 	{
 		return TYPE;
 	}
 
-	/*
-	 * 
-	 */
 	@Override
 	protected void dispatch(ReceiveGetFacultyEventHandler handler)
 	{
