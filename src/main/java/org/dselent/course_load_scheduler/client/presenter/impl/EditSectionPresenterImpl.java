@@ -6,10 +6,17 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
+import org.dselent.course_load_scheduler.client.action.SendGetTermsAction;
+import org.dselent.course_load_scheduler.client.event.ReceiveGetTermsEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditSectionEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetTermsEvent;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.CourseSections;
+import org.dselent.course_load_scheduler.client.model.EndTime;
+import org.dselent.course_load_scheduler.client.model.SectionType;
+import org.dselent.course_load_scheduler.client.model.StartTime;
+import org.dselent.course_load_scheduler.client.model.Terms;
 import org.dselent.course_load_scheduler.client.presenter.EditSectionPresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.EditSectionView;
@@ -24,6 +31,11 @@ import com.google.inject.Inject;
 public class EditSectionPresenterImpl extends BasePresenterImpl implements EditSectionPresenter {
 	private IndexPresenter parentPresenter;
 	private EditSectionView view;
+	private List<CourseSections> sections = new ArrayList<CourseSections>();
+	//variables to hold previous info
+	private CourseSections fromCourse = new CourseSections();
+	private CourseInfo course = new CourseInfo();
+	private CourseSections oldSection = new CourseSections();
 
 	@Inject
 	public EditSectionPresenterImpl(IndexPresenter parentPresenter, EditSectionView view)
@@ -31,11 +43,6 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		this.view = view;
 		this.parentPresenter = parentPresenter;
 		view.setPresenter(this);
-
-		fillSectionTerms();
-		fillSectionTypes();
-		fillSectionStart();
-		fillSectionEnd();
 	}
 
 	@Override
@@ -76,183 +83,190 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		this.parentPresenter = parentPresenter;
 	}
 
-	//gets term info about sections
+	@SuppressWarnings("deprecation")
 	@Override
-	public List<CourseSections> retrieveTerm(){
-		List<CourseSections> sections = new ArrayList<CourseSections>();
+	public void onLoadEditSection(LoadEditSectionEvent evt) {
+		oldSection = evt.getAction().getSectionInfo();
 
-		CourseSections section1 = new CourseSections();
-		section1.setTermsName("A Term");
+		//Info to return to edit course page
+		course = evt.getAction().getCourseInfo();
 
-		CourseSections section2 = new CourseSections();
-		section2.setTermsName("B Term");
+		//Retrieve term, sectionType, days and time fields with previous info and Course info
+		if(oldSection != null) {
+			retrieveTerm();
+			retrieveType();
+			retrieveTime();
+			
+			//Code for setting previously selected days
+			CheckBox monday = view.getMondayCheckBox();
+			CheckBox tuesday = view.getTuesdayCheckBox();
+			CheckBox wednesday = view.getWednesdayCheckBox();
+			CheckBox thursday = view.getThursdayCheckBox();
+			CheckBox friday = view.getFridayCheckBox();
 
-		CourseSections section3 = new CourseSections();
-		section3.setTermsName("C Term");
+			//Clear potentially checked boxes (depricated method, but couldn't seem to find better one?)
+			monday.setChecked(false);
+			tuesday.setChecked(false);
+			wednesday.setChecked(false);
+			thursday.setChecked(false);
+			friday.setChecked(false);
 
-		CourseSections section4 = new CourseSections();
-		section4.setTermsName("D Term");
+			//From given string of days, determine which days are checked
+			if(oldSection.getDays().contains("M")) {
+				monday.setChecked(true);
+			}
+			if(oldSection.getDays().contains("T")) {
+				tuesday.setChecked(true);
+			}
+			if(oldSection.getDays().contains("W")) {
+				wednesday.setChecked(true);
+			}
+			if(oldSection.getDays().contains("R")) {
+				thursday.setChecked(true);
+			}
+			if(oldSection.getDays().contains("F")) {
+				friday.setChecked(true);
+			}
+			
+			this.go(parentPresenter.getView().getViewRootPanel());
+		}
+		else {
+			Window.alert("A section must be selected to edit");
+		}
+	}
 
-		CourseSections section5 = new CourseSections();
-		section5.setTermsName("E Term");
-
-		CourseSections section6 = new CourseSections();
-		section6.setTermsName("Fall");
-
-		CourseSections section7 = new CourseSections();
-		section7.setTermsName("Spring");
-
-		sections.add(section1);
-		sections.add(section2);
-		sections.add(section3);
-		sections.add(section4);
-		sections.add(section5);
-		sections.add(section6);
-		sections.add(section7);
-
-		return sections;	
-
+	@Override
+	public void retrieveTerm(){
+		//Sends event to DB to retrieve terms
+		eventBus.fireEvent(new SendGetTermsEvent(new SendGetTermsAction()));
+	}
+	
+	@Override
+	public void onReceiveGetTerms(ReceiveGetTermsEvent evt) {
+		int termIndex = fillSectionTerms(oldSection.getTermsId(), evt.getAction().getTerms());
+		view.getTermComboBox().setSelectedIndex(termIndex);
 	}
 
 	//gets section type info about sections
 	@Override
-	public List<CourseSections> retrieveType(){
-		List<CourseSections> sections = new ArrayList<CourseSections>();
-
-		CourseSections section1 = new CourseSections();
-		section1.setSectionType("Lab");
-
-		CourseSections section2 = new CourseSections();
-		section2.setSectionType("Lecture");
-
-		CourseSections section3 = new CourseSections();
-		section3.setSectionType("Conference");
-
-		sections.add(section1);
-		sections.add(section2);
-		sections.add(section3);
-
-		return sections;	
-
+	public void retrieveType(){
+		//Populates types from DB
+		eventBus.fireEvent(new SendGetSectionTypesEvent(new SendGetSectionTypesAction()));
+	}
+	
+	@Override
+	public void onReceiveGetSectionTypes(ReceiveGetSectionTypesEvent evt) {
+		int typeIndex = fillSectionTypes(oldSection.getSectionTypeId(), evt.getAction().getTypes());
+		view.getSectionTypeComboBox().setSelectedIndex(typeIndex);		
 	}
 
 	//gets start/end time info about sections
 	@SuppressWarnings("deprecation")
 	@Override
-	public List<CourseSections> retrieveTime(){
-		List<CourseSections> sections = new ArrayList<CourseSections>();
-
-		CourseSections section1 = new CourseSections();
-		section1.setStartTime(new Time(8,0,0)); //deprecated Time type (hour, minute, second) cuz Gregorian calendar is too complicated
-		section1.setEndTime(new Time(8,50,0));
-
-		CourseSections section2 = new CourseSections();
-		section2.setStartTime(new Time(9,0,0));
-		section2.setEndTime(new Time(9,50,0));
-
-		CourseSections section3 = new CourseSections();
-		section3.setStartTime(new Time(10,0,0));
-		section3.setEndTime(new Time(10,50,0));
-
-		CourseSections section4 = new CourseSections();
-		section4.setStartTime(new Time(11,0,0));
-		section4.setEndTime(new Time(11,50,0));
-
-		CourseSections section5 = new CourseSections();
-		section5.setStartTime(new Time(12,0,0));
-		section5.setEndTime(new Time(12,50,0));
-
-		CourseSections section6 = new CourseSections();
-		section6.setStartTime(new Time(13,0,0));
-		section6.setEndTime(new Time(13,50,0));
-
-		CourseSections section7 = new CourseSections();
-		section7.setStartTime(new Time(14,0,0));
-		section7.setEndTime(new Time(14,50,0));
-
-		CourseSections section8 = new CourseSections();
-		section8.setStartTime(new Time(15,0,0));
-		section8.setEndTime(new Time(15,50,0));
-
-		CourseSections section9 = new CourseSections();
-		section9.setStartTime(new Time(16,0,0));
-		section9.setEndTime(new Time(16,50,0));
-
-		sections.add(section1);
-		sections.add(section2);
-		sections.add(section3);
-		sections.add(section4);
-		sections.add(section5);
-		sections.add(section6);
-		sections.add(section7);
-		sections.add(section8);
-		sections.add(section9);
-
-		return sections;	
-
+	public void retrieveTime(){
+		//Populates times from DB
+		eventBus.fireEvent(new SendGetStartTimesEvent(new SendGetStartTimesAction()));
+		eventBus.fireEvent(new SendGetEndTimesEvent(new SendEndTimesAction()));
 	}
+	
+	@Override
+	public void onReceiveGetStartTimes(ReceiveGetStartTimesEvent evt) {
+		int startIndex = fillSectionStart(oldSection.getStartTimeId(), evt.getAction.getStartTimes());
+		view.getSectionStartTimeComboBox().setSelectedIndex(startIndex);
+		
+	}
+	
+	@Override
+	public void onReceiveGetEndTimes(ReceiveGetEndTimesEvent evt) {
+		int endIndex = fillSectionEnd(oldSection.getEndTimeId(), evt.getAction.getEndTimes());
+		view.getSectionEndTimeComboBox().setSelectedIndex(endIndex);
+	}
+	
 
 	@Override
-	public void fillSectionTerms() {
+	public int fillSectionTerms(int initTermValue, List<Terms> termsList) {
+		int initTermIndex = -1;
+
 		ListBox term = view.getTermComboBox();
+		term.clear();
 
-		List<CourseSections> sectionTerms = retrieveTerm();
-		Iterator<CourseSections> iterator = sectionTerms.iterator();
-
+		Iterator<Terms> iterator = termsList.iterator();
+		int index = 0;
 		while(iterator.hasNext()) {
-			CourseSections CourseSections = iterator.next();
-			term.addItem(CourseSections.getTermsName());
+			Terms cs = iterator.next();
+			term.addItem(cs.getName(), Integer.toString(cs.getId()));
+			if(cs.getId() == initTermValue) {
+				initTermIndex = index;
+			}
+			index++;
 		}
-
-		view.setTermComboBox(term);
+		
+		return initTermIndex;
 	}
 
 	@Override
-	public void fillSectionTypes() {
+	public int fillSectionTypes(int initTypeValue, List<SectionType> typesList) {
+		int initTypeIndex = -1;
+
 		ListBox type = view.getSectionTypeComboBox();
+		type.clear();
 
-		List<CourseSections> sectionTypes = retrieveType();
-		Iterator<CourseSections> iterator = sectionTypes.iterator();
-
+		Iterator<SectionType> iterator = typesList.iterator();
+		int index = 0;
 		while(iterator.hasNext()) {
-			CourseSections CourseSections = iterator.next();
-			type.addItem(CourseSections.getSectionType());			
+			SectionType cs = iterator.next();
+			type.addItem(cs.getType(), Integer.toString(cs.getId()));
+			if(cs.getId() == initTypeValue) {
+				initTypeIndex = index;
+			}
+			index++;
 		}
-
-		view.setSectionTypeComboBox(type);
+		
+		return initTypeIndex;
 	}
 
 	@Override
-	public void fillSectionStart() {
+	public int fillSectionStart(int initStartTimeValue, List<StartTime> startTimeList) {
+		int initStartTimeIndex = -1;
+
 		ListBox start = view.getSectionStartTimeComboBox();
+		start.clear();
 
-
-		List<CourseSections> sectionStart = retrieveTime();
-		Iterator<CourseSections> iterator = sectionStart.iterator();
-
+		Iterator<StartTime> iterator = startTimeList.iterator();
+		int index = 0;
 		while(iterator.hasNext()) {
-			CourseSections CourseSections = iterator.next();
-			start.addItem(CourseSections.getStartTime().toString());			
+			StartTime cs = iterator.next();
+			start.addItem(cs.getTime().toString(), Integer.toString(cs.getId()));
+			if(cs.getId() == initStartTimeValue) {
+				initStartTimeIndex = index;
+			}
+			index++;
 		}
-
-		view.setSectionStartTimeComboBox(start);
+		
+		return initStartTimeIndex;
 	}
 
 	@Override
-	public void fillSectionEnd() {
+	public int fillSectionEnd(int initEndTimeValue, List<EndTime> endTimeList) {
+		int initEndTimeIndex = -1;
+
 		ListBox end = view.getSectionEndTimeComboBox();
+		end.clear();
 
-
-		List<CourseSections> sectionEnd = retrieveTime();
-		Iterator<CourseSections> iterator = sectionEnd.iterator();
-
+		Iterator<EndTime> iterator = endTimeList.iterator();
+		int index = 0;
 		while(iterator.hasNext()) {
-			CourseSections CourseSections = iterator.next();
-			end.addItem(CourseSections.getEndTime().toString());			
+			EndTime cs = iterator.next();
+			end.addItem(cs.getTime().toString(), Integer.toString(cs.getId()));
+			if(cs.getId() == initEndTimeValue) {
+				initEndTimeIndex = index;
+			}
+			index++;
 		}
-
-		view.setSectionEndTimeComboBox(end);
+		
+		return initEndTimeIndex;
 	}
+
 
 	//determine which days are selected and stick them together as a string
 	@Override
@@ -261,8 +275,9 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		CheckBox tuesday = view.getTuesdayCheckBox();
 		CheckBox wednesday = view.getWednesdayCheckBox();
 		CheckBox thursday = view.getThursdayCheckBox();
-		CheckBox friday = view.getFridayCheckBox();		
+		CheckBox friday = view.getFridayCheckBox();
 
+		//Turn checked boxes back into list
 		StringBuilder days = new StringBuilder();
 
 		if(monday.getValue()) {
@@ -284,21 +299,6 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		return days.toString();		
 	}
 
-	//variable to hold info from course
-	private CourseSections fromCourse = new CourseSections();
-	private CourseInfo course = new CourseInfo();
-	@Override
-	public void onLoadEditSection(LoadEditSectionEvent evt) {
-		//Gather info from course
-		fromCourse.setCoursesNumber(evt.getAction().getCourseInfo().getCoursesNumber());
-		fromCourse.setCoursesTitle(evt.getAction().getCourseInfo().getCoursesTitle());
-		
-		//Info to return to edit course page
-		course = evt.getAction().getCourseInfo();
-		
-		this.go(parentPresenter.getView().getViewRootPanel());
-	}
-
 	@Override
 	public void editSection() {
 		ListBox term = view.getTermComboBox();
@@ -318,20 +318,12 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		newSection.getSectionId();
 
 		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course)));
-
-		Window.alert("when you connect this to the DB, your section will be edited to have Term: " + newSection.getTermsName() + 
-				" Section Type: " + newSection.getSectionType() +  
-				" Start Time: " + newSection.getStartTime() +
-				" End Time: " + newSection.getEndTime() +
-				" Days: " + newSection.getDays() +
-				" For the course: " + newSection.getCoursesNumber() + newSection.getCoursesTitle());
 	}
 
 	//loads courses page (viewing) (TODO: work out parameters, determine between Admin/User??)
 	@Override
 	public void cancelEditSection() {
 		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course)));
-		
 		Window.alert("The section was not edited");
 	}
 
