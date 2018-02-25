@@ -7,8 +7,17 @@ public class AccountInfo {
 	private String facultyEmail;
 	private String facultyType;
 	private String accountType;
+	private Integer facultyId;
 
 	//getters and setters
+	public Integer getFacultyId() {
+		return facultyId;
+	}
+
+	public void setFacultyId(Integer facultyId) {
+		this.facultyId = facultyId;
+	}
+	
 	public String getFacultyFirstName() {
 		return facultyFirstName;
 	}
@@ -50,7 +59,6 @@ public class AccountInfo {
 	}
 
 	
-	//hashCode and equals
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -58,6 +66,7 @@ public class AccountInfo {
 		result = prime * result + ((accountType == null) ? 0 : accountType.hashCode());
 		result = prime * result + ((facultyEmail == null) ? 0 : facultyEmail.hashCode());
 		result = prime * result + ((facultyFirstName == null) ? 0 : facultyFirstName.hashCode());
+		result = prime * result + ((facultyId == null) ? 0 : facultyId.hashCode());
 		result = prime * result + ((facultyLastName == null) ? 0 : facultyLastName.hashCode());
 		result = prime * result + ((facultyType == null) ? 0 : facultyType.hashCode());
 		return result;
@@ -96,6 +105,13 @@ public class AccountInfo {
 		} else if (!facultyFirstName.equals(other.facultyFirstName)) {
 			return false;
 		}
+		if (facultyId == null) {
+			if (other.facultyId != null) {
+				return false;
+			}
+		} else if (!facultyId.equals(other.facultyId)) {
+			return false;
+		}
 		if (facultyLastName == null) {
 			if (other.facultyLastName != null) {
 				return false;
@@ -113,13 +129,11 @@ public class AccountInfo {
 		return true;
 	}
 
-	//toString
 	@Override
 	public String toString() {
 		return "AccountInfo [facultyFirstName=" + facultyFirstName + ", facultyLastName=" + facultyLastName
-				+ ", facultyEmail=" + facultyEmail + ", facultyType=" + facultyType + ", accountType=" + accountType
-				+ "]";
+				+ ", facultyEmail=" + facultyEmail + ", facultyId=" + facultyId + ", facultyType=" + facultyType
+				+ ", accountType=" + accountType + "]";
 	}
-
 
 }
