@@ -111,29 +111,8 @@
 					<g:Cell width="50%">
 						<g:TabPanel ui:field="schedulePanel" width="100%" height="100%">
 							<g:Tab text="Calendar">
-								<g:ScrollPanel ui:field="calendarPanel" width="100%" height="100%">
-									<g:Grid width="100%" height="100%" ui:field="calendarGrid">
-										<g:row>
-											<g:customCell>
-												<g:Label text="Time" width="15%" />
-											</g:customCell>
-											<g:customCell>
-												<g:Label text="Monday" width="17%" />
-											</g:customCell>
-											<g:customCell>
-												<g:Label text="Tuesday" width="17%" />
-											</g:customCell>
-											<g:customCell>
-												<g:Label text="Wednesday" width="17%" />
-											</g:customCell>
-											<g:customCell>
-												<g:Label text="Thursday" width="17%" />
-											</g:customCell>
-											<g:customCell>
-												<g:Label text="Friday" width="17%" />
-											</g:customCell>
-										</g:row>
-									</g:Grid>
+								<g:ScrollPanel width="5cm" height="3cm" ui:field="calendarPanel">
+									<g:FlexTable ui:field="flexCalendar" width="100%" height="100%"/>
 								</g:ScrollPanel>
 							</g:Tab>
 							<g:Tab text="Table">
