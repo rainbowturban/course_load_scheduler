@@ -7,7 +7,7 @@ import java.util.List;
 import org.dselent.course_load_scheduler.client.action.GetFrequenciesAction;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.SendNewCourseAction;
-import org.dselent.course_load_scheduler.client.event.GetFrequenciesEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetFrequenciesEvent;
 import org.dselent.course_load_scheduler.client.event.LoadAddCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.SendNewCourseEvent;
@@ -92,7 +92,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	@Override
 	public void retrieveFrequencies() {
 		//Sends event to DB to fetch frequencies
-		eventBus.fireEvent(new GetFrequenciesEvent(new GetFrequenciesAction()));
+		eventBus.fireEvent(new SendGetFrequenciesEvent(new GetFrequenciesAction()));
 		
 		//**In place of that being completed, sample values are used
 		/*List<Frequency> freqs = new ArrayList<Frequency>();

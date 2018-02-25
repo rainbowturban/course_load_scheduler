@@ -27,7 +27,7 @@ SendEditCourseEventHandler,
 LoadCreateAccountEventHandler,
 LoadLoginPageEventHandler,
 LoadHomePageEventHandler,
-GetFrequenciesEventHandler,
+SendGetFrequenciesEventHandler,
 SendGetFacultyEventHandler,
 SendGetSectionsEventHandler,
 SendRemoveSectionEventHandler,
@@ -50,8 +50,10 @@ SendNewSectionEventHandler,
 ReceiveNewSectionEventHandler,
 ReceiveGetSectionsEventHandler,
 SendGetTermsEventHandler,
-ReceiveGetTermsEventHandler
-
+ReceiveGetTermsEventHandler,
+ReceiveGetFrequenciesEventHandler,
+SendGetEndTimesEventHandler,
+ReceiveEndTimesEventHandler 
 {
 	@Override
 	public void onCreateAccount(SendCreateAccountEvent evt) {}
@@ -60,8 +62,8 @@ ReceiveGetTermsEventHandler
 	public void onSendGetCourseList(SendGetCourseListEvent evt) {}
 
 	@Override
-	public void onGetFrequencies(GetFrequenciesEvent evt) {}
-	
+	public void onSendGetFrequencies(SendGetFrequenciesEvent evt) {}
+
 	@Override
 	public void onSendGetFaculty(SendGetFacultyEvent evt) {}
 
@@ -166,5 +168,14 @@ ReceiveGetTermsEventHandler
 	
 	@Override
 	public void onReceiveGetTerms(ReceiveGetTermsEvent evt) {}
+	
+	@Override
+	public void onReceiveGetFrequencies(ReceiveGetFrequenciesEvent evt) {}
+
+	@Override
+	public void onGetEndTimes(SendGetEndTimesEvent evt) {}
+	
+	@Override
+	public void onReceiveEndTimes(ReceiveEndTimesEvent evt) {}
 
 }
