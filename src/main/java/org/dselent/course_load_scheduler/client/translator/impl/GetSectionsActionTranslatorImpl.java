@@ -21,7 +21,7 @@ public class GetSectionsActionTranslatorImpl implements ActionTranslator<SendGet
 	{
 		JSONObject jsonObject = new JSONObject();
 
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendGetSectionsKeys.COURSES_ID), action.getCourseInfo().getId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendGetSectionsKeys.COURSES_ID), action.getCourseId());
 
 		return jsonObject;
 	}

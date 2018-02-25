@@ -178,12 +178,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	@Override
 	public void retrieveSections() {
 		//Sends event to DB to fetch sections
-		Courses c = new Courses();
-		c.setId(course.getCourseId());
-		c.setTitle(course.getCoursesTitle());
-		c.setNumber(course.getCoursesNumber());
-		
-		eventBus.fireEvent(new SendGetSectionsEvent(new SendGetSectionsAction(c)));
+		eventBus.fireEvent(new SendGetSectionsEvent(new SendGetSectionsAction(course.getCourseId())));
 		
 		//In place of that completing, Example values are used.
 		sections = new ArrayList<SectionsInfo>();
