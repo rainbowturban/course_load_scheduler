@@ -16,14 +16,14 @@ public class EditSectionActionTranslatorImpl implements ActionTranslator<SendEdi
 	public JSONObject translateToJson(SendEditSectionAction action) {
 		JSONObject jsonObject = new JSONObject();
 
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.ID), action.getSectionInfo().getId());
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.TERMS_ID), action.getSectionInfo().getTermsID());
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.SECTION_TYPE_ID), action.getSectionInfo().getSectionTypeID());
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.DAYS_ID), action.getSectionInfo().getDaysID());
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.COURSES_ID), action.getSectionInfo().getCoursesID());
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.START_TIME_ID), action.getSectionInfo().getStartID());
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.END_TIME_ID), action.getSectionInfo().getEndID());
-		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.SECTIONS_NAME), action.getSectionInfo().getName());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.ID), action.getSectionInfo().getSectionId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.TERMS_ID), action.getSectionInfo().getTermsId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.SECTION_TYPE_ID), action.getSectionInfo().getSectionTypeId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.DAYS_ID), action.getSectionInfo().getDaysId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.COURSES_ID), action.getSectionInfo().getCoursesId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.START_TIME_ID), action.getSectionInfo().getStartTimeId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.END_TIME_ID), action.getSectionInfo().getEndTimeId());
+		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.SECTIONS_NAME), action.getSectionInfo().getSectionsName());
 
 		return jsonObject;
 	}

@@ -45,7 +45,7 @@ public class GetCourseListActionTranslatorImpl implements ActionTranslator<SendG
 
 			//extract the information for the object to return
 			//TODO: Check for valid (non-null) values?		
-			course.setCourseId(JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveGetCourseListKeys.COURSE_ID)));
+			course.setCoursesId(JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveGetCourseListKeys.COURSE_ID)));
 			course.setCoursesNumber(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveGetCourseListKeys.COURSE_NUMBER)));
 			course.setCoursesTitle(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveGetCourseListKeys.COURSE_TITLE)));
 			course.setFrequency(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveGetCourseListKeys.FREQUENCY)));
