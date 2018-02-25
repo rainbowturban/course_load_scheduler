@@ -39,6 +39,8 @@ ReceiveCreateAccountEventHandler,
 ReceiveNewCourseEventHandler,
 ReceiveRemoveCourseEventHandler,
 ReceiveEditCourseEventHandler,
+GetStartTimesEventHandler,
+ReceiveStartTimesEventHandler,
 SendEditSectionEventHandler,
 ReceiveEditSectionEventHandler,
 ReceiveGetCourseListEventHandler,
@@ -127,6 +129,10 @@ ReceiveGetSectionsEventHandler
 	public void onReceiveEditCourse(ReceiveEditCourseEvent evt) {}
 	
 	@Override
+	public void onGetStartTimes(GetStartTimesEvent evt) {}
+	
+	@Override
+	public void onReceiveStartTimes(ReceiveStartTimesEvent evt) {}
 	public void onSendEditSection(SendEditSectionEvent evt) {}
 	
 	@Override
@@ -146,6 +152,4 @@ ReceiveGetSectionsEventHandler
 	
 	@Override
 	public void onReceiveGetSections(ReceiveGetSectionsEvent evt) {}
-	
-
 }

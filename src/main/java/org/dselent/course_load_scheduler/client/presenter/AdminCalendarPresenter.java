@@ -29,4 +29,5 @@ public interface AdminCalendarPresenter extends BasePresenter
     void loadViewCoursesPage();
     //loads Account page (TODO: work out parameters, differentiate btwn admin and user homepages?)
     void loadAccountPage();
+	void fillCalendarWithCourses();
 }
