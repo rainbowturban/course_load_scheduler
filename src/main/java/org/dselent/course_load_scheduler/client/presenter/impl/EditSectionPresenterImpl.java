@@ -5,24 +5,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
-import org.dselent.course_load_scheduler.client.action.SendGetEndTimesAction;
-import org.dselent.course_load_scheduler.client.action.SendGetStartTimesAction;
-import org.dselent.course_load_scheduler.client.action.SendGetTermsAction;
-import org.dselent.course_load_scheduler.client.event.ReceiveGetTermsEvent;
-import org.dselent.course_load_scheduler.client.event.ReceiveStartTimesEvent;
-import org.dselent.course_load_scheduler.client.event.SendGetEndTimesEvent;
-import org.dselent.course_load_scheduler.client.event.SendGetStartTimesEvent;
-import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
-import org.dselent.course_load_scheduler.client.event.LoadEditSectionEvent;
-import org.dselent.course_load_scheduler.client.event.ReceiveEndTimesEvent;
-import org.dselent.course_load_scheduler.client.event.SendGetTermsEvent;
-import org.dselent.course_load_scheduler.client.model.CourseInfo;
-import org.dselent.course_load_scheduler.client.model.CourseSections;
-import org.dselent.course_load_scheduler.client.model.EndTime;
-import org.dselent.course_load_scheduler.client.model.SectionType;
-import org.dselent.course_load_scheduler.client.model.StartTime;
-import org.dselent.course_load_scheduler.client.model.Terms;
+import org.dselent.course_load_scheduler.client.action.*;
+import org.dselent.course_load_scheduler.client.event.*;
+import org.dselent.course_load_scheduler.client.model.*;
 import org.dselent.course_load_scheduler.client.presenter.EditSectionPresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.EditSectionView;
@@ -87,7 +72,7 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		this.parentPresenter = parentPresenter;
 	}
 
-	@SuppressWarnings("deprecation")
+	//@SuppressWarnings("deprecation")
 	@Override
 	public void onLoadEditSection(LoadEditSectionEvent evt) {
 		oldSection = evt.getAction().getSectionInfo();
@@ -160,7 +145,7 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 	
 	@Override
 	public void onReceiveGetSectionTypes(ReceiveGetSectionTypesEvent evt) {
-		int typeIndex = fillSectionTypes(oldSection.getSectionTypeId(), evt.getAction().getTypes());
+		int typeIndex = fillSectionTypes(oldSection.getSectionTypeId(), evt.getAction().getSectionTypes());
 		view.getSectionTypeComboBox().setSelectedIndex(typeIndex);		
 	}
 

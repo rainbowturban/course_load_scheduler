@@ -44,6 +44,7 @@ SendEditCourseEventHandler,
 SendEditSectionEventHandler,
 SendGetCourseListEventHandler,
 SendGetEndTimesEventHandler,
+<<<<<<< HEAD
 SendGetFacultyEventHandler,
 SendGetFrequenciesEventHandler,
 SendGetSectionsEventHandler,
@@ -58,19 +59,59 @@ SendRemoveSectionEventHandler
 {
 	@Override
 	public void onCreateAccount(SendCreateAccountEvent evt) {}
+=======
+ReceiveEndTimesEventHandler,
+SendGetSectionTypesEventHandler,
+ReceiveGetSectionTypesEventHandler
+>>>>>>> 365447b44c91b40f3bc87a759ec4ed5820cfeb4d
 
+{
+	//"onSend" methods
 	@Override
 	public void onGetEndTimes(SendGetEndTimesEvent evt) {}
 
 	@Override
+<<<<<<< HEAD
 	public void onGetStartTimes(SendGetStartTimesEvent evt) {}
+=======
+	public void onSendGetSections(SendGetSectionsEvent evt) {}
+	
+	@Override
+	public void onSendLogin(SendLoginEvent evt) {}
+>>>>>>> 365447b44c91b40f3bc87a759ec4ed5820cfeb4d
 
 	@Override
-	public void onInvalidAccountCreation(InvalidAccountCreationEvent evt) {}
+	public void onSendEditCourse(SendEditCourseEvent evt) {}
 
 	@Override
-	public void onInvalidLogin(InvalidLoginEvent evt) {}
+	public void onSendNewCourse(SendNewCourseEvent evt) {}
 
+	@Override
+	public void onSendRemoveCourse(SendRemoveCourseEvent evt) {}
+
+	@Override
+	public void onSendRemoveSection(SendRemoveSectionEvent evt) {}
+	
+	@Override
+	public void onGetStartTimes(SendGetStartTimesEvent evt) {}
+	
+	@Override
+	public void onSendEditSection(SendEditSectionEvent evt) {}
+	
+	@Override
+	public void onSendGetSectionTypes(SendGetSectionTypesEvent evt) {}
+	
+	@Override
+	public void onGetEndTimes(SendGetEndTimesEvent evt) {}
+	
+	@Override
+	public void onSendGetTerms(SendGetTermsEvent evt) {}
+	
+	@Override
+	public void onSendNewSection(SendNewSectionEvent evt) {}
+	
+	
+	//"onLoad" methods
 	@Override
 	public void onLoadAddCourse(LoadAddCourseEvent evt) {}
 
@@ -97,6 +138,7 @@ SendRemoveSectionEventHandler
 
 	@Override
 	public void onLoadViewCourses(LoadViewCoursesEvent evt) {}
+<<<<<<< HEAD
 
 	@Override 
 	public void onManageUserPage(ManageUserPageEvent evt) {}
@@ -109,8 +151,16 @@ SendRemoveSectionEventHandler
 
 	@Override
 	public void onReceiveEditSection(ReceiveEditSectionEvent evt) {}
-
+=======
+	
 	@Override
+	public void onLoadSchedulePage(LoadScheduleEvent evt) {}
+	
+>>>>>>> 365447b44c91b40f3bc87a759ec4ed5820cfeb4d
+
+	//Other methods
+	@Override
+<<<<<<< HEAD
 	public void onReceiveEndTimes(ReceiveEndTimesEvent evt) {}
 
 	@Override
@@ -119,6 +169,21 @@ SendRemoveSectionEventHandler
 	@Override
 	public void onReceiveGetFrequencies(ReceiveGetFrequenciesEvent evt) {}
 
+=======
+	public void onInvalidAccountCreation(InvalidAccountCreationEvent evt) {}
+
+	@Override
+	public void onInvalidLogin(InvalidLoginEvent evt) {}
+	
+	@Override
+	public void onCreateAccount(SendCreateAccountEvent evt) {}
+	
+	@Override 
+	public void onManageUserPage(ManageUserPageEvent evt) {}
+	
+	
+	//"onReceive" methods
+>>>>>>> 365447b44c91b40f3bc87a759ec4ed5820cfeb4d
 	@Override
 	public void onReceiveGetSections(ReceiveGetSectionsEvent evt) {}
 
@@ -138,6 +203,7 @@ SendRemoveSectionEventHandler
 	public void onReceiveRemoveCourse(ReceiveRemoveCourseEvent evt) {}
 
 	@Override
+<<<<<<< HEAD
 	public void onReceiveRemoveSection(ReceiveRemoveSectionEvent evt) {}
 
 	@Override
@@ -145,6 +211,12 @@ SendRemoveSectionEventHandler
 
 	@Override
 	public void onSendEditCourse(SendEditCourseEvent evt) {}
+=======
+	public void onReceiveStartTimes(ReceiveStartTimesEvent evt) {}
+	
+	@Override
+	public void onReceiveEditSection(ReceiveEditSectionEvent evt) {}
+>>>>>>> 365447b44c91b40f3bc87a759ec4ed5820cfeb4d
 
 	@Override
 	public void onSendEditSection(SendEditSectionEvent evt) {}
@@ -153,15 +225,21 @@ SendRemoveSectionEventHandler
 	public void onSendGetCourseList(SendGetCourseListEvent evt) {}
 
 	@Override
+<<<<<<< HEAD
 	public void onSendGetFaculty(SendGetFacultyEvent evt) {}
 
 	@Override
 	public void onSendGetFrequencies(SendGetFrequenciesEvent evt) {}
 
+=======
+	public void onReceiveNewSection(ReceiveNewSectionEvent evt) {}
+	
+>>>>>>> 365447b44c91b40f3bc87a759ec4ed5820cfeb4d
 	@Override
 	public void onSendGetSections(SendGetSectionsEvent evt) {}
 
 	@Override
+<<<<<<< HEAD
 	public void onSendGetTerms(SendGetTermsEvent evt) {}
 
 	@Override
@@ -178,5 +256,17 @@ SendRemoveSectionEventHandler
 
 	@Override
 	public void onSendRemoveSection(SendRemoveSectionEvent evt) {}
+=======
+	public void onReceiveGetTerms(ReceiveGetTermsEvent evt) {}
+	
+	@Override
+	public void onReceiveGetFrequencies(ReceiveGetFrequenciesEvent evt) {}
+	
+	@Override
+	public void onReceiveEndTimes(ReceiveEndTimesEvent evt) {}
+	
+	@Override
+	public void onReceiveGetSectionTypes(ReceiveGetSectionTypesEvent evt) {}
+>>>>>>> 365447b44c91b40f3bc87a759ec4ed5820cfeb4d
 
 }

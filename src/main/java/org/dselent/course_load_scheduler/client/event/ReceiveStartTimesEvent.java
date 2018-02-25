@@ -3,14 +3,16 @@ package org.dselent.course_load_scheduler.client.event;
 import org.dselent.course_load_scheduler.client.action.ReceiveStartTimesAction;
 import org.dselent.course_load_scheduler.client.event_handler.ReceiveStartTimesEventHandler;
 
-public class ReceiveStartTimesEvent extends BaseEvent<ReceiveStartTimesAction, ReceiveStartTimesEventHandler>
+import com.google.gwt.event.shared.GwtEvent;
+
+public class ReceiveStartTimesEvent extends GwtEvent<ReceiveStartTimesEventHandler>
 {
 	public static Type<ReceiveStartTimesEventHandler> TYPE = new Type<ReceiveStartTimesEventHandler>();
 	private ReceiveStartTimesAction action;
 	
 	public ReceiveStartTimesEvent(ReceiveStartTimesAction action)
 	{
-		super(action);
+		this.action = action;
 	}
 	
 	public ReceiveStartTimesAction getAction()

@@ -18,7 +18,7 @@ public interface AdminCalendarPresenter extends BasePresenter
 	List<Terms> getTerms();
 	List<RequestTables> retrieveRequests();
 	List<EndTime> getEndTimes();
-	List<StartTime> getStartTimes();
+	void getStartTimes();
 	void fillCalendar();
 	void fillCourseInfo();
 	//loads Home page (TODO: work out parameters, differentiate btwn admin and user homepages?)
