@@ -11,8 +11,8 @@ public interface EditCoursePresenter  extends BasePresenter{
 	public IndexPresenter getParentPresenter();
 	public void setParentPresenter(IndexPresenter parentPresenter);
 	
-	public List<Frequency> retrieveFequencies();//gets values from DB
-	public int fillFrequencies(int startingFrequencyValue);//puts them into view--takes a parameter for a starting value to set to, and returns the local index of it
+	public void retrieveFrequencies();//gets values from DB
+	public int fillFrequencies(List<Frequency> freqs, int startingFrequencyValue);//puts them into view--takes a parameter for a starting value to set to, and returns the local index of it
 	
 	public void returnToViewCourses();
 	

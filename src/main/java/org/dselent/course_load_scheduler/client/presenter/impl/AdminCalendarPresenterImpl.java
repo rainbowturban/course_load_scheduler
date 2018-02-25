@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.dselent.course_load_scheduler.client.action.GetStartTimesAction;
+import org.dselent.course_load_scheduler.client.action.SendGetStartTimesAction;
 import org.dselent.course_load_scheduler.client.action.LoadHomePageAction;
 import org.dselent.course_load_scheduler.client.action.LoadScheduleAction;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.ManageUserPageAction;
 import org.dselent.course_load_scheduler.client.action.ReceiveStartTimesAction;
-import org.dselent.course_load_scheduler.client.event.GetStartTimesEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetStartTimesEvent;
 import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
 import org.dselent.course_load_scheduler.client.event.LoadScheduleEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
@@ -212,7 +212,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		temp.setAccountTypeId(1);
 		temp.setId(1);
 		temp.setPassword("derp");
-		eventBus.fireEvent(new GetStartTimesEvent(new GetStartTimesAction(temp)));
+		eventBus.fireEvent(new SendGetStartTimesEvent(new SendGetStartTimesAction(temp)));
 		StartTime time8 = new StartTime();
 		time8.setId(1);
 		time8.setTime(new Time(28800000));

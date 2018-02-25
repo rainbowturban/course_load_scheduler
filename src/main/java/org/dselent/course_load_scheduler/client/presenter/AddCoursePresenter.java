@@ -11,11 +11,11 @@ public interface AddCoursePresenter extends BasePresenter{
 	public IndexPresenter getParentPresenter();
 	public void setParentPresenter(IndexPresenter parentPresenter);
 	
-	public void fillFrequencies();
+	public void fillFrequencies(List<Frequency> freqs);
 	
 	public void returnToViewCourses();
 	
 	public void submitNewCourse();
 	
-	public List<Frequency> retrieveFequencies();
+	public void retrieveFrequencies();
 }

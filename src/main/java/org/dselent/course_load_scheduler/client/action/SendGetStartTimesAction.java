@@ -2,10 +2,10 @@ package org.dselent.course_load_scheduler.client.action;
 
 import org.dselent.course_load_scheduler.client.model.User;
 
-public class GetStartTimesAction extends Action {
+public class SendGetStartTimesAction extends Action {
 	private User model;
 	
-	public GetStartTimesAction(User model)
+	public SendGetStartTimesAction(User model)
 	{
 		this.model = model;
 	}

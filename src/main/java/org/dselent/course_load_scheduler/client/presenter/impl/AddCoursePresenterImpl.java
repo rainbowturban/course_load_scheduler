@@ -65,7 +65,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	
 	@Override
 	public void onLoadAddCourse(LoadAddCourseEvent evt) {
-		fillFrequencies();
+		retrieveFrequencies();
 		this.go(parentPresenter.getView().getViewRootPanel());
 	}
 	
@@ -90,12 +90,12 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	}
 	
 	@Override
-	public List<Frequency> retrieveFequencies() {
+	public void retrieveFrequencies() {
 		//Sends event to DB to fetch frequencies
 		eventBus.fireEvent(new GetFrequenciesEvent(new GetFrequenciesAction()));
 		
 		//**In place of that being completed, sample values are used
-		List<Frequency> freqs = new ArrayList<Frequency>();
+		/*List<Frequency> freqs = new ArrayList<Frequency>();
 		
 		Frequency f1 = new Frequency();
 		f1.setFrequency("1 per year");
@@ -114,15 +114,18 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 		freqs.add(f3);
 		
 		
-		return freqs;
+		return freqs;*/
 	}
 	
 	
+	@Override//*****************************************************************************
+	public void onReceiveGetFrequenciesEvent(ReceiveGetFrequenciesEvent evt) {
+		fillFrequencies(evt.getAction().getFrequencyList());
+	}
+	
 	//gets the frequencies from the database and fills the dropdown with them. 
 	@Override
-	public void fillFrequencies() {
-		List<Frequency> freqs = retrieveFequencies();
-
+	public void fillFrequencies(List<Frequency> freqs) {
 		ListBox box = view.getFrequencyDropdown();
 		box.clear();
 		Iterator<Frequency> iterator = freqs.iterator();
@@ -135,7 +138,6 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 		}
 		
 		view.setFrequencyDropdown(box);
-		
 	}
 	
 	@Override

@@ -13,7 +13,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.dselent.course_load_scheduler.client.action.GetStartTimesAction;
+import org.dselent.course_load_scheduler.client.action.SendGetStartTimesAction;
 import org.dselent.course_load_scheduler.client.action.ReceiveCreateAccountAction;
 import org.dselent.course_load_scheduler.client.translator.ActionTranslator;
 import org.dselent.course_load_scheduler.client.utils.JSONHelper;
@@ -22,10 +22,10 @@ import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 
-public class GetStartTimesActionTranslatorImpl implements ActionTranslator<GetStartTimesAction, ReceiveStartTimesAction> {
+public class GetStartTimesActionTranslatorImpl implements ActionTranslator<SendGetStartTimesAction, ReceiveStartTimesAction> {
 
 	@Override
-	public JSONObject translateToJson(GetStartTimesAction action)
+	public JSONObject translateToJson(SendGetStartTimesAction action)
 	{
 		JSONObject jsonObject = new JSONObject();
 		
