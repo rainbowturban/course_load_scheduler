@@ -106,8 +106,8 @@
 }
 
 .login-button {
-	font-size: 14px;
 	margin-left: 20px;
+	font-size: 14px;
 }
 .login-title {
 	font-family: Times New Roman;
@@ -147,4 +147,11 @@
 }
 .calendar-cell {
 	border: 1px;
+}
+.gwt-Label {
+}
+.faculty-list-title {
+	margin-right: 20px;
+	margin-left: 20px;
+	font-size: 14px;
 }
