@@ -49,7 +49,9 @@ SendNewSectionEventHandler,
 ReceiveNewSectionEventHandler,
 ReceiveGetSectionsEventHandler,
 SendGetTermsEventHandler,
-ReceiveGetTermsEventHandler
+ReceiveGetTermsEventHandler,
+SendGetEndTimesEventHandler,
+ReceiveEndTimesEventHandler
 
 {
 	@Override
@@ -162,5 +164,11 @@ ReceiveGetTermsEventHandler
 	
 	@Override
 	public void onReceiveGetTerms(ReceiveGetTermsEvent evt) {}
+	
+	@Override
+	public void onGetEndTimes(SendGetEndTimesEvent evt) {}
+	
+	@Override
+	public void onReceiveEndTimes(ReceiveEndTimesEvent evt) {}
 
 }

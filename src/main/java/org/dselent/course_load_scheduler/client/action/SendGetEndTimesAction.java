@@ -2,14 +2,14 @@ package org.dselent.course_load_scheduler.client.action;
 
 import org.dselent.course_load_scheduler.client.model.User;
 
-public class SendGetStartTimesAction extends Action {
+public class SendGetEndTimesAction extends Action {
 	private User model;
 	
-	public SendGetStartTimesAction() {
+	public SendGetEndTimesAction() {
 		model = null;
 	}
 	
-	public SendGetStartTimesAction(User model)
+	public SendGetEndTimesAction(User model)
 	{
 		this.model = model;
 	}

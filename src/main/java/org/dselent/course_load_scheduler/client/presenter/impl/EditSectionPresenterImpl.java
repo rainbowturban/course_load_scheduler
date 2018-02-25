@@ -6,10 +6,16 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
+import org.dselent.course_load_scheduler.client.action.SendGetEndTimesAction;
+import org.dselent.course_load_scheduler.client.action.SendGetStartTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetTermsAction;
 import org.dselent.course_load_scheduler.client.event.ReceiveGetTermsEvent;
+import org.dselent.course_load_scheduler.client.event.ReceiveStartTimesEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetEndTimesEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetStartTimesEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditSectionEvent;
+import org.dselent.course_load_scheduler.client.event.ReceiveEndTimesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetTermsEvent;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.CourseSections;
@@ -31,9 +37,7 @@ import com.google.inject.Inject;
 public class EditSectionPresenterImpl extends BasePresenterImpl implements EditSectionPresenter {
 	private IndexPresenter parentPresenter;
 	private EditSectionView view;
-	private List<CourseSections> sections = new ArrayList<CourseSections>();
 	//variables to hold previous info
-	private CourseSections fromCourse = new CourseSections();
 	private CourseInfo course = new CourseInfo();
 	private CourseSections oldSection = new CourseSections();
 
@@ -166,19 +170,19 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 	public void retrieveTime(){
 		//Populates times from DB
 		eventBus.fireEvent(new SendGetStartTimesEvent(new SendGetStartTimesAction()));
-		eventBus.fireEvent(new SendGetEndTimesEvent(new SendEndTimesAction()));
+		eventBus.fireEvent(new SendGetEndTimesEvent(new SendGetEndTimesAction()));
 	}
 	
 	@Override
-	public void onReceiveGetStartTimes(ReceiveGetStartTimesEvent evt) {
-		int startIndex = fillSectionStart(oldSection.getStartTimeId(), evt.getAction.getStartTimes());
+	public void onReceiveStartTimes(ReceiveStartTimesEvent evt) {
+		int startIndex = fillSectionStart(oldSection.getStartTimeId(), evt.getAction().getStartTimes());
 		view.getSectionStartTimeComboBox().setSelectedIndex(startIndex);
 		
 	}
 	
 	@Override
-	public void onReceiveGetEndTimes(ReceiveGetEndTimesEvent evt) {
-		int endIndex = fillSectionEnd(oldSection.getEndTimeId(), evt.getAction.getEndTimes());
+	public void onReceiveEndTimes(ReceiveEndTimesEvent evt) {
+		int endIndex = fillSectionEnd(oldSection.getEndTimeId(), evt.getAction().getEndTimes());
 		view.getSectionEndTimeComboBox().setSelectedIndex(endIndex);
 	}
 	
@@ -313,14 +317,13 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		newSection.setStartTime(Time.valueOf(start.getItemText(start.getSelectedIndex())));
 		newSection.setEndTime(Time.valueOf(end.getItemText(end.getSelectedIndex())));
 		newSection.setDays(this.determineDays());
-		newSection.setCoursesNumber(fromCourse.getCoursesNumber());
-		newSection.setCoursesTitle(fromCourse.getCoursesTitle());
+		newSection.setCoursesNumber(oldSection.getCoursesNumber());
+		newSection.setCoursesTitle(oldSection.getCoursesTitle());
 		newSection.getSectionId();
 
 		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course)));
 	}
 
-	//loads courses page (viewing) (TODO: work out parameters, determine between Admin/User??)
 	@Override
 	public void cancelEditSection() {
 		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course)));
