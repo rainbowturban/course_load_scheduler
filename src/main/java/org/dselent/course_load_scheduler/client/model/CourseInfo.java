@@ -2,20 +2,19 @@ package org.dselent.course_load_scheduler.client.model;
 
 public class CourseInfo {
 		// attributes
-		private Integer courseId;
-		private String termsName;
+		private Integer coursesId;
 		private String coursesNumber;
 		private String coursesTitle;
-		private String sectionsName;
 		private Integer frequencyId;
 		private String frequency;
 		
-		public Integer getCourseId() {
-			return courseId;
+
+		public Integer getCoursesId() {
+			return coursesId;
 		}
 
-		public void setCourseId(Integer courseId) {
-			this.courseId = courseId;
+		public void setCoursesId(Integer coursesId) {
+			this.coursesId = coursesId;
 		}
 
 		public Integer getFrequencyId() {
@@ -24,16 +23,6 @@ public class CourseInfo {
 
 		public void setFrequencyId(Integer frequencyId) {
 			this.frequencyId = frequencyId;
-		}
-
-
-		// getters and setters
-		public String getTermsName() {
-			return termsName;
-		}
-
-		public void setTermsName(String termsName) {
-			this.termsName = termsName;
 		}
 
 		public String getCoursesNumber() {
@@ -52,14 +41,6 @@ public class CourseInfo {
 			this.coursesTitle = coursesTitle;
 		}
 
-		public String getSectionsName() {
-			return sectionsName;
-		}
-
-		public void setSectionsName(String sectionsName) {
-			this.sectionsName = sectionsName;
-		}
-
 		public String getFrequency() {
 			return frequency;
 		}
@@ -73,13 +54,11 @@ public class CourseInfo {
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;
-			result = prime * result + ((courseId == null) ? 0 : courseId.hashCode());
+			result = prime * result + ((coursesId == null) ? 0 : coursesId.hashCode());
 			result = prime * result + ((coursesNumber == null) ? 0 : coursesNumber.hashCode());
 			result = prime * result + ((coursesTitle == null) ? 0 : coursesTitle.hashCode());
 			result = prime * result + ((frequency == null) ? 0 : frequency.hashCode());
 			result = prime * result + ((frequencyId == null) ? 0 : frequencyId.hashCode());
-			result = prime * result + ((sectionsName == null) ? 0 : sectionsName.hashCode());
-			result = prime * result + ((termsName == null) ? 0 : termsName.hashCode());
 			return result;
 		}
 
@@ -95,11 +74,11 @@ public class CourseInfo {
 				return false;
 			}
 			CourseInfo other = (CourseInfo) obj;
-			if (courseId == null) {
-				if (other.courseId != null) {
+			if (coursesId == null) {
+				if (other.coursesId != null) {
 					return false;
 				}
-			} else if (!courseId.equals(other.courseId)) {
+			} else if (!coursesId.equals(other.coursesId)) {
 				return false;
 			}
 			if (coursesNumber == null) {
@@ -130,34 +109,13 @@ public class CourseInfo {
 			} else if (!frequencyId.equals(other.frequencyId)) {
 				return false;
 			}
-			if (sectionsName == null) {
-				if (other.sectionsName != null) {
-					return false;
-				}
-			} else if (!sectionsName.equals(other.sectionsName)) {
-				return false;
-			}
-			if (termsName == null) {
-				if (other.termsName != null) {
-					return false;
-				}
-			} else if (!termsName.equals(other.termsName)) {
-				return false;
-			}
 			return true;
 		}
 
 		
 		@Override
 		public String toString() {
-			return "CourseInfo [courseId=" + courseId + ", termsName=" + termsName + ", coursesNumber=" + coursesNumber
-					+ ", coursesTitle=" + coursesTitle + ", sectionsName=" + sectionsName + ", frequencyId="
-					+ frequencyId + ", frequency=" + frequency + "]";
-		}
-		
-		
-		
-		
-		
-		
+			return "CourseInfo [coursesId=" + coursesId + ", coursesNumber=" + coursesNumber + ", coursesTitle="
+					+ coursesTitle + ", frequencyId=" + frequencyId + ", frequency=" + frequency + "]";
+		}		
 }

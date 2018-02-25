@@ -179,7 +179,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	public void retrieveSections() {
 		//Sends event to DB to fetch sections
 		Courses c = new Courses();
-		c.setId(course.getCourseId());
+		c.setId(course.getCoursesId());
 		c.setTitle(course.getCoursesTitle());
 		c.setNumber(course.getCoursesNumber());
 		
@@ -234,7 +234,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 			editCourse.setFrequencyID(Integer.parseInt(view.getFrequencyDropdown().getValue(fIndex)));
 			editCourse.setTitle(view.getCourseNameField().getText());
 			editCourse.setNumber(view.getCourseNumberField().getText());
-			editCourse.setId(course.getCourseId());
+			editCourse.setId(course.getCoursesId());
 			
 			//this event should go to the DB
 			eventBus.fireEvent(new SendEditCourseEvent(new SendEditCourseAction(editCourse)));
