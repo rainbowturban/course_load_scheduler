@@ -9,6 +9,8 @@ public class Request extends Model
 
 	private Integer id;
 	private Integer userId;
+	private Integer courseId;
+	private String message;
 	private Integer statusId;
 	private Instant createdAt;
 	private Instant updatedAt;
@@ -22,7 +24,8 @@ public class Request extends Model
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
+	
+	
 
 	public Integer getUserId() {
 		return userId;
@@ -31,7 +34,27 @@ public class Request extends Model
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
+	
+	
+	
+	public Integer getCourseId() {
+		return courseId;
+	}
+	
+	public void setCourseId(Integer courseId) {
+		this.courseId = courseId;
+	}
+	
+	
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	
 
+	
 	public Integer getStatusId() {
 		return statusId;
 	}
