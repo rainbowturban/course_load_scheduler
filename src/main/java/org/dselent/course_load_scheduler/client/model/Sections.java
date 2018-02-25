@@ -1,8 +1,6 @@
 package org.dselent.course_load_scheduler.client.model;
 
 import java.sql.Date;
-import java.sql.Timestamp;
-import java.time.Instant;
 
 public class Sections extends Model
 {

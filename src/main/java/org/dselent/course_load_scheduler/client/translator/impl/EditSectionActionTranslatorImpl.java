@@ -2,7 +2,7 @@ package org.dselent.course_load_scheduler.client.translator.impl;
 
 import org.dselent.course_load_scheduler.client.action.ReceiveEditSectionAction;
 import org.dselent.course_load_scheduler.client.action.SendEditSectionAction;
-import org.dselent.course_load_scheduler.client.model.Sections;
+import org.dselent.course_load_scheduler.client.model.CourseSections;
 import org.dselent.course_load_scheduler.client.receive.jsonkeys.ReceiveEditSectionKeys;
 import org.dselent.course_load_scheduler.client.send.jsonkeys.SendEditSectionKeys;
 import org.dselent.course_load_scheduler.client.translator.ActionTranslator;
@@ -50,15 +50,15 @@ public class EditSectionActionTranslatorImpl implements ActionTranslator<SendEdi
 		Integer endID = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveEditSectionKeys.END_TIME_ID));
 		String sectionsName = JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveEditSectionKeys.SECTIONS_NAME));
 
-		Sections section = new Sections();
-		section.setId(id);
-		section.setTermsID(termsID);
-		section.setSectionTypeID(sectionTypeID);
-		section.setDaysID(daysID);
-		section.setCoursesID(coursesID);
-		section.setStartID(startID);
-		section.setEndID(endID);
-		section.setName(sectionsName);
+		CourseSections section = new CourseSections();
+		section.setSectionId(id);
+		section.setTermsId(termsID);
+		section.setSectionTypeId(sectionTypeID);
+		section.setDaysId(daysID);
+		section.setCoursesId(coursesID);
+		section.setStartTimeId(startID);
+		section.setEndTimeId(endID);
+		section.setSectionsName(sectionsName);
 
 
 		ReceiveEditSectionAction action = new ReceiveEditSectionAction(section);

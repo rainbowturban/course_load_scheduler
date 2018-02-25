@@ -20,18 +20,12 @@ public class SendRemoveSectionEvent extends GwtEvent<SendRemoveSectionEventHandl
 		return action;
 	}
 	
-	/*
-	 * 
-	 */
 	@Override
 	public Type<SendRemoveSectionEventHandler> getAssociatedType()
 	{
 		return TYPE;
 	}
 
-	/*
-	 * 
-	 */
 	@Override
 	protected void dispatch(SendRemoveSectionEventHandler handler)
 	{

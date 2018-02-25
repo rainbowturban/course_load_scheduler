@@ -4,7 +4,7 @@ import java.sql.Time;
 
 import org.dselent.course_load_scheduler.client.action.ReceiveNewSectionAction;
 import org.dselent.course_load_scheduler.client.action.SendNewSectionAction;
-import org.dselent.course_load_scheduler.client.model.SectionsInfo;
+import org.dselent.course_load_scheduler.client.model.CourseSections;
 import org.dselent.course_load_scheduler.client.receive.jsonkeys.ReceiveNewSectionKeys;
 import org.dselent.course_load_scheduler.client.send.jsonkeys.SendNewSectionKeys;
 import org.dselent.course_load_scheduler.client.translator.ActionTranslator;
@@ -56,8 +56,8 @@ public class NewSectionActionTranslatorImpl implements ActionTranslator<SendNewS
 		String sectionsName = JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveNewSectionKeys.SECTIONS_NAME));
 
 
-		SectionsInfo section = new SectionsInfo();
-		section.setSectionsId(id);
+		CourseSections section = new CourseSections();
+		section.setSectionId(id);
 		section.setTermsName(termsName);
 		section.setSectionType(sectionType);
 		section.setDays(days);

@@ -9,7 +9,7 @@ import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
 import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditSectionEvent;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
-import org.dselent.course_load_scheduler.client.model.SectionsInfo;
+import org.dselent.course_load_scheduler.client.model.CourseSections;
 import org.dselent.course_load_scheduler.client.presenter.EditSectionPresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.EditSectionView;
@@ -78,28 +78,28 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 
 	//gets term info about sections
 	@Override
-	public List<SectionsInfo> retrieveTerm(){
-		List<SectionsInfo> sections = new ArrayList<SectionsInfo>();
+	public List<CourseSections> retrieveTerm(){
+		List<CourseSections> sections = new ArrayList<CourseSections>();
 
-		SectionsInfo section1 = new SectionsInfo();
+		CourseSections section1 = new CourseSections();
 		section1.setTermsName("A Term");
 
-		SectionsInfo section2 = new SectionsInfo();
+		CourseSections section2 = new CourseSections();
 		section2.setTermsName("B Term");
 
-		SectionsInfo section3 = new SectionsInfo();
+		CourseSections section3 = new CourseSections();
 		section3.setTermsName("C Term");
 
-		SectionsInfo section4 = new SectionsInfo();
+		CourseSections section4 = new CourseSections();
 		section4.setTermsName("D Term");
 
-		SectionsInfo section5 = new SectionsInfo();
+		CourseSections section5 = new CourseSections();
 		section5.setTermsName("E Term");
 
-		SectionsInfo section6 = new SectionsInfo();
+		CourseSections section6 = new CourseSections();
 		section6.setTermsName("Fall");
 
-		SectionsInfo section7 = new SectionsInfo();
+		CourseSections section7 = new CourseSections();
 		section7.setTermsName("Spring");
 
 		sections.add(section1);
@@ -116,16 +116,16 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 
 	//gets section type info about sections
 	@Override
-	public List<SectionsInfo> retrieveType(){
-		List<SectionsInfo> sections = new ArrayList<SectionsInfo>();
+	public List<CourseSections> retrieveType(){
+		List<CourseSections> sections = new ArrayList<CourseSections>();
 
-		SectionsInfo section1 = new SectionsInfo();
+		CourseSections section1 = new CourseSections();
 		section1.setSectionType("Lab");
 
-		SectionsInfo section2 = new SectionsInfo();
+		CourseSections section2 = new CourseSections();
 		section2.setSectionType("Lecture");
 
-		SectionsInfo section3 = new SectionsInfo();
+		CourseSections section3 = new CourseSections();
 		section3.setSectionType("Conference");
 
 		sections.add(section1);
@@ -139,42 +139,42 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 	//gets start/end time info about sections
 	@SuppressWarnings("deprecation")
 	@Override
-	public List<SectionsInfo> retrieveTime(){
-		List<SectionsInfo> sections = new ArrayList<SectionsInfo>();
+	public List<CourseSections> retrieveTime(){
+		List<CourseSections> sections = new ArrayList<CourseSections>();
 
-		SectionsInfo section1 = new SectionsInfo();
+		CourseSections section1 = new CourseSections();
 		section1.setStartTime(new Time(8,0,0)); //deprecated Time type (hour, minute, second) cuz Gregorian calendar is too complicated
 		section1.setEndTime(new Time(8,50,0));
 
-		SectionsInfo section2 = new SectionsInfo();
+		CourseSections section2 = new CourseSections();
 		section2.setStartTime(new Time(9,0,0));
 		section2.setEndTime(new Time(9,50,0));
 
-		SectionsInfo section3 = new SectionsInfo();
+		CourseSections section3 = new CourseSections();
 		section3.setStartTime(new Time(10,0,0));
 		section3.setEndTime(new Time(10,50,0));
 
-		SectionsInfo section4 = new SectionsInfo();
+		CourseSections section4 = new CourseSections();
 		section4.setStartTime(new Time(11,0,0));
 		section4.setEndTime(new Time(11,50,0));
 
-		SectionsInfo section5 = new SectionsInfo();
+		CourseSections section5 = new CourseSections();
 		section5.setStartTime(new Time(12,0,0));
 		section5.setEndTime(new Time(12,50,0));
 
-		SectionsInfo section6 = new SectionsInfo();
+		CourseSections section6 = new CourseSections();
 		section6.setStartTime(new Time(13,0,0));
 		section6.setEndTime(new Time(13,50,0));
 
-		SectionsInfo section7 = new SectionsInfo();
+		CourseSections section7 = new CourseSections();
 		section7.setStartTime(new Time(14,0,0));
 		section7.setEndTime(new Time(14,50,0));
 
-		SectionsInfo section8 = new SectionsInfo();
+		CourseSections section8 = new CourseSections();
 		section8.setStartTime(new Time(15,0,0));
 		section8.setEndTime(new Time(15,50,0));
 
-		SectionsInfo section9 = new SectionsInfo();
+		CourseSections section9 = new CourseSections();
 		section9.setStartTime(new Time(16,0,0));
 		section9.setEndTime(new Time(16,50,0));
 
@@ -196,12 +196,12 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 	public void fillSectionTerms() {
 		ListBox term = view.getTermComboBox();
 
-		List<SectionsInfo> sectionTerms = retrieveTerm();
-		Iterator<SectionsInfo> iterator = sectionTerms.iterator();
+		List<CourseSections> sectionTerms = retrieveTerm();
+		Iterator<CourseSections> iterator = sectionTerms.iterator();
 
 		while(iterator.hasNext()) {
-			SectionsInfo sectionsInfo = iterator.next();
-			term.addItem(sectionsInfo.getTermsName());
+			CourseSections CourseSections = iterator.next();
+			term.addItem(CourseSections.getTermsName());
 		}
 
 		view.setTermComboBox(term);
@@ -211,12 +211,12 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 	public void fillSectionTypes() {
 		ListBox type = view.getSectionTypeComboBox();
 
-		List<SectionsInfo> sectionTypes = retrieveType();
-		Iterator<SectionsInfo> iterator = sectionTypes.iterator();
+		List<CourseSections> sectionTypes = retrieveType();
+		Iterator<CourseSections> iterator = sectionTypes.iterator();
 
 		while(iterator.hasNext()) {
-			SectionsInfo sectionsInfo = iterator.next();
-			type.addItem(sectionsInfo.getSectionType());			
+			CourseSections CourseSections = iterator.next();
+			type.addItem(CourseSections.getSectionType());			
 		}
 
 		view.setSectionTypeComboBox(type);
@@ -227,12 +227,12 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		ListBox start = view.getSectionStartTimeComboBox();
 
 
-		List<SectionsInfo> sectionStart = retrieveTime();
-		Iterator<SectionsInfo> iterator = sectionStart.iterator();
+		List<CourseSections> sectionStart = retrieveTime();
+		Iterator<CourseSections> iterator = sectionStart.iterator();
 
 		while(iterator.hasNext()) {
-			SectionsInfo sectionsInfo = iterator.next();
-			start.addItem(sectionsInfo.getStartTime().toString());			
+			CourseSections CourseSections = iterator.next();
+			start.addItem(CourseSections.getStartTime().toString());			
 		}
 
 		view.setSectionStartTimeComboBox(start);
@@ -243,12 +243,12 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		ListBox end = view.getSectionEndTimeComboBox();
 
 
-		List<SectionsInfo> sectionEnd = retrieveTime();
-		Iterator<SectionsInfo> iterator = sectionEnd.iterator();
+		List<CourseSections> sectionEnd = retrieveTime();
+		Iterator<CourseSections> iterator = sectionEnd.iterator();
 
 		while(iterator.hasNext()) {
-			SectionsInfo sectionsInfo = iterator.next();
-			end.addItem(sectionsInfo.getEndTime().toString());			
+			CourseSections CourseSections = iterator.next();
+			end.addItem(CourseSections.getEndTime().toString());			
 		}
 
 		view.setSectionEndTimeComboBox(end);
@@ -285,7 +285,7 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 	}
 
 	//variable to hold info from course
-	private SectionsInfo fromCourse = new SectionsInfo();
+	private CourseSections fromCourse = new CourseSections();
 	private CourseInfo course = new CourseInfo();
 	@Override
 	public void onLoadEditSection(LoadEditSectionEvent evt) {
@@ -307,7 +307,7 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		ListBox end = view.getSectionEndTimeComboBox();
 
 		//create the new section
-		SectionsInfo newSection = new SectionsInfo();
+		CourseSections newSection = new CourseSections();
 		newSection.setTermsName(term.getItemText(term.getSelectedIndex()));
 		newSection.setSectionType(type.getItemText(type.getSelectedIndex()));
 		newSection.setStartTime(Time.valueOf(start.getItemText(start.getSelectedIndex())));
@@ -315,7 +315,7 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		newSection.setDays(this.determineDays());
 		newSection.setCoursesNumber(fromCourse.getCoursesNumber());
 		newSection.setCoursesTitle(fromCourse.getCoursesTitle());
-		newSection.getSectionsId();
+		newSection.getSectionId();
 
 		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course)));
 
