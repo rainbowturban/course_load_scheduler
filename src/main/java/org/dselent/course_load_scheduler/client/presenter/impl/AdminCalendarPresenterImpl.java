@@ -6,25 +6,32 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.dselent.course_load_scheduler.client.action.GetStartTimesAction;
 import org.dselent.course_load_scheduler.client.action.LoadHomePageAction;
 import org.dselent.course_load_scheduler.client.action.LoadScheduleAction;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.ManageUserPageAction;
+import org.dselent.course_load_scheduler.client.action.ReceiveStartTimesAction;
+import org.dselent.course_load_scheduler.client.event.GetStartTimesEvent;
 import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
 import org.dselent.course_load_scheduler.client.event.LoadScheduleEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.ManageUserPageEvent;
+import org.dselent.course_load_scheduler.client.event.ReceiveStartTimesEvent;
 import org.dselent.course_load_scheduler.client.model.EndTime;
 import org.dselent.course_load_scheduler.client.model.Faculty;
 import org.dselent.course_load_scheduler.client.model.RequestTables;
 import org.dselent.course_load_scheduler.client.model.StartTime;
 import org.dselent.course_load_scheduler.client.model.Terms;
+import org.dselent.course_load_scheduler.client.model.User;
 import org.dselent.course_load_scheduler.client.presenter.AdminCalendarPresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
+import org.dselent.course_load_scheduler.client.service.ScheduleService;
 import org.dselent.course_load_scheduler.client.view.AdminCalendarView;
 
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.user.client.ui.Grid;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -32,7 +39,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.inject.Inject;
-
 
 public class AdminCalendarPresenterImpl extends BasePresenterImpl implements AdminCalendarPresenter
 {
@@ -45,17 +51,16 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		this.view = view;
 		this.parentPresenter = parentPresenter;
 		view.setPresenter(this);
-		
-		fillInfo();
-		fillRequests();
-		fillCourseInfo();
-		fillCalendar();
 	}
 
 	@Override
 	public void init()
 	{
 		bind();
+		fillInfo();
+		fillRequests();
+		fillCourseInfo();
+		fillCalendar();
 	}
 
 	@Override
@@ -65,6 +70,9 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		
 		registration = eventBus.addHandler(LoadScheduleEvent.TYPE, this);
 		eventBusRegistration.put(LoadScheduleEvent.TYPE, registration);
+		
+		registration = eventBus.addHandler(ReceiveStartTimesEvent.TYPE, this);
+		eventBusRegistration.put(ReceiveStartTimesEvent.TYPE, registration);
 	}
 		
 	@Override
@@ -72,6 +80,12 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	{
 		container.clear();
 		container.add(view.getWidgetContainer());
+	}
+	
+	@Override
+	public void onReceiveStartTimes(ReceiveStartTimesEvent evt) {
+		ReceiveStartTimesAction action = evt.getAction();
+		System.out.println("got the response for start times");
 	}
 
 	@Override
@@ -93,10 +107,21 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	}
 	
 	@Override
+	public void fillCalendarWithCourses() {
+		FlexTable calendar = view.getFlexCalendar();
+		// TODO
+	}
+	
+	@Override
 	public void fillCalendar() {
-		Grid calendar = view.getCalendarGrid();
+		view.getTabPanel().selectTab(0);
+		
+		FlexTable calendar = view.getFlexCalendar();
 		calendar.clear();
-		calendar.resizeRows(2);
+		String[] columnHeaders = {"Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+		for(int i=0; i<columnHeaders.length; i++) {
+			calendar.setWidget(0, i, new Label(columnHeaders[i]));
+		}
 		List<StartTime> startTimes = getStartTimes();
 		Iterator<StartTime> startTimesIterator = startTimes.iterator();
 		while(startTimesIterator.hasNext()) {
@@ -104,7 +129,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 			calendar.insertRow(calendar.getRowCount());
 			calendar.setWidget(calendar.getRowCount()-1, 0, new Label(startTimeInfo.getTime().toString()));
 		}
-		calendar.removeRow(1);
+		fillCalendarWithCourses();
 	}
 	
 	@Override
@@ -138,6 +163,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	@Override
 	public List<EndTime> getEndTimes() {
 		List<EndTime> endTimes = new ArrayList<EndTime>();
+		// TODO
 		EndTime time8 = new EndTime();
 		time8.setId(1);
 		time8.setTime(new Time(31800000));
@@ -180,6 +206,8 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	@Override
 	public List<StartTime> getStartTimes() {
 		List<StartTime> startTimes = new ArrayList<StartTime>();
+		// TODO
+		eventBus.fireEvent(new GetStartTimesEvent(new GetStartTimesAction(new User())));
 		StartTime time8 = new StartTime();
 		time8.setId(1);
 		time8.setTime(new Time(28800000));
@@ -222,6 +250,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	@Override
 	public List<Faculty> getRoster() {
 		List<Faculty> roster = new ArrayList<Faculty>();
+		// TODO
 		Faculty faculty1 = new Faculty();
 		faculty1.setId(1);
 		faculty1.setFirstName("Douglas");
@@ -278,6 +307,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	
 	@Override
 	public List<Terms> getTerms() {
+		// TODO
 		List<Terms> termList = new ArrayList<Terms>();
 		Terms terma = new Terms();
 		terma.setId(1);

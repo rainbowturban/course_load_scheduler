@@ -9,6 +9,7 @@ public final class NetworkRequestStrings
 	public static String NEW_COURSE = "course/create";
 	public static String EDIT_COURSE = "course/edit";
 	public static String REMOVE_COURSE = "course/remove";
+	public static String GET_START_TIMES ="times/view/start";
 	
 	private NetworkRequestStrings() {};
 }

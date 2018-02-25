@@ -20,7 +20,7 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TabPanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.PopupPanel;
-import com.google.gwt.user.client.ui.Grid;
+import com.google.gwt.user.client.ui.FlexTable;
 
 public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> implements AdminCalendarView {
 
@@ -30,7 +30,6 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
 	@UiField SimplePanel pageTitle;
 	@UiField VerticalPanel infoPanel;
 	@UiField VerticalPanel courseInfoPanel;
-	@UiField ScrollPanel calendarPanel;
 	@UiField VerticalPanel requestsMainPanel;
 	@UiField ScrollPanel requestsScrollPanel;
 	@UiField ListBox viewSelect;
@@ -56,7 +55,8 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
     @UiField ListBox startTimeSelect;
     @UiField ListBox endTimeSelect;
     @UiField ListBox instructorSelect;
-    @UiField Grid calendarGrid;
+    @UiField FlexTable flexCalendar;
+    @UiField ScrollPanel calendarPanel;
     
     @UiHandler("addCourseButton")
     void onAddCourseButtonClick(ClickEvent event)
@@ -160,9 +160,14 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
 	public ListBox getEndTimeSelectBox() {
 		return endTimeSelect;
 	}
+
+	@Override
+	public TabPanel getTabPanel() {
+		return schedulePanel;
+	}
 	
 	@Override
-	public Grid getCalendarGrid() {
-		return calendarGrid;
+	public FlexTable getFlexCalendar() {
+		return flexCalendar;
 	}
 }
