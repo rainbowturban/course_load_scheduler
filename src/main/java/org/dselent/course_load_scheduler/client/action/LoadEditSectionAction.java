@@ -1,11 +1,11 @@
 package org.dselent.course_load_scheduler.client.action;
 
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
-import org.dselent.course_load_scheduler.client.model.SectionsInfo;
+import org.dselent.course_load_scheduler.client.model.CourseSections;
 
 public class LoadEditSectionAction extends Action{
 	private CourseInfo courseInfo;
-	private SectionsInfo sectionInfo;
+	private CourseSections sectionInfo;
 
 	public CourseInfo getCourseInfo() {
 		return courseInfo;
@@ -15,11 +15,11 @@ public class LoadEditSectionAction extends Action{
 		this.courseInfo = courseInfo;
 	}
 	
-	public SectionsInfo getSectionInfo() {
+	public CourseSections getSectionInfo() {
 		return sectionInfo;
 	}
 
-	public void setSectionInfo(SectionsInfo sectionInfo) {
+	public void setSectionInfo(CourseSections sectionInfo) {
 		this.sectionInfo = sectionInfo;
 	}
 

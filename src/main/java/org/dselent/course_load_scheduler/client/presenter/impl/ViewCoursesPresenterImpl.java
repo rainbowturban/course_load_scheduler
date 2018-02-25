@@ -170,7 +170,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 			VerticalPanel vp = new VerticalPanel();
 			vp.add(new Label("Required Frequency: " + courseInfo.getFrequency()));
 			
-			Label id = new Label("" + courseInfo.getCourseId());
+			Label id = new Label("" + courseInfo.getCoursesId());
 			//id.setVisible(false);
 			vp.add(id);
 			
@@ -209,7 +209,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		if(index >= 0) {
 			Iterator<CourseInfo> ci = courses.listIterator(index);
 			
-			int i = ci.next().getCourseId();
+			int i = ci.next().getCoursesId();
 			
 			eventBus.fireEvent(new SendRemoveCourseEvent(new SendRemoveCourseAction(i)));
 			

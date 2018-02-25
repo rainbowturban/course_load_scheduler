@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.dselent.course_load_scheduler.client.action.ReceiveGetSectionsAction;
 import org.dselent.course_load_scheduler.client.action.SendGetSectionsAction;
-import org.dselent.course_load_scheduler.client.model.SectionsInfo;
+import org.dselent.course_load_scheduler.client.model.CourseSections;
 import org.dselent.course_load_scheduler.client.receive.jsonkeys.ReceiveGetSectionsKeys;
 import org.dselent.course_load_scheduler.client.send.jsonkeys.SendGetSectionsKeys;
 import org.dselent.course_load_scheduler.client.translator.ActionTranslator;
@@ -21,7 +21,7 @@ public class GetSectionsActionTranslatorImpl implements ActionTranslator<SendGet
 	{
 		JSONObject jsonObject = new JSONObject();
 
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendGetSectionsKeys.COURSES_ID), action.getCourseInfo().getId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendGetSectionsKeys.COURSES_ID), action.getCourseId());
 
 		return jsonObject;
 	}
@@ -38,15 +38,15 @@ public class GetSectionsActionTranslatorImpl implements ActionTranslator<SendGet
 		JSONValue jsonObject = json.get("success");
 
 		//loops through each element in the list and fills an ArrayList with the info for each course
-		List<SectionsInfo> sectionList = new ArrayList<SectionsInfo>();
+		List<CourseSections> sectionList = new ArrayList<CourseSections>();
 
 		for(int i = 0; i < jsonObject.isArray().size(); i++) {
 			JSONObject userObject = jsonObject.isArray().get(i).isObject();
-			SectionsInfo section = new SectionsInfo();
+			CourseSections section = new CourseSections();
 
 			//extract the information for the object to return
 			//TODO: Check for valid (non-null) values?		
-			section.setSectionsId(JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveGetSectionsKeys.ID)));
+			section.setSectionId(JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveGetSectionsKeys.ID)));
 			section.setTermsName(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveGetSectionsKeys.TERMS_NAME)));
 			section.setSectionType(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveGetSectionsKeys.SECTION_TYPE)));
 			section.setDays(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveGetSectionsKeys.DAYS)));

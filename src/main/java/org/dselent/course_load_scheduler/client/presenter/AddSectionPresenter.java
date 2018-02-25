@@ -2,7 +2,7 @@ package org.dselent.course_load_scheduler.client.presenter;
 
 import java.util.List;
 
-import org.dselent.course_load_scheduler.client.model.SectionsInfo;
+import org.dselent.course_load_scheduler.client.model.CourseSections;
 
 public interface AddSectionPresenter extends BasePresenter{
 	
@@ -10,9 +10,9 @@ public interface AddSectionPresenter extends BasePresenter{
 	void setParentPresenter(IndexPresenter parentPresenter);
 	void addSection();
 	
-	List<SectionsInfo> retrieveTerm();
-	List<SectionsInfo> retrieveType();
-	List<SectionsInfo> retrieveTime();
+	List<CourseSections> retrieveTerm();
+	List<CourseSections> retrieveType();
+	List<CourseSections> retrieveTime();
 	void fillSectionTerms();
 	void fillSectionTypes();
 	void fillSectionStart();

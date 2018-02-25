@@ -1,24 +1,22 @@
 package org.dselent.course_load_scheduler.client.action;
 
-import org.dselent.course_load_scheduler.client.model.Courses;
-
 public class SendGetSectionsAction extends Action{
-	private Courses course;
+	private Integer courseId;
 
 	public SendGetSectionsAction() {
-		course = null;
+		courseId = null;
 	}
 	
-	public SendGetSectionsAction(Courses course) {
-		this.course = course;
+	public SendGetSectionsAction(Integer courseId) {
+		this.courseId = courseId;
 	}
 	
-	public Courses getCourseInfo() {
-		return course;
+	public Integer getCourseId() {
+		return courseId;
 	}
 
-	public void setCourse(Courses courses) {
-		this.course = courses;
+	public void setCourseId(Integer courseId) {
+		this.courseId = courseId;
 	}
 
 	@Override
@@ -26,7 +24,7 @@ public class SendGetSectionsAction extends Action{
 	{
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(course);
+		sb.append(courseId);
 
 		return sb.toString();
 	}

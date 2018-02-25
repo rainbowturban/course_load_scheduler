@@ -2,7 +2,7 @@ package org.dselent.course_load_scheduler.client.translator.impl;
 
 import org.dselent.course_load_scheduler.client.action.ReceiveEditSectionAction;
 import org.dselent.course_load_scheduler.client.action.SendEditSectionAction;
-import org.dselent.course_load_scheduler.client.model.Sections;
+import org.dselent.course_load_scheduler.client.model.CourseSections;
 import org.dselent.course_load_scheduler.client.receive.jsonkeys.ReceiveEditSectionKeys;
 import org.dselent.course_load_scheduler.client.send.jsonkeys.SendEditSectionKeys;
 import org.dselent.course_load_scheduler.client.translator.ActionTranslator;
@@ -16,14 +16,14 @@ public class EditSectionActionTranslatorImpl implements ActionTranslator<SendEdi
 	public JSONObject translateToJson(SendEditSectionAction action) {
 		JSONObject jsonObject = new JSONObject();
 
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.ID), action.getSectionInfo().getId());
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.TERMS_ID), action.getSectionInfo().getTermsID());
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.SECTION_TYPE_ID), action.getSectionInfo().getSectionTypeID());
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.DAYS_ID), action.getSectionInfo().getDaysID());
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.COURSES_ID), action.getSectionInfo().getCoursesID());
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.START_TIME_ID), action.getSectionInfo().getStartID());
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.END_TIME_ID), action.getSectionInfo().getEndID());
-		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.SECTIONS_NAME), action.getSectionInfo().getName());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.ID), action.getSectionInfo().getSectionId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.TERMS_ID), action.getSectionInfo().getTermsId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.SECTION_TYPE_ID), action.getSectionInfo().getSectionTypeId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.DAYS_ID), action.getSectionInfo().getDaysId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.COURSES_ID), action.getSectionInfo().getCoursesId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.START_TIME_ID), action.getSectionInfo().getStartTimeId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.END_TIME_ID), action.getSectionInfo().getEndTimeId());
+		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.SECTIONS_NAME), action.getSectionInfo().getSectionsName());
 
 		return jsonObject;
 	}
@@ -50,15 +50,15 @@ public class EditSectionActionTranslatorImpl implements ActionTranslator<SendEdi
 		Integer endID = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveEditSectionKeys.END_TIME_ID));
 		String sectionsName = JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveEditSectionKeys.SECTIONS_NAME));
 
-		Sections section = new Sections();
-		section.setId(id);
-		section.setTermsID(termsID);
-		section.setSectionTypeID(sectionTypeID);
-		section.setDaysID(daysID);
-		section.setCoursesID(coursesID);
-		section.setStartID(startID);
-		section.setEndID(endID);
-		section.setName(sectionsName);
+		CourseSections section = new CourseSections();
+		section.setSectionId(id);
+		section.setTermsId(termsID);
+		section.setSectionTypeId(sectionTypeID);
+		section.setDaysId(daysID);
+		section.setCoursesId(coursesID);
+		section.setStartTimeId(startID);
+		section.setEndTimeId(endID);
+		section.setSectionsName(sectionsName);
 
 
 		ReceiveEditSectionAction action = new ReceiveEditSectionAction(section);

@@ -2,7 +2,6 @@ package org.dselent.course_load_scheduler.client.event;
 
 import org.dselent.course_load_scheduler.client.action.SendEditCourseAction;
 import org.dselent.course_load_scheduler.client.event_handler.SendEditCourseEventHandler;
-
 import com.google.gwt.event.shared.GwtEvent;
 
 public class SendEditCourseEvent extends GwtEvent<SendEditCourseEventHandler> {

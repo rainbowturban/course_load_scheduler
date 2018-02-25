@@ -20,9 +20,9 @@ import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.SendRemoveSectionEvent;
 import org.dselent.course_load_scheduler.client.event.SendEditCourseEvent;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
+import org.dselent.course_load_scheduler.client.model.CourseSections;
 import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.model.Frequency;
-import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 import org.dselent.course_load_scheduler.client.presenter.EditCoursePresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.EditCourseView;
@@ -43,7 +43,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	
 	//private int startingFrequencyIndex = -1;
 	private CourseInfo course;
-	private List<SectionsInfo> sections = new ArrayList<SectionsInfo>();
+	private List<CourseSections> sections = new ArrayList<CourseSections>();
 	
 	
 	@Inject
@@ -178,22 +178,18 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	@Override
 	public void retrieveSections() {
 		//Sends event to DB to fetch sections
-		Courses c = new Courses();
-		c.setId(course.getCoursesId());
-		c.setTitle(course.getCoursesTitle());
-		c.setNumber(course.getCoursesNumber());
-		
-		eventBus.fireEvent(new SendGetSectionsEvent(new SendGetSectionsAction(c)));
+		eventBus.fireEvent(new SendGetSectionsEvent(new SendGetSectionsAction(course.getCoursesId())));
+
 		
 		//In place of that completing, Example values are used.
-		sections = new ArrayList<SectionsInfo>();
+		sections = new ArrayList<CourseSections>();
 		
-		SectionsInfo s1 = new SectionsInfo();
+		CourseSections s1 = new CourseSections();
 		s1.setSectionType("Lab");
 		s1.setTermsName("A");
 		s1.setSectionsName("A01");
 		
-		SectionsInfo s2 = new SectionsInfo();
+		CourseSections s2 = new CourseSections();
 		s2.setSectionType("Conference");
 		s2.setTermsName("A");
 		s2.setSectionsName("A02");
@@ -212,9 +208,9 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		StackPanel panel = view.getSectionList();
 		panel.clear();
 		
-		Iterator<SectionsInfo> iterator = sections.iterator();
+		Iterator<CourseSections> iterator = sections.iterator();
 		while(iterator.hasNext()) {
-			SectionsInfo s = iterator.next();
+			CourseSections s = iterator.next();
 
 			//add to sections list
 			Label label = new Label(s.getSectionType());
@@ -261,10 +257,10 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		int index = view.getSectionList().getSelectedIndex();//what is to be removed? get the index.
 		
 		if(index >= 0) {
-			Iterator<SectionsInfo> si = sections.listIterator(index);
-			SectionsInfo s = si.next();
+			Iterator<CourseSections> si = sections.listIterator(index);
+			CourseSections s = si.next();
 			
-			eventBus.fireEvent(new SendRemoveSectionEvent(new SendRemoveSectionAction(s.getSectionsId())));
+			eventBus.fireEvent(new SendRemoveSectionEvent(new SendRemoveSectionAction(s.getSectionId())));
 
 			boolean success = true;//this will be the return value from the request
 			
@@ -282,9 +278,9 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 			LoadEditSectionAction action = new LoadEditSectionAction();
 			action.setCourseInfo(course);
 			
-			Iterator<SectionsInfo> si = sections.listIterator(index);
+			Iterator<CourseSections> si = sections.listIterator(index);
 			
-			SectionsInfo section = si.next();
+			CourseSections section = si.next();
 			
 			action.setSectionInfo(section);
 			

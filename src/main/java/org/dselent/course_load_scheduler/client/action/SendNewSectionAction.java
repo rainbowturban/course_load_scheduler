@@ -1,15 +1,15 @@
 package org.dselent.course_load_scheduler.client.action;
 
-import org.dselent.course_load_scheduler.client.model.SectionsInfo;
+import org.dselent.course_load_scheduler.client.model.CourseSections;
 
 public class SendNewSectionAction extends Action {
-	private SectionsInfo section;
+	private CourseSections section;
 
-	public SectionsInfo getSectionInfo() {
+	public CourseSections getSectionInfo() {
 		return section;
 	}
 
-	public void setSection(SectionsInfo sections) {
+	public void setSection(CourseSections sections) {
 		this.section = sections;
 	}
 
