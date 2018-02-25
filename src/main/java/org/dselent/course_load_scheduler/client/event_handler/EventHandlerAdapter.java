@@ -47,7 +47,9 @@ ReceiveGetCourseListEventHandler,
 ReceiveRemoveSectionEventHandler,
 SendNewSectionEventHandler,
 ReceiveNewSectionEventHandler,
-ReceiveGetSectionsEventHandler
+ReceiveGetSectionsEventHandler,
+SendGetTermsEventHandler,
+ReceiveGetTermsEventHandler
 
 {
 	@Override
@@ -133,6 +135,8 @@ ReceiveGetSectionsEventHandler
 	
 	@Override
 	public void onReceiveStartTimes(ReceiveStartTimesEvent evt) {}
+	
+	@Override
 	public void onSendEditSection(SendEditSectionEvent evt) {}
 	
 	@Override
@@ -152,4 +156,11 @@ ReceiveGetSectionsEventHandler
 	
 	@Override
 	public void onReceiveGetSections(ReceiveGetSectionsEvent evt) {}
+	
+	@Override
+	public void onSendGetTerms(SendGetTermsEvent evt) {}
+	
+	@Override
+	public void onReceiveGetTerms(ReceiveGetTermsEvent evt) {}
+
 }
