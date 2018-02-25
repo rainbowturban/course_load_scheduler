@@ -2,13 +2,12 @@ package org.dselent.course_load_scheduler.client.receive.jsonkeys;
 
 public enum ReceiveEditSectionKeys {
 	ID,
-	TERMS_NAME,
-	SECTION_TYPE,
-	DAYS,
-	COURSES_NUMBER,
-	COURSES_TITLE,
-	START_TIME,
-	END_TIME,
+	TERMS_ID,
+	SECTION_TYPE_ID,
+	DAYS_ID,
+	COURSES_ID,
+	START_TIME_ID,
+	END_TIME_ID,
 	SECTIONS_NAME
 
 }

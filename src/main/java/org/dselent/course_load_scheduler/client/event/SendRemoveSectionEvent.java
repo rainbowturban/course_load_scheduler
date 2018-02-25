@@ -35,6 +35,6 @@ public class SendRemoveSectionEvent extends GwtEvent<SendRemoveSectionEventHandl
 	@Override
 	protected void dispatch(SendRemoveSectionEventHandler handler)
 	{
-		handler.onSubmitRemoveSection(this);
+		handler.onSendRemoveSection(this);
 	}
 }
