@@ -28,6 +28,7 @@ LoadCreateAccountEventHandler,
 LoadLoginPageEventHandler,
 LoadHomePageEventHandler,
 GetFrequenciesEventHandler,
+SendGetFacultyEventHandler,
 SendGetSectionsEventHandler,
 SendRemoveSectionEventHandler,
 SendGetCourseListEventHandler,
@@ -56,6 +57,9 @@ ReceiveGetSectionsEventHandler
 
 	@Override
 	public void onGetFrequencies(GetFrequenciesEvent evt) {}
+	
+	@Override
+	public void onGetFaculty(SendGetFacultyEvent evt) {}
 
 	@Override
 	public void onSendGetSections(SendGetSectionsEvent evt) {}

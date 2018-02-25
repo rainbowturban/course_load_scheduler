@@ -57,7 +57,7 @@ public class SendGetCourseListCallback extends Callback<JSONValue>{
 		course3.setCoursesTitle("Something");
 		course3.setFrequency("Test value3");
 		course3.setFrequencyId(4);
-		course3.setCourseId(3);
+		course3.setCoursesId(3);
 
 		ArrayList<CourseInfo> courses = new ArrayList<CourseInfo>();
 
