@@ -63,6 +63,7 @@ public class InjectorModule extends AbstractGinModule
 		bind(UserService.class).to(UserServiceImpl.class).in(Singleton.class);
 		bind(ScheduleService.class).to(ScheduleServiceImpl.class).in(Singleton.class);
 		bind(CreateAccountService.class).to(CreateAccountServiceImpl.class).in(Singleton.class);
+		bind(HomeService.class).to(HomeServiceImpl.class).in(Singleton.class);
 
 	}
 

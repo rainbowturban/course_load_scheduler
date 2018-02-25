@@ -11,6 +11,7 @@ import org.dselent.course_load_scheduler.client.presenter.impl.IndexPresenterImp
 import org.dselent.course_load_scheduler.client.presenter.impl.LoginPresenterImpl;
 import org.dselent.course_load_scheduler.client.service.impl.ScheduleServiceImpl;
 import org.dselent.course_load_scheduler.client.service.impl.CreateAccountServiceImpl;
+import org.dselent.course_load_scheduler.client.service.impl.HomeServiceImpl;
 import org.dselent.course_load_scheduler.client.service.impl.UserServiceImpl;
 import org.dselent.course_load_scheduler.client.view.impl.ExampleViewImpl;
 import org.dselent.course_load_scheduler.client.view.impl.IndexViewImpl;
@@ -70,4 +71,5 @@ public interface Injector extends Ginjector
     public UserServiceImpl getUserService();
     public ScheduleServiceImpl getScheduleService();
     public CreateAccountServiceImpl getCreateAccountService();
+    public HomeServiceImpl getHomeService();
 }

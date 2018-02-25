@@ -35,7 +35,7 @@ public class SendGetFacultyEvent extends GwtEvent<SendGetFacultyEventHandler> {
 	@Override
 	protected void dispatch(SendGetFacultyEventHandler handler)
 	{
-		handler.onGetFaculty(this);
+		handler.onSendGetFaculty(this);
 	}
 
 }

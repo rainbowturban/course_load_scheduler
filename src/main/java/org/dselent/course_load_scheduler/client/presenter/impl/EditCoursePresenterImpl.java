@@ -11,7 +11,7 @@ import org.dselent.course_load_scheduler.client.action.LoadEditSectionAction;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.SendRemoveSectionAction;
 import org.dselent.course_load_scheduler.client.action.SendEditCourseAction;
-import org.dselent.course_load_scheduler.client.event.GetFrequenciesEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetFrequenciesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetSectionsEvent;
 import org.dselent.course_load_scheduler.client.event.LoadAddSectionEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
@@ -122,7 +122,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	@Override
 	public List<Frequency> retrieveFequencies() {
 		//Sends event to DB to fetch frequencies
-		eventBus.fireEvent(new GetFrequenciesEvent(new GetFrequenciesAction()));
+		eventBus.fireEvent(new SendGetFrequenciesEvent(new GetFrequenciesAction()));
 		
 		//**In place of that currently being completed, sample values are used
 		List<Frequency> freqs = new ArrayList<Frequency>();
