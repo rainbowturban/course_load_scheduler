@@ -63,7 +63,7 @@ ReceiveGetTermsEventHandler
 	public void onGetFrequencies(GetFrequenciesEvent evt) {}
 	
 	@Override
-	public void onGetFaculty(SendGetFacultyEvent evt) {}
+	public void onSendGetFaculty(SendGetFacultyEvent evt) {}
 
 	@Override
 	public void onSendGetSections(SendGetSectionsEvent evt) {}

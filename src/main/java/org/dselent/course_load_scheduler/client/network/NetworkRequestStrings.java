@@ -15,6 +15,8 @@ public final class NetworkRequestStrings
 	public static final String EDIT_SECTION = "section/edit";
 	public static final String GET_ALL_SECTIONS = "section/view";
 	public static final String GET_COURSE_LIST = "course/view/all";
+	public static final String GET_FACULTY_LIST = "user/view/all";
+
 
 	private NetworkRequestStrings() {};
 }
