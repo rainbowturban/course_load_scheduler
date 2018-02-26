@@ -31,6 +31,7 @@ ReceiveEditSectionEventHandler,
 ReceiveEndTimesEventHandler,
 ReceiveGetCourseListEventHandler,
 ReceiveGetFrequenciesEventHandler,
+ReceiveGetOneFacultySectionInfoEventHandler,
 ReceiveGetSectionsEventHandler,
 ReceiveGetSectionTypesEventHandler,
 ReceiveGetTermsEventHandler,
@@ -62,21 +63,10 @@ SendRemoveSectionEventHandler
 
 
 {
-	// Other methods
+
 	@Override
 	public void onCreateAccount(SendCreateAccountEvent evt) {}
 
-	@Override
-	public void onManageUserPage(ManageUserPageEvent evt) {}
-
-	@Override
-	public void onInvalidAccountCreation(InvalidAccountCreationEvent evt) {}
-
-	@Override
-	public void onInvalidLogin(InvalidLoginEvent evt) {}
-
-
-	// "onSend" methods
 	@Override
 	public void onGetEndTimes(SendGetEndTimesEvent evt) {}
 
@@ -84,52 +74,11 @@ SendRemoveSectionEventHandler
 	public void onGetStartTimes(SendGetStartTimesEvent evt) {}
 
 	@Override
-	public void onSendEditCourse(SendEditCourseEvent evt) {}
+	public void onInvalidAccountCreation(InvalidAccountCreationEvent evt) {}
 
 	@Override
-	public void onSendEditSection(SendEditSectionEvent evt) {}
+	public void onInvalidLogin(InvalidLoginEvent evt) {}
 
-	@Override
-	public void onSendGetCourseList(SendGetCourseListEvent evt) {}
-
-	@Override
-	public void onSendGetFaculty(SendGetFacultyEvent evt) {}
-
-	@Override
-	public void onSendGetFrequencies(SendGetFrequenciesEvent evt) {}
-	
-	@Override
-	public void onSendGetOneFacultySectionInfo(SendGetOneFacultySectionInfoEvent evt) {}
-
-	@Override
-	public void onSendGetSections(SendGetSectionsEvent evt) {}
-
-	@Override
-	public void onSendGetTerms(SendGetTermsEvent evt) {}
-
-	@Override
-	public void onSendLogin(SendLoginEvent evt) {}
-
-	@Override
-	public void onSendNewCourse(SendNewCourseEvent evt) {}
-
-	@Override
-	public void onSendNewSection(SendNewSectionEvent evt) {}
-
-	@Override
-	public void onSendRemoveCourse(SendRemoveCourseEvent evt) {}
-
-	@Override
-	public void onSendRemoveSection(SendRemoveSectionEvent evt) {}
-
-	@Override
-	public void onSendGetSectionTypes(SendGetSectionTypesEvent evt) {}
-	
-	@Override
-	public void onSendGetUsers(SendGetUsersEvent evt) {}
-
-	
-	// "onLoad" methods
 	@Override
 	public void onLoadAddCourse(LoadAddCourseEvent evt) {}
 
@@ -157,8 +106,9 @@ SendRemoveSectionEventHandler
 	@Override
 	public void onLoadViewCourses(LoadViewCoursesEvent evt) {}
 
+	@Override
+	public void onManageUserPage(ManageUserPageEvent evt) {}
 
-	// "onReceive" methods
 	@Override
 	public void onReceiveCreateAccount(ReceiveCreateAccountEvent evt) {}
 
@@ -172,13 +122,25 @@ SendRemoveSectionEventHandler
 	public void onReceiveEndTimes(ReceiveEndTimesEvent evt) {}
 
 	@Override
+	public void onSendGetSectionTypes(SendGetSectionTypesEvent evt) {}
+	
+	@Override
+	public void onSendGetUsers(SendGetUsersEvent evt) {}
+	
+	@Override
 	public void onReceiveGetCourseList(ReceiveGetCourseListEvent evt) {}
 
 	@Override
 	public void onReceiveGetFrequencies(ReceiveGetFrequenciesEvent evt) {}
 
 	@Override
+	public void onReceiveGetOneFacultySectionInfo(ReceiveGetOneFacultySectionInfoEvent evt) {}
+
+	@Override
 	public void onReceiveGetSections(ReceiveGetSectionsEvent evt) {}
+
+	@Override
+	public void onReceiveGetSectionTypes(ReceiveGetSectionTypesEvent evt) {}
 
 	@Override
 	public void onReceiveGetTerms(ReceiveGetTermsEvent evt) {}
@@ -199,12 +161,49 @@ SendRemoveSectionEventHandler
 	public void onReceiveRemoveSection(ReceiveRemoveSectionEvent evt) {}
 
 	@Override
-	public void onReceiveStartTimes(ReceiveStartTimesEvent evt) {}	
+	public void onReceiveStartTimes(ReceiveStartTimesEvent evt) {}
 
 	@Override
-	public void onReceiveGetSectionTypes(ReceiveGetSectionTypesEvent evt) {}
+	public void onSendEditCourse(SendEditCourseEvent evt) {}
+
+	@Override
+	public void onSendEditSection(SendEditSectionEvent evt) {}
+
+	@Override
+	public void onSendGetCourseList(SendGetCourseListEvent evt) {}
+
+	@Override
+	public void onSendGetFaculty(SendGetFacultyEvent evt) {}
+
+	@Override
+	public void onSendGetFrequencies(SendGetFrequenciesEvent evt) {}
+
+	@Override
+	public void onSendGetOneFacultySectionInfo(SendGetOneFacultySectionInfoEvent evt) {}
+
+	@Override
+	public void onSendGetSections(SendGetSectionsEvent evt) {}
+
+	@Override
+	public void onSendGetTerms(SendGetTermsEvent evt) {}
+
+	@Override
+	public void onSendLogin(SendLoginEvent evt) {}
+
+	@Override
+	public void onSendNewCourse(SendNewCourseEvent evt) {}
+
+	@Override
+	public void onSendNewSection(SendNewSectionEvent evt) {}
 	
 	@Override
 	public void onReceiveGetUsers(ReceiveGetUsersEvent evt) {}
+
+	@Override
+	public void onSendRemoveCourse(SendRemoveCourseEvent evt) {}	
+
+	@Override
+	public void onSendRemoveSection(SendRemoveSectionEvent evt) {}
+
 
 }

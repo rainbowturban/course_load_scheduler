@@ -29,7 +29,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	private ViewCoursesView view;
 	
 	private List<CourseInfo> courses = new ArrayList<CourseInfo>();		
-	private User user = new User();
+	//private User user = new User();
 
 	@Inject
 	public ViewCoursesPresenterImpl(IndexPresenter parentPresenter, ViewCoursesView view)
@@ -45,7 +45,6 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		
 		//hides buttons if not an admin
 		//specifies for both cases, since the page brings over what it had been last time
-		user = evt.getAction().getUser();
 		if(!(user.getAccountTypeId() == 2)) {// 2 == Admin user
 			view.getRemoveCourseButton().setVisible(false);
 			view.getEditCourseButton().setVisible(false);
@@ -63,7 +62,6 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	
 	@Override
 	public void onReceiveGetCourseList(ReceiveGetCourseListEvent evt) {
-		GWT.log("In ReceiveGetCourseList event handler--fired and received. About to fill courses. CourseList = "+evt.getAction().getCourseList());
 		courses = evt.getAction().getCourseList();
 		fillCourses();
 		
@@ -159,7 +157,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 			Iterator<CourseInfo> ci = courses.listIterator(index);
 			CourseInfo course = ci.next();
 			
-			LoadEditCourseAction action = new LoadEditCourseAction(course, user);
+			LoadEditCourseAction action = new LoadEditCourseAction(course);
 			LoadEditCourseEvent evt = new LoadEditCourseEvent(action);
 			eventBus.fireEvent(evt);
 		}
@@ -197,25 +195,25 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	//loads the home page
 	@Override
 	public void loadHomePage() {
-		eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction(user)));
+		eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction()));
 	}
 
 	//loads schedule page
 	@Override
 	public void loadSchedulePage() {
-		eventBus.fireEvent(new LoadScheduleEvent(new LoadScheduleAction(user)));
+		eventBus.fireEvent(new LoadScheduleEvent(new LoadScheduleAction()));
 	}
 	
 	//loads schedule page
 	@Override
 	public void loadViewCoursesPage() {
-		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(user))); 
+		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction())); 
 	}
 
 	//loads account page
 	@Override
 	public void loadAccountPage() {
-		eventBus.fireEvent(new ManageUserPageEvent(new ManageUserPageAction(user)));
+		eventBus.fireEvent(new ManageUserPageEvent(new ManageUserPageAction()));
 	}
 
 }
