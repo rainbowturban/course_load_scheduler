@@ -18,13 +18,9 @@ public class LoginActionTranslatorImpl implements ActionTranslator<SendLoginActi
 	public JSONObject translateToJson(SendLoginAction action)
 	{
 		JSONObject jsonObject = new JSONObject();
-
-		Window.alert("in translator to make action JSON.");
 		
 		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendLoginKeys.USER_NAME), action.getUserName());
 		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendLoginKeys.PASSWORD), action.getPassword());
-
-		Window.alert("josnObject: " + jsonObject.toString());
 		
 		return jsonObject;
 	}
@@ -42,8 +38,6 @@ public class LoginActionTranslatorImpl implements ActionTranslator<SendLoginActi
 		
 		JSONValue jsonObject = json.get("success");
 		JSONObject userObject = jsonObject.isArray().get(0).isObject();
-		
-		Window.alert("in translator to make JSON action? JSON = " + userObject.toString());
 
 		Integer id = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveLoginKeys.ID));
 		Integer accountTypeId = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveLoginKeys.ACCOUNT_TYPE_ID));
@@ -56,8 +50,6 @@ public class LoginActionTranslatorImpl implements ActionTranslator<SendLoginActi
 		user.setId(id);
 		user.setAccountTypeId(accountTypeId);
 		user.setEncryptedPassword(password);
-		
-		Window.alert("in translator to make JSON action? action = " + user.toString());
 
 		// possibly use builder pattern if it is a lot of data
 		ReceiveLoginAction action = new ReceiveLoginAction(user);	

@@ -17,7 +17,6 @@ public class ReceiveStartTimesAction extends Action
 	}
 	
 	public ArrayList<StartTime> getStartTimes() {
-		Window.alert(startTimes.toString());
 		return startTimes;
 	}
 
