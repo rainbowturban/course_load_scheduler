@@ -20,6 +20,7 @@ public class ReceiveGetFrequenciesEvent extends GwtEvent<ReceiveGetFrequenciesEv
 		return action;
 	}
 	
+	
 	@Override
 	public Type<ReceiveGetFrequenciesEventHandler> getAssociatedType()
 	{
