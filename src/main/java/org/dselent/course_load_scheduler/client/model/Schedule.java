@@ -15,11 +15,11 @@ public class Schedule extends Model
 	private Boolean deleted;
 
 	//
-	public Integer getId() {
+	public Integer getID() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setID(Integer id) {
 		this.id = id;
 	}
 
