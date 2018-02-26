@@ -104,15 +104,11 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	@Override
 	public void onLoadHomePage(LoadHomePageEvent evt) {
 		Window.alert("we ARE IN the OTHER thingy?");
-		populateFacultyList();
+		retreiveFacultyList();
 		Window.alert("pop the list?");
 		//user = evt.getAction().getUser();
 		this.go(parentPresenter.getView().getViewRootPanel());
 		Window.alert("we LAUNCHED the OTHER thingy?");
-	}
-
-	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {
-		facultyListHolder = evt.getAction().getList();
 	}
 	
 	public void onReceiveGetOneFacultySectionInfo(ReceiveGetOneFacultySectionInfoEvent evt) {
@@ -125,7 +121,6 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	 */
 	private void populateFacultyList() {
 		//Get all the faculty
-		retreiveFacultyList();
 
 		VerticalPanel facultyVertPanel = view.getFacultyListVerticalPanel();
 		Iterator<Faculty> fIterator = facultyListHolder.iterator();
@@ -183,5 +178,12 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	public void setParentPresenter(IndexPresenter parentPresenter) {
 		this.parentPresenter = parentPresenter;
 	}
+	
+	@Override
+	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {
+		facultyListHolder = evt.getAction().getList();
+		populateFacultyList();
+	}
+	
 
 }
