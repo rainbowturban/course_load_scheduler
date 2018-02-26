@@ -5,22 +5,22 @@ import java.util.List;
 import org.dselent.course_load_scheduler.client.model.Frequency;
 
 public class ReceiveGetFrequenciesAction extends Action{
-	private List<Frequency> sectionList;
+	private List<Frequency> freqList;
 
 	public ReceiveGetFrequenciesAction() {
-		sectionList = null;
+		freqList = null;
 	}
 	
-	public ReceiveGetFrequenciesAction(List<Frequency> sectionList) {
-		this.sectionList = sectionList;
+	public ReceiveGetFrequenciesAction(List<Frequency> freqList) {
+		this.freqList = freqList;
 	}
 	
-	public List<Frequency> getSections() {
-		return sectionList;
+	public List<Frequency> getFrequencies() {
+		return freqList;
 	}
 
-	public void setSections(List<Frequency> sectionList) {
-		this.sectionList = sectionList;
+	public void setFrequencies(List<Frequency> freqList) {
+		this.freqList = freqList;
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class ReceiveGetFrequenciesAction extends Action{
 	{
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(sectionList);
+		sb.append(freqList);
 
 		return sb.toString();
 	}

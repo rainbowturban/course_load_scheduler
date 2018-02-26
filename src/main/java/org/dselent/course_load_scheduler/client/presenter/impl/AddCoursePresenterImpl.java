@@ -121,7 +121,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	
 	@Override//*****************************************************************************
 	public void onReceiveGetFrequencies(ReceiveGetFrequenciesEvent evt) {
-		fillFrequencies(evt.getAction().getSections());
+		fillFrequencies(evt.getAction().getFrequencies());
 	}
 	
 	//gets the frequencies from the database and fills the dropdown with them. 

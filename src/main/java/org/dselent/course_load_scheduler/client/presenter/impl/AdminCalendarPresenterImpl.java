@@ -2,7 +2,6 @@ package org.dselent.course_load_scheduler.client.presenter.impl;
 
 import java.sql.Time;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,13 +10,17 @@ import org.dselent.course_load_scheduler.client.action.LoadHomePageAction;
 import org.dselent.course_load_scheduler.client.action.LoadScheduleAction;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.ManageUserPageAction;
+import org.dselent.course_load_scheduler.client.action.ReceiveEndTimesAction;
 import org.dselent.course_load_scheduler.client.action.ReceiveStartTimesAction;
+import org.dselent.course_load_scheduler.client.action.SendGetEndTimesAction;
 import org.dselent.course_load_scheduler.client.event.SendGetStartTimesEvent;
 import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
 import org.dselent.course_load_scheduler.client.event.LoadScheduleEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.ManageUserPageEvent;
+import org.dselent.course_load_scheduler.client.event.ReceiveEndTimesEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveStartTimesEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetEndTimesEvent;
 import org.dselent.course_load_scheduler.client.model.EndTime;
 import org.dselent.course_load_scheduler.client.model.Faculty;
 import org.dselent.course_load_scheduler.client.model.RequestTables;
@@ -43,6 +46,10 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	private IndexPresenter parentPresenter;
 	private AdminCalendarView view;
 	private List<StartTime> globalStartTimes;
+	private List<EndTime> globalEndTimes;
+	private List<Faculty> globalRoster;
+	private List<Terms> globalTerms;
+	private List<RequestTables> globalRequests;
 
 	@Inject
 	public AdminCalendarPresenterImpl(IndexPresenter parentPresenter, AdminCalendarView view)
@@ -52,6 +59,10 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		view.setPresenter(this);
 		
 		globalStartTimes = null;
+		globalEndTimes = null;
+		globalRoster = null;
+		globalTerms = null;
+		globalRequests = null;
 	}
 
 	@Override
@@ -83,8 +94,27 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	public void onReceiveStartTimes(ReceiveStartTimesEvent evt) {
 		ReceiveStartTimesAction action = evt.getAction();
 		globalStartTimes = action.getStartTimes();
-		fillCalendar();
-		fillCourseInfo();
+		updateUi();
+	}
+	
+	@Override
+	public void onReceiveEndTimes(ReceiveEndTimesEvent evt) {
+		ReceiveEndTimesAction action = evt.getAction();
+		globalEndTimes = action.getEndTimes();
+		updateUi();
+	}
+	
+	@Override
+	public void updateUi() {
+		if (globalStartTimes != null && globalEndTimes != null && globalRoster != null) {
+			fillCourseInfo();
+		}
+		if (globalStartTimes != null) {
+			fillCalendarHeader();
+		}
+		if (globalTerms != null && globalRoster != null) {
+			fillInfo();
+		}
 	}
 
 	@Override
@@ -112,7 +142,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	}
 	
 	@Override
-	public void fillCalendar() {
+	public void fillCalendarHeader() {
 		view.getTabPanel().selectTab(0);
 		
 		FlexTable calendar = view.getFlexCalendar();
@@ -127,7 +157,6 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 			calendar.insertRow(calendar.getRowCount());
 			calendar.setWidget(calendar.getRowCount()-1, 0, new Label(startTimeInfo.getTime().toString()));
 		}
-		fillCalendarWithCourses();
 	}
 	
 	@Override
@@ -139,18 +168,18 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 			StartTime startTimeInfo = startTimesIterator.next();
 			startTimeSelect.addItem(startTimeInfo.getTime().toString());
 		}
+		
 		ListBox endTimeSelect = view.getEndTimeSelectBox();
 		endTimeSelect.clear();
-		List<EndTime> endTimes = getEndTimes();
-		Iterator<EndTime> endTimesIterator = endTimes.iterator();
+		Iterator<EndTime> endTimesIterator = globalEndTimes.iterator();
 		while(endTimesIterator.hasNext()) {
 			EndTime endTimeInfo = endTimesIterator.next();
 			endTimeSelect.addItem(endTimeInfo.getTime().toString());
 		}
+		
 		ListBox instructorSelect = view.getCourseInstrutorSelectBox();
 		instructorSelect.clear();
-		List<Faculty> roster = getRoster();
-		Iterator<Faculty> rosterIterator = roster.iterator();
+		Iterator<Faculty> rosterIterator = globalRoster.iterator();
 		while(rosterIterator.hasNext()) {
 			Faculty facultyInfo = rosterIterator.next();
 			instructorSelect.addItem(facultyInfo.getFirstName() + " " + facultyInfo.getLastName());
@@ -158,46 +187,12 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	}
 	
 	@Override
-	public List<EndTime> getEndTimes() {
-		List<EndTime> endTimes = new ArrayList<EndTime>();
-		// TODO
-		EndTime time8 = new EndTime();
-		time8.setId(1);
-		time8.setTime(new Time(31800000));
-		EndTime time9 = new EndTime();
-		time9.setId(2);
-		time9.setTime(new Time(35400000));
-		EndTime time10 = new EndTime();
-		time10.setId(3);
-		time10.setTime(new Time(39000000));
-		EndTime time11 = new EndTime();
-		time11.setId(4);
-		time11.setTime(new Time(42600000));
-		EndTime time12 = new EndTime();
-		time12.setId(5);
-		time12.setTime(new Time(46200000));
-		EndTime time13 = new EndTime();
-		time13.setId(6);
-		time13.setTime(new Time(49800000));
-		EndTime time14 = new EndTime();
-		time14.setId(7);
-		time14.setTime(new Time(53400000));
-		EndTime time15 = new EndTime();
-		time15.setId(8);
-		time15.setTime(new Time(57000000));
-		EndTime time16 = new EndTime();
-		time16.setId(9);
-		time16.setTime(new Time(60600000));
-		endTimes.add(time8);
-		endTimes.add(time9);
-		endTimes.add(time10);
-		endTimes.add(time11);
-		endTimes.add(time12);
-		endTimes.add(time13);
-		endTimes.add(time14);
-		endTimes.add(time15);
-		endTimes.add(time16);
-		return endTimes;
+	public void getEndTimes() {
+		User temp = new User();
+		temp.setAccountTypeId(1);
+		temp.setId(1);
+		temp.setPassword("derp");
+		eventBus.fireEvent(new SendGetEndTimesEvent(new SendGetEndTimesAction(temp)));
 	}
 
 	@Override
@@ -210,8 +205,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	}
 
 	@Override
-	public List<Faculty> getRoster() {
-		List<Faculty> roster = new ArrayList<Faculty>();
+	public void getRoster() {
 		// TODO
 		Faculty faculty1 = new Faculty();
 		faculty1.setId(1);
@@ -222,7 +216,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		faculty1.setCreatedAt(new Timestamp(0));
 		faculty1.setUpdatedAt(new Timestamp(0));
 		faculty1.setDeleted(false);
-		roster.add(faculty1);
+		globalRoster.add(faculty1);
 		
 		Faculty faculty2 = new Faculty();
 		faculty2.setId(2);
@@ -233,7 +227,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		faculty2.setCreatedAt(new Timestamp(0));
 		faculty2.setUpdatedAt(new Timestamp(0));
 		faculty2.setDeleted(false);
-		roster.add(faculty2);
+		globalRoster.add(faculty2);
 		
 		Faculty faculty3 = new Faculty();
 		faculty3.setId(3);
@@ -244,23 +238,20 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		faculty3.setCreatedAt(new Timestamp(0));
 		faculty3.setUpdatedAt(new Timestamp(0));
 		faculty3.setDeleted(false);
-		roster.add(faculty3);
-		return roster;
+		globalRoster.add(faculty3);
 	}
 	
 	@Override
 	public void fillInfo() {
 		ListBox viewSelect = view.getScheduleSelectBox();
 		viewSelect.clear();
-		List<Faculty> roster = getRoster();
-		Iterator<Faculty> rosterIterator = roster.iterator();
+		Iterator<Faculty> rosterIterator = globalRoster.iterator();
 		while(rosterIterator.hasNext()) {
 			Faculty facultyInfo = rosterIterator.next();
 			viewSelect.addItem(facultyInfo.getFirstName() + " " + facultyInfo.getLastName());
 		}
 		ListBox termSelect = view.getTermSelectBox();
-		List<Terms> terms = getTerms();
-		Iterator<Terms> termsIterator = terms.iterator();
+		Iterator<Terms> termsIterator = globalTerms.iterator();
 		while(termsIterator.hasNext()) {
 			Terms termInfo = termsIterator.next();
 			termSelect.addItem(termInfo.getName());
@@ -268,48 +259,43 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	}
 	
 	@Override
-	public List<Terms> getTerms() {
-		// TODO
-		List<Terms> termList = new ArrayList<Terms>();
+	public void getTerms() {
 		Terms terma = new Terms();
 		terma.setId(1);
 		terma.setName("A");
-		termList.add(terma);
+		globalTerms.add(terma);
 		Terms termb = new Terms();
 		termb.setId(1);
 		termb.setName("B");
-		termList.add(termb);
+		globalTerms.add(termb);
 		Terms termf = new Terms();
 		termf.setId(1);
 		termf.setName("F");
-		termList.add(termf);
+		globalTerms.add(termf);
 		Terms termc = new Terms();
 		termc.setId(1);
 		termc.setName("C");
-		termList.add(termc);
+		globalTerms.add(termc);
 		Terms termd = new Terms();
 		termd.setId(1);
 		termd.setName("D");
-		termList.add(termd);
+		globalTerms.add(termd);
 		Terms terms = new Terms();
 		terms.setId(1);
 		terms.setName("S");
-		termList.add(terms);
+		globalTerms.add(terms);
 		Terms terme1 = new Terms();
 		terme1.setId(1);
 		terme1.setName("E1");
-		termList.add(terme1);
+		globalTerms.add(terme1);
 		Terms terme2 = new Terms();
 		terme2.setId(1);
 		terme2.setName("E2");
-		termList.add(terme2);
-		return termList;
+		globalTerms.add(terme2);
 	}
 
 	@Override
-	public List<RequestTables> retrieveRequests() {
-		List<RequestTables> requests = new ArrayList<RequestTables>();		
-
+	public void getRequests() {
 		//TODO: instead of this, access DB to get courses
 		RequestTables request1 = new RequestTables();
 		request1.setCoursesNumber("CS3733");
@@ -344,11 +330,9 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		request3.setEndTime(new Time(39000000));
 		request3.setTermsName("D");
 
-		requests.add(request1);
-		requests.add(request2);
-		requests.add(request3);
-
-		return requests;
+		globalRequests.add(request1);
+		globalRequests.add(request2);
+		globalRequests.add(request3);
 	}
 	
 	@Override
@@ -356,9 +340,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		VerticalPanel panel = view.getRequestsPanel();
 		panel.clear();
 
-		List<RequestTables> requests = retrieveRequests();
-		Iterator<RequestTables> iterator = requests.iterator();
-
+		Iterator<RequestTables> iterator = globalRequests.iterator();
 		while(iterator.hasNext()) {
 			VerticalPanel newPanel = new VerticalPanel();
 			RequestTables requestInfo = iterator.next();
@@ -422,12 +404,11 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
     @Override
 	public void onLoadSchedulePage(LoadScheduleEvent evt) {
 		if(evt.getAction().getAdminUser()) {//if not admin, should not load the page
-			//initialize stuff
-			/*fillInfo();
-			fillRequests();
-			fillCourseInfo();
-			fillCalendar();*/
 			getStartTimes();
+			getEndTimes();
+			getRoster();
+			getTerms();
+			getRequests();
 			
 			this.go(parentPresenter.getView().getViewRootPanel());
 		}
