@@ -17,13 +17,11 @@ import org.dselent.course_load_scheduler.client.event.LoadScheduleEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.ManageUserPageEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveGetFacultyEvent;
-import org.dselent.course_load_scheduler.client.event.ReceiveGetFrequenciesEvent;
 import org.dselent.course_load_scheduler.client.model.Faculty;
 import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 import org.dselent.course_load_scheduler.client.presenter.HomePresenter;
 
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -32,10 +30,12 @@ import com.google.inject.Inject;
 
 public class HomePresenterImpl extends BasePresenterImpl implements HomePresenter{
 
-	private IndexPresenter parentPresenter;
-	private HomeView view;
+	private static List<Faculty> facultyListHolder;
+	private static List<SectionsInfo> sectionListHolder;
 
 	private boolean adminUser = false;
+	private IndexPresenter parentPresenter;
+	private HomeView view;
 
 	@Inject
 	public HomePresenterImpl(IndexPresenter parentPresenter, HomeView view)
@@ -52,6 +52,8 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 
 		registration = eventBus.addHandler(LoadHomePageEvent.TYPE, this);
 		eventBusRegistration.put(LoadHomePageEvent.TYPE, registration);
+		//registration = eventBus.addHandler(ReceiveGetFacultyEvent.TYPE, this);
+		//eventBusRegistration.put(ReceiveGetFacultyEvent.TYPE, registration);
 	}
 
 	public IndexPresenter getParentPresenter() {
@@ -74,28 +76,53 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	}
 
 	@Override
+	public void loadAccountPage() {
+		eventBus.fireEvent(new ManageUserPageEvent(new ManageUserPageAction(adminUser)));
+	}
+
+
+	@Override
+	public void loadHomePage() {
+		eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction(adminUser)));
+	}
+	@Override
+	public void loadSchedulePage() {
+		eventBus.fireEvent(new LoadScheduleEvent(new LoadScheduleAction(adminUser)));
+	}
+	@Override
+	public void loadViewCoursesPage() {
+		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(adminUser))); 
+	}
+
+	@Override
 	public void onLoadHomePage(LoadHomePageEvent evt) {
-		retreiveFacultyList();
+		populateFacultyList();
+		populateFacultyList();
 		adminUser = evt.getAction().isAdminUser();
 		this.go(parentPresenter.getView().getViewRootPanel());
 	}
-
+	
+	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {
+		facultyListHolder = evt.getAction().getList();
+	}
 
 	/**
 	 * Fills the faculty list panels with faculty and the courses they are scheduled to teach
 	 * @param facultyList 
 	 */
-	private void populateFacultyList(List<Faculty> facultyList) {
+	private void populateFacultyList() {
 		//Get all the faculty
-		List<Faculty> facultyList = retreiveFacultyList();
+		retreiveFacultyList();
 
 		VerticalPanel facultyVertPanel = view.getFacultyListVerticalPanel();
-		Iterator<Faculty> fIterator = facultyList.iterator();
+		Iterator<Faculty> fIterator = facultyListHolder.iterator();
 
 		//iterate through the list of faculty
 		while(fIterator.hasNext()) {
 			Faculty f = fIterator.next();
-			List<SectionsInfo> sectionList = retreiveOneFacultySectionInfo(f.getId());
+			//retreiveOneFacultySectionInfo(f.getId());
+
+			List<SectionsInfo> sectionList = sectionListHolder;
 			HorizontalPanel courseList = new HorizontalPanel();
 
 			Label name = new Label("" + f.getLastName() + ", " + f.getFirstName());
@@ -131,36 +158,17 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 		}
 
 	}
+
+	/*private void retreiveOneFacultySectionInfo(Integer id) {
+		eventBus.fireEvent(new SendGetOneFacultySectionInfoEvent(new SendGetOneFacultySectionInfoAction()));
+	}*/
 	private void retreiveFacultyList() {
 		//Sends event to DB to fetch frequencies
 		eventBus.fireEvent(new SendGetFacultyEvent(new SendGetFacultyAction()));
 	}
+
 	public void setParentPresenter(IndexPresenter parentPresenter) {
 		this.parentPresenter = parentPresenter;
-	}
-
-	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {
-		populateFacultyList(evt.getAction().getList());
-	}
-	
-	@Override
-	public void loadAccountPage() {
-		eventBus.fireEvent(new ManageUserPageEvent(new ManageUserPageAction(adminUser)));
-	}
-
-	@Override
-	public void loadSchedulePage() {
-		eventBus.fireEvent(new LoadScheduleEvent(new LoadScheduleAction(adminUser)));
-	}
-
-	@Override
-	public void loadViewCoursesPage() {
-		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(adminUser))); 
-	}
-
-	@Override
-	public void loadHomePage() {
-		eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction(adminUser)));
 	}
 
 }
