@@ -68,6 +68,9 @@ public class LoginPagePresenterImpl extends BasePresenterImpl implements LoginPa
 
 		registration = eventBus.addHandler(InvalidLoginEvent.TYPE, this);
 		eventBusRegistration.put(InvalidLoginEvent.TYPE, registration);
+		
+		registration = eventBus.addHandler(ReceiveLoginEvent.TYPE, this);
+		eventBusRegistration.put(ReceiveLoginEvent.TYPE, registration);
 	}
 
 	@Override
@@ -155,13 +158,19 @@ public class LoginPagePresenterImpl extends BasePresenterImpl implements LoginPa
 	public void onInvalidLogin(InvalidLoginEvent evt) {
 		parentPresenter.hideLoadScreen();
 		Window.alert("An incorrect email or password was entered.");
+		String reasons = "Reasons: ";
+		for(int i = 0; i < evt.getAction().getNumberOfReasons(); i++){
+			reasons += evt.getAction().getReason(i) + "\n";
+		}
+		Window.alert(reasons);
 		view.getPasswordTextBox().setText("");
 	}
 	
 	//if login is valid, it loads the home page
 	@Override
 	public void onReceiveLogin(ReceiveLoginEvent evt) {
-		LoadHomePageAction action = new LoadHomePageAction(evt.getAction().getModel());
+		user = evt.getAction().getModel();
+		LoadHomePageAction action = new LoadHomePageAction();
 		eventBus.fireEvent(new LoadHomePageEvent(action));
 	}
 
@@ -182,7 +191,7 @@ public class LoginPagePresenterImpl extends BasePresenterImpl implements LoginPa
 	{
 		HasWidgets container = parentPresenter.getView().getViewRootPanel();
 		SendLoginAction sla = new SendLoginAction(userName, password);
-		SendLoginEvent sle = new SendLoginEvent(sla, container);
+		SendLoginEvent sle = new SendLoginEvent(sla);//, container);
 		eventBus.fireEvent(sle);
 	}
 

@@ -78,7 +78,6 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	
 	@Override
 	public void onLoadEditCoursePage(LoadEditCourseEvent evt) {
-		user = evt.getAction().getUser();
 		course = evt.getAction().getCourseInfo();
 		
 		//fill frequency tables, sections, and the fields with the information from the course

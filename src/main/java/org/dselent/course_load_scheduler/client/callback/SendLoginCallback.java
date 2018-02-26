@@ -12,13 +12,14 @@ import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.ui.HasWidgets;
 
-public class SendLoginCallback extends DisplayCallback<JSONValue>
+public class SendLoginCallback extends Callback<JSONValue>// DisplayCallback<JSONValue>
 {
-	public SendLoginCallback(SimpleEventBus eventBus, HasWidgets container)
+	public SendLoginCallback(SimpleEventBus eventBus)//, HasWidgets container)
 	{
-		super(eventBus, container);
+		super(eventBus);//, container);
 	}
-	  
+
+
 	@Override
 	public void onSuccess(JSONValue result)
 	{
@@ -26,7 +27,7 @@ public class SendLoginCallback extends DisplayCallback<JSONValue>
 		LoginActionTranslatorImpl loginActionTranslator = new LoginActionTranslatorImpl();
 		ReceiveLoginAction action = loginActionTranslator.translateToAction(json);
 		
-		ReceiveLoginEvent event = new ReceiveLoginEvent(action, getContainer());
+		ReceiveLoginEvent event = new ReceiveLoginEvent(action);//, getContainer());
 		eventBus.fireEvent(event);
 	}
 	  
