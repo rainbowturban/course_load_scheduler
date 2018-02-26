@@ -17,6 +17,7 @@ import org.dselent.course_load_scheduler.client.event.ReceiveGetFacultyEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveGetOneFacultySectionInfoEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetFacultyEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetOneFacultySectionInfoEvent;
+import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.model.Faculty;
 import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 import org.dselent.course_load_scheduler.client.presenter.HomePresenter;
@@ -103,6 +104,7 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 		retreiveFacultyList();
 		//user = evt.getAction().getUser();
 		this.go(parentPresenter.getView().getViewRootPanel());
+		Injector.INSTANCE.getIndexPresenter().hideLoadScreen();
 	}
 	
 	public void onReceiveGetOneFacultySectionInfo(ReceiveGetOneFacultySectionInfoEvent evt) {
