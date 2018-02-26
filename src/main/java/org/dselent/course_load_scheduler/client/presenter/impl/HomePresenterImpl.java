@@ -7,16 +7,19 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.dselent.course_load_scheduler.client.action.SendGetFacultyAction;
+import org.dselent.course_load_scheduler.client.action.SendGetOneFacultySectionInfoAction;
 import org.dselent.course_load_scheduler.client.action.LoadHomePageAction;
 import org.dselent.course_load_scheduler.client.action.LoadScheduleAction;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.ManageUserPageAction;
 import org.dselent.course_load_scheduler.client.event.SendGetFacultyEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetOneFacultySectionInfoEvent;
 import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
 import org.dselent.course_load_scheduler.client.event.LoadScheduleEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.ManageUserPageEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveGetFacultyEvent;
+import org.dselent.course_load_scheduler.client.event.ReceiveGetOneFacultySectionInfoEvent;
 import org.dselent.course_load_scheduler.client.model.Faculty;
 import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 import org.dselent.course_load_scheduler.client.presenter.HomePresenter;
@@ -50,8 +53,10 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	{
 		HandlerRegistration registration;
 
-		//registration = eventBus.addHandler(ReceiveGetFacultyEvent.TYPE, this);
-		//eventBusRegistration.put(ReceiveGetFacultyEvent.TYPE, registration);
+		registration = eventBus.addHandler(ReceiveGetOneFacultySectionInfoEvent.TYPE, this);
+		eventBusRegistration.put(ReceiveGetOneFacultySectionInfoEvent.TYPE, registration);
+		registration = eventBus.addHandler(ReceiveGetFacultyEvent.TYPE, this);
+		eventBusRegistration.put(ReceiveGetFacultyEvent.TYPE, registration);
 		registration = eventBus.addHandler(LoadHomePageEvent.TYPE, this);
 		eventBusRegistration.put(LoadHomePageEvent.TYPE, registration);
 
@@ -98,13 +103,16 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	@Override
 	public void onLoadHomePage(LoadHomePageEvent evt) {
 		populateFacultyList();
-		populateFacultyList();
 		adminUser = evt.getAction().isAdminUser();
 		this.go(parentPresenter.getView().getViewRootPanel());
 	}
 
 	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {
 		facultyListHolder = evt.getAction().getList();
+	}
+	
+	public void onReceiveGetOneFacultySectionInfo(ReceiveGetOneFacultySectionInfoEvent evt) {
+		sectionListHolder = evt.getAction().getList();
 	}
 
 	/**
@@ -121,7 +129,7 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 		//iterate through the list of faculty
 		while(fIterator.hasNext()) {
 			Faculty f = fIterator.next();
-			//retreiveOneFacultySectionInfo(f.getId());
+			retreiveOneFacultySectionInfo(f.getId());
 
 			List<SectionsInfo> sectionList = sectionListHolder;
 			HorizontalPanel courseList = new HorizontalPanel();
@@ -160,9 +168,9 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 
 	}
 
-	/*private void retreiveOneFacultySectionInfo(Integer id) {
-		eventBus.fireEvent(new SendGetOneFacultySectionInfoEvent(new SendGetOneFacultySectionInfoAction()));
-	}*/
+	private void retreiveOneFacultySectionInfo(Integer id) {
+		eventBus.fireEvent(new SendGetOneFacultySectionInfoEvent(new SendGetOneFacultySectionInfoAction(id)));
+	}
 	private void retreiveFacultyList() {
 		//Sends event to DB to fetch frequencies
 		eventBus.fireEvent(new SendGetFacultyEvent(new SendGetFacultyAction()));
