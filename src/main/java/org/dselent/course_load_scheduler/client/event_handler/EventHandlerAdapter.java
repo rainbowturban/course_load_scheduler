@@ -21,11 +21,12 @@ public abstract class EventHandlerAdapter
 		ReceiveGetCourseListEventHandler, ReceiveGetFrequenciesEventHandler, ReceiveGetSectionsEventHandler,
 		ReceiveGetTermsEventHandler, ReceiveLoginEventHandler, ReceiveNewCourseEventHandler,
 		ReceiveNewSectionEventHandler, ReceiveRemoveCourseEventHandler, ReceiveRemoveSectionEventHandler,
-		ReceiveStartTimesEventHandler, SendCreateAccountEventHandler, SendEditCourseEventHandler,
+		ReceiveStartTimesEventHandler, ReceiveGetSectionTypesEventHandler, SendCreateAccountEventHandler, SendEditCourseEventHandler,
 		SendEditSectionEventHandler, SendGetCourseListEventHandler, SendGetEndTimesEventHandler,
 		SendGetFacultyEventHandler, SendGetFrequenciesEventHandler, SendGetSectionsEventHandler,
 		SendGetStartTimesEventHandler, SendGetTermsEventHandler, SendLoginEventHandler, SendNewCourseEventHandler,
-		SendNewSectionEventHandler, SendRemoveCourseEventHandler, SendRemoveSectionEventHandler
+		SendNewSectionEventHandler, SendRemoveCourseEventHandler, SendRemoveSectionEventHandler,
+		SendGetSectionTypesEventHandler
 
 {
 	// Other methods
@@ -84,6 +85,9 @@ public abstract class EventHandlerAdapter
 
 	@Override
 	public void onSendRemoveSection(SendRemoveSectionEvent evt) {}
+	
+	@Override
+	public void onSendGetSectionTypes(SendGetSectionTypesEvent evt) {}
 	
 	
 	// "onLoad" methods
@@ -157,5 +161,8 @@ public abstract class EventHandlerAdapter
 
 	@Override
 	public void onReceiveStartTimes(ReceiveStartTimesEvent evt) {}	
+	
+	@Override
+	public void onReceiveGetSectionTypes(ReceiveGetSectionTypesEvent evt) {}
 
 }
