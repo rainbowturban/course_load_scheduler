@@ -45,6 +45,18 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		HandlerRegistration registration;
 		registration = eventBus.addHandler(LoadEditSectionEvent.TYPE, this);
 		eventBusRegistration.put(LoadEditSectionEvent.TYPE, registration);
+		
+		registration = eventBus.addHandler(ReceiveGetTermsEvent.TYPE, this);
+		eventBusRegistration.put(ReceiveGetTermsEvent.TYPE, registration);
+		
+		registration = eventBus.addHandler(ReceiveGetSectionTypesEvent.TYPE, this);
+		eventBusRegistration.put(ReceiveGetSectionTypesEvent.TYPE, registration);
+		
+		registration = eventBus.addHandler(ReceiveStartTimesEvent.TYPE, this);
+		eventBusRegistration.put(ReceiveStartTimesEvent.TYPE, registration);
+		
+		registration = eventBus.addHandler(ReceiveEndTimesEvent.TYPE, this);
+		eventBusRegistration.put(ReceiveEndTimesEvent.TYPE, registration);		
 	}
 
 	@Override

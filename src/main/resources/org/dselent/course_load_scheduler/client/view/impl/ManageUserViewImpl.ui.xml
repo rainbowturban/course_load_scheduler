@@ -28,7 +28,8 @@
 				<g:Label text="Manage Users" width="100%" styleName="page-title"
 					height="54px" />
 			</g:Cell>
-			<g:Grid>
+			<g:Cell horizontalAlignment="ALIGN_CENTER">
+				<g:Grid ui:field="usersGrid">
 				<g:row>
 					<g:customCell>
 						<g:Label text="First Name" width="86px" height="18px" />
@@ -40,10 +41,14 @@
 						<g:Label text="Email" width="67px" height="19px" />
 					</g:customCell>
 					<g:customCell>
-						<g:Label text="Rank" width="177px" height="18px" />
+						<g:Label text="Rank" width="158px" height="18px" />
+					</g:customCell>
+					<g:customCell>
+						<g:Button ui:field="promoteButton">Promote</g:Button>
 					</g:customCell>
 				</g:row>
 			</g:Grid>
+			</g:Cell>
 		</g:VerticalPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 
