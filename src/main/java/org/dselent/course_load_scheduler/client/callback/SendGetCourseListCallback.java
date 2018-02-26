@@ -38,7 +38,7 @@ public class SendGetCourseListCallback extends Callback<JSONValue>{
 		// TODO
 		// give better exception information
 		// these stack traces are not helpful
-		Window.alert("It failed in the reply...who knows?");
+		Window.alert("An error occured while fetching the courses.");
 		
 		StringBuilder sb = new StringBuilder();
 		
@@ -53,7 +53,7 @@ public class SendGetCourseListCallback extends Callback<JSONValue>{
 	//		InvalidLoginEvent ile = new InvalidLoginEvent(ila);
 	//		eventBus.fireEvent(ile);
 		
-		CourseInfo course3 = new CourseInfo();
+	/*	CourseInfo course3 = new CourseInfo();
 		course3.setCoursesNumber("CS####");
 		course3.setCoursesTitle("Something");
 		course3.setFrequency("Test value3");
@@ -66,7 +66,7 @@ public class SendGetCourseListCallback extends Callback<JSONValue>{
 		ReceiveGetCourseListAction action = new ReceiveGetCourseListAction(courses);
 		
 		ReceiveGetCourseListEvent event = new ReceiveGetCourseListEvent(action);
-		eventBus.fireEvent(event);
+		eventBus.fireEvent(event);*/
 	}
 
 }
