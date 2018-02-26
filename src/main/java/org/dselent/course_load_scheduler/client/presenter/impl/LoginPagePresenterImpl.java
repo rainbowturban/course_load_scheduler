@@ -6,20 +6,17 @@ import java.util.List;
 import org.dselent.course_load_scheduler.client.action.InvalidLoginAction;
 import org.dselent.course_load_scheduler.client.action.LoadCreateAccountAction;
 import org.dselent.course_load_scheduler.client.action.LoadHomePageAction;
-import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.SendLoginAction;
 import org.dselent.course_load_scheduler.client.errorstring.InvalidLoginStrings;
 import org.dselent.course_load_scheduler.client.event.InvalidLoginEvent;
 import org.dselent.course_load_scheduler.client.event.LoadCreateAccountEvent;
 import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
 import org.dselent.course_load_scheduler.client.event.LoadLoginPageEvent;
-import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveCreateAccountEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveLoginEvent;
 import org.dselent.course_load_scheduler.client.event.SendLoginEvent;
 import org.dselent.course_load_scheduler.client.exceptions.EmptyStringException;
 import org.dselent.course_load_scheduler.client.gin.Injector;
-import org.dselent.course_load_scheduler.client.model.User;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.presenter.LoginPagePresenter;
 import org.dselent.course_load_scheduler.client.view.LoginPageView;
@@ -191,7 +188,7 @@ public class LoginPagePresenterImpl extends BasePresenterImpl implements LoginPa
 	
 	private void sendLogin(String userName, String password)
 	{
-		HasWidgets container = parentPresenter.getView().getViewRootPanel();
+		//HasWidgets container = parentPresenter.getView().getViewRootPanel();
 		SendLoginAction sla = new SendLoginAction(userName, password);
 		SendLoginEvent sle = new SendLoginEvent(sla);//, container);
 		eventBus.fireEvent(sle);

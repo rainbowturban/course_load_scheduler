@@ -8,8 +8,8 @@ import org.dselent.course_load_scheduler.client.callback.SendEditSectionCallback
 import org.dselent.course_load_scheduler.client.callback.SendGetSectionsCallback;
 import org.dselent.course_load_scheduler.client.callback.SendNewSectionCallback;
 import org.dselent.course_load_scheduler.client.callback.SendRemoveSectionCallback;
-import org.dselent.course_load_scheduler.client.event.SendGetSectionsEvent;
 import org.dselent.course_load_scheduler.client.event.SendEditSectionEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetSectionsEvent;
 import org.dselent.course_load_scheduler.client.event.SendNewSectionEvent;
 import org.dselent.course_load_scheduler.client.event.SendRemoveSectionEvent;
 import org.dselent.course_load_scheduler.client.network.NetworkRequest;

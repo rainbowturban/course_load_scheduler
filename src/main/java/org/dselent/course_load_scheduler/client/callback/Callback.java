@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.dselent.course_load_scheduler.client.event_handler.EventHandlerAdapter;
+
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.SimpleEventBus;

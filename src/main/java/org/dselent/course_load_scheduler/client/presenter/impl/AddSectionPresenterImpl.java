@@ -1,9 +1,9 @@
 package org.dselent.course_load_scheduler.client.presenter.impl;
 
 import java.sql.Time;
-import java.util.List;
 import java.util.Iterator;
-import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
+import java.util.List;
+
 import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
 import org.dselent.course_load_scheduler.client.action.SendGetEndTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetSectionTypesAction;
@@ -26,13 +26,14 @@ import org.dselent.course_load_scheduler.client.model.SectionType;
 import org.dselent.course_load_scheduler.client.model.StartTime;
 import org.dselent.course_load_scheduler.client.model.Terms;
 import org.dselent.course_load_scheduler.client.presenter.AddSectionPresenter;
+import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.AddSectionView;
 
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.user.client.ui.HasWidgets;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.CheckBox;
+import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.inject.Inject;
 
 public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSectionPresenter{

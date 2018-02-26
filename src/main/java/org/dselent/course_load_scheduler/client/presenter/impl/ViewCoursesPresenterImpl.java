@@ -1,25 +1,38 @@
 package org.dselent.course_load_scheduler.client.presenter.impl;
 
-import org.dselent.course_load_scheduler.client.action.*;
-import org.dselent.course_load_scheduler.client.event.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.dselent.course_load_scheduler.client.action.LoadAddCourseAction;
+import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
+import org.dselent.course_load_scheduler.client.action.LoadHomePageAction;
+import org.dselent.course_load_scheduler.client.action.LoadScheduleAction;
+import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
+import org.dselent.course_load_scheduler.client.action.ManageUserPageAction;
+import org.dselent.course_load_scheduler.client.action.SendGetCourseListAction;
+import org.dselent.course_load_scheduler.client.action.SendRemoveCourseAction;
+import org.dselent.course_load_scheduler.client.event.LoadAddCourseEvent;
+import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
+import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
+import org.dselent.course_load_scheduler.client.event.LoadScheduleEvent;
+import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
+import org.dselent.course_load_scheduler.client.event.ManageUserPageEvent;
+import org.dselent.course_load_scheduler.client.event.ReceiveGetCourseListEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetCourseListEvent;
+import org.dselent.course_load_scheduler.client.event.SendRemoveCourseEvent;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
-import org.dselent.course_load_scheduler.client.model.User;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.presenter.ViewCoursesPresenter;
 import org.dselent.course_load_scheduler.client.view.ViewCoursesView;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.HasWidgets;
-import com.google.inject.Inject;
-import java.util.List;
-
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.StackPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.inject.Inject;
 
 
 

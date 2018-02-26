@@ -10,7 +10,6 @@ import org.dselent.course_load_scheduler.client.utils.JSONHelper;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
-import com.google.gwt.user.client.Window;
 
 public class LoginActionTranslatorImpl implements ActionTranslator<SendLoginAction, ReceiveLoginAction>
 {

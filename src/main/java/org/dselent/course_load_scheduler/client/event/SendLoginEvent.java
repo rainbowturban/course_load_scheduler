@@ -4,7 +4,6 @@ import org.dselent.course_load_scheduler.client.action.SendLoginAction;
 import org.dselent.course_load_scheduler.client.event_handler.SendLoginEventHandler;
 
 import com.google.gwt.event.shared.GwtEvent;
-import com.google.gwt.user.client.ui.HasWidgets;
 
 public class SendLoginEvent extends GwtEvent<SendLoginEventHandler>//DisplayEvent<SendLoginAction, SendLoginEventHandler>
 {

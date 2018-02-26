@@ -6,6 +6,7 @@ import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.model.User;
 import org.dselent.course_load_scheduler.client.presenter.ExamplePresenter;
 import org.dselent.course_load_scheduler.client.view.ExampleView;
+
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.inject.Inject;

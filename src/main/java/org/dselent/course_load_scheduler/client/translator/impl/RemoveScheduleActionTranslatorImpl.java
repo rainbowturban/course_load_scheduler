@@ -46,7 +46,6 @@ public class RemoveScheduleActionTranslatorImpl implements ActionTranslator<Send
 		//TODO: Check for valid (non-null) values?
 		Integer id = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveRemoveScheduleKeys.ID));
 		Integer facultyid = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveRemoveScheduleKeys.FACULTY_ID));
-		Integer sectionsid = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveRemoveScheduleKeys.SECTIONS_ID));
 		Boolean deleted = JSONHelper.getBooleanValue(userObject, JSONHelper.convertKeyName(ReceiveRemoveScheduleKeys.DELETED));
 		
 

@@ -3,9 +3,6 @@ package org.dselent.course_load_scheduler.client.action;
 import java.util.ArrayList;
 
 import org.dselent.course_load_scheduler.client.model.StartTime;
-import org.dselent.course_load_scheduler.client.model.User;
-
-import com.google.gwt.user.client.Window;
 
 public class ReceiveStartTimesAction extends Action
 {

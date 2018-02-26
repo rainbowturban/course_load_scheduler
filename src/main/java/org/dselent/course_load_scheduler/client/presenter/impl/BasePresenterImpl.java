@@ -24,7 +24,7 @@ public abstract class BasePresenterImpl extends EventHandlerAdapter implements B
 	@Inject
 	protected SimpleEventBus eventBus;
 	
-	static public User user = new User();
+	public static User user = new User();
 	
 	protected Map<GwtEvent.Type<?>, HandlerRegistration> eventBusRegistration;
 	

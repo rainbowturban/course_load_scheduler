@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.IndexView;
+
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.user.client.ui.HasWidgets;
 

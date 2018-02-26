@@ -1,15 +1,15 @@
 package org.dselent.course_load_scheduler.client.service.impl;
 
-import org.dselent.course_load_scheduler.client.action.SendGetCourseListAction;
 import org.dselent.course_load_scheduler.client.action.SendEditCourseAction;
+import org.dselent.course_load_scheduler.client.action.SendGetCourseListAction;
 import org.dselent.course_load_scheduler.client.action.SendNewCourseAction;
 import org.dselent.course_load_scheduler.client.action.SendRemoveCourseAction;
-import org.dselent.course_load_scheduler.client.callback.SendGetCourseListCallback;
 import org.dselent.course_load_scheduler.client.callback.SendEditCourseCallback;
+import org.dselent.course_load_scheduler.client.callback.SendGetCourseListCallback;
 import org.dselent.course_load_scheduler.client.callback.SendNewCourseCallback;
 import org.dselent.course_load_scheduler.client.callback.SendRemoveCourseCallback;
-import org.dselent.course_load_scheduler.client.event.SendGetCourseListEvent;
 import org.dselent.course_load_scheduler.client.event.SendEditCourseEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetCourseListEvent;
 import org.dselent.course_load_scheduler.client.event.SendNewCourseEvent;
 import org.dselent.course_load_scheduler.client.event.SendRemoveCourseEvent;
 import org.dselent.course_load_scheduler.client.network.NetworkRequest;

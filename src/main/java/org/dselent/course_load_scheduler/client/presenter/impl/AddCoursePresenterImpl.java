@@ -13,7 +13,6 @@ import org.dselent.course_load_scheduler.client.event.SendGetFrequenciesEvent;
 import org.dselent.course_load_scheduler.client.event.SendNewCourseEvent;
 import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.model.Frequency;
-import org.dselent.course_load_scheduler.client.model.User;
 import org.dselent.course_load_scheduler.client.presenter.AddCoursePresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.AddCourseView;

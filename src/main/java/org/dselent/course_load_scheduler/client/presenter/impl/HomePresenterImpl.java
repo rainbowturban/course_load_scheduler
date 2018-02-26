@@ -35,7 +35,7 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	private static List<Faculty> facultyListHolder;
 	private static List<SectionsInfo> sectionListHolder;
 
-	private boolean adminUser = false;
+	//private boolean adminUser = false;
 	private IndexPresenter parentPresenter;
 	private HomeView view;
 
@@ -56,7 +56,6 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 		eventBusRegistration.put(LoadHomePageEvent.TYPE, registration);
 		registration = eventBus.addHandler(ReceiveGetOneFacultySectionInfoEvent.TYPE, this);
 		eventBusRegistration.put(ReceiveGetOneFacultySectionInfoEvent.TYPE, registration);
-		
 		registration = eventBus.addHandler(ReceiveGetFacultyEvent.TYPE, this);
 		eventBusRegistration.put(ReceiveGetFacultyEvent.TYPE, registration);
 
