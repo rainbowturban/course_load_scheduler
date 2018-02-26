@@ -45,7 +45,7 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
     @UiField Button addCourseButton;
     @UiField PopupPanel addCoursePanel;
     @UiField Button addCourseCancelButton;
-    @UiField Button addButton;
+    @UiField Button addCourseSubmitButton;
     @UiField PopupPanel makeRequestPanel;
     @UiField Button makeRequestCancelButton;
     @UiField Button makeRequestButton;
@@ -61,29 +61,35 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
     @UiHandler("addCourseButton")
     void onAddCourseButtonClick(ClickEvent event)
     {
-    		addCoursePanel.show();
-    		addCoursePanel.setVisible(true);
-    		addCoursePanel.center();
+    	addCoursePanel.show();
+    	addCoursePanel.setVisible(true);
+    	addCoursePanel.center();
     }
     
     @UiHandler("makeRequestButton")
     void onMakeRequestButtonClick(ClickEvent event)
     {
-    		makeRequestPanel.show();
-    		makeRequestPanel.setVisible(true);
-    		makeRequestPanel.center();
+    	makeRequestPanel.show();
+    	makeRequestPanel.setVisible(true);
+    	makeRequestPanel.center();
     }
     
     @UiHandler("addCourseCancelButton")
     void onAddCourseCancelButtonClick(ClickEvent event)
     {
-    		addCoursePanel.hide();
+    	addCoursePanel.hide();
+    }
+    
+    @UiHandler("addCourseSubmitButton")
+    void onAddCourseSubmitButtonClick(ClickEvent event)
+    {
+    	
     }
     
     @UiHandler("makeRequestCancelButton")
     void onMakeRequestCancelButtonClick(ClickEvent event)
     {
-    		makeRequestPanel.hide();
+    	makeRequestPanel.hide();
     }
     
     @UiHandler("homeButton")

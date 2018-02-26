@@ -161,9 +161,9 @@
 				</g:HorizontalPanel>
 				<g:Label height="36px" styleName="sublabel" text="Days:" width="153px" />
 				<g:HorizontalPanel width="352px" height="51px" horizontalAlignment="ALIGN_RIGHT">
-					<g:CheckBox text="M" width="29px" height="46px" />
+					<g:CheckBox text="M" />
 					<g:CheckBox text="T" />
-					<g:CheckBox text="W" height="28px" />
+					<g:CheckBox text="W" />
 					<g:CheckBox text="T" />
 					<g:CheckBox text="F" />
 				</g:HorizontalPanel>
@@ -172,7 +172,7 @@
 						<g:Button width="114px" height="46px" text="Cancel" ui:field="addCourseCancelButton"/>
 					</g:Cell>
 					<g:Cell horizontalAlignment="ALIGN_CENTER">
-						<g:Button height="46px" width="114px" text="Create" ui:field="addButton" />
+						<g:Button height="46px" width="114px" text="Create" ui:field="addCourseSubmitButton" />
 					</g:Cell>
 				</g:HorizontalPanel>
 			</g:HTMLPanel>
@@ -186,7 +186,7 @@
 				<g:TextBox width="417px" height="65px"/>
 				<g:HorizontalPanel height="82px" width="467px">
 					<g:Button height="46px" text="Cancel" width="114px" ui:field="makeRequestCancelButton"/>
-					<g:Button height="46px" text="Create" width="114px"/>
+					<g:Button height="46px" text="Create" width="114px" ui:field="makeRequestSubmitButton"/>
 				</g:HorizontalPanel>
 			</g:HTMLPanel>
  		</g:PopupPanel>

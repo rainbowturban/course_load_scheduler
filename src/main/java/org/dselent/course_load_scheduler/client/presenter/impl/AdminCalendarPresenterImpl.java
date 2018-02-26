@@ -65,6 +65,10 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		globalRoster = null;
 		globalTerms = null;
 		globalRequests = null;
+		
+		user.setAccountTypeId(1);
+		user.setId(1);
+		user.setEncryptedPassword("derp");
 	}
 
 	@Override
