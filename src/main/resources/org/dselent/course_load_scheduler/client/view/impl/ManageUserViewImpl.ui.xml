@@ -2,41 +2,48 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
-	
+
 	</ui:style>
-	<g:HTMLPanel ui:field="rootPanel">
-		<g:VerticalPanel styleName="center">
-			<g:VerticalPanel>
-		<!-- NAV STUFF -->
-            <g:Cell horizontalAlignment="ALIGN_CENTER">
-            		<g:HorizontalPanel>
-            			<g:SimplePanel>
-            				<g:Image url="https://www.wpi.edu/sites/default/files/inline-image/Offices/Marketing-Communications/WPI_Inst_Prim_FulClr_PREVIEW.png" height="35px" width="123px"/>
-            			</g:SimplePanel>
-                <g:Button text="Home" styleName="navButton" ui:field="homeButton" height="37px" width="77px"></g:Button>
-                <g:Button text="Schedule" styleName="navButton" ui:field="scheduleButton" height="38px" width="73px"></g:Button>
-                <g:Button text="Courses" styleName="navButton" ui:field="coursesButton" height="38px" width="75px"></g:Button>
-                <g:Button text="Account" styleName="navButton" ui:field="accountButton" height="38px" width="74px"></g:Button>
-            </g:HorizontalPanel>
-            </g:Cell>
-			<g:Label text="Manage Users" width="355px" styleName="page-title"/>
-		</g:VerticalPanel>
+	<g:HTMLPanel ui:field="rootPanel" width="487px"	height="320px">
+		<g:VerticalPanel styleName="center" height="320px" width="487px">
+			<!-- NAV STUFF -->
+			<g:Cell horizontalAlignment="ALIGN_CENTER">
+				<g:HorizontalPanel horizontalAlignment="ALIGN_CENTER">
+					<g:SimplePanel>
+						<g:Image
+							url="https://www.wpi.edu/sites/default/files/inline-image/Offices/Marketing-Communications/WPI_Inst_Prim_FulClr_PREVIEW.png"
+							height="35px" width="123px" />
+					</g:SimplePanel>
+					<g:Button text="Home" styleName="navButton" ui:field="homeButton"
+						height="37px" width="77px"></g:Button>
+					<g:Button text="Schedule" styleName="navButton" ui:field="scheduleButton"
+						height="38px" width="73px"></g:Button>
+					<g:Button text="Courses" styleName="navButton" ui:field="coursesButton"
+						height="38px" width="75px"></g:Button>
+					<g:Button text="Account" styleName="navButton" ui:field="accountButton"
+						height="38px" width="74px"></g:Button>
+				</g:HorizontalPanel>
+			</g:Cell>
+			<g:Cell width="400"	height="54" horizontalAlignment="ALIGN_CENTER">
+				<g:Label text="Manage Users" width="100%" styleName="page-title"
+					height="54px" />
+			</g:Cell>
 			<g:Grid>
-			<g:row>
-				<g:customCell>
-					<g:Label text="Last Name" width="78px" height="18px"/>
-				</g:customCell>
-				<g:customCell>
-					<g:Label text="First Name" width="86px" height="18px"/>
-				</g:customCell>
-				<g:customCell>
-					<g:Label text="Email" width="67px" height="19px"/>
-				</g:customCell>
-				<g:customCell>
-					<g:Label text="Rank" width="177px" height="18px"/>
-				</g:customCell>
-			</g:row>
-		</g:Grid>
+				<g:row>
+					<g:customCell>
+						<g:Label text="First Name" width="86px" height="18px" />
+					</g:customCell>
+					<g:customCell>
+						<g:Label text="Last Name" width="78px" height="18px" />
+					</g:customCell>
+					<g:customCell>
+						<g:Label text="Email" width="67px" height="19px" />
+					</g:customCell>
+					<g:customCell>
+						<g:Label text="Rank" width="177px" height="18px" />
+					</g:customCell>
+				</g:row>
+			</g:Grid>
 		</g:VerticalPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 
