@@ -90,6 +90,10 @@ public class CourseLoadScheduler implements EntryPoint
 		UserServiceImpl userService = injector.getUserService();
 		userService.init();
 		
+		CreateAccountServiceImpl createAccountService = injector.getCreateAccountService();
+		createAccountService.init();
+
+		
 		//Testing stuff for Hannah's page
 		//---------------------------------------------------------------
 		//ViewCoursesPresenterImpl coursePresenter = injector.getViewCoursesPresenter();

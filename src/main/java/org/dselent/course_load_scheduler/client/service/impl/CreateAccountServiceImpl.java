@@ -39,7 +39,7 @@ public class CreateAccountServiceImpl extends BaseServiceImpl implements CreateA
 		SendCreateAccountAction action = evt.getAction();
 		CreateAccountActionTranslatorImpl createAccountActionTranslator = new CreateAccountActionTranslatorImpl();
 		JSONObject json = createAccountActionTranslator.translateToJson(action);
-		SendCreateAccountCallback createAccountCallback = new SendCreateAccountCallback(eventBus, evt.getContainer());
+		SendCreateAccountCallback createAccountCallback = new SendCreateAccountCallback(eventBus);
 
 		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.CREATE_ACCOUNT, createAccountCallback, json);
 		request.send();

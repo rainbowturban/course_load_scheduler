@@ -177,10 +177,9 @@ public class LoginPagePresenterImpl extends BasePresenterImpl implements LoginPa
 	@Override
 	public void onReceiveCreateAccount(ReceiveCreateAccountEvent evt)
 	{
-		HasWidgets container = evt.getContainer();
 		
 		// show myself
-		go(container);
+		go(view.getViewRootPanel());
 		
 		// use injector to get to index presenter
 		// hide loading screen

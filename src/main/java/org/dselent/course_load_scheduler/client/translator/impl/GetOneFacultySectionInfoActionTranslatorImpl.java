@@ -7,7 +7,7 @@ import org.dselent.course_load_scheduler.client.action.ReceiveGetOneFacultySecti
 import org.dselent.course_load_scheduler.client.action.SendGetOneFacultySectionInfoAction;
 import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 import org.dselent.course_load_scheduler.client.receive.jsonkeys.ReceiveGetOneFacultySectionInfoKeys;
-import org.dselent.course_load_scheduler.client.send.jsonkeys.GetEndTimesKeys;
+import org.dselent.course_load_scheduler.client.send.jsonkeys.SendGetOneFacultySectionInfoKeys;
 import org.dselent.course_load_scheduler.client.translator.ActionTranslator;
 import org.dselent.course_load_scheduler.client.utils.JSONHelper;
 
@@ -20,7 +20,7 @@ public class GetOneFacultySectionInfoActionTranslatorImpl implements ActionTrans
 	{
 		JSONObject jsonObject = new JSONObject();
 		
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(GetEndTimesKeys.ID), action.getId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendGetOneFacultySectionInfoKeys.ID), action.getId());
 		
 		return jsonObject;
 	}
@@ -29,12 +29,13 @@ public class GetOneFacultySectionInfoActionTranslatorImpl implements ActionTrans
 	public ReceiveGetOneFacultySectionInfoAction translateToAction(JSONObject json)
 	{
 		JSONValue jsonObject = json.get("success");
+		JSONValue otherObject = jsonObject.isArray().get(0);
 
 		//loops through each element in the list and fills an ArrayList with the info for each course
 		List<SectionsInfo> sectionsInfoList = new ArrayList<SectionsInfo>();
 
-		for(int i = 0; i < jsonObject.isArray().size(); i++) {
-			JSONObject sectionsInfoObject = jsonObject.isArray().get(i).isObject();
+		for(int i = 0; i < otherObject.isArray().size(); i++) {
+			JSONObject sectionsInfoObject = otherObject.isArray().get(i).isObject();
 			SectionsInfo si = new SectionsInfo();
 
 			//extract the information for the object to return

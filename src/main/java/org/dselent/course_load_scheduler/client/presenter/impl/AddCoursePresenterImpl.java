@@ -93,7 +93,6 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	
 	@Override
 	public void retrieveFrequencies() {
-		Window.alert("fire those events!");
 		//Sends event to DB to fetch frequencies
 		eventBus.fireEvent(new SendGetFrequenciesEvent(new SendGetFrequenciesAction(user)));
 	}
@@ -110,8 +109,6 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 		ListBox box = view.getFrequencyDropdown();
 		box.clear();
 		Iterator<Frequency> iterator = freqs.iterator();
-		
-		
 		while(iterator.hasNext()) {
 			Frequency f = iterator.next();
 			//add to frequency dropdown
@@ -142,7 +139,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 			returnToViewCourses();//returns if course adding was successful or not
 		}
 		else {//Frequency was not selected
-			Window.alert("A Freqeuncy must be selected to create a course, and textFields cannot be empty.");
+			Window.alert("A Frequency must be selected to create a course, and textFields cannot be empty.");
 		}
 	}
 	

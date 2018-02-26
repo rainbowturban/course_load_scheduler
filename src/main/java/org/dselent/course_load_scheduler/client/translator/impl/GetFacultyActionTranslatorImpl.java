@@ -10,8 +10,8 @@ import org.dselent.course_load_scheduler.client.receive.jsonkeys.ReceiveGetFacul
 import org.dselent.course_load_scheduler.client.translator.ActionTranslator;
 import org.dselent.course_load_scheduler.client.utils.JSONHelper;
 
+import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
-import com.google.gwt.json.client.JSONValue;
 
 public class GetFacultyActionTranslatorImpl implements ActionTranslator<SendGetFacultyAction, ReceiveGetFacultyAction>{
 	@Override
@@ -29,14 +29,12 @@ public class GetFacultyActionTranslatorImpl implements ActionTranslator<SendGetF
 		// you may choose to handle the exception as you wish
 
 		// sent timestamps as epoch seconds (long)
-
-		JSONValue jsonObject = json.get("success");
-
+		JSONArray jsonObject = json.get("success").isArray().get(0).isArray();
+		
 		//loops through each element in the list and fills an ArrayList with the info for each course
 		List<Faculty> facultyList = new ArrayList<Faculty>();
-
-		for(int i = 0; i < jsonObject.isArray().size(); i++) {
-			JSONObject facultyObject = jsonObject.isArray().get(i).isObject();
+		for(int i = 0; i < jsonObject.size(); i++) {
+			JSONObject facultyObject = jsonObject.get(i).isObject();
 			Faculty f = new Faculty();
 
 			//extract the information for the object to return

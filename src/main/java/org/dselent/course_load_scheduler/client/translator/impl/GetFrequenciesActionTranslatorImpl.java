@@ -13,6 +13,7 @@ import org.dselent.course_load_scheduler.client.utils.JSONHelper;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
+import com.google.gwt.user.client.Window;
 
 public class GetFrequenciesActionTranslatorImpl implements ActionTranslator<SendGetFrequenciesAction, ReceiveGetFrequenciesAction> {
 
@@ -35,11 +36,12 @@ public class GetFrequenciesActionTranslatorImpl implements ActionTranslator<Send
 		// this will throw an exception here
 		// you may choose to handle the exception as you wish
 		JSONValue jsonObject = json.get("success");
-
+		JSONValue arrayObject = jsonObject.isArray().get(0);
+		
 		//get all frequencies in list and return
 		List<Frequency> freqs = new ArrayList<Frequency>();
-		for(int i = 0; i < jsonObject.isArray().size(); i++) {
-			JSONObject userObject = jsonObject.isArray().get(i).isObject();
+		for(int i = 0; i < arrayObject.isArray().size(); i++) {
+			JSONObject userObject = arrayObject.isArray().get(i).isObject();
 
 			//extract the information for the object to return
 			//TODO: Check for valid (non-null) values?	

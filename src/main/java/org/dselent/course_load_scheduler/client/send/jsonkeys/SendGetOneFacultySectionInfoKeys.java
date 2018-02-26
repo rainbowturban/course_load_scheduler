@@ -1,5 +1,5 @@
 package org.dselent.course_load_scheduler.client.send.jsonkeys;
 
-public enum SendGetSectionsKeys {
-	COURSE_ID
+public enum SendGetOneFacultySectionInfoKeys {
+	ID;
 }

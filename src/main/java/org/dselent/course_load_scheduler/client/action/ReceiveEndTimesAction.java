@@ -6,7 +6,6 @@ import org.dselent.course_load_scheduler.client.model.EndTime;
 import org.dselent.course_load_scheduler.client.model.User;
 
 public class ReceiveEndTimesAction extends Action {
-	private User model;
 	private ArrayList<EndTime> endTimes;
 
 	public ReceiveEndTimesAction(ArrayList<EndTime> endTimes)

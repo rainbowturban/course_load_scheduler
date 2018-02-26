@@ -26,7 +26,6 @@ import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.presenter.ViewCoursesPresenter;
 import org.dselent.course_load_scheduler.client.view.ViewCoursesView;
 
-import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
@@ -77,10 +76,8 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	
 	@Override
 	public void onReceiveGetCourseList(ReceiveGetCourseListEvent evt) {
-		Window.alert("made it to the received");
 		courses = evt.getAction().getCourseList();
 		fillCourses();
-		Window.alert("filled successfuly");
 		parentPresenter.hideLoadScreen();
 	}
 	

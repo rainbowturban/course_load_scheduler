@@ -22,7 +22,6 @@ import org.dselent.course_load_scheduler.client.translator.impl.RemoveCourseActi
 
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.json.client.JSONObject;
-import com.google.gwt.user.client.Window;
 
 public class CourseServiceImpl extends BaseServiceImpl implements CourseService{
 	public CourseServiceImpl()
@@ -89,7 +88,6 @@ public class CourseServiceImpl extends BaseServiceImpl implements CourseService{
 	@Override
 	public void onSendGetCourseList(SendGetCourseListEvent evt)
 	{
-		Window.alert("Recieved event fired to get courses. Sending network requests...");
 		SendGetCourseListAction action = evt.getAction();
 		GetCourseListActionTranslatorImpl courseListActionTranslator = new GetCourseListActionTranslatorImpl();
 		JSONObject json = courseListActionTranslator.translateToJson(action);

@@ -105,7 +105,7 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 	@Override
 	public void onLoadEditSection(LoadEditSectionEvent evt) {
 		oldSection = evt.getAction().getSectionInfo();
-
+		
 		//Info to return to edit course page
 		course = evt.getAction().getCourseInfo();
 
@@ -182,15 +182,14 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 	@Override
 	public void retrieveTime(){
 		//Populates times from DB
-		eventBus.fireEvent(new SendGetStartTimesEvent(new SendGetStartTimesAction()));
-		eventBus.fireEvent(new SendGetEndTimesEvent(new SendGetEndTimesAction()));
+		eventBus.fireEvent(new SendGetStartTimesEvent(new SendGetStartTimesAction(user)));
+		eventBus.fireEvent(new SendGetEndTimesEvent(new SendGetEndTimesAction(user)));
 	}
 	
 	@Override
 	public void onReceiveStartTimes(ReceiveStartTimesEvent evt) {
 		int startIndex = fillSectionStart(oldSection.getStartTimeId(), evt.getAction().getStartTimes());
 		view.getSectionStartTimeComboBox().setSelectedIndex(startIndex);
-		
 	}
 	
 	@Override
@@ -203,7 +202,7 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 	@Override
 	public int fillSectionTerms(int initTermValue, List<Terms> termsList) {
 		int initTermIndex = -1;
-
+		
 		ListBox term = view.getTermComboBox();
 		term.clear();
 
