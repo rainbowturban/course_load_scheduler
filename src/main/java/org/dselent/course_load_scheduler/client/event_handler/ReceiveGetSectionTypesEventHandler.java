@@ -5,6 +5,6 @@ import org.dselent.course_load_scheduler.client.event.ReceiveGetSectionTypesEven
 import com.google.gwt.event.shared.EventHandler;
 
 public interface ReceiveGetSectionTypesEventHandler extends EventHandler{
-	public void onReceiveGetSectionTypes(ReceiveGetSectionTypesEvent handler);
-
+	public void onReceiveGetSectionTypes(ReceiveGetSectionTypesEvent evt);
+	
 }

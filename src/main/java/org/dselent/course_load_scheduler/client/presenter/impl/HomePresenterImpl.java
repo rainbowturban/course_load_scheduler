@@ -50,8 +50,8 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	{
 		HandlerRegistration registration;
 
-		registration = eventBus.addHandler(ReceiveGetFacultyEvent.TYPE, this);
-		eventBusRegistration.put(ReceiveGetFacultyEvent.TYPE, registration);
+		//registration = eventBus.addHandler(ReceiveGetFacultyEvent.TYPE, this);
+		//eventBusRegistration.put(ReceiveGetFacultyEvent.TYPE, registration);
 		registration = eventBus.addHandler(LoadHomePageEvent.TYPE, this);
 		eventBusRegistration.put(LoadHomePageEvent.TYPE, registration);
 

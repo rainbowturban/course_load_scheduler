@@ -47,6 +47,7 @@ SendGetCourseListEventHandler,
 SendGetEndTimesEventHandler,
 SendGetFacultyEventHandler,
 SendGetFrequenciesEventHandler,
+SendGetOneFacultySectionInfoEventHandler,
 SendGetSectionsEventHandler,
 SendGetStartTimesEventHandler,
 SendGetSectionTypesEventHandler,
@@ -94,6 +95,9 @@ SendRemoveSectionEventHandler
 
 	@Override
 	public void onSendGetFrequencies(SendGetFrequenciesEvent evt) {}
+	
+	@Override
+	public void onSendGetOneFacultySectionInfo(SendGetOneFacultySectionInfoEvent evt) {}
 
 	@Override
 	public void onSendGetSections(SendGetSectionsEvent evt) {}
