@@ -4,6 +4,7 @@ import org.dselent.course_load_scheduler.client.action.SendGetOwnRequestAction;
 import org.dselent.course_load_scheduler.client.event_handler.SendGetOwnRequestEventHandler;
 
 import com.google.gwt.event.shared.GwtEvent;
+import com.google.gwt.event.shared.GwtEvent.Type;
 
 public class SendGetOwnRequestEvent extends GwtEvent<SendGetOwnRequestEventHandler>{
 	public static Type<SendGetOwnRequestEventHandler> TYPE = new Type<SendGetOwnRequestEventHandler>();

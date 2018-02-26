@@ -4,6 +4,7 @@ import org.dselent.course_load_scheduler.client.action.SendGetAllScheduleAction;
 import org.dselent.course_load_scheduler.client.event_handler.SendGetAllScheduleEventHandler;
 
 import com.google.gwt.event.shared.GwtEvent;
+import com.google.gwt.event.shared.GwtEvent.Type;
 
 public class SendGetAllScheduleEvent extends GwtEvent<SendGetAllScheduleEventHandler>{
 	public static Type<SendGetAllScheduleEventHandler> TYPE = new Type<SendGetAllScheduleEventHandler>();

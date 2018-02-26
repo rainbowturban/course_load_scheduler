@@ -4,6 +4,7 @@ import org.dselent.course_load_scheduler.client.action.SendCreateNewRequestActio
 import org.dselent.course_load_scheduler.client.event_handler.SendCreateNewRequestEventHandler;
 
 import com.google.gwt.event.shared.GwtEvent;
+import com.google.gwt.event.shared.GwtEvent.Type;
 
 public class SendCreateNewRequestEvent extends GwtEvent<SendCreateNewRequestEventHandler>{
 public static Type<SendCreateNewRequestEventHandler> TYPE = new Type<SendCreateNewRequestEventHandler>();

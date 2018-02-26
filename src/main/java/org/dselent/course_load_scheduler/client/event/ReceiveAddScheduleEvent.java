@@ -4,6 +4,7 @@ import org.dselent.course_load_scheduler.client.action.ReceiveAddScheduleAction;
 import org.dselent.course_load_scheduler.client.event_handler.ReceiveAddScheduleEventHandler;
 
 import com.google.gwt.event.shared.GwtEvent;
+import com.google.gwt.event.shared.GwtEvent.Type;
 
 public class ReceiveAddScheduleEvent extends GwtEvent<ReceiveAddScheduleEventHandler>{
 	public static Type<ReceiveAddScheduleEventHandler> TYPE = new Type<ReceiveAddScheduleEventHandler>();

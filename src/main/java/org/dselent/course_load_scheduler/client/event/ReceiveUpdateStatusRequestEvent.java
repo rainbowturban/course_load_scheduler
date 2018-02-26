@@ -4,6 +4,7 @@ import org.dselent.course_load_scheduler.client.action.ReceiveUpdateStatusReques
 import org.dselent.course_load_scheduler.client.event_handler.ReceiveUpdateStatusRequestEventHandler;
 
 import com.google.gwt.event.shared.GwtEvent;
+import com.google.gwt.event.shared.GwtEvent.Type;
 
 public class ReceiveUpdateStatusRequestEvent extends GwtEvent<ReceiveUpdateStatusRequestEventHandler>{
 	public static Type<ReceiveUpdateStatusRequestEventHandler> TYPE = new Type<ReceiveUpdateStatusRequestEventHandler>();
