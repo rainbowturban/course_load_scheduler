@@ -39,7 +39,7 @@ public class GetOneFacultySectionInfoActionTranslatorImpl implements ActionTrans
 
 			//extract the information for the object to return
 			//TODO: Check for valid (non-null) values?
-			si.setCoursesTitle(JSONHelper.getStringValue(sectionsInfoObject, JSONHelper.convertKeyName(ReceiveGetOneFacultySectionInfoKeys.COURSE_TITLE)));
+			si.setCoursesTitle(JSONHelper.getStringValue(sectionsInfoObject, JSONHelper.convertKeyName(ReceiveGetOneFacultySectionInfoKeys.COURSES_TITLE)));
 			si.setFacultyId(JSONHelper.getIntValue(sectionsInfoObject, JSONHelper.convertKeyName(ReceiveGetOneFacultySectionInfoKeys.FACULTY_ID)));
 			si.setTermsName(JSONHelper.getStringValue(sectionsInfoObject, JSONHelper.convertKeyName(ReceiveGetOneFacultySectionInfoKeys.TERMS_NAME)));
 			//Add extracted info to the list
