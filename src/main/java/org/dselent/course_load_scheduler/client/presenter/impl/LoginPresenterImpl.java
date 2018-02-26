@@ -125,7 +125,7 @@ public class LoginPresenterImpl extends BasePresenterImpl implements LoginPresen
 	{
 		HasWidgets container = parentPresenter.getView().getViewRootPanel();
 		SendLoginAction sla = new SendLoginAction(userName, password);
-		SendLoginEvent sle = new SendLoginEvent(sla, container);
+		SendLoginEvent sle = new SendLoginEvent(sla);//, container);
 		eventBus.fireEvent(sle);
 	}
 
@@ -158,6 +158,7 @@ public class LoginPresenterImpl extends BasePresenterImpl implements LoginPresen
 		parentPresenter.hideLoadScreen();
 		view.getLoginButton().setEnabled(true);
 		loginClickInProgress = false;
+		view.getLoginButton().setEnabled(true);
 
 		InvalidLoginAction ila = evt.getAction();
 		view.showErrorMessages(ila.toString());

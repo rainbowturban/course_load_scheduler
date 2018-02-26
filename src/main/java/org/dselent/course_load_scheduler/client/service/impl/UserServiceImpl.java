@@ -39,7 +39,7 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService
 		SendLoginAction action = evt.getAction();
 		LoginActionTranslatorImpl loginActionTranslator = new LoginActionTranslatorImpl();
 		JSONObject json = loginActionTranslator.translateToJson(action);
-		SendLoginCallback loginCallback = new SendLoginCallback(eventBus, evt.getContainer());
+		SendLoginCallback loginCallback = new SendLoginCallback(eventBus);//, evt.getContainer());
 
 		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.LOGIN, loginCallback, json);
 		request.send();

@@ -71,13 +71,13 @@ public class ExamplePresenterImpl extends BasePresenterImpl implements ExamplePr
 	@Override
 	public void onReceiveLogin(ReceiveLoginEvent evt)
 	{
-		HasWidgets container = evt.getContainer();
+//		HasWidgets container = evt.getContainer();
 		ReceiveLoginAction rla = evt.getAction();
 
 		setUserModel(rla.getModel());
 		
 		// show myself
-		go(container);
+//		go(container);
 		
 		// use injector to get to index presenter
 		// hide loading screen

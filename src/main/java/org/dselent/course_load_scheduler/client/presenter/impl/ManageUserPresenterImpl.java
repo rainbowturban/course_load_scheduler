@@ -51,8 +51,8 @@ public class ManageUserPresenterImpl extends BasePresenterImpl implements Manage
 		registration = eventBus.addHandler(ManageUserPageEvent.TYPE, this);
 		eventBusRegistration.put(ManageUserPageEvent.TYPE, registration);
 
-		registration = eventBus.addHandler(ReceiveGetUsersEvent.TYPE, this);
-		eventBusRegistration.put(ReceiveGetUsersEvent.TYPE, registration);
+//		registration = eventBus.addHandler(ReceiveGetUsersEvent.TYPE, this);
+//		eventBusRegistration.put(ReceiveGetUsersEvent.TYPE, registration);
 	}
 
 	public IndexPresenter getParentPresenter() {
@@ -107,16 +107,16 @@ public class ManageUserPresenterImpl extends BasePresenterImpl implements Manage
 	@Override
 	public void retrieveUsers() {
 		//Sends event to DB to retrieve terms
-		eventBus.fireEvent(new SendGetUsersEvent(new SendGetUsersAction()));
+//		eventBus.fireEvent(new SendGetUsersEvent(new SendGetUsersAction()));
 	}
 
-	@Override
+/*	@Override
 	public void onReceiveGetUsers(ReceiveGetUsersEvent evt) {
 		globalRoster = evt.getAction().getUserList();
 		fillUsers();
-	}
+	}*/
 	
-	@Override
+/*	@Override
 	public void fillUsers() {
 		Grid userTable = view.getUsersGrid();
 		userTable.clear();
@@ -158,7 +158,7 @@ public class ManageUserPresenterImpl extends BasePresenterImpl implements Manage
 			userTable.insertRow(userTable.getRowCount());
 			userTable.setWidget(userTable.getRowCount()-1, 3, new Label(rankInfo.getFacultyType()));
 		}
-	}
+	}*/
 
 	@Override
 	public void promoteUser() {
