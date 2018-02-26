@@ -52,7 +52,6 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 
 		registration = eventBus.addHandler(LoadHomePageEvent.TYPE, this);
 		eventBusRegistration.put(LoadHomePageEvent.TYPE, registration);
-		eventBusRegistration.put(ReceiveGetFacultyEvent.TYPE, eventBus.addHandler(ReceiveGetFacultyEvent.TYPE, this));
 	}
 
 	public IndexPresenter getParentPresenter() {
@@ -76,7 +75,7 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 
 	@Override
 	public void onLoadHomePage(LoadHomePageEvent evt) {
-		populateFacultyList();
+		retreiveFacultyList();
 		adminUser = evt.getAction().isAdminUser();
 		this.go(parentPresenter.getView().getViewRootPanel());
 	}
@@ -84,8 +83,9 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 
 	/**
 	 * Fills the faculty list panels with faculty and the courses they are scheduled to teach
+	 * @param facultyList 
 	 */
-	private void populateFacultyList() {
+	private void populateFacultyList(List<Faculty> facultyList) {
 		//Get all the faculty
 		List<Faculty> facultyList = retreiveFacultyList();
 
@@ -131,16 +131,18 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 		}
 
 	}
-	private List<Faculty> retreiveFacultyList() {
+	private void retreiveFacultyList() {
 		//Sends event to DB to fetch frequencies
 		eventBus.fireEvent(new SendGetFacultyEvent(new SendGetFacultyAction()));
-
-		return null;
 	}
 	public void setParentPresenter(IndexPresenter parentPresenter) {
 		this.parentPresenter = parentPresenter;
 	}
 
+	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {
+		populateFacultyList(evt.getAction().getList());
+	}
+	
 	@Override
 	public void loadAccountPage() {
 		eventBus.fireEvent(new ManageUserPageEvent(new ManageUserPageAction(adminUser)));

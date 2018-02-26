@@ -4,5 +4,5 @@ import org.dselent.course_load_scheduler.client.event.SendGetFacultyEvent;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface SendGetFacultyEventHandler extends EventHandler{
-	void onSendGetFaculty(SendGetFacultyEvent evt);
+	public void onSendGetFaculty(SendGetFacultyEvent evt);
 }
