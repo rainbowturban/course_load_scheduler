@@ -10,6 +10,10 @@ public class SendGetFrequenciesAction extends Action{
 		this.model = model;
 	}
 
+	public SendGetFrequenciesAction() {
+		model = null;
+	}
+
 	public User getModel()
 	{
 		return model;
