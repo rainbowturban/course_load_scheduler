@@ -7,10 +7,13 @@ import org.dselent.course_load_scheduler.client.action.LoadHomePageAction;
 import org.dselent.course_load_scheduler.client.action.LoadScheduleAction;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.ManageUserPageAction;
+import org.dselent.course_load_scheduler.client.action.SendGetUsersAction;
 import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
 import org.dselent.course_load_scheduler.client.event.LoadScheduleEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.ManageUserPageEvent;
+import org.dselent.course_load_scheduler.client.event.ReceiveGetUsersEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetUsersEvent;
 import org.dselent.course_load_scheduler.client.model.AccountInfo;
 import org.dselent.course_load_scheduler.client.model.Faculty;
 import org.dselent.course_load_scheduler.client.model.User;
@@ -112,7 +115,7 @@ public class ManageUserPresenterImpl extends BasePresenterImpl implements Manage
 
 /*	@Override
 	public void onReceiveGetUsers(ReceiveGetUsersEvent evt) {
-		globalRoster = evt.getAction().getUsers();
+		globalRoster = evt.getAction().getUserList();
 		fillUsers();
 	}*/
 	

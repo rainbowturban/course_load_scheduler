@@ -35,6 +35,8 @@ public class HomeServiceImpl extends BaseServiceImpl implements HomeService
 
 		registration = eventBus.addHandler(SendGetFacultyEvent.TYPE, this);
 		eventBusRegistration.put(SendGetFacultyEvent.TYPE, registration);
+		registration = eventBus.addHandler(SendGetOneFacultySectionInfoEvent.TYPE, this);
+		eventBusRegistration.put(SendGetOneFacultySectionInfoEvent.TYPE, registration);
 	}
 
 	@Override

@@ -1,12 +1,18 @@
 package org.dselent.course_load_scheduler.client.model;
 
+import java.sql.Date;
+
 public class User extends Model
 {
 
 	private Integer id;
-	private Integer accountTypeId;
-	private String password;
-	//private String passwordSalt;
+	private Integer accountTypeId;  
+	private Integer facultyId;
+	private String encryptedPassword;
+	private String passwordSalt;
+	private Date createdAt;
+	private Date updatedAt;
+	private Boolean deleted;
 
 	public Integer getId()
 	{
@@ -18,77 +24,220 @@ public class User extends Model
 		this.id = id;
 	}
 
-	public Integer getAccountTypeId() {
+	public Integer getAccountTypeId()
+	{
 		return accountTypeId;
 	}
 
-	public void setAccountTypeId(Integer accountTypeId) {
+	public void setAccountTypeId(Integer accountTypeId)
+	{
 		this.accountTypeId = accountTypeId;
 	}
 
-	public String getPassword() {
-		return password;
+	public Integer getFacultyId()
+	{
+		return facultyId;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setFacultyId(Integer facultyId)
+	{
+		this.facultyId = facultyId;
+	}
+
+	public String getEncryptedPassword()
+	{
+		return encryptedPassword;
+	}
+
+	public void setEncryptedPassword(String encryptedPassword)
+	{
+		this.encryptedPassword = encryptedPassword;
+	}
+
+	public String getPasswordSalt()
+	{
+		return passwordSalt;
+	}
+
+	public void setPasswordSalt(String passwordSalt)
+	{
+		this.passwordSalt = passwordSalt;
+	}
+
+	public Date getCreatedAt()
+	{
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt)
+	{
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt()
+	{
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt)
+	{
+		this.updatedAt = updatedAt;
+	}
+	
+	public Boolean getDeleted()
+	{
+		return deleted;
+	}
+
+	public void setDeleted(Boolean deleted)
+	{
+		this.deleted = deleted;
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode()
+	{
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
 		result = prime * result + ((accountTypeId == null) ? 0 : accountTypeId.hashCode());
+		result = prime * result + ((encryptedPassword == null) ? 0 : encryptedPassword.hashCode());
+		result = prime * result + ((facultyId == null) ? 0 : facultyId.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((deleted == null) ? 0 : deleted.hashCode());
+		result = prime * result + ((passwordSalt == null) ? 0 : passwordSalt.hashCode());
+		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object obj)
+	{
+		if (this == obj)
+		{
 			return true;
 		}
-		if (obj == null) {
+		if (obj == null)
+		{
 			return false;
 		}
-		if (!(obj instanceof User)) {
+		if (!(obj instanceof User))
+		{
 			return false;
 		}
 		User other = (User) obj;
-		if (accountTypeId == null) {
-			if (other.accountTypeId != null) {
+		if (createdAt == null)
+		{
+			if (other.createdAt != null)
+			{
 				return false;
 			}
-		} else if (!accountTypeId.equals(other.accountTypeId)) {
+		}
+		else if (!createdAt.equals(other.createdAt))
+		{
 			return false;
 		}
-		if (id == null) {
-			if (other.id != null) {
+		if (accountTypeId == null)
+		{
+			if (other.accountTypeId != null)
+			{
 				return false;
 			}
-		} else if (!id.equals(other.id)) {
+		}
+		else if (!accountTypeId.equals(other.accountTypeId))
+		{
 			return false;
 		}
-		if (password == null) {
-			if (other.password != null) {
+		if (encryptedPassword == null)
+		{
+			if (other.encryptedPassword != null)
+			{
 				return false;
 			}
-		} else if (!password.equals(other.password)) {
+		}
+		else if (!encryptedPassword.equals(other.encryptedPassword))
+		{
+			return false;
+		}
+		if (facultyId == null)
+		{
+			if (other.facultyId != null)
+			{
+				return false;
+			}
+		}
+		else if (!facultyId.equals(other.facultyId))
+		{
+			return false;
+		}
+		if (id == null)
+		{
+			if (other.id != null)
+			{
+				return false;
+			}
+		}
+		else if (!id.equals(other.id))
+		{
+			return false;
+		}
+		if (deleted == null)
+		{
+			if (other.deleted != null)
+			{
+				return false;
+			}
+		}
+		else if (!deleted.equals(other.deleted))
+		{
+			return false;
+		}
+		if (passwordSalt == null)
+		{
+			if (other.passwordSalt != null)
+			{
+				return false;
+			}
+		}
+		else if (!passwordSalt.equals(other.passwordSalt))
+		{
+			return false;
+		}
+		if (updatedAt == null)
+		{
+			if (other.updatedAt != null)
+			{
+				return false;
+			}
+		}
+		else if (!updatedAt.equals(other.updatedAt))
+		{
 			return false;
 		}
 		return true;
 	}
+	
 
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		StringBuilder builder = new StringBuilder();
-		builder.append("User [id=");
+		builder.append("Users [id=");
 		builder.append(id);
 		builder.append(", accountTypeId=");
 		builder.append(accountTypeId);
-		builder.append(", password=");
-		builder.append(password);
+		builder.append(", facultyId=");
+		builder.append(facultyId);
+		builder.append(", encryptedPassword=");
+		builder.append(encryptedPassword);
+		builder.append(", passwordSalt=");
+		builder.append(passwordSalt);
+		builder.append(", createdAt=");
+		builder.append(createdAt);
+		builder.append(", updatedAt=");
+		builder.append(updatedAt);
+		builder.append(", deleted=");
+		builder.append(deleted);
 		builder.append("]");
 		return builder.toString();
 	}
