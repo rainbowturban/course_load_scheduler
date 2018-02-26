@@ -26,11 +26,9 @@ import org.dselent.course_load_scheduler.client.model.Terms;
 import org.dselent.course_load_scheduler.client.model.User;
 import org.dselent.course_load_scheduler.client.presenter.AdminCalendarPresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
-import org.dselent.course_load_scheduler.client.service.ScheduleService;
 import org.dselent.course_load_scheduler.client.view.AdminCalendarView;
 
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasWidgets;
@@ -44,6 +42,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 {
 	private IndexPresenter parentPresenter;
 	private AdminCalendarView view;
+	private List<StartTime> globalStartTimes;
 
 	@Inject
 	public AdminCalendarPresenterImpl(IndexPresenter parentPresenter, AdminCalendarView view)
@@ -51,16 +50,14 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		this.view = view;
 		this.parentPresenter = parentPresenter;
 		view.setPresenter(this);
+		
+		globalStartTimes = null;
 	}
 
 	@Override
 	public void init()
 	{
 		bind();
-		fillInfo();
-		fillRequests();
-		fillCourseInfo();
-		fillCalendar();
 	}
 
 	@Override
@@ -85,8 +82,9 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	@Override
 	public void onReceiveStartTimes(ReceiveStartTimesEvent evt) {
 		ReceiveStartTimesAction action = evt.getAction();
-		ArrayList<StartTime> startTimes = action.getStartTimes();
-		Window.alert("received start time event");
+		globalStartTimes = action.getStartTimes();
+		fillCalendar();
+		fillCourseInfo();
 	}
 
 	@Override
@@ -123,8 +121,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		for(int i=0; i<columnHeaders.length; i++) {
 			calendar.setWidget(0, i, new Label(columnHeaders[i]));
 		}
-		List<StartTime> startTimes = getStartTimes();
-		Iterator<StartTime> startTimesIterator = startTimes.iterator();
+		Iterator<StartTime> startTimesIterator = globalStartTimes.iterator();
 		while(startTimesIterator.hasNext()) {
 			StartTime startTimeInfo = startTimesIterator.next();
 			calendar.insertRow(calendar.getRowCount());
@@ -137,8 +134,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	public void fillCourseInfo() {
 		ListBox startTimeSelect = view.getStartTimeSelectBox();
 		startTimeSelect.clear();
-		List<StartTime> startTimes = getStartTimes();
-		Iterator<StartTime> startTimesIterator = startTimes.iterator();
+		Iterator<StartTime> startTimesIterator = globalStartTimes.iterator();
 		while(startTimesIterator.hasNext()) {
 			StartTime startTimeInfo = startTimesIterator.next();
 			startTimeSelect.addItem(startTimeInfo.getTime().toString());
@@ -205,51 +201,12 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	}
 
 	@Override
-	public List<StartTime> getStartTimes() {
-		List<StartTime> startTimes = new ArrayList<StartTime>();
-		// TODO
+	public void getStartTimes() {
 		User temp = new User();
 		temp.setAccountTypeId(1);
 		temp.setId(1);
 		temp.setPassword("derp");
 		eventBus.fireEvent(new SendGetStartTimesEvent(new SendGetStartTimesAction(temp)));
-		StartTime time8 = new StartTime();
-		time8.setId(1);
-		time8.setTime(new Time(28800000));
-		StartTime time9 = new StartTime();
-		time9.setId(2);
-		time9.setTime(new Time(32400000));
-		StartTime time10 = new StartTime();
-		time10.setId(3);
-		time10.setTime(new Time(36000000));
-		StartTime time11 = new StartTime();
-		time11.setId(4);
-		time11.setTime(new Time(39600000));
-		StartTime time12 = new StartTime();
-		time12.setId(5);
-		time12.setTime(new Time(43200000));
-		StartTime time13 = new StartTime();
-		time13.setId(6);
-		time13.setTime(new Time(46800000));
-		StartTime time14 = new StartTime();
-		time14.setId(7);
-		time14.setTime(new Time(50400000));
-		StartTime time15 = new StartTime();
-		time15.setId(8);
-		time15.setTime(new Time(54000000));
-		StartTime time16 = new StartTime();
-		time16.setId(9);
-		time16.setTime(new Time(57600000));
-		startTimes.add(time8);
-		startTimes.add(time9);
-		startTimes.add(time10);
-		startTimes.add(time11);
-		startTimes.add(time12);
-		startTimes.add(time13);
-		startTimes.add(time14);
-		startTimes.add(time15);
-		startTimes.add(time16);
-		return startTimes;
 	}
 
 	@Override
@@ -466,8 +423,11 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	public void onLoadSchedulePage(LoadScheduleEvent evt) {
 		if(evt.getAction().getAdminUser()) {//if not admin, should not load the page
 			//initialize stuff
-			fillInfo();
+			/*fillInfo();
 			fillRequests();
+			fillCourseInfo();
+			fillCalendar();*/
+			getStartTimes();
 			
 			this.go(parentPresenter.getView().getViewRootPanel());
 		}

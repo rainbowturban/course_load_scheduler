@@ -35,11 +35,10 @@ public class ScheduleServiceImpl extends BaseServiceImpl implements ScheduleServ
 	@Override
 	public void onGetStartTimes(SendGetStartTimesEvent evt) {
 		SendGetStartTimesAction action = evt.getAction();
-		GetStartTimesActionTranslatorImpl createAccountActionTranslator = new GetStartTimesActionTranslatorImpl();
-		JSONObject json = createAccountActionTranslator.translateToJson(action);
-		GetStartTimesCallback createAccountCallback = new GetStartTimesCallback(eventBus);
-
-		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.GET_START_TIMES, createAccountCallback, json);
+		GetStartTimesActionTranslatorImpl getStartTimesActionTranslator = new GetStartTimesActionTranslatorImpl();
+		JSONObject json = getStartTimesActionTranslator.translateToJson(action);
+		GetStartTimesCallback getStartTimesCallback = new GetStartTimesCallback(eventBus);
+		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.GET_START_TIMES, getStartTimesCallback, json);
 		request.send();
 	}
 }
