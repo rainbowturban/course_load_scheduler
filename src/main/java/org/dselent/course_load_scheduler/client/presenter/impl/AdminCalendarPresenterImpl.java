@@ -11,6 +11,7 @@ import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.ManageUserPageAction;
 import org.dselent.course_load_scheduler.client.action.SendGetEndTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetStartTimesAction;
+import org.dselent.course_load_scheduler.client.action.SendGetTermsAction;
 import org.dselent.course_load_scheduler.client.action.SendGetFacultyAction;
 import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
 import org.dselent.course_load_scheduler.client.event.LoadScheduleEvent;
@@ -18,9 +19,11 @@ import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.ManageUserPageEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveEndTimesEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveGetFacultyEvent;
+import org.dselent.course_load_scheduler.client.event.ReceiveGetTermsEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveStartTimesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetEndTimesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetStartTimesEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetTermsEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetFacultyEvent;
 import org.dselent.course_load_scheduler.client.model.EndTime;
 import org.dselent.course_load_scheduler.client.model.Faculty;
@@ -94,6 +97,9 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		
 		registration = eventBus.addHandler(ReceiveGetFacultyEvent.TYPE, this);
 		eventBusRegistration.put(ReceiveGetFacultyEvent.TYPE, registration);
+		
+		registration = eventBus.addHandler(ReceiveGetTermsEvent.TYPE, this);
+		eventBusRegistration.put(ReceiveGetTermsEvent.TYPE, registration);
 	}
 		
 	@Override
@@ -119,6 +125,11 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {
 		globalRoster = evt.getAction().getList();
 		updateUi();
+	}
+	
+	@Override
+	public void onReceiveGetTerms(ReceiveGetTermsEvent evt) {
+		globalTerms = evt.getAction().getTerms();
 	}
 	
 	@Override
@@ -228,6 +239,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 			viewSelect.addItem(facultyInfo.getFirstName() + " " + facultyInfo.getLastName());
 		}
 		ListBox termSelect = view.getTermSelectBox();
+		termSelect.clear();
 		Iterator<Terms> termsIterator = globalTerms.iterator();
 		while(termsIterator.hasNext()) {
 			Terms termInfo = termsIterator.next();
@@ -237,39 +249,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	
 	@Override
 	public void getTerms() {
-		globalTerms = new ArrayList<Terms>();
-		Terms terma = new Terms();
-		terma.setId(1);
-		terma.setName("A");
-		globalTerms.add(terma);
-		Terms termb = new Terms();
-		termb.setId(1);
-		termb.setName("B");
-		globalTerms.add(termb);
-		Terms termf = new Terms();
-		termf.setId(1);
-		termf.setName("F");
-		globalTerms.add(termf);
-		Terms termc = new Terms();
-		termc.setId(1);
-		termc.setName("C");
-		globalTerms.add(termc);
-		Terms termd = new Terms();
-		termd.setId(1);
-		termd.setName("D");
-		globalTerms.add(termd);
-		Terms terms = new Terms();
-		terms.setId(1);
-		terms.setName("S");
-		globalTerms.add(terms);
-		Terms terme1 = new Terms();
-		terme1.setId(1);
-		terme1.setName("E1");
-		globalTerms.add(terme1);
-		Terms terme2 = new Terms();
-		terme2.setId(1);
-		terme2.setName("E2");
-		globalTerms.add(terme2);
+		eventBus.fireEvent(new SendGetTermsEvent(new SendGetTermsAction()));
 	}
 
 	@Override

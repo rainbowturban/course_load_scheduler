@@ -7,20 +7,17 @@ import org.dselent.course_load_scheduler.client.action.ReceiveGetTermsAction;
 import org.dselent.course_load_scheduler.client.action.SendGetTermsAction;
 import org.dselent.course_load_scheduler.client.model.Terms;
 import org.dselent.course_load_scheduler.client.receive.jsonkeys.ReceiveGetTermsKeys;
-import org.dselent.course_load_scheduler.client.send.jsonkeys.SendGetTermsKeys;
 import org.dselent.course_load_scheduler.client.translator.ActionTranslator;
 import org.dselent.course_load_scheduler.client.utils.JSONHelper;
 
+import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
-import com.google.gwt.json.client.JSONValue;
 
 public class GetTermsActionTranslatorImpl implements ActionTranslator<SendGetTermsAction, ReceiveGetTermsAction>{
 	@Override
 	public JSONObject translateToJson(SendGetTermsAction action)
 	{
 		JSONObject jsonObject = new JSONObject();
-
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendGetTermsKeys.COURSES_ID), action.getCourseId());
 
 		return jsonObject;
 	}
@@ -33,14 +30,13 @@ public class GetTermsActionTranslatorImpl implements ActionTranslator<SendGetTer
 		// you may choose to handle the exception as you wish
 
 		// sent timestamps as epoch seconds (long)
-
-		JSONValue jsonObject = json.get("success");
+		JSONArray jsonObject = json.get("success").isArray().get(0).isArray();
 
 		//loops through each element in the list and fills an ArrayList with the info for each course
 		List<Terms> termsList = new ArrayList<Terms>();
 
 		for(int i = 0; i < jsonObject.isArray().size(); i++) {
-			JSONObject userObject = jsonObject.isArray().get(i).isObject();
+			JSONObject userObject = jsonObject.get(i).isObject();
 			Terms terms = new Terms();
 
 			//extract the information for the object to return
