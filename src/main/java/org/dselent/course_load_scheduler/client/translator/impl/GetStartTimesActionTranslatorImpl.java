@@ -1,13 +1,12 @@
 package org.dselent.course_load_scheduler.client.translator.impl;
 
-import org.dselent.course_load_scheduler.client.action.ReceiveStartTimesAction;
-import org.dselent.course_load_scheduler.client.model.StartTime;
-import org.dselent.course_load_scheduler.client.send.jsonkeys.GetStartTimesKeys;
-
 import java.sql.Time;
 import java.util.ArrayList;
 
+import org.dselent.course_load_scheduler.client.action.ReceiveStartTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetStartTimesAction;
+import org.dselent.course_load_scheduler.client.model.StartTime;
+import org.dselent.course_load_scheduler.client.send.jsonkeys.GetStartTimesKeys;
 import org.dselent.course_load_scheduler.client.translator.ActionTranslator;
 import org.dselent.course_load_scheduler.client.utils.JSONHelper;
 

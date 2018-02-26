@@ -2,7 +2,6 @@ package org.dselent.course_load_scheduler.client.presenter;
 
 import java.util.List;
 
-import org.dselent.course_load_scheduler.client.model.CourseSections;
 import org.dselent.course_load_scheduler.client.model.EndTime;
 import org.dselent.course_load_scheduler.client.model.SectionType;
 import org.dselent.course_load_scheduler.client.model.StartTime;

@@ -2,6 +2,7 @@ package org.dselent.course_load_scheduler.client.event;
 
 import org.dselent.course_load_scheduler.client.action.SendGetOneFacultySectionInfoAction;
 import org.dselent.course_load_scheduler.client.event_handler.SendGetOneFacultySectionInfoEventHandler;
+
 import com.google.gwt.event.shared.GwtEvent;
 
 public class SendGetOneFacultySectionInfoEvent extends GwtEvent<SendGetOneFacultySectionInfoEventHandler> {

@@ -1,9 +1,7 @@
 package org.dselent.course_load_scheduler.client.translator.impl;
 
 import org.dselent.course_load_scheduler.client.action.ReceiveCreateNewRequestAction;
-import org.dselent.course_load_scheduler.client.action.ReceiveEditOwnRequestAction;
 import org.dselent.course_load_scheduler.client.action.SendCreateNewRequestAction;
-import org.dselent.course_load_scheduler.client.action.SendEditOwnRequestAction;
 import org.dselent.course_load_scheduler.client.model.Request;
 import org.dselent.course_load_scheduler.client.receive.jsonkeys.ReceiveCreateNewRequestKeys;
 import org.dselent.course_load_scheduler.client.send.jsonkeys.SendCreateNewRequestKeys;

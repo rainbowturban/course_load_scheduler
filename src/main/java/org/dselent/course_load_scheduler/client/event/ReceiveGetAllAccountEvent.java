@@ -4,7 +4,6 @@ import org.dselent.course_load_scheduler.client.action.ReceiveGetAllAccountActio
 import org.dselent.course_load_scheduler.client.event_handler.ReceiveGetAllAccountEventHandler;
 
 import com.google.gwt.event.shared.GwtEvent;
-import com.google.gwt.event.shared.GwtEvent.Type;
 
 public class ReceiveGetAllAccountEvent extends GwtEvent<ReceiveGetAllAccountEventHandler>{
 	public static Type<ReceiveGetAllAccountEventHandler> TYPE = new Type<ReceiveGetAllAccountEventHandler>();
