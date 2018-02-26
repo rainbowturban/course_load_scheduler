@@ -141,6 +141,7 @@ public class LoginPagePresenterImpl extends BasePresenterImpl implements LoginPa
 
 			if(validUserName && validPassword)
 			{
+				
 				sendLogin(userName, password);
 
 			}
@@ -157,8 +158,11 @@ public class LoginPagePresenterImpl extends BasePresenterImpl implements LoginPa
 	@Override
 	public void onInvalidLogin(InvalidLoginEvent evt) {
 		parentPresenter.hideLoadScreen();
+		view.getLoginButton().setEnabled(true);
 		Window.alert("An incorrect email or password was entered.");
 		String reasons = "Reasons: ";
+		
+		
 		for(int i = 0; i < evt.getAction().getNumberOfReasons(); i++){
 			reasons += evt.getAction().getReason(i) + "\n";
 		}

@@ -158,7 +158,6 @@ public class LoginPresenterImpl extends BasePresenterImpl implements LoginPresen
 		parentPresenter.hideLoadScreen();
 		view.getLoginButton().setEnabled(true);
 		loginClickInProgress = false;
-		view.getLoginButton().setEnabled(true);
 
 		InvalidLoginAction ila = evt.getAction();
 		view.showErrorMessages(ila.toString());

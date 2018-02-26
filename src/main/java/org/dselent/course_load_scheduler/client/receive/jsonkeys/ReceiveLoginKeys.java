@@ -4,5 +4,5 @@ public enum ReceiveLoginKeys
 {
 	ID,
 	ACCOUNT_TYPE_ID,
-	PASSWORD;
+	ENCRYPTED_PASSWORD;
 }

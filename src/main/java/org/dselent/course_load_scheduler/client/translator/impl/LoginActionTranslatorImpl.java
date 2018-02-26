@@ -10,6 +10,7 @@ import org.dselent.course_load_scheduler.client.utils.JSONHelper;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
+import com.google.gwt.user.client.Window;
 
 public class LoginActionTranslatorImpl implements ActionTranslator<SendLoginAction, ReceiveLoginAction>
 {
@@ -18,9 +19,13 @@ public class LoginActionTranslatorImpl implements ActionTranslator<SendLoginActi
 	{
 		JSONObject jsonObject = new JSONObject();
 
+		Window.alert("in translator to make action JSON.");
+		
 		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendLoginKeys.USER_NAME), action.getUserName());
 		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendLoginKeys.PASSWORD), action.getPassword());
 
+		Window.alert("josnObject: " + jsonObject.toString());
+		
 		return jsonObject;
 	}
 
@@ -38,7 +43,7 @@ public class LoginActionTranslatorImpl implements ActionTranslator<SendLoginActi
 
 		Integer id = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveLoginKeys.ID));
 		Integer accountTypeId = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveLoginKeys.ACCOUNT_TYPE_ID));
-		String password = JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveLoginKeys.PASSWORD));
+		String password = JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveLoginKeys.ENCRYPTED_PASSWORD));
 
 		// TODO look into time conversion more
 		// put into JSONHelper?
