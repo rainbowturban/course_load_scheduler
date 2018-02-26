@@ -53,12 +53,13 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	{
 		HandlerRegistration registration;
 
+		registration = eventBus.addHandler(LoadHomePageEvent.TYPE, this);
+		eventBusRegistration.put(LoadHomePageEvent.TYPE, registration);
 		registration = eventBus.addHandler(ReceiveGetOneFacultySectionInfoEvent.TYPE, this);
 		eventBusRegistration.put(ReceiveGetOneFacultySectionInfoEvent.TYPE, registration);
 		registration = eventBus.addHandler(ReceiveGetFacultyEvent.TYPE, this);
 		eventBusRegistration.put(ReceiveGetFacultyEvent.TYPE, registration);
-		registration = eventBus.addHandler(LoadHomePageEvent.TYPE, this);
-		eventBusRegistration.put(LoadHomePageEvent.TYPE, registration);
+
 
 	}
 
@@ -85,7 +86,6 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	public void loadAccountPage() {
 		eventBus.fireEvent(new ManageUserPageEvent(new ManageUserPageAction(adminUser)));
 	}
-
 
 	@Override
 	public void loadHomePage() {
