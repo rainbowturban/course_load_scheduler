@@ -43,6 +43,8 @@ import com.google.inject.Inject;
 
 public class AdminCalendarPresenterImpl extends BasePresenterImpl implements AdminCalendarPresenter
 {
+	private User user = new User();//the user object that is being passed around
+	
 	private IndexPresenter parentPresenter;
 	private AdminCalendarView view;
 	private List<StartTime> globalStartTimes;
@@ -381,29 +383,30 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	//loads the home page
     @Override
     public void loadHomePage() {
-    	eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction(true)));
+    	eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction(user)));
     }
     //loads schedule page
     @Override
     public void loadSchedulePage() {
-        eventBus.fireEvent(new LoadScheduleEvent(new LoadScheduleAction(true)));
+        eventBus.fireEvent(new LoadScheduleEvent(new LoadScheduleAction(user)));
     }
     
     //loads courses page (viewing)
     @Override
     public void loadViewCoursesPage() {
-        eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(true)));
+        eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(user)));
     }
     
     //loads account page
     @Override
     public void loadAccountPage() {
-    	eventBus.fireEvent(new ManageUserPageEvent(new ManageUserPageAction(true)));
+    	eventBus.fireEvent(new ManageUserPageEvent(new ManageUserPageAction(user)));
     }
     
     @Override
 	public void onLoadSchedulePage(LoadScheduleEvent evt) {
-		if(evt.getAction().getAdminUser()) {//if not admin, should not load the page
+    	user = evt.getAction().getUser();
+		if(user.getAccountTypeId() == 2) {//if not admin, should not load the page
 			getStartTimes();
 			getEndTimes();
 			getRoster();
