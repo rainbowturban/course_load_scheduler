@@ -89,7 +89,6 @@ public class CourseServiceImpl extends BaseServiceImpl implements CourseService{
 	@Override
 	public void onSendGetCourseList(SendGetCourseListEvent evt)
 	{
-		Window.alert("Recieved event fired to get courses. Sending network requests...");
 		SendGetCourseListAction action = evt.getAction();
 		GetCourseListActionTranslatorImpl courseListActionTranslator = new GetCourseListActionTranslatorImpl();
 		JSONObject json = courseListActionTranslator.translateToJson(action);

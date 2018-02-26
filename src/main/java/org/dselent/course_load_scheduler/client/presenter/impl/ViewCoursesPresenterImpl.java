@@ -160,6 +160,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 			
 		}
 		parentPresenter.hideLoadScreen();
+		//this.go(parentPresenter.getView().getViewRootPanel());//***************Reload to update?
 	}
 
 

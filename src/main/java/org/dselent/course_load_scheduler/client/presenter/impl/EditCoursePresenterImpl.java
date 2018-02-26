@@ -44,7 +44,6 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	
 	private IndexPresenter parentPresenter;
 	private EditCourseView view;
-	private User user = new User();
 
 	private CourseInfo course;
 	private List<CourseSections> sections = new ArrayList<CourseSections>();
@@ -82,13 +81,14 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		
 		//fill frequency tables, sections, and the fields with the information from the course
 		if(course != null) {
+			Window.alert("In edit course to pop stuff");
 			retrieveFrequencies();
-			
-			//int index = fillFrequencies(course.getFrequencyId());
-			fillSections();
+			Window.alert("frequs evt fired");
+			retrieveSections();
+			Window.alert("fried evts");
+
 			view.getCourseNameField().setText(course.getCoursesTitle());
 			view.getCourseNumberField().setText(course.getCoursesNumber());
-			//view.getFrequencyDropdown().setSelectedIndex(index);
 			
 			this.go(parentPresenter.getView().getViewRootPanel());
 		}
@@ -139,7 +139,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	@Override
 	public void retrieveFrequencies() {
 		//Sends event to DB to fetch frequencies
-		eventBus.fireEvent(new SendGetFrequenciesEvent(new SendGetFrequenciesAction()));
+		eventBus.fireEvent(new SendGetFrequenciesEvent(new SendGetFrequenciesAction(user)));
 	}
 	
 	//gets the frequencies from the database and fills the dropdown with them. 
@@ -179,7 +179,6 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	//gets the sections for this course and fills the list with them
 	@Override
 	public void fillSections() {
-		retrieveSections();
 
 		StackPanel panel = view.getSectionList();
 		panel.clear();

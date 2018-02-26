@@ -9,9 +9,6 @@ import org.dselent.course_load_scheduler.client.action.LoadHomePageAction;
 import org.dselent.course_load_scheduler.client.action.LoadScheduleAction;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.ManageUserPageAction;
-import org.dselent.course_load_scheduler.client.action.ReceiveEndTimesAction;
-import org.dselent.course_load_scheduler.client.action.ReceiveGetFacultyAction;
-import org.dselent.course_load_scheduler.client.action.ReceiveStartTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetEndTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetStartTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetFacultyAction;
@@ -36,7 +33,6 @@ import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.AdminCalendarView;
 
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasWidgets;
@@ -109,22 +105,19 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	
 	@Override
 	public void onReceiveStartTimes(ReceiveStartTimesEvent evt) {
-		ReceiveStartTimesAction action = evt.getAction();
-		globalStartTimes = action.getStartTimes();
+		globalStartTimes = evt.getAction().getStartTimes();
 		updateUi();
 	}
 	
 	@Override
 	public void onReceiveEndTimes(ReceiveEndTimesEvent evt) {
-		ReceiveEndTimesAction action = evt.getAction();
-		globalEndTimes = action.getEndTimes();
+		globalEndTimes = evt.getAction().getEndTimes();
 		updateUi();
 	}
 	
 	@Override
 	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {
-		ReceiveGetFacultyAction action = evt.getAction();
-		globalRoster = action.getList();
+		globalRoster = evt.getAction().getList();
 		updateUi();
 	}
 	
@@ -395,7 +388,6 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 			getRoster();
 			getTerms();
 			getRequests();
-			Window.alert("its here");
 			this.go(parentPresenter.getView().getViewRootPanel());
 		}
 	}
