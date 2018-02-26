@@ -40,6 +40,7 @@ ReceiveNewSectionEventHandler,
 ReceiveRemoveCourseEventHandler,
 ReceiveRemoveSectionEventHandler,
 ReceiveStartTimesEventHandler,
+ReceiveGetUsersEventHandler,
 SendCreateAccountEventHandler,
 SendEditCourseEventHandler,
 SendEditSectionEventHandler,
@@ -52,6 +53,7 @@ SendGetSectionsEventHandler,
 SendGetStartTimesEventHandler,
 SendGetSectionTypesEventHandler,
 SendGetTermsEventHandler,
+SendGetUsersEventHandler,
 SendLoginEventHandler,
 SendNewCourseEventHandler,
 SendNewSectionEventHandler,
@@ -122,6 +124,9 @@ SendRemoveSectionEventHandler
 
 	@Override
 	public void onSendGetSectionTypes(SendGetSectionTypesEvent evt) {}
+	
+	@Override
+	public void onSendGetUsers(SendGetUsersEvent evt) {}
 
 	
 	// "onLoad" methods
@@ -198,5 +203,8 @@ SendRemoveSectionEventHandler
 
 	@Override
 	public void onReceiveGetSectionTypes(ReceiveGetSectionTypesEvent evt) {}
+	
+	@Override
+	public void onReceiveGetUsers(ReceiveGetUsersEvent evt) {}
 
 }
