@@ -1,5 +1,6 @@
 package org.dselent.course_load_scheduler.client.presenter.impl;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -109,16 +110,23 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	}
 
 	@Override
+	public void onReceiveGetOneFacultySectionInfo(ReceiveGetOneFacultySectionInfoEvent evt) {
+		Window.alert("Received Get One Faculty Section Info event");
+		Window.alert("event to string: " + evt.toString());
+		Window.alert("ACTION to string: " + evt.getAction().toString());
+
+		sectionListHolder = evt.getAction().getList();
+		Window.alert("Put something into sections list holder");
+		
+		populateFacultyList();
+	}
+	
+	@Override
 	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {
 		Window.alert("Received Get Faculty event");
 		facultyListHolder = evt.getAction().getList();
-		System.out.println("facultyListHolder toString():");
-		System.out.println(facultyListHolder.toString());
-		populateFacultyList();
-	}
-
-	public void onReceiveGetOneFacultySectionInfo(ReceiveGetOneFacultySectionInfoEvent evt) {
-		sectionListHolder = evt.getAction().getList();
+		Window.alert("facultyListHolder toString():" + facultyListHolder.toString());
+		retreiveOneFacultySectionInfo();
 	}
 
 	/**
@@ -127,17 +135,18 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	 */
 	private void populateFacultyList() {
 		//Get all the faculty
-		System.out.println("populating faculty list...");
+		//Window.alert("populating faculty list...");
 		VerticalPanel facultyVertPanel = view.getFacultyListVerticalPanel();
 		Iterator<Faculty> fIterator = facultyListHolder.iterator();
 
 		//iterate through the list of faculty
-		while(fIterator.hasNext()) {
-			System.out.println("Inside the fIterator loop...");
-			Faculty f = fIterator.next();
-			retreiveOneFacultySectionInfo(f.getId());
-
-			List<SectionsInfo> sectionList = sectionListHolder;
+		if(fIterator.hasNext()) {
+			//Window.alert("Inside the fIterator loop...");
+			retreiveOneFacultySectionInfo();
+			
+			//Window.alert("Returned from retreive get one faculty section info");
+			//Window.alert("Section list holder to string: " + sectionListHolder.toString());
+			List<SectionsInfo> sectionList = new ArrayList<SectionsInfo>();//sectionListHolder;
 			HorizontalPanel courseList = new HorizontalPanel();
 
 			Label name = new Label("" + f.getLastName() + ", " + f.getFirstName());
@@ -145,28 +154,29 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 			Label courseInfo;
 			//Check if the faculty has courses assigned
 			if(sectionList.isEmpty()) {
-				System.out.println("Section list was empty...");
+				//Window.alert("Section list was empty...");
 				//Faculty has no courses, but we still need to list them, so make empty labels and continue
 				numCourses = new Label("(0)");
 				courseInfo = new Label("");
 				//Add to the faculty's course list
-				courseList.add(numCourses);
-				courseList.add(name);
-				courseList.add(new Label(""));
+				//courseList.add(numCourses);
+				//courseList.add(name);
+				//courseList.add(new Label(""));
 				//Add to the main list
-				facultyVertPanel.add(courseList);
-				continue;
+				//facultyVertPanel.add(courseList);
+				//continue;
 			}else {
 				numCourses = new Label("(" + sectionList.size() + ")");
 			}
 
 			courseList.add(numCourses);
 			courseList.add(name);
+			//Window.alert("Making section info iterator");
 			Iterator<SectionsInfo> sIterator = sectionList.iterator();
 
 			//iterate through the list of sections for a single faculty
 			while(sIterator.hasNext()) {
-				System.out.println("Inside sIterator loop...");
+				//Window.alert("Inside sIterator loop...");
 				SectionsInfo s = sIterator.next();
 				courseInfo = new Label("" + s.getCoursesTitle() + "  " + s.getTermsName());
 				courseList.add(courseInfo);
@@ -174,15 +184,16 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 			facultyVertPanel.add(courseList);
 		}
 		view.setFacultyListVerticalPanel(facultyVertPanel);
-
+		Window.alert("Set vertical panel");
 	}
 	private void retreiveFacultyList() {
 		//Sends event to DB to fetch frequencies
 		eventBus.fireEvent(new SendGetFacultyEvent(new SendGetFacultyAction()));
 	}
 
-	private void retreiveOneFacultySectionInfo(Integer id) {
-		eventBus.fireEvent(new SendGetOneFacultySectionInfoEvent(new SendGetOneFacultySectionInfoAction(id)));
+	private void retreiveOneFacultySectionInfo() {
+		Window.alert("Fired retreive one facutly section info");
+		eventBus.fireEvent(new SendGetOneFacultySectionInfoEvent(new SendGetOneFacultySectionInfoAction()));
 	}
 
 	public void setParentPresenter(IndexPresenter parentPresenter) {

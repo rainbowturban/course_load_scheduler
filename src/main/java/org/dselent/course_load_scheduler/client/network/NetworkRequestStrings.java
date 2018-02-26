@@ -21,6 +21,7 @@ public final class NetworkRequestStrings
 	public static final String GET_FREQUENCIES = "map/frequencies";
 	public static final String GET_SECTION_TYPES = "map/sectionTypes";
 	public static final String GET_TERMS = "map/terms";
+	public static final String GET_ALL_SECTION_INFO = "section/view/allInfo";
 
 
 	private NetworkRequestStrings() {};

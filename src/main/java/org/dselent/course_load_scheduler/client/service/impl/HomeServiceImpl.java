@@ -59,7 +59,7 @@ public class HomeServiceImpl extends BaseServiceImpl implements HomeService
 		JSONObject json = getFacultyActionTranslator.translateToJson(action);
 		SendGetOneFacultySectionInfoCallback getFacultyCallback = new SendGetOneFacultySectionInfoCallback(eventBus);
 
-		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.GET_ONE_SECTION, getFacultyCallback, json);
+		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.GET_ALL_SECTION_INFO, getFacultyCallback, json);
 		request.send();
 	}
 }

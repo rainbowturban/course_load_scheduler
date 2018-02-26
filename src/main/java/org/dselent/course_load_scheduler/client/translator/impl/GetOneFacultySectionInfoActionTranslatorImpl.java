@@ -7,7 +7,6 @@ import org.dselent.course_load_scheduler.client.action.ReceiveGetOneFacultySecti
 import org.dselent.course_load_scheduler.client.action.SendGetOneFacultySectionInfoAction;
 import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 import org.dselent.course_load_scheduler.client.receive.jsonkeys.ReceiveGetOneFacultySectionInfoKeys;
-import org.dselent.course_load_scheduler.client.send.jsonkeys.SendGetOneFacultySectionInfoKeys;
 import org.dselent.course_load_scheduler.client.translator.ActionTranslator;
 import org.dselent.course_load_scheduler.client.utils.JSONHelper;
 
@@ -20,7 +19,7 @@ public class GetOneFacultySectionInfoActionTranslatorImpl implements ActionTrans
 	{
 		JSONObject jsonObject = new JSONObject();
 		
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendGetOneFacultySectionInfoKeys.ID), action.getId());
+		//JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendGetOneFacultySectionInfoKeys.FACULTY_ID), action.getId());
 		
 		return jsonObject;
 	}
@@ -41,7 +40,8 @@ public class GetOneFacultySectionInfoActionTranslatorImpl implements ActionTrans
 			//extract the information for the object to return
 			//TODO: Check for valid (non-null) values?
 			si.setCoursesTitle(JSONHelper.getStringValue(sectionsInfoObject, JSONHelper.convertKeyName(ReceiveGetOneFacultySectionInfoKeys.COURSE_TITLE)));
-			si.setTermsName(JSONHelper.getStringValue(sectionsInfoObject, JSONHelper.convertKeyName(ReceiveGetOneFacultySectionInfoKeys.TERM_NAME)));
+			si.setFacultyId(JSONHelper.getIntValue(sectionsInfoObject, JSONHelper.convertKeyName(ReceiveGetOneFacultySectionInfoKeys.FACULTY_ID)));
+			si.setTermsName(JSONHelper.getStringValue(sectionsInfoObject, JSONHelper.convertKeyName(ReceiveGetOneFacultySectionInfoKeys.TERMS_NAME)));
 			//Add extracted info to the list
 			sectionsInfoList.add(si);
 		}
