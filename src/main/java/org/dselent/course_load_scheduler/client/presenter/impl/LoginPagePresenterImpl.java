@@ -159,6 +159,7 @@ public class LoginPagePresenterImpl extends BasePresenterImpl implements LoginPa
 	public void onInvalidLogin(InvalidLoginEvent evt) {
 		parentPresenter.hideLoadScreen();
 		view.getLoginButton().setEnabled(true);
+		loginClickInProgress = false;
 		Window.alert("An incorrect email or password was entered.");
 		String reasons = "Reasons: ";
 		for(int i = 0; i < evt.getAction().getNumberOfReasons(); i++){

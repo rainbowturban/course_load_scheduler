@@ -20,7 +20,7 @@ public class GetCourseListActionTranslatorImpl implements ActionTranslator<SendG
 	{
 		JSONObject jsonObject = new JSONObject();
 
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendGetCourseListKeys.TERMS_ID), action.getTermId());
+		//JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendGetCourseListKeys.TERMS_ID), action.getTermId());
 		
 		return jsonObject;
 	}

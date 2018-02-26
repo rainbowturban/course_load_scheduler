@@ -65,7 +65,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	
 	@Override
 	public void onLoadAddCourse(LoadAddCourseEvent evt) {
-		retrieveFrequencies();
+		//retrieveFrequencies();
 		this.go(parentPresenter.getView().getViewRootPanel());
 	}
 	
