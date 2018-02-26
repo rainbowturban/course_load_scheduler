@@ -1,31 +1,29 @@
 package org.dselent.course_load_scheduler.client.presenter.impl;
 
-import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
-import org.dselent.course_load_scheduler.client.view.HomeView;
-
 import java.util.Iterator;
 import java.util.List;
 
-import org.dselent.course_load_scheduler.client.action.SendGetFacultyAction;
-import org.dselent.course_load_scheduler.client.action.SendGetOneFacultySectionInfoAction;
 import org.dselent.course_load_scheduler.client.action.LoadHomePageAction;
 import org.dselent.course_load_scheduler.client.action.LoadScheduleAction;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.ManageUserPageAction;
-import org.dselent.course_load_scheduler.client.event.SendGetFacultyEvent;
-import org.dselent.course_load_scheduler.client.event.SendGetOneFacultySectionInfoEvent;
+import org.dselent.course_load_scheduler.client.action.SendGetFacultyAction;
+import org.dselent.course_load_scheduler.client.action.SendGetOneFacultySectionInfoAction;
 import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
 import org.dselent.course_load_scheduler.client.event.LoadScheduleEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.ManageUserPageEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveGetFacultyEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveGetOneFacultySectionInfoEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetFacultyEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetOneFacultySectionInfoEvent;
 import org.dselent.course_load_scheduler.client.model.Faculty;
 import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 import org.dselent.course_load_scheduler.client.presenter.HomePresenter;
+import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
+import org.dselent.course_load_scheduler.client.view.HomeView;
 
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;

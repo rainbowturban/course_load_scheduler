@@ -16,7 +16,7 @@ public class SendLoginEvent extends GwtEvent<SendLoginEventHandler>//DisplayEven
 	{
 		this.action = action;//super(action, container);
 	}
-	
+
 	@Override
 	public Type<SendLoginEventHandler> getAssociatedType()
 	{

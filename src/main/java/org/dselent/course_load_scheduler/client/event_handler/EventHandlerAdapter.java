@@ -30,6 +30,7 @@ ReceiveEditCourseEventHandler,
 ReceiveEditSectionEventHandler,
 ReceiveEndTimesEventHandler,
 ReceiveGetCourseListEventHandler,
+ReceiveGetFacultyEventHandler,
 ReceiveGetFrequenciesEventHandler,
 ReceiveGetOneFacultySectionInfoEventHandler,
 ReceiveGetSectionsEventHandler,
@@ -59,8 +60,7 @@ SendLoginEventHandler,
 SendNewCourseEventHandler,
 SendNewSectionEventHandler,
 SendRemoveCourseEventHandler,
-SendRemoveSectionEventHandler,
-ReceiveGetFacultyEventHandler
+SendRemoveSectionEventHandler
 
 
 {
@@ -124,12 +124,15 @@ ReceiveGetFacultyEventHandler
 
 	@Override
 	public void onSendGetSectionTypes(SendGetSectionTypesEvent evt) {}
-	
+
 	@Override
 	public void onSendGetUsers(SendGetUsersEvent evt) {}
-	
+
 	@Override
 	public void onReceiveGetCourseList(ReceiveGetCourseListEvent evt) {}
+
+	@Override
+	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {}
 
 	@Override
 	public void onReceiveGetFrequencies(ReceiveGetFrequenciesEvent evt) {}
@@ -163,9 +166,6 @@ ReceiveGetFacultyEventHandler
 
 	@Override
 	public void onReceiveStartTimes(ReceiveStartTimesEvent evt) {}
-	
-	@Override
-	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {}
 
 	@Override
 	public void onSendEditCourse(SendEditCourseEvent evt) {}
@@ -199,7 +199,7 @@ ReceiveGetFacultyEventHandler
 
 	@Override
 	public void onSendNewSection(SendNewSectionEvent evt) {}
-	
+
 	@Override
 	public void onReceiveGetUsers(ReceiveGetUsersEvent evt) {}
 
