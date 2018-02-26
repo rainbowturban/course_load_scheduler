@@ -22,7 +22,7 @@ public class ReceiveEndTimesAction extends Action {
 	public String toString()
 	{
 		StringBuilder builder = new StringBuilder();
-		builder.append("ReceiveStartTimesAction [endTimes=");
+		builder.append("ReceiveEndTimesAction [endTimes=");
 		builder.append(endTimes);
 		builder.append("]");
 		return builder.toString();

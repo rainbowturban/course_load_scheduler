@@ -1,7 +1,7 @@
 package org.dselent.course_load_scheduler.client.presenter.impl;
 
 import java.sql.Time;
-import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,17 +10,21 @@ import org.dselent.course_load_scheduler.client.action.LoadScheduleAction;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.ManageUserPageAction;
 import org.dselent.course_load_scheduler.client.action.ReceiveEndTimesAction;
+import org.dselent.course_load_scheduler.client.action.ReceiveGetFacultyAction;
 import org.dselent.course_load_scheduler.client.action.ReceiveStartTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetEndTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetStartTimesAction;
+import org.dselent.course_load_scheduler.client.action.SendGetFacultyAction;
 import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
 import org.dselent.course_load_scheduler.client.event.LoadScheduleEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.ManageUserPageEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveEndTimesEvent;
+import org.dselent.course_load_scheduler.client.event.ReceiveGetFacultyEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveStartTimesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetEndTimesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetStartTimesEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetFacultyEvent;
 import org.dselent.course_load_scheduler.client.model.EndTime;
 import org.dselent.course_load_scheduler.client.model.Faculty;
 import org.dselent.course_load_scheduler.client.model.RequestTables;
@@ -32,6 +36,7 @@ import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.AdminCalendarView;
 
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasWidgets;
@@ -56,6 +61,10 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	@Inject
 	public AdminCalendarPresenterImpl(IndexPresenter parentPresenter, AdminCalendarView view)
 	{
+		user.setAccountTypeId(2);
+		user.setId(1);
+		user.setEncryptedPassword("derp");
+		
 		this.view = view;
 		this.parentPresenter = parentPresenter;
 		view.setPresenter(this);
@@ -65,10 +74,6 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		globalRoster = null;
 		globalTerms = null;
 		globalRequests = null;
-		
-		user.setAccountTypeId(1);
-		user.setId(1);
-		user.setEncryptedPassword("derp");
 	}
 
 	@Override
@@ -87,6 +92,12 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 
 		registration = eventBus.addHandler(ReceiveStartTimesEvent.TYPE, this);
 		eventBusRegistration.put(ReceiveStartTimesEvent.TYPE, registration);
+		
+		registration = eventBus.addHandler(ReceiveEndTimesEvent.TYPE, this);
+		eventBusRegistration.put(ReceiveEndTimesEvent.TYPE, registration);
+		
+		registration = eventBus.addHandler(ReceiveGetFacultyEvent.TYPE, this);
+		eventBusRegistration.put(ReceiveGetFacultyEvent.TYPE, registration);
 	}
 		
 	@Override
@@ -107,6 +118,13 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	public void onReceiveEndTimes(ReceiveEndTimesEvent evt) {
 		ReceiveEndTimesAction action = evt.getAction();
 		globalEndTimes = action.getEndTimes();
+		updateUi();
+	}
+	
+	@Override
+	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {
+		ReceiveGetFacultyAction action = evt.getAction();
+		globalRoster = action.getList();
 		updateUi();
 	}
 	
@@ -152,7 +170,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		view.getTabPanel().selectTab(0);
 		
 		FlexTable calendar = view.getFlexCalendar();
-		calendar.clear();
+		calendar.removeAllRows();
 		String[] columnHeaders = {"Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
 		for(int i=0; i<columnHeaders.length; i++) {
 			calendar.setWidget(0, i, new Label(columnHeaders[i]));
@@ -194,57 +212,17 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	
 	@Override
 	public void getEndTimes() {
-		User temp = new User();
-		temp.setAccountTypeId(1);
-		temp.setId(1);
-		temp.setEncryptedPassword("derp");
-		eventBus.fireEvent(new SendGetEndTimesEvent(new SendGetEndTimesAction(temp)));
+		eventBus.fireEvent(new SendGetEndTimesEvent(new SendGetEndTimesAction(user)));
 	}
 
 	@Override
 	public void getStartTimes() {
-		User temp = new User();
-		temp.setAccountTypeId(1);
-		temp.setId(1);
-		temp.setEncryptedPassword("derp");
-		eventBus.fireEvent(new SendGetStartTimesEvent(new SendGetStartTimesAction(temp)));
+		eventBus.fireEvent(new SendGetStartTimesEvent(new SendGetStartTimesAction(user)));
 	}
 
 	@Override
 	public void getRoster() {
-		// TODO
-		Faculty faculty1 = new Faculty();
-		faculty1.setId(1);
-		faculty1.setFirstName("Douglas");
-		faculty1.setLastName("Selent");
-		faculty1.setEmail("dselent@wpi.edu");
-		faculty1.setFacultyTypeId(1);
-		faculty1.setCreatedAt(new Timestamp(0));
-		faculty1.setUpdatedAt(new Timestamp(0));
-		faculty1.setDeleted(false);
-		globalRoster.add(faculty1);
-		
-		Faculty faculty2 = new Faculty();
-		faculty2.setId(2);
-		faculty2.setFirstName("Michael");
-		faculty2.setLastName("Ciaraldi");
-		faculty2.setEmail("mciaraldi@wpi.edu");
-		faculty2.setFacultyTypeId(1);
-		faculty2.setCreatedAt(new Timestamp(0));
-		faculty2.setUpdatedAt(new Timestamp(0));
-		faculty2.setDeleted(false);
-		globalRoster.add(faculty2);
-		
-		Faculty faculty3 = new Faculty();
-		faculty3.setId(3);
-		faculty3.setFirstName("Peter");
-		faculty3.setLastName("Christopher");
-		faculty3.setEmail("pchristopher@wpi.edu");
-		faculty3.setFacultyTypeId(2);
-		faculty3.setCreatedAt(new Timestamp(0));
-		faculty3.setUpdatedAt(new Timestamp(0));
-		faculty3.setDeleted(false);
-		globalRoster.add(faculty3);
+		eventBus.fireEvent(new SendGetFacultyEvent(new SendGetFacultyAction()));
 	}
 	
 	@Override
@@ -266,6 +244,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	
 	@Override
 	public void getTerms() {
+		globalTerms = new ArrayList<Terms>();
 		Terms terma = new Terms();
 		terma.setId(1);
 		terma.setName("A");
@@ -302,6 +281,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 
 	@Override
 	public void getRequests() {
+		globalRequests = new ArrayList<RequestTables>();
 		//TODO: instead of this, access DB to get courses
 		RequestTables request1 = new RequestTables();
 		request1.setCoursesNumber("CS3733");
@@ -409,14 +389,13 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
     
     @Override
 	public void onLoadSchedulePage(LoadScheduleEvent evt) {
-    	user = evt.getAction().getUser();
-		if(user.getAccountTypeId() == 2) {//if not admin, should not load the page
+    	if(user.getAccountTypeId() == 2) {//if not admin, should not load the page
 			getStartTimes();
 			getEndTimes();
 			getRoster();
 			getTerms();
 			getRequests();
-			
+			Window.alert("its here");
 			this.go(parentPresenter.getView().getViewRootPanel());
 		}
 	}

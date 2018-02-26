@@ -41,6 +41,9 @@ public class CourseLoadScheduler implements EntryPoint
 		MapServiceImpl mapService = injector.getMapService();
 		mapService.init();
 		
+		HomeServiceImpl homeService = injector.getHomeService();
+		homeService.init();
+		
 		ScheduleServiceImpl schedService = injector.getScheduleService();
 		schedService.init();
 		
