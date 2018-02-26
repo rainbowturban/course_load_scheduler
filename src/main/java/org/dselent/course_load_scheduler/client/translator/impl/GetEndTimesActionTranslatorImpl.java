@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import org.dselent.course_load_scheduler.client.action.ReceiveEndTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetEndTimesAction;
 import org.dselent.course_load_scheduler.client.model.EndTime;
-import org.dselent.course_load_scheduler.client.model.User;
-import org.dselent.course_load_scheduler.client.receive.jsonkeys.ReceiveEndTimesKeys;
 import org.dselent.course_load_scheduler.client.send.jsonkeys.GetEndTimesKeys;
 import org.dselent.course_load_scheduler.client.translator.ActionTranslator;
 import org.dselent.course_load_scheduler.client.utils.JSONHelper;

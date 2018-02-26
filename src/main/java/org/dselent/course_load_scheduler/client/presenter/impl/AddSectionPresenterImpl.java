@@ -62,6 +62,18 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 		HandlerRegistration registration;
 		registration = eventBus.addHandler(LoadAddSectionEvent.TYPE, this);
 		eventBusRegistration.put(LoadAddSectionEvent.TYPE, registration);
+		
+		registration = eventBus.addHandler(ReceiveGetTermsEvent.TYPE, this);
+		eventBusRegistration.put(ReceiveGetTermsEvent.TYPE, registration);
+		
+		registration = eventBus.addHandler(ReceiveGetSectionTypesEvent.TYPE, this);
+		eventBusRegistration.put(ReceiveGetSectionTypesEvent.TYPE, registration);
+		
+		registration = eventBus.addHandler(ReceiveStartTimesEvent.TYPE, this);
+		eventBusRegistration.put(ReceiveStartTimesEvent.TYPE, registration);
+		
+		registration = eventBus.addHandler(ReceiveEndTimesEvent.TYPE, this);
+		eventBusRegistration.put(ReceiveEndTimesEvent.TYPE, registration);
 	}
 
 	@Override

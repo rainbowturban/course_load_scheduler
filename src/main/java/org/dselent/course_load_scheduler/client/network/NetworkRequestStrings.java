@@ -16,6 +16,7 @@ public final class NetworkRequestStrings
 	public static final String GET_ALL_SECTIONS = "section/view";
 	public static final String GET_COURSE_LIST = "course/view/all";
 	public static final String GET_FACULTY_LIST = "user/view/all";
+	public static final String GET_ONE_SECTION = "section/view/one";
 	public static final String GET_END_TIMES = "map/time/end";
 	public static final String GET_FREQUENCIES = "map/frequencies";
 	public static final String GET_SECTION_TYPES = "map/sectionTypes";

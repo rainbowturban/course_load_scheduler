@@ -4,7 +4,8 @@ public interface ManageUserPresenter extends BasePresenter {
 
 	IndexPresenter getParentPresenter();
 	void setParentPresenter(IndexPresenter parentPresenter);
-	void manageUser();
+	void promoteUser();
+	void retrieveUsers();
 	void loadAccountPage();
 	void loadSchedulePage();
 	void loadViewCoursesPage();
