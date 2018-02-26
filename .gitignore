@@ -3,7 +3,7 @@
 *.symbolMap
 *.symbolMap
 /gwt-unitCache/
-/war/
+/war/WEB-INF/classes/*
 .classpath
 /.gwt/
 *.prefs
