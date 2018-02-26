@@ -34,18 +34,19 @@ public class GetSectionTypesActionTranslatorImpl implements ActionTranslator<Sen
 		// sent timestamps as epoch seconds (long)
 
 		JSONValue jsonObject = json.get("success");
+		JSONValue listObject = jsonObject.isArray().get(0);
 		
 		//loops through each element in the list and fills an ArrayList with the info for each course
 		List<SectionType> typeList = new ArrayList<SectionType>();
 		
-		for(int i = 0; i < jsonObject.isArray().size(); i++) {
-			JSONObject userObject = jsonObject.isArray().get(i).isObject();
+		for(int i = 0; i < listObject.isArray().size(); i++) {
+			JSONObject userObject = listObject.isArray().get(i).isObject();
 			SectionType type = new SectionType();
 
 			//extract the information for the object to return
 			//TODO: Check for valid (non-null) values?		
 			type.setId(JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveSectionTypesKeys.ID)));
-			type.setType(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveSectionTypesKeys.SECTION_TYPE)));
+			type.setType(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveSectionTypesKeys.TYPE)));
 	
 			//Add extracted info to the list
 			typeList.add(type);

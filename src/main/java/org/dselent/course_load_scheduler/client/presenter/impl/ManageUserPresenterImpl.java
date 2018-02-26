@@ -20,6 +20,7 @@ import org.dselent.course_load_scheduler.client.presenter.ManageUserPresenter;
 import org.dselent.course_load_scheduler.client.view.ManageUserView;
 
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Label;
@@ -162,7 +163,7 @@ public class ManageUserPresenterImpl extends BasePresenterImpl implements Manage
 	@Override
 	public void promoteUser() {
 		// TODO Auto-generated method stub
-		
+		Window.alert("promote user function coming soon!");
 
 	}
 
