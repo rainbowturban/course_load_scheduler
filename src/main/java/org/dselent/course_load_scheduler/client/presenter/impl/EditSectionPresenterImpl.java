@@ -1,7 +1,6 @@
 package org.dselent.course_load_scheduler.client.presenter.impl;
 
 import java.sql.Time;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -150,7 +149,6 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 	}
 
 	//gets start/end time info about sections
-	@SuppressWarnings("deprecation")
 	@Override
 	public void retrieveTime(){
 		//Populates times from DB
@@ -307,6 +305,13 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		newSection.getSectionId();
 
 		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course)));
+		
+		Window.alert("You created a section with Term: " + newSection.getTermsName() + 
+				" Section Type: " + newSection.getSectionType() + 
+				" Start Time: " + newSection.getStartTime() +
+				" End Time: " + newSection.getEndTime() +
+				" Days: " + newSection.getDays() +
+				" For the course: " + newSection.getCoursesNumber() + newSection.getCoursesTitle());
 	}
 
 	@Override
