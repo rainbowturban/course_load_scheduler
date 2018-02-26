@@ -65,6 +65,8 @@ public class InjectorModule extends AbstractGinModule
 		bind(CreateAccountService.class).to(CreateAccountServiceImpl.class).in(Singleton.class);
 		bind(HomeService.class).to(HomeServiceImpl.class).in(Singleton.class);
 		bind(MapService.class).to(MapServiceImpl.class).in(Singleton.class);
+		bind(CourseService.class).to(CourseServiceImpl.class).in(Singleton.class);
+		bind(SectionService.class).to(SectionServiceImpl.class).in(Singleton.class);
 
 	}
 

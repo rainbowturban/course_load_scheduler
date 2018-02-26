@@ -11,6 +11,7 @@ import org.dselent.course_load_scheduler.client.utils.JSONHelper;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
+import com.google.gwt.user.client.Window;
 
 public class SendGetCourseListCallback extends Callback<JSONValue>{
 	
@@ -22,7 +23,7 @@ public class SendGetCourseListCallback extends Callback<JSONValue>{
 	@Override
 	public void onSuccess(JSONValue result)
 	{
-		System.out.println("Sucessfully received reply from server!");
+		Window.alert("Sucessfully received reply from server!");
 		JSONObject json = JSONHelper.getObjectValue(result);
 		GetCourseListActionTranslatorImpl loginActionTranslator = new GetCourseListActionTranslatorImpl();
 		ReceiveGetCourseListAction action = loginActionTranslator.translateToAction(json);
@@ -37,7 +38,7 @@ public class SendGetCourseListCallback extends Callback<JSONValue>{
 		// TODO
 		// give better exception information
 		// these stack traces are not helpful
-		System.out.println("It failed in the reply...who knows?");
+		Window.alert("It failed in the reply...who knows?");
 		
 		StringBuilder sb = new StringBuilder();
 		

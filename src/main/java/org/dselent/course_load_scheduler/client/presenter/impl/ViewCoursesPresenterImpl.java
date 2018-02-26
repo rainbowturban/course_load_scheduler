@@ -28,6 +28,7 @@ import org.dselent.course_load_scheduler.client.view.ViewCoursesView;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.StackPanel;
@@ -71,13 +72,15 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		
 		
 		this.go(parentPresenter.getView().getViewRootPanel());
+		parentPresenter.hideLoadScreen();
 	}
 	
 	@Override
 	public void onReceiveGetCourseList(ReceiveGetCourseListEvent evt) {
+		Window.alert("made it to the received");
 		courses = evt.getAction().getCourseList();
 		fillCourses();
-		
+		Window.alert("filled successfuly");
 		parentPresenter.hideLoadScreen();
 	}
 	
@@ -94,8 +97,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		HandlerRegistration registration;
 
 		//events for when this page is loaded
-		registration = eventBus.addHandler(LoadViewCoursesEvent.TYPE, this);
-		eventBusRegistration.put(LoadViewCoursesEvent.TYPE, registration);
+		eventBusRegistration.put(LoadViewCoursesEvent.TYPE, eventBus.addHandler(LoadViewCoursesEvent.TYPE, this));
 		
 		registration = eventBus.addHandler(ReceiveGetCourseListEvent.TYPE, this);
 		eventBusRegistration.put(ReceiveGetCourseListEvent.TYPE, registration);
@@ -129,12 +131,12 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	//gets information about courses to fill the page with
 	@Override
 	public void retrieveCourses() {
+		Window.alert("Sending the thing to fill the courses");
 		//fires event to get courses
 		SendGetCourseListEvent evt = new SendGetCourseListEvent(new SendGetCourseListAction());
 		eventBus.fireEvent(evt);
-		System.out.println("Fired Event!");
-		GWT.log("Fired Event!");
 		parentPresenter.showLoadScreen();
+		Window.alert("evt fired");
 	}
 
 	//injects the code for the variable element of the page into
@@ -158,7 +160,9 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 			vp.add(id);
 			
 			panel.add(vp, courseInfo.getCoursesNumber() +": "+ courseInfo.getCoursesTitle());
+			
 		}
+		parentPresenter.hideLoadScreen();
 	}
 
 
