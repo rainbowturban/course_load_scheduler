@@ -26,6 +26,7 @@ import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.CourseSections;
 import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.model.Frequency;
+import org.dselent.course_load_scheduler.client.model.User;
 import org.dselent.course_load_scheduler.client.presenter.EditCoursePresenter;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.EditCourseView;
@@ -43,6 +44,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	
 	private IndexPresenter parentPresenter;
 	private EditCourseView view;
+	private User user = new User();
 
 	private CourseInfo course;
 	private List<CourseSections> sections = new ArrayList<CourseSections>();
@@ -76,6 +78,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	
 	@Override
 	public void onLoadEditCoursePage(LoadEditCourseEvent evt) {
+		user = evt.getAction().getUser();
 		course = evt.getAction().getCourseInfo();
 		
 		//fill frequency tables, sections, and the fields with the information from the course
@@ -221,7 +224,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	
 	@Override
 	public void returnToViewCourses() {
-		LoadViewCoursesEvent evt = new LoadViewCoursesEvent(new LoadViewCoursesAction(true));
+		LoadViewCoursesEvent evt = new LoadViewCoursesEvent(new LoadViewCoursesAction(user));
 		eventBus.fireEvent(evt);
 	}
 	

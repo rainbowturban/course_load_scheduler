@@ -3,6 +3,7 @@ package org.dselent.course_load_scheduler.client.presenter.impl;
 import org.dselent.course_load_scheduler.client.action.*;
 import org.dselent.course_load_scheduler.client.event.*;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
+import org.dselent.course_load_scheduler.client.model.User;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.presenter.ViewCoursesPresenter;
 import org.dselent.course_load_scheduler.client.view.ViewCoursesView;
@@ -28,7 +29,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	private ViewCoursesView view;
 	
 	private List<CourseInfo> courses = new ArrayList<CourseInfo>();		
-	private boolean adminUser = true;
+	private User user = new User();
 
 	@Inject
 	public ViewCoursesPresenterImpl(IndexPresenter parentPresenter, ViewCoursesView view)
@@ -36,17 +37,16 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		this.view = view;
 		this.parentPresenter = parentPresenter;
 		view.setPresenter(this);
-
-		//retrieveCourses();
-		//fillCourses();
 	}
 	
 	@Override
 	public void onLoadViewCourses(LoadViewCoursesEvent evt) {
 		retrieveCourses();
-		//specifies for both cases, since the page brings over what it had been working on
-		adminUser = evt.getAction().getAdminUser();
-		if(!adminUser) {
+		
+		//hides buttons if not an admin
+		//specifies for both cases, since the page brings over what it had been last time
+		user = evt.getAction().getUser();
+		if(!(user.getAccountTypeId() == 2)) {// 2 == Admin user
 			view.getRemoveCourseButton().setVisible(false);
 			view.getEditCourseButton().setVisible(false);
 			view.getAddCourseButton().setVisible(false);
@@ -124,34 +124,6 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 		System.out.println("Fired Event!");
 		GWT.log("Fired Event!");
 		parentPresenter.showLoadScreen();
-		/*
-		//uses example values instead of response from service
-		CourseInfo course1 = new CourseInfo();
-		course1.setCoursesNumber("CS3733");
-		course1.setCoursesTitle("Software Engineering");
-		course1.setFrequency("TestValue1");
-		course1.setFrequencyId(1);
-		course1.setCourseId(1);
-
-		CourseInfo course2 = new CourseInfo();
-		course2.setCoursesNumber("CS2223");
-		course2.setCoursesTitle("Algorithms");
-		course2.setFrequency("TestValue 2");
-		course2.setFrequencyId(2);
-		course2.setCourseId(2);
-
-		CourseInfo course3 = new CourseInfo();
-		course3.setCoursesNumber("CS####");
-		course3.setCoursesTitle("Something");
-		course3.setFrequency("Test value3");
-		course3.setFrequencyId(4);
-		course3.setCourseId(3);
-
-		courses = new ArrayList<CourseInfo>();
-
-		courses.add(course1);
-		courses.add(course2);
-		courses.add(course3);*/
 	}
 
 	//injects the code for the variable element of the page into
@@ -187,7 +159,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 			Iterator<CourseInfo> ci = courses.listIterator(index);
 			CourseInfo course = ci.next();
 			
-			LoadEditCourseAction action = new LoadEditCourseAction(course);
+			LoadEditCourseAction action = new LoadEditCourseAction(course, user);
 			LoadEditCourseEvent evt = new LoadEditCourseEvent(action);
 			eventBus.fireEvent(evt);
 		}
@@ -225,25 +197,25 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	//loads the home page
 	@Override
 	public void loadHomePage() {
-		eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction(adminUser)));
+		eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction(user)));
 	}
 
 	//loads schedule page
 	@Override
 	public void loadSchedulePage() {
-		eventBus.fireEvent(new LoadScheduleEvent(new LoadScheduleAction(adminUser)));
+		eventBus.fireEvent(new LoadScheduleEvent(new LoadScheduleAction(user)));
 	}
 	
 	//loads schedule page
 	@Override
 	public void loadViewCoursesPage() {
-		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(adminUser))); 
+		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(user))); 
 	}
 
 	//loads account page
 	@Override
 	public void loadAccountPage() {
-		eventBus.fireEvent(new ManageUserPageEvent(new ManageUserPageAction(adminUser)));
+		eventBus.fireEvent(new ManageUserPageEvent(new ManageUserPageAction(user)));
 	}
 
 }
