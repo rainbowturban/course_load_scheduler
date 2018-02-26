@@ -123,6 +123,7 @@ SendRemoveSectionEventHandler
 	@Override
 	public void onSendGetSectionTypes(SendGetSectionTypesEvent evt) {}
 
+	
 	// "onLoad" methods
 	@Override
 	public void onLoadAddCourse(LoadAddCourseEvent evt) {}
