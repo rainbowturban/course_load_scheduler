@@ -2,11 +2,7 @@ package org.dselent.course_load_scheduler.client;
 
 import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.presenter.impl.*;
-import org.dselent.course_load_scheduler.client.service.impl.CreateAccountServiceImpl;
-import org.dselent.course_load_scheduler.client.service.impl.HomeServiceImpl;
-import org.dselent.course_load_scheduler.client.service.impl.MapServiceImpl;
-import org.dselent.course_load_scheduler.client.service.impl.ScheduleServiceImpl;
-import org.dselent.course_load_scheduler.client.service.impl.UserServiceImpl;
+import org.dselent.course_load_scheduler.client.service.impl.*;
 import org.dselent.course_load_scheduler.client.view.*;
 
 import com.google.gwt.core.client.EntryPoint;
@@ -49,7 +45,13 @@ public class CourseLoadScheduler implements EntryPoint
 		homeService.init();
 		
 		ScheduleServiceImpl schedService = injector.getScheduleService();
-		schedService.init();		
+		schedService.init();
+		
+		CourseServiceImpl courseService = injector.getCourseService();
+		courseService.init();
+		
+		SectionServiceImpl sectionsService = injector.getSectionService();
+		sectionsService.init();
 		
 		AdminCalendarPresenterImpl adminCalendarPresenter = injector.getAdminCalendarPresenter();
 		adminCalendarPresenter.init();

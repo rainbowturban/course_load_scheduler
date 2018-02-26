@@ -130,12 +130,10 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	//gets information about courses to fill the page with
 	@Override
 	public void retrieveCourses() {
-		Window.alert("Sending the thing to fill the courses");
 		//fires event to get courses
 		SendGetCourseListEvent evt = new SendGetCourseListEvent(new SendGetCourseListAction());
 		eventBus.fireEvent(evt);
 		parentPresenter.showLoadScreen();
-		Window.alert("evt fired");
 	}
 
 	//injects the code for the variable element of the page into
@@ -155,7 +153,7 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 			vp.add(new Label("Required Frequency: " + courseInfo.getFrequency()));
 			
 			Label id = new Label("" + courseInfo.getCoursesId());
-			//id.setVisible(false);
+			id.setVisible(false);
 			vp.add(id);
 			
 			panel.add(vp, courseInfo.getCoursesNumber() +": "+ courseInfo.getCoursesTitle());

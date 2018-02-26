@@ -94,7 +94,6 @@ public class CourseServiceImpl extends BaseServiceImpl implements CourseService{
 		GetCourseListActionTranslatorImpl courseListActionTranslator = new GetCourseListActionTranslatorImpl();
 		JSONObject json = courseListActionTranslator.translateToJson(action);
 		SendGetCourseListCallback courseListCallback = new SendGetCourseListCallback(eventBus);
-		Window.alert("translated and goodnes. it is: " + json.toString());
 		NetworkRequest request = new NetworkRequest(NetworkRequestStrings.GET_COURSE_LIST, courseListCallback, json);
 		request.send();
 	}
