@@ -110,8 +110,10 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 
 	@Override
 	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {
-		Window.alert("Received get faculty event");
+		Window.alert("Received Get Faculty event");
 		facultyListHolder = evt.getAction().getList();
+		System.out.println("facultyListHolder toString():");
+		System.out.println(facultyListHolder.toString());
 		populateFacultyList();
 	}
 
@@ -125,12 +127,13 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	 */
 	private void populateFacultyList() {
 		//Get all the faculty
-
+		System.out.println("populating faculty list...");
 		VerticalPanel facultyVertPanel = view.getFacultyListVerticalPanel();
 		Iterator<Faculty> fIterator = facultyListHolder.iterator();
 
 		//iterate through the list of faculty
 		while(fIterator.hasNext()) {
+			System.out.println("Inside the fIterator loop...");
 			Faculty f = fIterator.next();
 			retreiveOneFacultySectionInfo(f.getId());
 
@@ -142,6 +145,7 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 			Label courseInfo;
 			//Check if the faculty has courses assigned
 			if(sectionList.isEmpty()) {
+				System.out.println("Section list was empty...");
 				//Faculty has no courses, but we still need to list them, so make empty labels and continue
 				numCourses = new Label("(0)");
 				courseInfo = new Label("");
@@ -162,6 +166,7 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 
 			//iterate through the list of sections for a single faculty
 			while(sIterator.hasNext()) {
+				System.out.println("Inside sIterator loop...");
 				SectionsInfo s = sIterator.next();
 				courseInfo = new Label("" + s.getCoursesTitle() + "  " + s.getTermsName());
 				courseList.add(courseInfo);
