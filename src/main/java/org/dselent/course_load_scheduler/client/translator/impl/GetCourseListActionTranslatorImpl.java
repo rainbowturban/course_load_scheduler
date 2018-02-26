@@ -13,6 +13,7 @@ import org.dselent.course_load_scheduler.client.utils.JSONHelper;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
+import com.google.gwt.user.client.Window;
 
 public class GetCourseListActionTranslatorImpl implements ActionTranslator<SendGetCourseListAction, ReceiveGetCourseListAction>{
 	@Override
@@ -35,24 +36,27 @@ public class GetCourseListActionTranslatorImpl implements ActionTranslator<SendG
 		// sent timestamps as epoch seconds (long)
 
 		JSONValue jsonObject = json.get("success");
+		JSONValue courseObject = jsonObject.isArray().get(0);
 		
 		//loops through each element in the list and fills an ArrayList with the info for each course
 		List<CourseInfo> courseList = new ArrayList<CourseInfo>();
 		
-		for(int i = 0; i < jsonObject.isArray().size(); i++) {
-			JSONObject userObject = jsonObject.isArray().get(i).isObject();
+		
+		for(int i = 0; i < courseObject.isArray().size(); i++) {
+			JSONObject userObject = courseObject.isArray().get(i).isObject();
 			CourseInfo course = new CourseInfo();
 
 			//extract the information for the object to return
-			//TODO: Check for valid (non-null) values?		
-			course.setCoursesId(JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveGetCourseListKeys.COURSE_ID)));
-			course.setCoursesNumber(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveGetCourseListKeys.COURSE_NUMBER)));
-			course.setCoursesTitle(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveGetCourseListKeys.COURSE_TITLE)));
+			//TODO: Check for valid (non-null) values?
+			course.setCoursesId(JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveGetCourseListKeys.COURSES_ID)));
+			course.setCoursesNumber(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveGetCourseListKeys.COURSES_NUMBER)));
+			course.setCoursesTitle(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveGetCourseListKeys.COURSES_TITLE)));
 			course.setFrequency(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveGetCourseListKeys.FREQUENCY)));
 			course.setFrequencyId(JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveGetCourseListKeys.FREQUENCY_ID)));
 	
 			//Add extracted info to the list
 			courseList.add(course);
+			
 		}
 		
 		//add the list into the action and return

@@ -93,7 +93,6 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	
 	@Override
 	public void retrieveFrequencies() {
-		Window.alert("fire those events!");
 		//Sends event to DB to fetch frequencies
 		eventBus.fireEvent(new SendGetFrequenciesEvent(new SendGetFrequenciesAction(user)));
 	}
@@ -101,6 +100,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	//uses the returned frequencies to fill the list of frequencies
 	@Override
 	public void onReceiveGetFrequencies(ReceiveGetFrequenciesEvent evt) {
+		Window.alert(evt.getAction().getFrequencies().toString());
 		fillFrequencies(evt.getAction().getFrequencies());
 	}
 	
@@ -110,7 +110,6 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 		ListBox box = view.getFrequencyDropdown();
 		box.clear();
 		Iterator<Frequency> iterator = freqs.iterator();
-		
 		
 		while(iterator.hasNext()) {
 			Frequency f = iterator.next();

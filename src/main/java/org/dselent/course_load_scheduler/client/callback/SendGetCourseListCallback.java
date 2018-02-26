@@ -23,7 +23,6 @@ public class SendGetCourseListCallback extends Callback<JSONValue>{
 	@Override
 	public void onSuccess(JSONValue result)
 	{
-		Window.alert("Sucessfully received reply from server!");
 		JSONObject json = JSONHelper.getObjectValue(result);
 		GetCourseListActionTranslatorImpl loginActionTranslator = new GetCourseListActionTranslatorImpl();
 		ReceiveGetCourseListAction action = loginActionTranslator.translateToAction(json);
@@ -49,24 +48,6 @@ public class SendGetCourseListCallback extends Callback<JSONValue>{
 			sb.append("\n");
 		}
 		
-	//		InvalidLoginAction ila = new InvalidLoginAction(sb.toString());
-	//		InvalidLoginEvent ile = new InvalidLoginEvent(ila);
-	//		eventBus.fireEvent(ile);
-		
-	/*	CourseInfo course3 = new CourseInfo();
-		course3.setCoursesNumber("CS####");
-		course3.setCoursesTitle("Something");
-		course3.setFrequency("Test value3");
-		course3.setFrequencyId(4);
-		course3.setCoursesId(3);
-
-		ArrayList<CourseInfo> courses = new ArrayList<CourseInfo>();
-
-		courses.add(course3);
-		ReceiveGetCourseListAction action = new ReceiveGetCourseListAction(courses);
-		
-		ReceiveGetCourseListEvent event = new ReceiveGetCourseListEvent(action);
-		eventBus.fireEvent(event);*/
 	}
 
 }
