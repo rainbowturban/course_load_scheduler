@@ -1,0 +1,194 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+
+	</ui:style>
+	<g:HTMLPanel ui:field="baseContainer">
+		<g:VerticalPanel width="100%" height="100%">
+			<g:Cell horizontalAlignment="ALIGN_CENTER" height="5%">
+				<g:HorizontalPanel>
+					<g:Button text="WPI Logo"></g:Button>
+					<g:Button text="Home" styleName="navButton" ui:field="homeButton"></g:Button>
+					<g:Button text="Schedule" styleName="navButton" ui:field="scheduleButton"></g:Button>
+					<g:Button text="Courses" styleName="navButton" ui:field="coursesButton"></g:Button>
+					<g:Button text="Account" styleName="navButton" ui:field="accountButton"></g:Button>
+				</g:HorizontalPanel>
+			</g:Cell>
+			<g:Cell height="15%">
+				<g:SimplePanel height="100%" ui:field="pageTitle">
+					<g:Label text="Edit Schedule" width="100%" height="100%" horizontalAlignment="ALIGN_CENTER" styleName="page-title" />
+				</g:SimplePanel>
+			</g:Cell>
+			<g:Cell height="80%">
+				<g:HorizontalPanel width="100%" height="100%" ui:field="calendarBody">
+					<g:Cell width="14%">
+						<g:VerticalPanel ui:field="infoPanel" width="100%">
+							<g:Label text="View Schedule For" />
+							<g:ListBox ui:field="viewSelect" />
+							<g:Label text="Term" />
+							<g:ListBox ui:field="termSelect" />
+							<g:Button ui:field="addCourseButton">Add Course</g:Button>
+						</g:VerticalPanel>
+					</g:Cell>
+					<g:Cell width="1%">
+						<g:SimplePanel height="100%" width="1">
+							<g:Label width="100%" height="100%" styleName="divider" />
+						</g:SimplePanel>
+					</g:Cell>
+					<g:Cell width="14%">
+						<g:VerticalPanel ui:field="courseInfoPanel" width="100%">
+							<g:Label text="Course Information" styleName="section-title" />
+							<g:Label ui:field="courseName" text="N/A" />
+							<g:Cell width="100%">
+								<g:HorizontalPanel width="100%">
+									<g:Cell width="50%" verticalAlignment="ALIGN_MIDDLE">
+										<g:Label text="Section" width="50%" />
+									</g:Cell>
+									<g:Cell width="50%">
+										<g:TextBox text="N/A" width="85%" />
+									</g:Cell>
+								</g:HorizontalPanel>
+							</g:Cell>
+
+							<g:Label text="Days" />
+							<g:Cell width="100%">
+								<g:HorizontalPanel width="100%">
+									<g:Cell width="20%" horizontalAlignment="ALIGN_CENTER">
+										<g:Label text="M" />
+									</g:Cell>
+									<g:Cell horizontalAlignment="ALIGN_CENTER" width="20%">
+										<g:Label text="T" />
+									</g:Cell>
+									<g:Cell horizontalAlignment="ALIGN_CENTER" width="20%">
+										<g:Label text="W" />
+									</g:Cell>
+									<g:Cell horizontalAlignment="ALIGN_CENTER" width="20%">
+										<g:Label text="H" />
+									</g:Cell>
+									<g:Cell horizontalAlignment="ALIGN_CENTER" width="20%">
+										<g:Label text="F" />
+									</g:Cell>
+								</g:HorizontalPanel>
+							</g:Cell>
+							<g:HorizontalPanel width="100%">
+								<g:Cell width="20%" horizontalAlignment="ALIGN_CENTER">
+									<g:SimpleCheckBox width="20" />
+								</g:Cell>
+								<g:Cell width="20%" horizontalAlignment="ALIGN_CENTER">
+									<g:SimpleCheckBox width="20" />
+								</g:Cell>
+								<g:Cell width="20%" horizontalAlignment="ALIGN_CENTER">
+									<g:SimpleCheckBox width="20" />
+								</g:Cell>
+								<g:Cell width="20%" horizontalAlignment="ALIGN_CENTER">
+									<g:SimpleCheckBox width="20" />
+								</g:Cell>
+								<g:Cell width="20%" horizontalAlignment="ALIGN_CENTER">
+									<g:SimpleCheckBox width="20" />
+								</g:Cell>
+							</g:HorizontalPanel>
+
+							<g:Label text="Start Time" />
+							<g:ListBox ui:field="startTimeSelect" />
+							<g:Label text="End Time" />
+							<g:ListBox ui:field="endTimeSelect" />
+							<g:Label text="Instructor" />
+							<g:ListBox ui:field="instructorSelect" />
+							<g:Cell horizontalAlignment="ALIGN_RIGHT">
+								<g:HorizontalPanel horizontalAlignment="ALIGN_LEFT">
+									<g:Button ui:field="saveCourseInfo">Save</g:Button>
+									<g:Button ui:field="deleteCourse">Delete</g:Button>
+								</g:HorizontalPanel>
+							</g:Cell>
+						</g:VerticalPanel>
+					</g:Cell>
+					<g:Cell width="1%">
+						<g:SimplePanel height="100%" width="1">
+							<g:Label width="100%" height="100%" styleName="divider" />
+						</g:SimplePanel>
+					</g:Cell>
+					<g:Cell width="50%">
+						<g:TabPanel ui:field="schedulePanel" width="100%" height="100%">
+							<g:Tab text="Calendar">
+								<g:ScrollPanel width="5cm" height="3cm" ui:field="calendarPanel">
+									<g:FlexTable ui:field="flexCalendar" width="100%" height="100%"/>
+								</g:ScrollPanel>
+							</g:Tab>
+							<g:Tab text="Table">
+								<g:ScrollPanel width="100%" height="100%" ui:field="tablePanel" />
+							</g:Tab>
+						</g:TabPanel>
+					</g:Cell>
+					<g:Cell width="1%">
+						<g:SimplePanel height="100%" width="11px">
+							<g:Label width="100%" height="100%" styleName="divider" />
+						</g:SimplePanel>
+					</g:Cell>
+					<g:Cell width="19%">
+						<g:VerticalPanel ui:field="requestsMainPanel" width="100%">
+							<g:Label text="Scheduling Requests" />
+							<g:Button ui:field="makeRequestButton">Make Request</g:Button>
+							<g:ScrollPanel ui:field="requestsScrollPanel">
+								<g:VerticalPanel width="100%" height="100%" ui:field="requestsPanel" />
+							</g:ScrollPanel>
+						</g:VerticalPanel>
+					</g:Cell>
+				</g:HorizontalPanel>
+			</g:Cell>
+		</g:VerticalPanel>
+
+		<g:PopupPanel ui:field="addCoursePanel" width="418" autoHideEnabled="true" previewingAllNativeEvents="true" visible="false" height="418" glassEnabled="true">
+			<g:HTMLPanel ui:field="mainPanel" height="450px">
+				<g:Label text="Add Class to Schedule&#10;" height="51px" styleName="label" horizontalAlignment="ALIGN_CENTER" />
+				<g:Label text="Course" width="104px" height="36px" styleName="sublabel" />
+				<g:ListBox styleName="ListBox" />
+				<g:Label height="36px" styleName="sublabel" text="Term/Semester" width="153px" />
+				<g:ListBox styleName="ListBox" />
+				<g:Label height="36px" styleName="sublabel" text="Instructor" width="153px" />
+				<g:ListBox styleName="ListBox" />
+				<g:HorizontalPanel width="465px" height="37px">
+					<g:Label text="Start Time:" horizontalAlignment="ALIGN_CENTER" width="140px" />
+					<g:Label text="End Time:" horizontalAlignment="ALIGN_CENTER" width="177px" />
+				</g:HorizontalPanel>
+				<g:HorizontalPanel height="37px" width="465px">
+					<g:Cell horizontalAlignment="ALIGN_CENTER">
+						<g:ListBox />
+					</g:Cell>
+					<g:Cell horizontalAlignment="ALIGN_CENTER">
+						<g:ListBox />
+					</g:Cell>
+				</g:HorizontalPanel>
+				<g:Label height="36px" styleName="sublabel" text="Days:" width="153px" />
+				<g:HorizontalPanel width="352px" height="51px" horizontalAlignment="ALIGN_RIGHT">
+					<g:CheckBox text="M" />
+					<g:CheckBox text="T" />
+					<g:CheckBox text="W" />
+					<g:CheckBox text="T" />
+					<g:CheckBox text="F" />
+				</g:HorizontalPanel>
+				<g:HorizontalPanel width="465px" height="82px">
+					<g:Cell horizontalAlignment="ALIGN_CENTER">
+						<g:Button width="114px" height="46px" text="Cancel" ui:field="addCourseCancelButton"/>
+					</g:Cell>
+					<g:Cell horizontalAlignment="ALIGN_CENTER">
+						<g:Button height="46px" width="114px" text="Create" ui:field="addCourseSubmitButton" />
+					</g:Cell>
+				</g:HorizontalPanel>
+			</g:HTMLPanel>
+		</g:PopupPanel>
+		<g:PopupPanel autoHideEnabled="true" previewingAllNativeEvents="true" width="473px" ui:field="makeRequestPanel" visible="false" glassEnabled="true">
+			<g:HTMLPanel width="100%" height="300px">
+				<g:Label height="51px" horizontalAlignment="ALIGN_CENTER" styleName="label" text="Make Request"/>
+				<g:Label height="36px" styleName="sublabel" text="Select Section:" width="369px" ui:field="requestSectionSelectBox"/>
+				<g:ListBox styleName="ListBox"/>
+				<g:Label height="36px" styleName="sublabel" text="Request Details:" width="153px"/>
+				<g:TextBox width="417px" height="65px"/>
+				<g:HorizontalPanel height="82px" width="467px">
+					<g:Button height="46px" text="Cancel" width="114px" ui:field="makeRequestCancelButton"/>
+					<g:Button height="46px" text="Create" width="114px" ui:field="makeRequestSubmitButton"/>
+				</g:HorizontalPanel>
+			</g:HTMLPanel>
+ 		</g:PopupPanel>
+	</g:HTMLPanel>
+</ui:UiBinder>

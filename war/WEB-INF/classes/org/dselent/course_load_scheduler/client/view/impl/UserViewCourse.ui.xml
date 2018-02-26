@@ -1,0 +1,55 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+
+	</ui:style>
+	<g:HTMLPanel styleName="backgroundDefault" width="487px"
+		height="320px">
+		<g:VerticalPanel height="320px" width="487px">
+			<g:Cell horizontalAlignment="ALIGN_CENTER">
+				<g:HorizontalPanel ui:field="navBar">
+					<g:Button text="WPI Logo" ui:field="wpiLogo"></g:Button>
+					<g:Button text="Home" ui:field="homeButton" styleName="navButton"></g:Button>
+					<g:Button text="Schedule" ui:field="scheduleButton" styleName="navButton"></g:Button>
+					<g:Button text="Courses" ui:field="coursesButton" styleName="navButton"></g:Button>
+					<g:Button text="Account" ui:field="accountButton" styleName="navButton"></g:Button>
+				</g:HorizontalPanel>
+			</g:Cell>
+			<g:Cell horizontalAlignment="ALIGN_CENTER">
+				<g:Label text="View Courses" height="46px" ui:field="viewCourseTitle" styleName="viewCoursesHeader"></g:Label>
+			</g:Cell>
+			<g:Cell horizontalAlignment="ALIGN_CENTER">
+				<g:Grid width="320px" height="177px">
+					<g:row>
+						<g:customCell>
+							<g:Label text="Course Title" styleName="courseTitle" ui:field="courseTitle1"></g:Label>
+						</g:customCell>
+						<g:customCell>
+							<g:Button text="View" ui:field="viewCourse1"></g:Button>
+						</g:customCell>
+					</g:row>
+					<g:row>
+						<g:customCell>
+							<g:Label text="Course Title" styleName="courseTitle" ui:field="courseTitle2"></g:Label>
+						</g:customCell>
+						<g:customCell>
+							<g:Button text="View" ui:field="viewCourse2"></g:Button>
+						</g:customCell>
+					</g:row>
+					<g:row>
+						<g:customCell>
+							<g:Label text="Course Title" styleName="courseTitle" ui:field="courseTitle3"></g:Label>
+						</g:customCell>
+						<g:customCell>
+							<g:Button text="View" ui:field="viewCourse3"></g:Button>
+						</g:customCell>
+					</g:row>
+				</g:Grid>
+			</g:Cell>
+			<g:Cell horizontalAlignment="ALIGN_RIGHT">
+				<g:Button text="Add new Course..." ui:field="addCourse"></g:Button>
+			</g:Cell>
+		</g:VerticalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 
