@@ -4,19 +4,22 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.dselent.course_load_scheduler.client.action.GetFrequenciesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetSectionsAction;
 import org.dselent.course_load_scheduler.client.action.LoadAddSectionAction;
 import org.dselent.course_load_scheduler.client.action.LoadEditSectionAction;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.SendRemoveSectionAction;
 import org.dselent.course_load_scheduler.client.action.SendEditCourseAction;
+import org.dselent.course_load_scheduler.client.action.SendGetFrequenciesAction;
 import org.dselent.course_load_scheduler.client.event.SendGetFrequenciesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetSectionsEvent;
 import org.dselent.course_load_scheduler.client.event.LoadAddSectionEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditSectionEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
+import org.dselent.course_load_scheduler.client.event.ReceiveGetFrequenciesEvent;
+import org.dselent.course_load_scheduler.client.event.ReceiveGetSectionsEvent;
+import org.dselent.course_load_scheduler.client.event.ReceiveGetTermsEvent;
 import org.dselent.course_load_scheduler.client.event.SendRemoveSectionEvent;
 import org.dselent.course_load_scheduler.client.event.SendEditCourseEvent;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
@@ -40,8 +43,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	
 	private IndexPresenter parentPresenter;
 	private EditCourseView view;
-	
-	//private int startingFrequencyIndex = -1;
+
 	private CourseInfo course;
 	private List<CourseSections> sections = new ArrayList<CourseSections>();
 	
@@ -52,11 +54,6 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		this.view = view;
 		this.parentPresenter = parentPresenter;
 		view.setPresenter(this);
-		
-		//fill the dropdown box
-		//fillFrequencies(-1);
-		//fillSections();
-		
 	}
 	
 	@Override
@@ -72,6 +69,9 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		
 		registration = eventBus.addHandler(LoadEditCourseEvent.TYPE, this);
 		eventBusRegistration.put(LoadEditCourseEvent.TYPE, registration);
+		
+		eventBusRegistration.put(ReceiveGetTermsEvent.TYPE, eventBus.addHandler(ReceiveGetTermsEvent.TYPE, this));
+		eventBusRegistration.put(ReceiveGetSectionsEvent.TYPE, eventBus.addHandler(ReceiveGetSectionsEvent.TYPE, this));
 	}
 	
 	@Override
@@ -80,19 +80,34 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		
 		//fill frequency tables, sections, and the fields with the information from the course
 		if(course != null) {
-			int index = fillFrequencies(course.getFrequencyId());
+			retrieveFrequencies();
+			
+			//int index = fillFrequencies(course.getFrequencyId());
 			fillSections();
 			view.getCourseNameField().setText(course.getCoursesTitle());
 			view.getCourseNumberField().setText(course.getCoursesNumber());
-			view.getFrequencyDropdown().setSelectedIndex(index);
+			//view.getFrequencyDropdown().setSelectedIndex(index);
 			
 			this.go(parentPresenter.getView().getViewRootPanel());
 		}
 		else {
 			Window.alert("A course must be selected to edit it.");
-		}
-		
+		}	
 	}
+	
+	//The response containing the frequencies. Also sets the dropdown's index to the one currently selected by the course
+	@Override
+	public void onReceiveGetFrequencies(ReceiveGetFrequenciesEvent evt) {
+		int index = fillFrequencies(evt.getAction().getFrequencies(), course.getFrequencyId());
+		view.getFrequencyDropdown().setSelectedIndex(index);
+	}
+	
+	@Override
+	public void onReceiveGetSections(ReceiveGetSectionsEvent evt) {
+		sections = evt.getAction().getSections();
+		fillSections();
+	}
+	
 	
 	@Override
 	public void go(HasWidgets container) {
@@ -120,38 +135,15 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	
 	//gets values from DB 
 	@Override
-	public List<Frequency> retrieveFequencies() {
+	public void retrieveFrequencies() {
 		//Sends event to DB to fetch frequencies
-		eventBus.fireEvent(new SendGetFrequenciesEvent(new GetFrequenciesAction()));
-		
-		//**In place of that currently being completed, sample values are used
-		List<Frequency> freqs = new ArrayList<Frequency>();
-		
-		Frequency f1 = new Frequency();
-		f1.setFrequency("1 per year");
-		f1.setId(1);
-		
-		Frequency f2 = new Frequency();
-		f2.setFrequency("2 per year");
-		f2.setId(2);
-		
-		Frequency f3 = new Frequency();
-		f3.setFrequency("4 per year");
-		f3.setId(4);
-		
-		freqs.add(f1);
-		freqs.add(f2);
-		freqs.add(f3);
-		
-		
-		return freqs;
+		eventBus.fireEvent(new SendGetFrequenciesEvent(new SendGetFrequenciesAction()));
 	}
 	
 	//gets the frequencies from the database and fills the dropdown with them. 
 	@Override
-	public int fillFrequencies(int startingFrequencyValue) {
+	public int fillFrequencies(List<Frequency> freqs, int startingFrequencyValue) {
 		int startingFrequencyIndex = -1;
-		List<Frequency> freqs = retrieveFequencies();
 
 		ListBox box = view.getFrequencyDropdown();
 		box.clear();
@@ -179,24 +171,6 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	public void retrieveSections() {
 		//Sends event to DB to fetch sections
 		eventBus.fireEvent(new SendGetSectionsEvent(new SendGetSectionsAction(course.getCoursesId())));
-
-		
-		//In place of that completing, Example values are used.
-		sections = new ArrayList<CourseSections>();
-		
-		CourseSections s1 = new CourseSections();
-		s1.setSectionType("Lab");
-		s1.setTermsName("A");
-		s1.setSectionsName("A01");
-		
-		CourseSections s2 = new CourseSections();
-		s2.setSectionType("Conference");
-		s2.setTermsName("A");
-		s2.setSectionsName("A02");
-		
-		sections.add(s1);
-		sections.add(s2);
-		
 	}
 	
 	

@@ -143,7 +143,7 @@ public class JSONHelper
 			throw getJsonException(jsonValue, "Missing key: " + key);
 		}
 
-		JSONBoolean jsonBoolean = jsonValue.isBoolean();
+		JSONBoolean jsonBoolean = jValue.isBoolean();
 		
 		if (jsonBoolean == null)
 		{

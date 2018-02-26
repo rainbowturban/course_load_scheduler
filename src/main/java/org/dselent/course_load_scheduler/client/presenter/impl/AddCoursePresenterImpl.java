@@ -55,6 +55,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 		//implement any event listeners down here
 		registration = eventBus.addHandler(LoadAddCourseEvent.TYPE, this);
 		eventBusRegistration.put(LoadAddCourseEvent.TYPE, registration);
+		
 		eventBusRegistration.put(ReceiveGetFrequenciesEvent.TYPE, eventBus.addHandler(ReceiveGetFrequenciesEvent.TYPE, this));
 	}
 	
@@ -94,34 +95,12 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	public void retrieveFrequencies() {
 		//Sends event to DB to fetch frequencies
 		eventBus.fireEvent(new SendGetFrequenciesEvent(new SendGetFrequenciesAction()));
-		
-		//**In place of that being completed, sample values are used
-		/*List<Frequency> freqs = new ArrayList<Frequency>();
-		
-		Frequency f1 = new Frequency();
-		f1.setFrequency("1 per year");
-		f1.setId(1);
-		
-		Frequency f2 = new Frequency();
-		f2.setFrequency("2 per year");
-		f2.setId(2);
-		
-		Frequency f3 = new Frequency();
-		f3.setFrequency("4 per year");
-		f3.setId(4);
-		
-		freqs.add(f1);
-		freqs.add(f2);
-		freqs.add(f3);
-		
-		
-		return freqs;*/
 	}
 	
-	
-	@Override//*****************************************************************************
+	//uses the returned frequencies to fill the list of frequencies
+	@Override
 	public void onReceiveGetFrequencies(ReceiveGetFrequenciesEvent evt) {
-		fillFrequencies(evt.getAction().getSections());
+		fillFrequencies(evt.getAction().getFrequencies());
 	}
 	
 	//gets the frequencies from the database and fills the dropdown with them. 

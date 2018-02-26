@@ -38,32 +38,21 @@ public class GetEndTimesActionTranslatorImpl implements ActionTranslator<SendGet
 		// sent timestamps as epoch seconds (long)
 
 		JSONValue jsonObject = json.get("success");
-		JSONObject userObject = jsonObject.isArray().get(0).isObject();
+		JSONArray userObject = jsonObject.isArray().get(0).isArray();
 
-		//Server only sends email and password back
-		Integer id = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveEndTimesKeys.ID));
-		String password = JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveEndTimesKeys.PASSWORD));
-		Integer accTypeId = JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveEndTimesKeys.ACCOUNT_TYPE_ID));
-		JSONArray jsonTimes = JSONHelper.getArrayValue(userObject, JSONHelper.convertKeyName(ReceiveEndTimesKeys.TIMES));
-		
-		User user = new User();
-		user.setId(id);
-		user.setPassword(password);
-		user.setAccountTypeId(accTypeId);
-		
 		ArrayList<EndTime> times = new ArrayList<EndTime>();
-		for (int i=0; i<jsonTimes.size(); i++) {
-			JSONValue tempTime = jsonTimes.get(i);
+		for (int i=0; i<userObject.size(); i++) {
+			JSONValue tempTime = userObject.get(i);
 			Integer timeId = JSONHelper.getIntValue(tempTime.isObject(), "id");
-			long timeVal = JSONHelper.getLongValue(tempTime.isObject(), "val");
-			Time t = new Time(timeVal);
+			String timeVal = JSONHelper.getStringValue(tempTime.isObject(), "time");
+			Time t = Time.valueOf(timeVal);
 			EndTime et = new EndTime();
 			et.setId(timeId);
 			et.setTime(t);
 			times.add(et);
 		}
 
-		ReceiveEndTimesAction action = new ReceiveEndTimesAction(user, times);	
+		ReceiveEndTimesAction action = new ReceiveEndTimesAction(times);	
 
 		return action;
 	}

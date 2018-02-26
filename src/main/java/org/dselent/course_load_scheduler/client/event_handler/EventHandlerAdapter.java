@@ -13,187 +13,190 @@ import org.dselent.course_load_scheduler.client.event.*;
  *
  */
 public abstract class EventHandlerAdapter
-		implements InvalidAccountCreationEventHandler, InvalidLoginEventHandler, LoadAddCourseEventHandler,
-		LoadAddSectionEventHandler, LoadCreateAccountEventHandler, LoadEditCourseEventHandler,
-		LoadEditSectionEventHandler, LoadHomePageEventHandler, LoadLoginPageEventHandler, LoadScheduleEventHandler,
-		LoadViewCoursesEventHandler, ManageUserPageEventHandler, ReceiveCreateAccountEventHandler,
-		ReceiveEditCourseEventHandler, ReceiveEditSectionEventHandler, ReceiveEndTimesEventHandler,
-		ReceiveGetCourseListEventHandler, ReceiveGetFrequenciesEventHandler, ReceiveGetSectionsEventHandler,
-		ReceiveGetTermsEventHandler, ReceiveLoginEventHandler, ReceiveNewCourseEventHandler,
-		ReceiveNewSectionEventHandler, ReceiveRemoveCourseEventHandler, ReceiveRemoveSectionEventHandler,
-		ReceiveStartTimesEventHandler, SendCreateAccountEventHandler, SendEditCourseEventHandler,
-		SendEditSectionEventHandler, SendGetCourseListEventHandler, SendGetEndTimesEventHandler,
-		SendGetFacultyEventHandler, SendGetFrequenciesEventHandler, SendGetSectionsEventHandler,
-		SendGetStartTimesEventHandler, SendGetTermsEventHandler, SendLoginEventHandler, SendNewCourseEventHandler,
-		SendNewSectionEventHandler, SendRemoveCourseEventHandler, SendRemoveSectionEventHandler
+implements InvalidAccountCreationEventHandler,
+InvalidLoginEventHandler,
+LoadAddCourseEventHandler,
+LoadAddSectionEventHandler,
+LoadCreateAccountEventHandler,
+LoadEditCourseEventHandler,
+LoadEditSectionEventHandler,
+LoadHomePageEventHandler,
+LoadLoginPageEventHandler,
+LoadScheduleEventHandler,
+LoadViewCoursesEventHandler,
+ManageUserPageEventHandler,
+ReceiveCreateAccountEventHandler,
+ReceiveEditCourseEventHandler,
+ReceiveEditSectionEventHandler,
+ReceiveEndTimesEventHandler,
+ReceiveGetCourseListEventHandler,
+ReceiveGetFrequenciesEventHandler,
+ReceiveGetSectionsEventHandler,
+ReceiveGetSectionTypesEventHandler,
+ReceiveGetTermsEventHandler,
+ReceiveLoginEventHandler,
+ReceiveNewCourseEventHandler,
+ReceiveNewSectionEventHandler,
+ReceiveRemoveCourseEventHandler,
+ReceiveRemoveSectionEventHandler,
+ReceiveStartTimesEventHandler,
+SendCreateAccountEventHandler,
+SendEditCourseEventHandler,
+SendEditSectionEventHandler,
+SendGetCourseListEventHandler,
+SendGetEndTimesEventHandler,
+SendGetFacultyEventHandler,
+SendGetFrequenciesEventHandler,
+SendGetOneFacultySectionInfoEventHandler,
+SendGetSectionsEventHandler,
+SendGetStartTimesEventHandler,
+SendGetSectionTypesEventHandler,
+SendGetTermsEventHandler,
+SendLoginEventHandler,
+SendNewCourseEventHandler,
+SendNewSectionEventHandler,
+SendRemoveCourseEventHandler,
+SendRemoveSectionEventHandler
+
 
 {
+	// Other methods
 	@Override
-	public void onCreateAccount(SendCreateAccountEvent evt) {
-	}
+	public void onCreateAccount(SendCreateAccountEvent evt) {}
+
+	@Override
+	public void onManageUserPage(ManageUserPageEvent evt) {}
+
+	@Override
+	public void onInvalidAccountCreation(InvalidAccountCreationEvent evt) {}
+
+	@Override
+	public void onInvalidLogin(InvalidLoginEvent evt) {}
+
 
 	// "onSend" methods
 	@Override
-	public void onGetEndTimes(SendGetEndTimesEvent evt) {
-	}
+	public void onGetEndTimes(SendGetEndTimesEvent evt) {}
 
 	@Override
-	public void onGetStartTimes(SendGetStartTimesEvent evt) {
-	}
+	public void onGetStartTimes(SendGetStartTimesEvent evt) {}
 
 	@Override
-	public void onInvalidAccountCreation(InvalidAccountCreationEvent evt) {
-	}
+	public void onSendEditCourse(SendEditCourseEvent evt) {}
 
 	@Override
-	public void onInvalidLogin(InvalidLoginEvent evt) {
-	}
+	public void onSendEditSection(SendEditSectionEvent evt) {}
 
+	@Override
+	public void onSendGetCourseList(SendGetCourseListEvent evt) {}
+
+	@Override
+	public void onSendGetFaculty(SendGetFacultyEvent evt) {}
+
+	@Override
+	public void onSendGetFrequencies(SendGetFrequenciesEvent evt) {}
+	
+	@Override
+	public void onSendGetOneFacultySectionInfo(SendGetOneFacultySectionInfoEvent evt) {}
+
+	@Override
+	public void onSendGetSections(SendGetSectionsEvent evt) {}
+
+	@Override
+	public void onSendGetTerms(SendGetTermsEvent evt) {}
+
+	@Override
+	public void onSendLogin(SendLoginEvent evt) {}
+
+	@Override
+	public void onSendNewCourse(SendNewCourseEvent evt) {}
+
+	@Override
+	public void onSendNewSection(SendNewSectionEvent evt) {}
+
+	@Override
+	public void onSendRemoveCourse(SendRemoveCourseEvent evt) {}
+
+	@Override
+	public void onSendRemoveSection(SendRemoveSectionEvent evt) {}
+
+	@Override
+	public void onSendGetSectionTypes(SendGetSectionTypesEvent evt) {}
+
+	
 	// "onLoad" methods
 	@Override
-	public void onLoadAddCourse(LoadAddCourseEvent evt) {
-	}
+	public void onLoadAddCourse(LoadAddCourseEvent evt) {}
 
 	@Override
-	public void onLoadAddSection(LoadAddSectionEvent evt) {
-	}
+	public void onLoadAddSection(LoadAddSectionEvent evt) {}
 
 	@Override
-	public void onLoadCreateAccount(LoadCreateAccountEvent evt) {
-	}
+	public void onLoadCreateAccount(LoadCreateAccountEvent evt) {}
 
 	@Override
-	public void onLoadEditCoursePage(LoadEditCourseEvent evt) {
-	}
+	public void onLoadEditCoursePage(LoadEditCourseEvent evt) {}
 
 	@Override
-	public void onLoadEditSection(LoadEditSectionEvent evt) {
-	}
+	public void onLoadEditSection(LoadEditSectionEvent evt) {}
 
 	@Override
-	public void onLoadHomePage(LoadHomePageEvent evt) {
-	}
+	public void onLoadHomePage(LoadHomePageEvent evt) {}
 
 	@Override
-	public void onLoadLoginPage(LoadLoginPageEvent evt) {
-	}
+	public void onLoadLoginPage(LoadLoginPageEvent evt) {}
 
 	@Override
-	public void onLoadSchedulePage(LoadScheduleEvent evt) {
-	}
+	public void onLoadSchedulePage(LoadScheduleEvent evt) {}
 
 	@Override
-	public void onLoadViewCourses(LoadViewCoursesEvent evt) {
-	}
+	public void onLoadViewCourses(LoadViewCoursesEvent evt) {}
 
-	@Override
-	public void onManageUserPage(ManageUserPageEvent evt) {
-	}
-
-	@Override
-	public void onReceiveCreateAccount(ReceiveCreateAccountEvent evt) {
-	}
-
-	@Override
-	public void onReceiveEditCourse(ReceiveEditCourseEvent evt) {
-	}
-
-	@Override
-	public void onReceiveEditSection(ReceiveEditSectionEvent evt) {
-	}
-
-	// Other methods
-	@Override
-	public void onReceiveEndTimes(ReceiveEndTimesEvent evt) {
-	}
-
-	@Override
-	public void onReceiveGetCourseList(ReceiveGetCourseListEvent evt) {
-	}
-
-	@Override
-	public void onReceiveGetFrequencies(ReceiveGetFrequenciesEvent evt) {
-	}
 
 	// "onReceive" methods
 	@Override
-	public void onReceiveGetSections(ReceiveGetSectionsEvent evt) {
-	}
+	public void onReceiveCreateAccount(ReceiveCreateAccountEvent evt) {}
 
 	@Override
-	public void onReceiveGetTerms(ReceiveGetTermsEvent evt) {
-	}
+	public void onReceiveEditCourse(ReceiveEditCourseEvent evt) {}
 
 	@Override
-	public void onReceiveLogin(ReceiveLoginEvent evt) {
-	}
+	public void onReceiveEditSection(ReceiveEditSectionEvent evt) {}
 
 	@Override
-	public void onReceiveNewCourse(ReceiveNewCourseEvent evt) {
-	}
+	public void onReceiveEndTimes(ReceiveEndTimesEvent evt) {}
 
 	@Override
-	public void onReceiveNewSection(ReceiveNewSectionEvent evt) {
-	}
+	public void onReceiveGetCourseList(ReceiveGetCourseListEvent evt) {}
 
 	@Override
-	public void onReceiveRemoveCourse(ReceiveRemoveCourseEvent evt) {
-	}
+	public void onReceiveGetFrequencies(ReceiveGetFrequenciesEvent evt) {}
 
 	@Override
-	public void onReceiveRemoveSection(ReceiveRemoveSectionEvent evt) {
-	}
+	public void onReceiveGetSections(ReceiveGetSectionsEvent evt) {}
 
 	@Override
-	public void onReceiveStartTimes(ReceiveStartTimesEvent evt) {
-	}
+	public void onReceiveGetTerms(ReceiveGetTermsEvent evt) {}
 
 	@Override
-	public void onSendEditCourse(SendEditCourseEvent evt) {
-	}
+	public void onReceiveLogin(ReceiveLoginEvent evt) {}
 
 	@Override
-	public void onSendEditSection(SendEditSectionEvent evt) {
-	}
+	public void onReceiveNewCourse(ReceiveNewCourseEvent evt) {}
 
 	@Override
-	public void onSendGetCourseList(SendGetCourseListEvent evt) {
-	}
+	public void onReceiveNewSection(ReceiveNewSectionEvent evt) {}
 
 	@Override
-	public void onSendGetFaculty(SendGetFacultyEvent evt) {
-	}
+	public void onReceiveRemoveCourse(ReceiveRemoveCourseEvent evt) {}
 
 	@Override
-	public void onSendGetFrequencies(SendGetFrequenciesEvent evt) {
-	}
+	public void onReceiveRemoveSection(ReceiveRemoveSectionEvent evt) {}
 
 	@Override
-	public void onSendGetSections(SendGetSectionsEvent evt) {
-	}
+	public void onReceiveStartTimes(ReceiveStartTimesEvent evt) {}	
 
 	@Override
-	public void onSendGetTerms(SendGetTermsEvent evt) {
-	}
-
-	@Override
-	public void onSendLogin(SendLoginEvent evt) {
-	}
-
-	@Override
-	public void onSendNewCourse(SendNewCourseEvent evt) {
-	}
-
-	@Override
-	public void onSendNewSection(SendNewSectionEvent evt) {
-	}
-
-	@Override
-	public void onSendRemoveCourse(SendRemoveCourseEvent evt) {
-	}
-
-	@Override
-	public void onSendRemoveSection(SendRemoveSectionEvent evt) {
-	}
+	public void onReceiveGetSectionTypes(ReceiveGetSectionTypesEvent evt) {}
 
 }
