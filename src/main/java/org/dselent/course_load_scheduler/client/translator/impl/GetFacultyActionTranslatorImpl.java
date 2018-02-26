@@ -31,12 +31,13 @@ public class GetFacultyActionTranslatorImpl implements ActionTranslator<SendGetF
 		// sent timestamps as epoch seconds (long)
 
 		JSONValue jsonObject = json.get("success");
+		JSONValue otherObject = jsonObject.isArray().get(0);
 
 		//loops through each element in the list and fills an ArrayList with the info for each course
 		List<Faculty> facultyList = new ArrayList<Faculty>();
 
-		for(int i = 0; i < jsonObject.isArray().size(); i++) {
-			JSONObject facultyObject = jsonObject.isArray().get(i).isObject();
+		for(int i = 0; i < otherObject.isArray().size(); i++) {
+			JSONObject facultyObject = otherObject.isArray().get(i).isObject();
 			Faculty f = new Faculty();
 
 			//extract the information for the object to return
