@@ -4,6 +4,7 @@ import org.dselent.course_load_scheduler.client.presenter.AdminCalendarPresenter
 import org.dselent.course_load_scheduler.client.view.AdminCalendarView;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -19,6 +20,7 @@ import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.StackPanel;
 
 public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> implements AdminCalendarView {
 
@@ -32,7 +34,7 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
 	@UiField ScrollPanel requestsScrollPanel;
 	@UiField ListBox viewSelect;
 	@UiField ListBox termSelect;
-	@UiField ScrollPanel tablePanel;
+	@UiField ScrollPanel tableScrollPanel;
 	@UiField Label courseName;
 	@UiField VerticalPanel requestsPanel;
 	@UiField Button homeButton;
@@ -52,6 +54,7 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
     @UiField ListBox startTimeSelect;
     @UiField ListBox endTimeSelect;
     @UiField ListBox instructorSelect;
+    @UiField StackPanel tablePanel;
     
     @UiHandler("addCourseButton")
     void onAddCourseButtonClick(ClickEvent event)
@@ -79,6 +82,16 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
     void onAddCourseSubmitButtonClick(ClickEvent event)
     {
     	
+    }
+    
+    @UiHandler("viewSelect")
+    void onViewSelectChange(ChangeEvent event) {
+    	presenter.getSections();
+    }
+    
+    @UiHandler("termSelect")
+    void onTermSelectChange(ChangeEvent event) {
+    	presenter.getSections();
     }
     
     @UiHandler("makeRequestCancelButton")
@@ -160,5 +173,10 @@ public class AdminCalendarViewImpl extends BaseViewImpl<AdminCalendarPresenter> 
 	@Override
 	public ListBox getEndTimeSelectBox() {
 		return endTimeSelect;
+	}
+	
+	@Override
+	public StackPanel getTablePanel() {
+		return tablePanel;
 	}
 }
