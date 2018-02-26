@@ -66,4 +66,6 @@ public interface Injector extends Ginjector
     public CreateAccountServiceImpl getCreateAccountService();
     public HomeServiceImpl getHomeService();
 	public MapServiceImpl getMapService();
+	public CourseServiceImpl getCourseService();
+	public SectionServiceImpl getSectionService();
 }
