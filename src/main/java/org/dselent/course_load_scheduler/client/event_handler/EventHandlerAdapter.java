@@ -13,43 +13,73 @@ import org.dselent.course_load_scheduler.client.event.*;
  *
  */
 public abstract class EventHandlerAdapter
-		implements InvalidAccountCreationEventHandler, InvalidLoginEventHandler, LoadAddCourseEventHandler,
-		LoadAddSectionEventHandler, LoadCreateAccountEventHandler, LoadEditCourseEventHandler,
-		LoadEditSectionEventHandler, LoadHomePageEventHandler, LoadLoginPageEventHandler, LoadScheduleEventHandler,
-		LoadViewCoursesEventHandler, ManageUserPageEventHandler, ReceiveCreateAccountEventHandler,
-		ReceiveEditCourseEventHandler, ReceiveEditSectionEventHandler, ReceiveEndTimesEventHandler,
-		ReceiveGetCourseListEventHandler, ReceiveGetFrequenciesEventHandler, ReceiveGetSectionsEventHandler,
-		ReceiveGetTermsEventHandler, ReceiveLoginEventHandler, ReceiveNewCourseEventHandler,
-		ReceiveNewSectionEventHandler, ReceiveRemoveCourseEventHandler, ReceiveRemoveSectionEventHandler,
-		ReceiveStartTimesEventHandler, ReceiveGetSectionTypesEventHandler, SendCreateAccountEventHandler, SendEditCourseEventHandler,
-		SendEditSectionEventHandler, SendGetCourseListEventHandler, SendGetEndTimesEventHandler,
-		SendGetFacultyEventHandler, SendGetFrequenciesEventHandler, SendGetSectionsEventHandler,
-		SendGetStartTimesEventHandler, SendGetTermsEventHandler, SendLoginEventHandler, SendNewCourseEventHandler,
-		SendNewSectionEventHandler, SendRemoveCourseEventHandler, SendRemoveSectionEventHandler,
-		SendGetSectionTypesEventHandler
+implements InvalidAccountCreationEventHandler,
+InvalidLoginEventHandler,
+LoadAddCourseEventHandler,
+LoadAddSectionEventHandler,
+LoadCreateAccountEventHandler,
+LoadEditCourseEventHandler,
+LoadEditSectionEventHandler,
+LoadHomePageEventHandler,
+LoadLoginPageEventHandler,
+LoadScheduleEventHandler,
+LoadViewCoursesEventHandler,
+ManageUserPageEventHandler,
+ReceiveCreateAccountEventHandler,
+ReceiveEditCourseEventHandler,
+ReceiveEditSectionEventHandler,
+ReceiveEndTimesEventHandler,
+ReceiveGetCourseListEventHandler,
+ReceiveGetFrequenciesEventHandler,
+ReceiveGetSectionsEventHandler,
+ReceiveGetSectionTypesEventHandler,
+ReceiveGetTermsEventHandler,
+ReceiveLoginEventHandler,
+ReceiveNewCourseEventHandler,
+ReceiveNewSectionEventHandler,
+ReceiveRemoveCourseEventHandler,
+ReceiveRemoveSectionEventHandler,
+ReceiveStartTimesEventHandler,
+SendCreateAccountEventHandler,
+SendEditCourseEventHandler,
+SendEditSectionEventHandler,
+SendGetCourseListEventHandler,
+SendGetEndTimesEventHandler,
+SendGetFacultyEventHandler,
+SendGetFrequenciesEventHandler,
+SendGetSectionsEventHandler,
+SendGetStartTimesEventHandler,
+SendGetSectionTypesEventHandler,
+SendGetTermsEventHandler,
+SendLoginEventHandler,
+SendNewCourseEventHandler,
+SendNewSectionEventHandler,
+SendRemoveCourseEventHandler,
+SendRemoveSectionEventHandler
+
 
 {
 	// Other methods
 	@Override
 	public void onCreateAccount(SendCreateAccountEvent evt) {}
-	
+
 	@Override
 	public void onManageUserPage(ManageUserPageEvent evt) {}
-	
+
 	@Override
 	public void onInvalidAccountCreation(InvalidAccountCreationEvent evt) {}
 
 	@Override
 	public void onInvalidLogin(InvalidLoginEvent evt) {}
-	
-	
+
+
 	// "onSend" methods
 	@Override
 	public void onGetEndTimes(SendGetEndTimesEvent evt) {}
 
 	@Override
 	public void onGetStartTimes(SendGetStartTimesEvent evt) {}
-	
+
 	@Override
 	public void onSendEditCourse(SendEditCourseEvent evt) {}
 
@@ -85,11 +115,10 @@ public abstract class EventHandlerAdapter
 
 	@Override
 	public void onSendRemoveSection(SendRemoveSectionEvent evt) {}
-	
+
 	@Override
 	public void onSendGetSectionTypes(SendGetSectionTypesEvent evt) {}
-	
-	
+
 	// "onLoad" methods
 	@Override
 	public void onLoadAddCourse(LoadAddCourseEvent evt) {}
@@ -118,7 +147,7 @@ public abstract class EventHandlerAdapter
 	@Override
 	public void onLoadViewCourses(LoadViewCoursesEvent evt) {}
 
-	
+
 	// "onReceive" methods
 	@Override
 	public void onReceiveCreateAccount(ReceiveCreateAccountEvent evt) {}
@@ -161,7 +190,7 @@ public abstract class EventHandlerAdapter
 
 	@Override
 	public void onReceiveStartTimes(ReceiveStartTimesEvent evt) {}	
-	
+
 	@Override
 	public void onReceiveGetSectionTypes(ReceiveGetSectionTypesEvent evt) {}
 
