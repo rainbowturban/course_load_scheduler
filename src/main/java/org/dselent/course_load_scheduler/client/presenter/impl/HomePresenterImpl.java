@@ -119,7 +119,7 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	
 	@Override
 	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {
-		Window.alert("Received Get Faculty event");
+		//Window.alert("Received Get Faculty event");
 		facultyListHolder = evt.getAction().getList();
 		Window.alert("facultyListHolder toString():" + facultyListHolder.toString());
 		retreiveOneFacultySectionInfo();
@@ -151,6 +151,7 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 			//Window.alert("Inside the fIterator loop...");			
 			//Window.alert("Returned from retreive get one faculty section info");
 			//Window.alert("Section list holder to string: " + sectionListHolder.toString());
+
 			HorizontalPanel courseList = new HorizontalPanel();
 
 			Label numCourses;

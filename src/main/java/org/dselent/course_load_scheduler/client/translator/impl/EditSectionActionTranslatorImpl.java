@@ -21,9 +21,9 @@ public class EditSectionActionTranslatorImpl implements ActionTranslator<SendEdi
 		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.SECTION_TYPE_ID), action.getSectionInfo().getSectionTypeId());
 		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.DAYS_ID), action.getSectionInfo().getDaysId());
 		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.COURSES_ID), action.getSectionInfo().getCoursesId());
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.START_TIME_ID), action.getSectionInfo().getStartTimeId());
-		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.END_TIME_ID), action.getSectionInfo().getEndTimeId());
-		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.SECTIONS_NAME), action.getSectionInfo().getSectionsName());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.START_ID), action.getSectionInfo().getStartTimeId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.END_ID), action.getSectionInfo().getEndTimeId());
+		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendEditSectionKeys.NAME), action.getSectionInfo().getSectionsName());
 
 		return jsonObject;
 	}

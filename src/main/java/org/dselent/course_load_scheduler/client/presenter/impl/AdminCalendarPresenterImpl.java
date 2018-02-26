@@ -13,21 +13,25 @@ import org.dselent.course_load_scheduler.client.action.SendGetEndTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetStartTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetTermsAction;
 import org.dselent.course_load_scheduler.client.action.SendGetFacultyAction;
+import org.dselent.course_load_scheduler.client.action.SendGetOneFacultySectionInfoAction;
 import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
 import org.dselent.course_load_scheduler.client.event.LoadScheduleEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.ManageUserPageEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveEndTimesEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveGetFacultyEvent;
+import org.dselent.course_load_scheduler.client.event.ReceiveGetOneFacultySectionInfoEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveGetTermsEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveStartTimesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetEndTimesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetStartTimesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetTermsEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetFacultyEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetOneFacultySectionInfoEvent;
 import org.dselent.course_load_scheduler.client.model.EndTime;
 import org.dselent.course_load_scheduler.client.model.Faculty;
 import org.dselent.course_load_scheduler.client.model.RequestTables;
+import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 import org.dselent.course_load_scheduler.client.model.StartTime;
 import org.dselent.course_load_scheduler.client.model.Terms;
 import org.dselent.course_load_scheduler.client.model.User;
@@ -36,7 +40,6 @@ import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.AdminCalendarView;
 
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -100,6 +103,9 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		
 		registration = eventBus.addHandler(ReceiveGetTermsEvent.TYPE, this);
 		eventBusRegistration.put(ReceiveGetTermsEvent.TYPE, registration);
+		
+		registration = eventBus.addHandler(ReceiveGetOneFacultySectionInfoEvent.TYPE, this);
+		eventBusRegistration.put(ReceiveGetOneFacultySectionInfoEvent.TYPE, registration);
 	}
 		
 	@Override
@@ -130,6 +136,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	@Override
 	public void onReceiveGetTerms(ReceiveGetTermsEvent evt) {
 		globalTerms = evt.getAction().getTerms();
+		updateUi();
 	}
 	
 	@Override
@@ -139,6 +146,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		}
 		if (globalTerms != null && globalRoster != null) {
 			fillInfo();
+			getSections();
 		}
 	}
 
@@ -265,6 +273,49 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		globalRequests.add(request1);
 		globalRequests.add(request2);
 		globalRequests.add(request3);
+	}
+	
+	@Override
+	public void getSections() {
+		int facultyId = 1;
+		int inst_ind = view.getScheduleSelectBox().getSelectedIndex();
+		String instructor = view.getScheduleSelectBox().getItemText(inst_ind);
+		Iterator<Faculty> rosterIterator = globalRoster.iterator();
+		while(rosterIterator.hasNext()) {
+			Faculty facultyInfo = rosterIterator.next();
+			if ((facultyInfo.getFirstName() + " " + facultyInfo.getLastName()).equals(instructor)) {
+				facultyId = facultyInfo.getId();
+				break;
+			}
+		}
+		int termsId = 1;
+		String term = view.getTermSelectBox().getItemText(view.getTermSelectBox().getSelectedIndex());
+		Iterator<Terms> termsIterator = globalTerms.iterator();
+		while(termsIterator.hasNext()) {
+			Terms termInfo = termsIterator.next();
+			if (termInfo.getName().equals(term)) {
+				termsId = termInfo.getId();
+				break;
+			}
+		}
+		eventBus.fireEvent(new SendGetOneFacultySectionInfoEvent(new SendGetOneFacultySectionInfoAction(facultyId, termsId)));
+	}
+	
+	@Override
+	public void onReceiveGetOneFacultySectionInfo(ReceiveGetOneFacultySectionInfoEvent evt) {
+		view.getTablePanel().clear();
+		Iterator<SectionsInfo> sectionIterator = evt.getAction().getList().iterator();
+		while(sectionIterator.hasNext()) {
+			SectionsInfo sectionInfo = sectionIterator.next();
+			String title = sectionInfo.getCoursesNumber()+" - "+sectionInfo.getSectionsName();
+			VerticalPanel body = new VerticalPanel();
+			body.add(new Label("Title: "+sectionInfo.getCoursesTitle()));
+			body.add(new Label("Start Time: "+sectionInfo.getStartTime()));
+			body.add(new Label("End Time: "+sectionInfo.getEndTime()));
+			body.add(new Label("Days: "+sectionInfo.getDays()));
+			body.add(new Label("Section Type: "+sectionInfo.getSectionType()));
+			view.getTablePanel().add(body, title);
+		}
 	}
 	
 	@Override

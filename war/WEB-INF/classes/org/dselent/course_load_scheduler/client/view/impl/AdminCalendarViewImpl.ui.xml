@@ -108,7 +108,11 @@
 							<g:Label width="100%" height="100%" styleName="divider" />
 						</g:SimplePanel>
 					</g:Cell>
-					<g:ScrollPanel ui:field="tablePanel" />
+					<g:Cell width="50%">
+						<g:ScrollPanel ui:field="tableScrollPanel" >
+						<g:StackPanel width="100%" height="100%" ui:field="tablePanel"/>
+					</g:ScrollPanel>
+					</g:Cell>
 					<g:Cell width="1%">
 						<g:SimplePanel height="100%" width="11px">
 							<g:Label width="100%" height="100%" styleName="divider" />

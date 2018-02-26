@@ -5,9 +5,9 @@ public enum SendEditSectionKeys {
 	TERMS_ID,
 	SECTION_TYPE_ID,
 	DAYS_ID,
-	COURSES_ID,
-	START_TIME_ID,
-	END_TIME_ID,
-	SECTIONS_NAME
+	START_ID,
+	END_ID,
+	NAME,
+	COURSES_ID
 
 }

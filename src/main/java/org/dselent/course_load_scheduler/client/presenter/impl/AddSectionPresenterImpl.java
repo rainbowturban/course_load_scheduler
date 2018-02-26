@@ -9,6 +9,7 @@ import org.dselent.course_load_scheduler.client.action.SendGetEndTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetSectionTypesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetStartTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetTermsAction;
+import org.dselent.course_load_scheduler.client.action.SendNewSectionAction;
 import org.dselent.course_load_scheduler.client.event.LoadAddSectionEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveEndTimesEvent;
@@ -19,6 +20,7 @@ import org.dselent.course_load_scheduler.client.event.SendGetEndTimesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetSectionTypesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetStartTimesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetTermsEvent;
+import org.dselent.course_load_scheduler.client.event.SendNewSectionEvent;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.CourseSections;
 import org.dselent.course_load_scheduler.client.model.EndTime;
@@ -263,16 +265,20 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 		newSection.setDays(this.determineDays());
 		newSection.setCoursesNumber(fromCourse.getCoursesNumber());
 		newSection.setCoursesTitle(fromCourse.getCoursesTitle());
-
+		
+		newSection.setCoursesId(fromCourse.getCoursesId());
+		newSection.setDaysId(1);//not enough time to get this to work
+		newSection.setTermsId(Integer.parseInt(term.getValue(term.getSelectedIndex())));
+		newSection.setSectionTypeId(Integer.parseInt(type.getValue(type.getSelectedIndex())));
+		newSection.setStartTimeId(Integer.parseInt(start.getValue(start.getSelectedIndex())));
+		newSection.setEndTimeId(Integer.parseInt(end.getValue(end.getSelectedIndex())));
+		newSection.setSectionsName(view.getGeneratedNameTextBox().getText());
+		
+		//fire event
+		eventBus.fireEvent(new SendNewSectionEvent(new SendNewSectionAction(newSection)));
+		
+		//return to previous page
 		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course)));
-
-		Window.alert("You created a section with Term: " + newSection.getTermsName() + 
-				" Section Type: " + newSection.getSectionType() + 
-				" Start Time: " + newSection.getStartTime() +
-				" End Time: " + newSection.getEndTime() +
-				" Days: " + newSection.getDays() +
-				" For the course: " + newSection.getCoursesNumber() + newSection.getCoursesTitle());
-
 	}
 
 	//loads courses page (viewing) (TODO: work out parameters, determine between Admin/User??)

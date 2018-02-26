@@ -5,20 +5,24 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.dselent.course_load_scheduler.client.action.LoadEditCourseAction;
+import org.dselent.course_load_scheduler.client.action.SendEditSectionAction;
 import org.dselent.course_load_scheduler.client.action.SendGetEndTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetSectionTypesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetStartTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetTermsAction;
+import org.dselent.course_load_scheduler.client.action.SendNewSectionAction;
 import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditSectionEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveEndTimesEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveGetSectionTypesEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveGetTermsEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveStartTimesEvent;
+import org.dselent.course_load_scheduler.client.event.SendEditSectionEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetEndTimesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetSectionTypesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetStartTimesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetTermsEvent;
+import org.dselent.course_load_scheduler.client.event.SendNewSectionEvent;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.CourseSections;
 import org.dselent.course_load_scheduler.client.model.EndTime;
@@ -331,16 +335,22 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		newSection.setDays(this.determineDays());
 		newSection.setCoursesNumber(oldSection.getCoursesNumber());
 		newSection.setCoursesTitle(oldSection.getCoursesTitle());
-		newSection.getSectionId();
-
-		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course)));
+		newSection.setSectionId(oldSection.getSectionId());
+		newSection.setCoursesId(oldSection.getCoursesId());
+		newSection.setDaysId(oldSection.getDaysId());
+		newSection.setTermsId(Integer.parseInt(term.getValue(term.getSelectedIndex())));
+		newSection.setSectionTypeId(Integer.parseInt(type.getValue(type.getSelectedIndex())));
+		newSection.setStartTimeId(Integer.parseInt(start.getValue(start.getSelectedIndex())));
+		newSection.setEndTimeId(Integer.parseInt(end.getValue(end.getSelectedIndex())));
+		newSection.setSectionsName(oldSection.getSectionsName());
 		
-		Window.alert("You created a section with Term: " + newSection.getTermsName() + 
-				" Section Type: " + newSection.getSectionType() + 
-				" Start Time: " + newSection.getStartTime() +
-				" End Time: " + newSection.getEndTime() +
-				" Days: " + newSection.getDays() +
-				" For the course: " + newSection.getCoursesNumber() + newSection.getCoursesTitle());
+		
+		Window.alert("ns: " + newSection);
+		
+		//fire event
+		eventBus.fireEvent(new SendEditSectionEvent(new SendEditSectionAction(newSection)));
+		
+		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course)));
 	}
 
 	@Override
