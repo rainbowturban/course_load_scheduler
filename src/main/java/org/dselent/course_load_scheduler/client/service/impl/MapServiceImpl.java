@@ -5,7 +5,6 @@ import org.dselent.course_load_scheduler.client.action.SendGetFrequenciesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetSectionTypesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetStartTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetTermsAction;
-import org.dselent.course_load_scheduler.client.action.SendGetSectionTypesAction;
 import org.dselent.course_load_scheduler.client.callback.GetStartTimesCallback;
 import org.dselent.course_load_scheduler.client.callback.SendGetEndTimesCallback;
 import org.dselent.course_load_scheduler.client.callback.SendGetFrequenciesCallback;

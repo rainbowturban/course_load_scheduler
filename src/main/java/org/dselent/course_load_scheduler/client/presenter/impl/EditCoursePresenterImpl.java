@@ -18,6 +18,7 @@ import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditSectionEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveGetFrequenciesEvent;
+import org.dselent.course_load_scheduler.client.event.ReceiveGetSectionsEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveGetTermsEvent;
 import org.dselent.course_load_scheduler.client.event.SendRemoveSectionEvent;
 import org.dselent.course_load_scheduler.client.event.SendEditCourseEvent;
@@ -70,6 +71,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		eventBusRegistration.put(LoadEditCourseEvent.TYPE, registration);
 		
 		eventBusRegistration.put(ReceiveGetTermsEvent.TYPE, eventBus.addHandler(ReceiveGetTermsEvent.TYPE, this));
+		eventBusRegistration.put(ReceiveGetSectionsEvent.TYPE, eventBus.addHandler(ReceiveGetSectionsEvent.TYPE, this));
 	}
 	
 	@Override
@@ -98,6 +100,12 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	public void onReceiveGetFrequencies(ReceiveGetFrequenciesEvent evt) {
 		int index = fillFrequencies(evt.getAction().getFrequencies(), course.getFrequencyId());
 		view.getFrequencyDropdown().setSelectedIndex(index);
+	}
+	
+	@Override
+	public void onReceiveGetSections(ReceiveGetSectionsEvent evt) {
+		sections = evt.getAction().getSections();
+		fillSections();
 	}
 	
 	
@@ -130,28 +138,6 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	public void retrieveFrequencies() {
 		//Sends event to DB to fetch frequencies
 		eventBus.fireEvent(new SendGetFrequenciesEvent(new SendGetFrequenciesAction()));
-		
-		//**In place of that currently being completed, sample values are used
-		/*List<Frequency> freqs = new ArrayList<Frequency>();
-		
-		Frequency f1 = new Frequency();
-		f1.setFrequency("1 per year");
-		f1.setId(1);
-		
-		Frequency f2 = new Frequency();
-		f2.setFrequency("2 per year");
-		f2.setId(2);
-		
-		Frequency f3 = new Frequency();
-		f3.setFrequency("4 per year");
-		f3.setId(4);
-		
-		freqs.add(f1);
-		freqs.add(f2);
-		freqs.add(f3);
-		
-		
-		return freqs;*/
 	}
 	
 	//gets the frequencies from the database and fills the dropdown with them. 
@@ -185,24 +171,6 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	public void retrieveSections() {
 		//Sends event to DB to fetch sections
 		eventBus.fireEvent(new SendGetSectionsEvent(new SendGetSectionsAction(course.getCoursesId())));
-
-		
-		//In place of that completing, Example values are used.
-		sections = new ArrayList<CourseSections>();
-		
-		CourseSections s1 = new CourseSections();
-		s1.setSectionType("Lab");
-		s1.setTermsName("A");
-		s1.setSectionsName("A01");
-		
-		CourseSections s2 = new CourseSections();
-		s2.setSectionType("Conference");
-		s2.setTermsName("A");
-		s2.setSectionsName("A02");
-		
-		sections.add(s1);
-		sections.add(s2);
-		
 	}
 	
 	
