@@ -82,9 +82,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		//fill frequency tables, sections, and the fields with the information from the course
 		if(course != null) {
 			retrieveFrequencies();
-			Window.alert("frequs evt fired");
 			retrieveSections();
-			Window.alert("fried evts");
 
 			view.getCourseNameField().setText(course.getCoursesTitle());
 			view.getCourseNumberField().setText(course.getCoursesNumber());
@@ -172,7 +170,6 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	@Override
 	public void retrieveSections() {
 		//Sends event to DB to fetch sections
-		Window.alert("get sections! course = " + course.getCoursesId());
 		eventBus.fireEvent(new SendGetSectionsEvent(new SendGetSectionsAction(course.getCoursesId())));
 	}
 	

@@ -36,12 +36,10 @@ public class GetSectionsActionTranslatorImpl implements ActionTranslator<SendGet
 
 		// sent timestamps as epoch seconds (long)
 
-		Window.alert("In transToJSON");
 		
 		JSONValue jsonObject = json.get("success");
 		JSONValue listObject = jsonObject.isArray().get(0);
 		
-		Window.alert("listObject = " + listObject.toString());
 		//loops through each element in the list and fills an ArrayList with the info for each course
 		List<CourseSections> sectionList = new ArrayList<CourseSections>();
 		
@@ -49,29 +47,25 @@ public class GetSectionsActionTranslatorImpl implements ActionTranslator<SendGet
 		for(int i = 0; i < listObject.isArray().size(); i++) {
 			JSONObject userObject = listObject.isArray().get(i).isObject();
 			CourseSections section = new CourseSections();
-			
-			Window.alert("in loop");
 
 			//extract the information for the object to return
 			//TODO: Check for valid (non-null) values?		
 			section.setSectionId(JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveGetSectionsKeys.SECTION_ID)));
-			Window.alert("id good");
 			section.setTermsName(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveGetSectionsKeys.TERMS_NAME)));
-			Window.alert("terms name good");
 			section.setSectionType(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveGetSectionsKeys.SECTION_TYPE)));
-			Window.alert("section type good");
 			section.setDays(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveGetSectionsKeys.DAYS)));
-			Window.alert("days good");
 			section.setCoursesNumber(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveGetSectionsKeys.COURSES_NUMBER)));
-			Window.alert("courses# good");
 			section.setCoursesTitle(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveGetSectionsKeys.COURSES_TITLE)));
-			Window.alert("corusesTitle good");
 			section.setStartTime(Time.valueOf(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveGetSectionsKeys.START_TIME))));
-			Window.alert("startTime good");
 			section.setEndTime(Time.valueOf(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveGetSectionsKeys.END_TIME))));
-			Window.alert("endTime good");
 			section.setSectionsName(JSONHelper.getStringValue(userObject, JSONHelper.convertKeyName(ReceiveGetSectionsKeys.SECTIONS_NAME)));
-			Window.alert("sectionsName good");
+			
+			section.setSectionTypeId(JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveGetSectionsKeys.SECTION_TYPE_ID)));
+			section.setCoursesId(JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveGetSectionsKeys.COURSES_ID)));
+			section.setEndTimeId(JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveGetSectionsKeys.END_TIME_ID)));
+			section.setStartTimeId(JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveGetSectionsKeys.START_TIME_ID)));
+			section.setDaysId(JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveGetSectionsKeys.DAYS_ID)));
+			section.setTermsId(JSONHelper.getIntValue(userObject, JSONHelper.convertKeyName(ReceiveGetSectionsKeys.TERMS_ID)));
 			
 			//Add extracted info to the list
 			sectionList.add(section);

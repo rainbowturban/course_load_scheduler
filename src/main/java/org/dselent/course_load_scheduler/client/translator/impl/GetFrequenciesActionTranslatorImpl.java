@@ -52,7 +52,6 @@ public class GetFrequenciesActionTranslatorImpl implements ActionTranslator<Send
 			f.setFrequency(frequency);
 			f.setId(id);	
 
-			Window.alert("added f");
 			//Add extracted info to the list
 			freqs.add(f);
 		}

@@ -146,8 +146,8 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 	@Override
 	public void retrieveTime(){
 		//Populates times from DB
-		eventBus.fireEvent(new SendGetStartTimesEvent(new SendGetStartTimesAction()));
-		eventBus.fireEvent(new SendGetEndTimesEvent(new SendGetEndTimesAction()));
+		eventBus.fireEvent(new SendGetStartTimesEvent(new SendGetStartTimesAction(user)));
+		eventBus.fireEvent(new SendGetEndTimesEvent(new SendGetEndTimesAction(user)));
 	}
 	
 	@Override

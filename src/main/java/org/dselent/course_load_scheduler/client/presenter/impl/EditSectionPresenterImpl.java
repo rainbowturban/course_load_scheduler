@@ -106,6 +106,8 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 	public void onLoadEditSection(LoadEditSectionEvent evt) {
 		oldSection = evt.getAction().getSectionInfo();
 
+		Window.alert("old secton: " + oldSection);
+		
 		//Info to return to edit course page
 		course = evt.getAction().getCourseInfo();
 
@@ -161,6 +163,7 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 	
 	@Override
 	public void onReceiveGetTerms(ReceiveGetTermsEvent evt) {
+		Window.alert("terms: " + evt.getAction().getTerms());
 		int termIndex = fillSectionTerms(oldSection.getTermsId(), evt.getAction().getTerms());
 		view.getTermComboBox().setSelectedIndex(termIndex);
 	}
@@ -174,6 +177,7 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 	
 	@Override
 	public void onReceiveGetSectionTypes(ReceiveGetSectionTypesEvent evt) {
+		Window.alert("section types: " + evt.getAction().getSectionTypes());
 		int typeIndex = fillSectionTypes(oldSection.getSectionTypeId(), evt.getAction().getSectionTypes());
 		view.getSectionTypeComboBox().setSelectedIndex(typeIndex);		
 	}
@@ -182,19 +186,20 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 	@Override
 	public void retrieveTime(){
 		//Populates times from DB
-		eventBus.fireEvent(new SendGetStartTimesEvent(new SendGetStartTimesAction()));
-		eventBus.fireEvent(new SendGetEndTimesEvent(new SendGetEndTimesAction()));
+		eventBus.fireEvent(new SendGetStartTimesEvent(new SendGetStartTimesAction(user)));
+		eventBus.fireEvent(new SendGetEndTimesEvent(new SendGetEndTimesAction(user)));
 	}
 	
 	@Override
 	public void onReceiveStartTimes(ReceiveStartTimesEvent evt) {
+		Window.alert("start times: " + evt.getAction().getStartTimes());
 		int startIndex = fillSectionStart(oldSection.getStartTimeId(), evt.getAction().getStartTimes());
 		view.getSectionStartTimeComboBox().setSelectedIndex(startIndex);
-		
 	}
 	
 	@Override
 	public void onReceiveEndTimes(ReceiveEndTimesEvent evt) {
+		Window.alert("end times: " + evt.getAction().getEndTimes());
 		int endIndex = fillSectionEnd(oldSection.getEndTimeId(), evt.getAction().getEndTimes());
 		view.getSectionEndTimeComboBox().setSelectedIndex(endIndex);
 	}
@@ -204,6 +209,8 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 	public int fillSectionTerms(int initTermValue, List<Terms> termsList) {
 		int initTermIndex = -1;
 
+		Window.alert("in fill section terms");
+		
 		ListBox term = view.getTermComboBox();
 		term.clear();
 
@@ -211,6 +218,7 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		int index = 0;
 		while(iterator.hasNext()) {
 			Terms cs = iterator.next();
+			Window.alert("in itertor! term: "+cs);
 			term.addItem(cs.getName(), Integer.toString(cs.getId()));
 			if(cs.getId() == initTermValue) {
 				initTermIndex = index;

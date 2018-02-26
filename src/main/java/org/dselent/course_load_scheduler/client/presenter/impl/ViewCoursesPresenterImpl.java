@@ -76,10 +76,8 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 	
 	@Override
 	public void onReceiveGetCourseList(ReceiveGetCourseListEvent evt) {
-		Window.alert("made it to the received");
 		courses = evt.getAction().getCourseList();
 		fillCourses();
-		Window.alert("filled successfuly");
 		parentPresenter.hideLoadScreen();
 	}
 	
@@ -160,7 +158,6 @@ public class ViewCoursesPresenterImpl extends BasePresenterImpl implements ViewC
 			
 		}
 		parentPresenter.hideLoadScreen();
-		//this.go(parentPresenter.getView().getViewRootPanel());//***************Reload to update?
 	}
 
 
