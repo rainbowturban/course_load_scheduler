@@ -2,6 +2,7 @@ package org.dselent.course_load_scheduler.client;
 
 import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.presenter.impl.*;
+import org.dselent.course_load_scheduler.client.service.impl.HomeServiceImpl;
 import org.dselent.course_load_scheduler.client.service.impl.MapServiceImpl;
 import org.dselent.course_load_scheduler.client.service.impl.ScheduleServiceImpl;
 import org.dselent.course_load_scheduler.client.service.impl.UserServiceImpl;
@@ -42,6 +43,9 @@ public class CourseLoadScheduler implements EntryPoint
 		
 		MapServiceImpl mapService = injector.getMapService();
 		mapService.init();
+		
+		HomeServiceImpl homeService = injector.getHomeService();
+		homeService.init();
 		
 		ScheduleServiceImpl schedService = injector.getScheduleService();
 		schedService.init();		
