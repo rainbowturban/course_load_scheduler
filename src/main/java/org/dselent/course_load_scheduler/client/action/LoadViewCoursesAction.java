@@ -1,29 +1,29 @@
 package org.dselent.course_load_scheduler.client.action;
 
+import org.dselent.course_load_scheduler.client.model.User;
+
 public class LoadViewCoursesAction extends Action{
-	boolean adminUser;//true if admin, false if not
+	User model;//true if admin, false if not
 	
 	public LoadViewCoursesAction() {
-		adminUser = false;
+		model = null;
 	}
 	
-	public LoadViewCoursesAction(boolean adminUser) {
-		this.adminUser = adminUser;
+	public LoadViewCoursesAction(User model) {
+		this.model = model;
 	}
 	
-	public boolean getAdminUser() {
-		return adminUser;
+	public User getUser() {
+		return model;
 	}
 
-	public void setAdminUser(boolean adminUser) {
-		this.adminUser = adminUser;
+	public void setUser(User model) {
+		this.model = model;
 	}
 	
 	@Override
 	public String toString()
 	{
-		return "Admin User: " + adminUser;
-	}
-	
-	
+		return "User: " + model;
+	}	
 }

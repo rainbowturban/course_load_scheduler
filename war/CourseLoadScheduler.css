@@ -43,11 +43,9 @@
 }
 
 .center {
-	position: absolute;
 	width: 500px;
 	height: 250px;
 	color: Black;
-	margin-left: 250px;
 	background-color: Silver;
 }
 
@@ -118,7 +116,9 @@
 	color: Black;
 	margin: 0px;
 	font-weight: bold;
-	font-size: 4em;
+	font-size: 3em;
+	font-family: TimesNewRoman;
+	align: center;
 }
 .section-title {
 	background: A9B0B7;

@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.Grid;
 
 public class ManageUserViewImpl extends BaseViewImpl<ManageUserPresenter> implements ManageUserView {
 	private static ManageUserViewImplUiBinder uiBinder = GWT.create(ManageUserViewImplUiBinder.class);
@@ -21,6 +22,8 @@ public class ManageUserViewImpl extends BaseViewImpl<ManageUserPresenter> implem
     @UiField Button coursesButton;
     @UiField Button accountButton;
     @UiField HTMLPanel rootPanel;
+    @UiField Grid usersGrid;
+    @UiField Button promoteButton;
     
     @UiHandler("homeButton")
     void onHomeButtonClick(ClickEvent event) {
@@ -42,8 +45,6 @@ public class ManageUserViewImpl extends BaseViewImpl<ManageUserPresenter> implem
         presenter.loadAccountPage();
     }
     
- 
-
     interface ManageUserViewImplUiBinder extends UiBinder<Widget, ManageUserViewImpl> {
 	}
 
@@ -66,4 +67,14 @@ public class ManageUserViewImpl extends BaseViewImpl<ManageUserPresenter> implem
 		return rootPanel;
 	}
 	
+	@Override
+	public Grid getUsersGrid()
+	{
+		return usersGrid;
+	}
+	
+	@UiHandler("promoteButton")
+	void onPromoteButtonClick(ClickEvent event) {
+		presenter.promoteUser();
+	}
 }
