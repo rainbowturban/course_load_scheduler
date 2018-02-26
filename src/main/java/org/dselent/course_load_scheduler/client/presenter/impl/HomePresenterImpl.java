@@ -50,10 +50,11 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	{
 		HandlerRegistration registration;
 
+		registration = eventBus.addHandler(ReceiveGetFacultyEvent.TYPE, this);
+		eventBusRegistration.put(ReceiveGetFacultyEvent.TYPE, registration);
 		registration = eventBus.addHandler(LoadHomePageEvent.TYPE, this);
 		eventBusRegistration.put(LoadHomePageEvent.TYPE, registration);
-		//registration = eventBus.addHandler(ReceiveGetFacultyEvent.TYPE, this);
-		//eventBusRegistration.put(ReceiveGetFacultyEvent.TYPE, registration);
+
 	}
 
 	public IndexPresenter getParentPresenter() {
@@ -101,7 +102,7 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 		adminUser = evt.getAction().isAdminUser();
 		this.go(parentPresenter.getView().getViewRootPanel());
 	}
-	
+
 	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {
 		facultyListHolder = evt.getAction().getList();
 	}
