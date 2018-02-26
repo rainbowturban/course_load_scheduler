@@ -15,15 +15,12 @@ import org.dselent.course_load_scheduler.client.event.ManageUserPageEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveGetUsersEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetUsersEvent;
 import org.dselent.course_load_scheduler.client.model.AccountInfo;
-import org.dselent.course_load_scheduler.client.model.Faculty;
-import org.dselent.course_load_scheduler.client.model.User;
 import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.presenter.ManageUserPresenter;
 import org.dselent.course_load_scheduler.client.view.ManageUserView;
 
 
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Label;
@@ -166,9 +163,8 @@ public class ManageUserPresenterImpl extends BasePresenterImpl implements Manage
 	@Override
 	public void promoteUser() {
 		// TODO Auto-generated method stub
+		
 
 	}
-
-
 
 }

@@ -193,7 +193,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		User temp = new User();
 		temp.setAccountTypeId(1);
 		temp.setId(1);
-		temp.setPassword("derp");
+		temp.setEncryptedPassword("derp");
 		eventBus.fireEvent(new SendGetEndTimesEvent(new SendGetEndTimesAction(temp)));
 	}
 
@@ -202,7 +202,7 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		User temp = new User();
 		temp.setAccountTypeId(1);
 		temp.setId(1);
-		temp.setPassword("derp");
+		temp.setEncryptedPassword("derp");
 		eventBus.fireEvent(new SendGetStartTimesEvent(new SendGetStartTimesAction(temp)));
 	}
 
