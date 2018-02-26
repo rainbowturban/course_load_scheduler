@@ -139,7 +139,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 			returnToViewCourses();//returns if course adding was successful or not
 		}
 		else {//Frequency was not selected
-			Window.alert("A Freqeuncy must be selected to create a course, and textFields cannot be empty.");
+			Window.alert("A Frequency must be selected to create a course, and textFields cannot be empty.");
 		}
 	}
 	
