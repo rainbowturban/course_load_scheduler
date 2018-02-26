@@ -263,7 +263,7 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 		newSection.setCoursesNumber(fromCourse.getCoursesNumber());
 		newSection.setCoursesTitle(fromCourse.getCoursesTitle());
 
-		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course, null)));
+		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course)));
 
 		Window.alert("You created a section with Term: " + newSection.getTermsName() + 
 				" Section Type: " + newSection.getSectionType() + 
@@ -277,7 +277,7 @@ public class AddSectionPresenterImpl extends BasePresenterImpl implements AddSec
 	//loads courses page (viewing) (TODO: work out parameters, determine between Admin/User??)
 	@Override
 	public void cancelAddSection() {
-		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course, null)));
+		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course)));
 		Window.alert("The section was not created");
 	}
 }

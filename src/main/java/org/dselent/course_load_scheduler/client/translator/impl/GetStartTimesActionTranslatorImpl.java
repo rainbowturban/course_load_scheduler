@@ -23,7 +23,7 @@ public class GetStartTimesActionTranslatorImpl implements ActionTranslator<SendG
 		JSONObject jsonObject = new JSONObject();
 		
 		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(GetStartTimesKeys.ID), action.getModel().getId());
-		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(GetStartTimesKeys.PASSWORD), action.getModel().getPassword());
+		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(GetStartTimesKeys.PASSWORD), action.getModel().getEncryptedPassword());
 		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(GetStartTimesKeys.ACCOUNT_TYPE_ID), action.getModel().getAccountTypeId());
 		
 		return jsonObject;

@@ -46,7 +46,7 @@ public class LoginActionTranslatorImpl implements ActionTranslator<SendLoginActi
 		User user = new User();
 		user.setId(id);
 		user.setAccountTypeId(accountTypeId);
-		user.setPassword(password);
+		user.setEncryptedPassword(password);
 
 		// possibly use builder pattern if it is a lot of data
 		ReceiveLoginAction action = new ReceiveLoginAction(user);	

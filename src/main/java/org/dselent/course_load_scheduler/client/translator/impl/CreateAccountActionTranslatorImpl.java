@@ -46,7 +46,7 @@ public class CreateAccountActionTranslatorImpl implements ActionTranslator<SendC
 		User user = new User();
 		user.setAccountTypeId(accountTypeId);
 		user.setId(id);
-		user.setPassword(password);
+		user.setEncryptedPassword(password);
 
 		// possibly use builder pattern if it is a lot of data
 		ReceiveCreateAccountAction action = new ReceiveCreateAccountAction(user);	

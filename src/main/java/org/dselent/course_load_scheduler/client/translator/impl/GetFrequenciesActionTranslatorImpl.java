@@ -22,7 +22,7 @@ public class GetFrequenciesActionTranslatorImpl implements ActionTranslator<Send
 		JSONObject jsonObject = new JSONObject();
 		
 		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendGetFrequenciesKeys.USER_ID), action.getModel().getId());
-		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendGetFrequenciesKeys.PASSWORD), action.getModel().getPassword());
+		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendGetFrequenciesKeys.PASSWORD), action.getModel().getEncryptedPassword());
 		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendGetFrequenciesKeys.ACCOUNT_TYPE_ID), action.getModel().getAccountTypeId());
 		
 		return jsonObject;

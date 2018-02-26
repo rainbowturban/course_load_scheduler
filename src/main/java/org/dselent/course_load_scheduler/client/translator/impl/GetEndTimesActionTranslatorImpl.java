@@ -21,7 +21,7 @@ public class GetEndTimesActionTranslatorImpl implements ActionTranslator<SendGet
 		JSONObject jsonObject = new JSONObject();
 		
 		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(GetEndTimesKeys.ID), action.getModel().getId());
-		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(GetEndTimesKeys.PASSWORD), action.getModel().getPassword());
+		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(GetEndTimesKeys.PASSWORD), action.getModel().getEncryptedPassword());
 		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(GetEndTimesKeys.ACCOUNT_TYPE_ID), action.getModel().getAccountTypeId());
 		
 		return jsonObject;

@@ -316,7 +316,7 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		newSection.setCoursesTitle(oldSection.getCoursesTitle());
 		newSection.getSectionId();
 
-		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course, null)));
+		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course)));
 		
 		Window.alert("You created a section with Term: " + newSection.getTermsName() + 
 				" Section Type: " + newSection.getSectionType() + 
@@ -328,7 +328,7 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 
 	@Override
 	public void cancelEditSection() {
-		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course, null)));
+		eventBus.fireEvent(new LoadEditCourseEvent(new LoadEditCourseAction(course)));
 		Window.alert("The section was not edited");
 	}
 
