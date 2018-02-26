@@ -2,6 +2,7 @@ package org.dselent.course_load_scheduler.client.service.impl;
 
 import org.dselent.course_load_scheduler.client.action.SendGetEndTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetFrequenciesAction;
+import org.dselent.course_load_scheduler.client.action.SendGetSectionTypesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetStartTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetTermsAction;
 import org.dselent.course_load_scheduler.client.action.SendGetSectionTypesAction;
@@ -12,12 +13,14 @@ import org.dselent.course_load_scheduler.client.callback.SendGetTermsCallback;
 import org.dselent.course_load_scheduler.client.callback.SendGetSectionTypesCallback;
 import org.dselent.course_load_scheduler.client.event.SendGetEndTimesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetFrequenciesEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetSectionTypesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetStartTimesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetTermsEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetSectionTypesEvent;
 import org.dselent.course_load_scheduler.client.network.NetworkRequest;
 import org.dselent.course_load_scheduler.client.network.NetworkRequestStrings;
 import org.dselent.course_load_scheduler.client.service.MapService;
+import org.dselent.course_load_scheduler.client.service.ScheduleService;
 import org.dselent.course_load_scheduler.client.translator.impl.GetEndTimesActionTranslatorImpl;
 import org.dselent.course_load_scheduler.client.translator.impl.GetFrequenciesActionTranslatorImpl;
 import org.dselent.course_load_scheduler.client.translator.impl.GetStartTimesActionTranslatorImpl;
@@ -46,6 +49,18 @@ public class MapServiceImpl extends BaseServiceImpl implements MapService {
 		
 		registration = eventBus.addHandler(SendGetStartTimesEvent.TYPE, this);
 		eventBusRegistration.put(SendGetStartTimesEvent.TYPE, registration);
+		
+		registration = eventBus.addHandler(SendGetEndTimesEvent.TYPE, this);
+		eventBusRegistration.put(SendGetEndTimesEvent.TYPE, registration);
+		
+		registration = eventBus.addHandler(SendGetFrequenciesEvent.TYPE, this);
+		eventBusRegistration.put(SendGetFrequenciesEvent.TYPE, registration);
+		
+		registration = eventBus.addHandler(SendGetSectionTypesEvent.TYPE, this);
+		eventBusRegistration.put(SendGetSectionTypesEvent.TYPE, registration);
+		
+		registration = eventBus.addHandler(SendGetTermsEvent.TYPE, this);
+		eventBusRegistration.put(SendGetTermsEvent.TYPE, registration);
 	}
 	
 	@Override
