@@ -21,4 +21,5 @@ public interface AdminCalendarPresenter extends BasePresenter
     //loads Account page (TODO: work out parameters, differentiate btwn admin and user homepages?)
     void loadAccountPage();
 	void updateUi();
+	void getSections();
 }

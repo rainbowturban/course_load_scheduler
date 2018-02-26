@@ -110,7 +110,7 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 
 	@Override
 	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {
-		Window.alert("Received Get Faculty event");
+		//Window.alert("Received Get Faculty event");
 		facultyListHolder = evt.getAction().getList();
 		System.out.println("facultyListHolder toString():");
 		System.out.println(facultyListHolder.toString());
@@ -135,7 +135,7 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 		while(fIterator.hasNext()) {
 			System.out.println("Inside the fIterator loop...");
 			Faculty f = fIterator.next();
-			retreiveOneFacultySectionInfo(f.getId());
+			//retreiveOneFacultySectionInfo(f.getId());
 
 			List<SectionsInfo> sectionList = sectionListHolder;
 			HorizontalPanel courseList = new HorizontalPanel();
@@ -181,9 +181,9 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 		eventBus.fireEvent(new SendGetFacultyEvent(new SendGetFacultyAction()));
 	}
 
-	private void retreiveOneFacultySectionInfo(Integer id) {
+	/*private void retreiveOneFacultySectionInfo(Integer id) {
 		eventBus.fireEvent(new SendGetOneFacultySectionInfoEvent(new SendGetOneFacultySectionInfoAction(id)));
-	}
+	}*/
 
 	public void setParentPresenter(IndexPresenter parentPresenter) {
 		this.parentPresenter = parentPresenter;
