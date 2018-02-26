@@ -11,7 +11,6 @@ public interface AdminCalendarPresenter extends BasePresenter
 	void getRequests();
 	void getEndTimes();
 	void getStartTimes();
-	void fillCalendarHeader();
 	void fillCourseInfo();
 	//loads Home page (TODO: work out parameters, differentiate btwn admin and user homepages?)
     void loadHomePage();
@@ -21,6 +20,5 @@ public interface AdminCalendarPresenter extends BasePresenter
     void loadViewCoursesPage();
     //loads Account page (TODO: work out parameters, differentiate btwn admin and user homepages?)
     void loadAccountPage();
-	void fillCalendarWithCourses();
 	void updateUi();
 }
