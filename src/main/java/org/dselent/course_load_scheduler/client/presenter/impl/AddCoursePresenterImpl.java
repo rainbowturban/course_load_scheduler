@@ -6,10 +6,10 @@ import java.util.List;
 import org.dselent.course_load_scheduler.client.action.LoadViewCoursesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetFrequenciesAction;
 import org.dselent.course_load_scheduler.client.action.SendNewCourseAction;
-import org.dselent.course_load_scheduler.client.event.SendGetFrequenciesEvent;
 import org.dselent.course_load_scheduler.client.event.LoadAddCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadViewCoursesEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveGetFrequenciesEvent;
+import org.dselent.course_load_scheduler.client.event.SendGetFrequenciesEvent;
 import org.dselent.course_load_scheduler.client.event.SendNewCourseEvent;
 import org.dselent.course_load_scheduler.client.model.Courses;
 import org.dselent.course_load_scheduler.client.model.Frequency;
@@ -55,6 +55,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 		//implement any event listeners down here
 		registration = eventBus.addHandler(LoadAddCourseEvent.TYPE, this);
 		eventBusRegistration.put(LoadAddCourseEvent.TYPE, registration);
+		eventBusRegistration.put(ReceiveGetFrequenciesEvent.TYPE, eventBus.addHandler(ReceiveGetFrequenciesEvent.TYPE, this));
 	}
 	
 	@Override
