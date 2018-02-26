@@ -13,8 +13,7 @@ import org.dselent.course_load_scheduler.client.event.*;
  *
  */
 public abstract class EventHandlerAdapter
-implements
-InvalidAccountCreationEventHandler,
+implements InvalidAccountCreationEventHandler,
 InvalidLoginEventHandler,
 LoadAddCourseEventHandler,
 LoadAddSectionEventHandler,
@@ -120,7 +119,7 @@ SendRemoveSectionEventHandler
 	@Override
 	public void onSendGetSectionTypes(SendGetSectionTypesEvent evt) {}
 
-
+	
 	// "onLoad" methods
 	@Override
 	public void onLoadAddCourse(LoadAddCourseEvent evt) {}

@@ -13,7 +13,7 @@
 			<g:Grid>
 				<g:row>
 					<g:customCell>
-						<g:Label text="Username:" ui:field="userNameLabel"/>
+						<g:Label text="Email:" ui:field="userNameLabel"/>
 					</g:customCell>
 				</g:row>
 				<g:row>

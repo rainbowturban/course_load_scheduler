@@ -65,5 +65,5 @@ public interface Injector extends Ginjector
     public ScheduleServiceImpl getScheduleService();
     public CreateAccountServiceImpl getCreateAccountService();
     public HomeServiceImpl getHomeService();
-    public MapServiceImpl getMapService();
+	public MapServiceImpl getMapService();
 }
