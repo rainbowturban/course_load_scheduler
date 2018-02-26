@@ -5,6 +5,10 @@ import org.dselent.course_load_scheduler.client.model.CourseSections;
 public class SendNewSectionAction extends Action {
 	private CourseSections section;
 
+	public SendNewSectionAction(CourseSections newSection) {
+		section = newSection;
+	}
+
 	public CourseSections getSectionInfo() {
 		return section;
 	}

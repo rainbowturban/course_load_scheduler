@@ -19,13 +19,12 @@ public class NewSectionActionTranslatorImpl implements ActionTranslator<SendNewS
 	{
 		JSONObject jsonObject = new JSONObject();
 
-		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendNewSectionKeys.TERM), action.getSectionInfo().getTermsName());
-		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendNewSectionKeys.SECTION_TYPE), action.getSectionInfo().getSectionType());
-		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendNewSectionKeys.DAYS), action.getSectionInfo().getDays());
-		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendNewSectionKeys.COURSES_NUMBER), action.getSectionInfo().getCoursesNumber());
-		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendNewSectionKeys.COURSES_TITLE), action.getSectionInfo().getCoursesTitle());
-		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendNewSectionKeys.START_TIME), action.getSectionInfo().getStartTime().toString());
-		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendNewSectionKeys.END_TIME), action.getSectionInfo().getEndTime().toString());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendNewSectionKeys.TERMS_ID), action.getSectionInfo().getTermsId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendNewSectionKeys.SECTION_TYPE_ID), action.getSectionInfo().getSectionTypeId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendNewSectionKeys.DAYS_ID), action.getSectionInfo().getDaysId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendNewSectionKeys.COURSES_ID), action.getSectionInfo().getCoursesId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendNewSectionKeys.START_ID), action.getSectionInfo().getStartTimeId());
+		JSONHelper.putIntValue(jsonObject, JSONHelper.convertKeyName(SendNewSectionKeys.END_ID), action.getSectionInfo().getEndTimeId());
 		JSONHelper.putStringValue(jsonObject, JSONHelper.convertKeyName(SendNewSectionKeys.NAME), action.getSectionInfo().getSectionsName());
 
 		return jsonObject;

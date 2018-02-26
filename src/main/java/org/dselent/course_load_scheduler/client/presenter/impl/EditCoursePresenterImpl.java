@@ -233,12 +233,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 			CourseSections s = si.next();
 			
 			eventBus.fireEvent(new SendRemoveSectionEvent(new SendRemoveSectionAction(s.getSectionId())));
-
-			boolean success = true;//this will be the return value from the request
-			
-			if(success) {
-				view.getSectionList().remove(index);
-			}
+			//view.getSectionList().remove(index);
 		}
 	}
 	
