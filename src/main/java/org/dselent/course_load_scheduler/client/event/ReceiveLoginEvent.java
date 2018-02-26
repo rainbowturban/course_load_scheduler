@@ -1,11 +1,9 @@
 package org.dselent.course_load_scheduler.client.event;
 
 import org.dselent.course_load_scheduler.client.action.ReceiveLoginAction;
-import org.dselent.course_load_scheduler.client.action.SendLoginAction;
 import org.dselent.course_load_scheduler.client.event_handler.ReceiveLoginEventHandler;
 
 import com.google.gwt.event.shared.GwtEvent;
-import com.google.gwt.user.client.ui.HasWidgets;
 
 public class ReceiveLoginEvent extends GwtEvent<ReceiveLoginEventHandler>//DisplayEvent<ReceiveLoginAction, ReceiveLoginEventHandler>
 {

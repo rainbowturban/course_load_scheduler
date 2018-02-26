@@ -241,4 +241,5 @@ public class User extends Model
 		builder.append("]");
 		return builder.toString();
 	}
+
 }

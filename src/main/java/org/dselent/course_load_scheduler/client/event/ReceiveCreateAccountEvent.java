@@ -2,6 +2,7 @@ package org.dselent.course_load_scheduler.client.event;
 
 import org.dselent.course_load_scheduler.client.action.ReceiveCreateAccountAction;
 import org.dselent.course_load_scheduler.client.event_handler.ReceiveCreateAccountEventHandler;
+
 import com.google.gwt.user.client.ui.HasWidgets;
 
 public class ReceiveCreateAccountEvent extends DisplayEvent<ReceiveCreateAccountAction, ReceiveCreateAccountEventHandler>

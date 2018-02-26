@@ -4,7 +4,6 @@ import org.dselent.course_load_scheduler.client.action.ReceiveRemoveRequestActio
 import org.dselent.course_load_scheduler.client.event_handler.ReceiveRemoveRequestEventHandler;
 
 import com.google.gwt.event.shared.GwtEvent;
-import com.google.gwt.event.shared.GwtEvent.Type;
 
 public class ReceiveRemoveRequestEvent extends GwtEvent<ReceiveRemoveRequestEventHandler>{
 	public static Type<ReceiveRemoveRequestEventHandler> TYPE = new Type<ReceiveRemoveRequestEventHandler>();
