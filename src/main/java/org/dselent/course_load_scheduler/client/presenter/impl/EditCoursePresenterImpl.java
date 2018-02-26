@@ -71,7 +71,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		registration = eventBus.addHandler(LoadEditCourseEvent.TYPE, this);
 		eventBusRegistration.put(LoadEditCourseEvent.TYPE, registration);
 		
-		eventBusRegistration.put(ReceiveGetTermsEvent.TYPE, eventBus.addHandler(ReceiveGetTermsEvent.TYPE, this));
+		eventBusRegistration.put(ReceiveGetFrequenciesEvent.TYPE, eventBus.addHandler(ReceiveGetFrequenciesEvent.TYPE, this));
 		eventBusRegistration.put(ReceiveGetSectionsEvent.TYPE, eventBus.addHandler(ReceiveGetSectionsEvent.TYPE, this));
 	}
 	
@@ -81,7 +81,6 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 		
 		//fill frequency tables, sections, and the fields with the information from the course
 		if(course != null) {
-			Window.alert("In edit course to pop stuff");
 			retrieveFrequencies();
 			Window.alert("frequs evt fired");
 			retrieveSections();
@@ -100,6 +99,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	//The response containing the frequencies. Also sets the dropdown's index to the one currently selected by the course
 	@Override
 	public void onReceiveGetFrequencies(ReceiveGetFrequenciesEvent evt) {
+	
 		int index = fillFrequencies(evt.getAction().getFrequencies(), course.getFrequencyId());
 		view.getFrequencyDropdown().setSelectedIndex(index);
 	}
@@ -172,6 +172,7 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	@Override
 	public void retrieveSections() {
 		//Sends event to DB to fetch sections
+		Window.alert("get sections! course = " + course.getCoursesId());
 		eventBus.fireEvent(new SendGetSectionsEvent(new SendGetSectionsAction(course.getCoursesId())));
 	}
 	
@@ -179,7 +180,6 @@ public class EditCoursePresenterImpl extends BasePresenterImpl implements EditCo
 	//gets the sections for this course and fills the list with them
 	@Override
 	public void fillSections() {
-
 		StackPanel panel = view.getSectionList();
 		panel.clear();
 		

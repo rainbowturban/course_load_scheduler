@@ -1,7 +1,7 @@
 package org.dselent.course_load_scheduler.client.receive.jsonkeys;
 
 public enum ReceiveGetSectionsKeys {
-	ID,
+	SECTION_ID,
 	SECTION_TYPE,
 	DAYS,
 	TERMS_NAME,

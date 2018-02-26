@@ -100,7 +100,6 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	//uses the returned frequencies to fill the list of frequencies
 	@Override
 	public void onReceiveGetFrequencies(ReceiveGetFrequenciesEvent evt) {
-		Window.alert(evt.getAction().getFrequencies().toString());
 		fillFrequencies(evt.getAction().getFrequencies());
 	}
 	
@@ -110,7 +109,6 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 		ListBox box = view.getFrequencyDropdown();
 		box.clear();
 		Iterator<Frequency> iterator = freqs.iterator();
-		
 		while(iterator.hasNext()) {
 			Frequency f = iterator.next();
 			//add to frequency dropdown
