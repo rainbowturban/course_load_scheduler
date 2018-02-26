@@ -13,6 +13,7 @@ import org.dselent.course_load_scheduler.client.event.LoadCreateAccountEvent;
 import org.dselent.course_load_scheduler.client.event.LoadHomePageEvent;
 import org.dselent.course_load_scheduler.client.event.LoadLoginPageEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveCreateAccountEvent;
+import org.dselent.course_load_scheduler.client.event.ReceiveLoginEvent;
 import org.dselent.course_load_scheduler.client.event.SendLoginEvent;
 import org.dselent.course_load_scheduler.client.exceptions.EmptyStringException;
 import org.dselent.course_load_scheduler.client.gin.Injector;
@@ -21,6 +22,7 @@ import org.dselent.course_load_scheduler.client.presenter.LoginPagePresenter;
 import org.dselent.course_load_scheduler.client.view.LoginPageView;
 
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.inject.Inject;
 
@@ -134,10 +136,6 @@ public class LoginPagePresenterImpl extends BasePresenterImpl implements LoginPa
 			if(validUserName && validPassword)
 			{
 				sendLogin(userName, password);
-				//For the sake of seeing the rest of the program so far, it redirects to home here (will not in final draft)
-				//also assumes you are an admin
-				eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction(true)));
-				parentPresenter.hideLoadScreen();
 			}
 			else
 			{
@@ -146,6 +144,21 @@ public class LoginPagePresenterImpl extends BasePresenterImpl implements LoginPa
 				eventBus.fireEvent(ile);
 			}
 		}
+	}
+	
+	//if login is invalid, it hides the loading screen and displays an alert, as well as clearing the text field for the password.
+	@Override
+	public void onInvalidLogin(InvalidLoginEvent evt) {
+		parentPresenter.hideLoadScreen();
+		Window.alert("An incorrect email or password was entered.");
+		view.getPasswordTextBox().setText("");
+	}
+	
+	//if login is valid, it loads the home page
+	@Override
+	public void onReceiveLogin(ReceiveLoginEvent evt) {
+		LoadHomePageAction action = new LoadHomePageAction(evt.getAction().getModel());
+		eventBus.fireEvent(new LoadHomePageEvent(action));
 	}
 
 	@Override

@@ -2,14 +2,18 @@ package org.dselent.course_load_scheduler.client.action;
 
 import org.dselent.course_load_scheduler.client.model.Schedule;
 
-public class ReceiveAddScheduleAction extends Action{
+public class SendEditScheduleAction extends Action{
 	private Schedule schedule;
+
+	public SendEditScheduleAction() {
+		schedule = null;
+	}
 	
-	public ReceiveAddScheduleAction(Schedule schedule) {
+	public SendEditScheduleAction(Schedule schedule) {
 		this.schedule = schedule;
 	}
 	
-	public Schedule getAddScheduleInfo() {
+	public Schedule getEditScheduleInfo() {
 		return schedule;
 	}
 
