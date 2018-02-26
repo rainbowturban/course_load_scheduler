@@ -60,6 +60,7 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 
 	@Override
 	public void onLoadCreateAccount(LoadCreateAccountEvent evt) {
+		populateComboBox();
 		this.go(parentPresenter.getView().getViewRootPanel());
 	}
 

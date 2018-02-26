@@ -2,6 +2,7 @@ package org.dselent.course_load_scheduler.client;
 
 import org.dselent.course_load_scheduler.client.gin.Injector;
 import org.dselent.course_load_scheduler.client.presenter.impl.*;
+import org.dselent.course_load_scheduler.client.service.impl.CreateAccountServiceImpl;
 import org.dselent.course_load_scheduler.client.service.impl.HomeServiceImpl;
 import org.dselent.course_load_scheduler.client.service.impl.MapServiceImpl;
 import org.dselent.course_load_scheduler.client.service.impl.ScheduleServiceImpl;
@@ -86,6 +87,10 @@ public class CourseLoadScheduler implements EntryPoint
 		
 		UserServiceImpl userService = injector.getUserService();
 		userService.init();
+		
+		CreateAccountServiceImpl createAccountService = injector.getCreateAccountService();
+		createAccountService.init();
+
 		
 		//Testing stuff for Hannah's page
 		//---------------------------------------------------------------

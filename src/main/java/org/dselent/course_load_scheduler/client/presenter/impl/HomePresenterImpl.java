@@ -25,6 +25,7 @@ import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.HomeView;
 
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -106,7 +107,14 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 		this.go(parentPresenter.getView().getViewRootPanel());
 		Injector.INSTANCE.getIndexPresenter().hideLoadScreen();
 	}
-	
+
+	@Override
+	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {
+		Window.alert("Received get faculty event");
+		facultyListHolder = evt.getAction().getList();
+		populateFacultyList();
+	}
+
 	public void onReceiveGetOneFacultySectionInfo(ReceiveGetOneFacultySectionInfoEvent evt) {
 		sectionListHolder = evt.getAction().getList();
 	}
@@ -160,26 +168,20 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 			}
 			facultyVertPanel.add(courseList);
 		}
+		view.setFacultyListVerticalPanel(facultyVertPanel);
 
-	}
-
-	private void retreiveOneFacultySectionInfo(Integer id) {
-		eventBus.fireEvent(new SendGetOneFacultySectionInfoEvent(new SendGetOneFacultySectionInfoAction(id)));
 	}
 	private void retreiveFacultyList() {
 		//Sends event to DB to fetch frequencies
 		eventBus.fireEvent(new SendGetFacultyEvent(new SendGetFacultyAction()));
 	}
 
+	private void retreiveOneFacultySectionInfo(Integer id) {
+		eventBus.fireEvent(new SendGetOneFacultySectionInfoEvent(new SendGetOneFacultySectionInfoAction(id)));
+	}
+
 	public void setParentPresenter(IndexPresenter parentPresenter) {
 		this.parentPresenter = parentPresenter;
 	}
-	
-	@Override
-	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {
-		facultyListHolder = evt.getAction().getList();
-		populateFacultyList();
-	}
-	
 
 }
