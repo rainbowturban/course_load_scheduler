@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.dselent.course_load_scheduler.client.event_handler.EventHandlerAdapter;
+import org.dselent.course_load_scheduler.client.model.User;
 import org.dselent.course_load_scheduler.client.presenter.BasePresenter;
 
 import com.google.gwt.event.shared.GwtEvent;
@@ -22,6 +23,8 @@ public abstract class BasePresenterImpl extends EventHandlerAdapter implements B
 	// Call bind after construction
 	@Inject
 	protected SimpleEventBus eventBus;
+	
+	static public User user = new User();
 	
 	protected Map<GwtEvent.Type<?>, HandlerRegistration> eventBusRegistration;
 	
@@ -47,4 +50,14 @@ public abstract class BasePresenterImpl extends EventHandlerAdapter implements B
 			eventBusRegistration.get(iterator.next()).removeHandler();
 		}
 	}
+	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
 }

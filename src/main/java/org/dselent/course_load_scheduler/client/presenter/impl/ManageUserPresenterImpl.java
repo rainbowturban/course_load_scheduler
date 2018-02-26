@@ -74,22 +74,22 @@ public class ManageUserPresenterImpl extends BasePresenterImpl implements Manage
 	}
 	@Override
 	public void loadAccountPage() {
-		eventBus.fireEvent(new ManageUserPageEvent(new ManageUserPageAction(true)));
+		eventBus.fireEvent(new ManageUserPageEvent(new ManageUserPageAction()));
 		
 	}
 	@Override
 	public void loadSchedulePage() {
-		eventBus.fireEvent(new LoadScheduleEvent(new LoadScheduleAction(true)));
+		eventBus.fireEvent(new LoadScheduleEvent(new LoadScheduleAction()));
 		
 	}
 	@Override
 	public void loadViewCoursesPage() {
-		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(true)));
+		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction()));
 		
 	}
 	@Override
 	public void loadViewHomePage() {
-		eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction(true)));
+		eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction()));
 		
 	}
 	
