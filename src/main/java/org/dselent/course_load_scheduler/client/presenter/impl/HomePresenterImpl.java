@@ -84,26 +84,26 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 
 	@Override
 	public void loadAccountPage() {
-		eventBus.fireEvent(new ManageUserPageEvent(new ManageUserPageAction(adminUser)));
+		eventBus.fireEvent(new ManageUserPageEvent(new ManageUserPageAction()));
 	}
 
 	@Override
 	public void loadHomePage() {
-		eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction(adminUser)));
+		eventBus.fireEvent(new LoadHomePageEvent(new LoadHomePageAction()));
 	}
 	@Override
 	public void loadSchedulePage() {
-		eventBus.fireEvent(new LoadScheduleEvent(new LoadScheduleAction(adminUser)));
+		eventBus.fireEvent(new LoadScheduleEvent(new LoadScheduleAction()));
 	}
 	@Override
 	public void loadViewCoursesPage() {
-		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(adminUser))); 
+		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction())); 
 	}
 
 	@Override
 	public void onLoadHomePage(LoadHomePageEvent evt) {
 		populateFacultyList();
-		adminUser = evt.getAction().isAdminUser();
+		//user = evt.getAction().getUser();
 		this.go(parentPresenter.getView().getViewRootPanel());
 	}
 

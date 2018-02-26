@@ -29,7 +29,6 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	
 	private IndexPresenter parentPresenter;
 	private AddCourseView view;
-	private User user;
 	
 	@Inject
 	public AddCoursePresenterImpl(IndexPresenter parentPresenter, AddCourseView view)
@@ -66,8 +65,6 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 	
 	@Override
 	public void onLoadAddCourse(LoadAddCourseEvent evt) {
-		user = evt.getAction().getUser();
-		
 		retrieveFrequencies();
 		this.go(parentPresenter.getView().getViewRootPanel());
 	}
@@ -153,7 +150,7 @@ public class AddCoursePresenterImpl extends BasePresenterImpl implements AddCour
 		view.getCourseNameField().setText("");
 		view.getCourseNumberField().setText("");
 
-		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction(user)));
+		eventBus.fireEvent(new LoadViewCoursesEvent(new LoadViewCoursesAction()));
 	}
 	
 }
