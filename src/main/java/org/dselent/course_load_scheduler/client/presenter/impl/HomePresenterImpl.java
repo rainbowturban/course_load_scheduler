@@ -25,6 +25,7 @@ import org.dselent.course_load_scheduler.client.model.SectionsInfo;
 import org.dselent.course_load_scheduler.client.presenter.HomePresenter;
 
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -57,8 +58,9 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 		eventBusRegistration.put(LoadHomePageEvent.TYPE, registration);
 		registration = eventBus.addHandler(ReceiveGetOneFacultySectionInfoEvent.TYPE, this);
 		eventBusRegistration.put(ReceiveGetOneFacultySectionInfoEvent.TYPE, registration);
-		//registration = eventBus.addHandler(ReceiveGetFacultyEvent.TYPE, this);
-		//eventBusRegistration.put(ReceiveGetFacultyEvent.TYPE, registration);
+		
+		registration = eventBus.addHandler(ReceiveGetFacultyEvent.TYPE, this);
+		eventBusRegistration.put(ReceiveGetFacultyEvent.TYPE, registration);
 
 	}
 
@@ -101,9 +103,12 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 
 	@Override
 	public void onLoadHomePage(LoadHomePageEvent evt) {
+		Window.alert("we ARE IN the OTHER thingy?");
 		populateFacultyList();
+		Window.alert("pop the list?");
 		//user = evt.getAction().getUser();
 		this.go(parentPresenter.getView().getViewRootPanel());
+		Window.alert("we LAUNCHED the OTHER thingy?");
 	}
 
 	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {

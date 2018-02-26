@@ -173,9 +173,11 @@ public class LoginPagePresenterImpl extends BasePresenterImpl implements LoginPa
 	//if login is valid, it loads the home page
 	@Override
 	public void onReceiveLogin(ReceiveLoginEvent evt) {
+		Window.alert("we reached the thingy?");
 		user = evt.getAction().getModel();
 		LoadHomePageAction action = new LoadHomePageAction();
 		eventBus.fireEvent(new LoadHomePageEvent(action));
+		Window.alert("we FIRED the OTHER thingy?");
 	}
 
 	@Override

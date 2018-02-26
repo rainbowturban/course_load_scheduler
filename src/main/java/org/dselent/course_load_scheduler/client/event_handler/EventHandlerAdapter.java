@@ -59,7 +59,8 @@ SendLoginEventHandler,
 SendNewCourseEventHandler,
 SendNewSectionEventHandler,
 SendRemoveCourseEventHandler,
-SendRemoveSectionEventHandler
+SendRemoveSectionEventHandler,
+ReceiveGetFacultyEventHandler
 
 
 {
@@ -162,6 +163,9 @@ SendRemoveSectionEventHandler
 
 	@Override
 	public void onReceiveStartTimes(ReceiveStartTimesEvent evt) {}
+	
+	@Override
+	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {}
 
 	@Override
 	public void onSendEditCourse(SendEditCourseEvent evt) {}
