@@ -137,9 +137,6 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		if (globalStartTimes != null && globalEndTimes != null && globalRoster != null) {
 			fillCourseInfo();
 		}
-		if (globalStartTimes != null) {
-			fillCalendarHeader();
-		}
 		if (globalTerms != null && globalRoster != null) {
 			fillInfo();
 		}
@@ -161,30 +158,6 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 	public void setParentPresenter(IndexPresenter parentPresenter)
 	{
 		this.parentPresenter = parentPresenter;
-	}
-	
-	@Override
-	public void fillCalendarWithCourses() {
-		FlexTable calendar = view.getFlexCalendar();
-		// TODO
-	}
-	
-	@Override
-	public void fillCalendarHeader() {
-		view.getTabPanel().selectTab(0);
-		
-		FlexTable calendar = view.getFlexCalendar();
-		calendar.removeAllRows();
-		String[] columnHeaders = {"Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
-		for(int i=0; i<columnHeaders.length; i++) {
-			calendar.setWidget(0, i, new Label(columnHeaders[i]));
-		}
-		Iterator<StartTime> startTimesIterator = globalStartTimes.iterator();
-		while(startTimesIterator.hasNext()) {
-			StartTime startTimeInfo = startTimesIterator.next();
-			calendar.insertRow(calendar.getRowCount());
-			calendar.setWidget(calendar.getRowCount()-1, 0, new Label(startTimeInfo.getTime().toString()));
-		}
 	}
 	
 	@Override
