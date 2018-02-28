@@ -117,14 +117,14 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 
 	@Override
 	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {
-		Window.alert("Received faculty list");
+		//Window.alert("Received faculty list");
 		facultyListHolder = evt.getAction().getList();
 		retreiveOneFacultySectionInfo();
 	}
 
 	@Override
 	public void onReceiveGetOneFacultySectionInfo(ReceiveGetOneFacultySectionInfoEvent evt) {
-		Window.alert("Received section info list");
+		//Window.alert("Received section info list");
 		sectionListHolder = evt.getAction().getList();
 		populateFacultyList();
 	}
@@ -134,7 +134,7 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	 * @param facultyList 
 	 */
 	private void populateFacultyList() {
-		Window.alert("Ready to populate");
+		//Window.alert("Ready to populate");
 		boolean hasCourses = false;
 		//Get all the faculty
 		VerticalPanel facultyVertPanel = view.getFacultyListVerticalPanel();
@@ -198,7 +198,7 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 			courseList.insert(numCourses, 0);
 			facultyVertPanel.add(courseList);
 		}
-		Window.alert("added vert panel to view");
+		//Window.alert("added vert panel to view");
 		view.setFacultyListVerticalPanel(facultyVertPanel);
 	}
 
