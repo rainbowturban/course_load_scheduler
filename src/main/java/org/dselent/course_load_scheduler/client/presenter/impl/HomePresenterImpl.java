@@ -134,7 +134,8 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 		boolean hasCourses = false;
 		//Get all the faculty
 		VerticalPanel facultyVertPanel = view.getFacultyListVerticalPanel();
-
+		facultyVertPanel.clear();
+		
 		//iterate through the list of faculty
 		for(SectionsInfo s : sectionListHolder) {
 			HorizontalPanel courseList = new HorizontalPanel();
