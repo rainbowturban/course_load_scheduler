@@ -55,9 +55,5 @@ public abstract class BasePresenterImpl extends EventHandlerAdapter implements B
 		return user;
 	}
 	
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
 	
 }

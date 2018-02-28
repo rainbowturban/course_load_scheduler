@@ -1,10 +1,7 @@
 package org.dselent.course_load_scheduler.client.callback;
 
-import java.util.ArrayList;
-
 import org.dselent.course_load_scheduler.client.action.ReceiveGetCourseListAction;
 import org.dselent.course_load_scheduler.client.event.ReceiveGetCourseListEvent;
-import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.translator.impl.GetCourseListActionTranslatorImpl;
 import org.dselent.course_load_scheduler.client.utils.JSONHelper;
 

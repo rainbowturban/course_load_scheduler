@@ -1,6 +1,5 @@
 package org.dselent.course_load_scheduler.client.presenter.impl;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.dselent.course_load_scheduler.client.action.LoadHomePageAction;
@@ -25,7 +24,6 @@ import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.HomeView;
 
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -113,26 +111,18 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 		eventBus.fireEvent(new SendGetFacultyEvent(new SendGetFacultyAction()));
 	}
 	private void retreiveOneFacultySectionInfo() {
-		Window.alert("Fired retreive one facutly section info");
 		eventBus.fireEvent(new SendGetOneFacultySectionInfoEvent(new SendGetOneFacultySectionInfoAction()));
 	}
 	
 	@Override
 	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {
-		//Window.alert("Received Get Faculty event");
 		facultyListHolder = evt.getAction().getList();
-		Window.alert("facultyListHolder toString():" + facultyListHolder.toString());
 		retreiveOneFacultySectionInfo();
 	}
 
 	@Override
 	public void onReceiveGetOneFacultySectionInfo(ReceiveGetOneFacultySectionInfoEvent evt) {
-		Window.alert("Received Get One Faculty Section Info event");
-		Window.alert("ACTION to string: " + evt.getAction().toString());
-
 		sectionListHolder = evt.getAction().getList();
-		Window.alert("Put something into sections list holder");
-
 		populateFacultyList();
 	}
 
@@ -143,23 +133,16 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	private void populateFacultyList() {
 		boolean hasCourses = false;
 		//Get all the faculty
-		//Window.alert("populating faculty list...");
 		VerticalPanel facultyVertPanel = view.getFacultyListVerticalPanel();
 
 		//iterate through the list of faculty
 		for(SectionsInfo s : sectionListHolder) {
-			//Window.alert("Inside the fIterator loop...");			
-			//Window.alert("Returned from retreive get one faculty section info");
-			//Window.alert("Section list holder to string: " + sectionListHolder.toString());
-
 			HorizontalPanel courseList = new HorizontalPanel();
-
 			Label numCourses;
 			Label courseInfo;
-
+			
 			//Check if the faculty has courses assigned
 			for (Faculty f : facultyListHolder){
-				//Window.alert("Inside sIterator loop...");
 				if(s.getFacultyId() == f.getId()) {
 					Label name = new Label("" + f.getLastName() + ", " + f.getFirstName());
 					courseList.add(name);
@@ -176,7 +159,6 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 			facultyVertPanel.add(courseList);
 		}
 		view.setFacultyListVerticalPanel(facultyVertPanel);
-		Window.alert("Set vertical panel");
 	}
 
 	public void setParentPresenter(IndexPresenter parentPresenter) {

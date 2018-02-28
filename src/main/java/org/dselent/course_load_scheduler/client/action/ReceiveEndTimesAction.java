@@ -3,7 +3,6 @@ package org.dselent.course_load_scheduler.client.action;
 import java.util.ArrayList;
 
 import org.dselent.course_load_scheduler.client.model.EndTime;
-import org.dselent.course_load_scheduler.client.model.User;
 
 public class ReceiveEndTimesAction extends Action {
 	private ArrayList<EndTime> endTimes;

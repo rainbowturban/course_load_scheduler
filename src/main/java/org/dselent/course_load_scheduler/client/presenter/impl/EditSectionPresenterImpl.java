@@ -10,7 +10,6 @@ import org.dselent.course_load_scheduler.client.action.SendGetEndTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetSectionTypesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetStartTimesAction;
 import org.dselent.course_load_scheduler.client.action.SendGetTermsAction;
-import org.dselent.course_load_scheduler.client.action.SendNewSectionAction;
 import org.dselent.course_load_scheduler.client.event.LoadEditCourseEvent;
 import org.dselent.course_load_scheduler.client.event.LoadEditSectionEvent;
 import org.dselent.course_load_scheduler.client.event.ReceiveEndTimesEvent;
@@ -22,7 +21,6 @@ import org.dselent.course_load_scheduler.client.event.SendGetEndTimesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetSectionTypesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetStartTimesEvent;
 import org.dselent.course_load_scheduler.client.event.SendGetTermsEvent;
-import org.dselent.course_load_scheduler.client.event.SendNewSectionEvent;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.model.CourseSections;
 import org.dselent.course_load_scheduler.client.model.EndTime;
@@ -105,7 +103,7 @@ public class EditSectionPresenterImpl extends BasePresenterImpl implements EditS
 		this.parentPresenter = parentPresenter;
 	}
 
-	//@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onLoadEditSection(LoadEditSectionEvent evt) {
 		oldSection = evt.getAction().getSectionInfo();

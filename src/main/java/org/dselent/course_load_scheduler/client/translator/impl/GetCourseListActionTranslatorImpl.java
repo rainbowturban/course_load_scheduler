@@ -7,13 +7,11 @@ import org.dselent.course_load_scheduler.client.action.ReceiveGetCourseListActio
 import org.dselent.course_load_scheduler.client.action.SendGetCourseListAction;
 import org.dselent.course_load_scheduler.client.model.CourseInfo;
 import org.dselent.course_load_scheduler.client.receive.jsonkeys.ReceiveGetCourseListKeys;
-import org.dselent.course_load_scheduler.client.send.jsonkeys.SendGetCourseListKeys;
 import org.dselent.course_load_scheduler.client.translator.ActionTranslator;
 import org.dselent.course_load_scheduler.client.utils.JSONHelper;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
-import com.google.gwt.user.client.Window;
 
 public class GetCourseListActionTranslatorImpl implements ActionTranslator<SendGetCourseListAction, ReceiveGetCourseListAction>{
 	@Override
