@@ -307,14 +307,16 @@ public class AdminCalendarPresenterImpl extends BasePresenterImpl implements Adm
 		Iterator<SectionsInfo> sectionIterator = evt.getAction().getList().iterator();
 		while(sectionIterator.hasNext()) {
 			SectionsInfo sectionInfo = sectionIterator.next();
-			String title = sectionInfo.getCoursesNumber()+" - "+sectionInfo.getSectionsName();
-			VerticalPanel body = new VerticalPanel();
-			body.add(new Label("Title: "+sectionInfo.getCoursesTitle()));
-			body.add(new Label("Start Time: "+sectionInfo.getStartTime()));
-			body.add(new Label("End Time: "+sectionInfo.getEndTime()));
-			body.add(new Label("Days: "+sectionInfo.getDays()));
-			body.add(new Label("Section Type: "+sectionInfo.getSectionType()));
-			view.getTablePanel().add(body, title);
+			if(sectionInfo.getFacultyId() == view.getScheduleSelectBox().getSelectedIndex()+1) {
+				String title = sectionInfo.getCoursesNumber()+" - "+sectionInfo.getSectionsName();
+				VerticalPanel body = new VerticalPanel();
+				body.add(new Label("Title: "+sectionInfo.getCoursesTitle()));
+				body.add(new Label("Start Time: "+sectionInfo.getStartTime()));
+				body.add(new Label("End Time: "+sectionInfo.getEndTime()));
+				body.add(new Label("Days: "+sectionInfo.getDays()));
+				body.add(new Label("Section Type: "+sectionInfo.getSectionType()));
+				view.getTablePanel().add(body, title);
+			}
 		}
 	}
 	
