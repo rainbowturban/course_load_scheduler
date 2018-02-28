@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 
 public class HomeViewImpl extends BaseViewImpl<HomePresenter> implements HomeView {
 
@@ -22,53 +23,48 @@ public class HomeViewImpl extends BaseViewImpl<HomePresenter> implements HomeVie
 
 	private static HomeViewImplUiBinder uiBinder = GWT.create(HomeViewImplUiBinder.class);
 	@UiField Button accountButton;
+	@UiField Label assignedCoursesLabel;
 	@UiField Button coursesButton;
-	@UiField Button homeButton;
-	@UiField HTMLPanel rootPanel;
-
-	@UiField Button scheduleButton;
-	@UiField VerticalPanel facultyListVerticalPanel;
 	@UiField HorizontalPanel facultyListTitlePanel;
+
+	@UiField VerticalPanel facultyListVerticalPanel;
+	@UiField Label facultyNameLabel;
+	@UiField Button homeButton;
+	@UiField Label numberOfCoursesLabel;
+	@UiField HTMLPanel rootPanel;
+	@UiField Button scheduleButton;
 
 	public HomeViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
-	}
-
-	@Override
-	public HasWidgets getViewRootPanel() {
-		return rootPanel;
 	}
 
 	public Button getAccountButton() {
 		return accountButton;
 	}
 
-	public void setAccountButton(Button accountButton) {
-		this.accountButton = accountButton;
-	}
-
 	public Button getCoursesButton() {
 		return coursesButton;
 	}
 
-	public void setCoursesButton(Button coursesButton) {
-		this.coursesButton = coursesButton;
+	public HorizontalPanel getFacultyListTitlePanel() {
+		return facultyListTitlePanel;
+	}
+
+	public VerticalPanel getFacultyListVerticalPanel() {
+		return facultyListVerticalPanel;
 	}
 
 	public Button getHomeButton() {
 		return homeButton;
 	}
 
-	public void setHomeButton(Button homeButton) {
-		this.homeButton = homeButton;
-	}
-
 	public Button getScheduleButton() {
 		return scheduleButton;
 	}
 
-	public void setScheduleButton(Button scheduleButton) {
-		this.scheduleButton = scheduleButton;
+	@Override
+	public HasWidgets getViewRootPanel() {
+		return rootPanel;
 	}
 
 	@Override
@@ -96,17 +92,33 @@ public class HomeViewImpl extends BaseViewImpl<HomePresenter> implements HomeVie
 		presenter.loadSchedulePage();
 	}
 
+	public void setAccountButton(Button accountButton) {
+		this.accountButton = accountButton;
+	}
+
+	public void setCoursesButton(Button coursesButton) {
+		this.coursesButton = coursesButton;
+	}
+
+	public void setFacultyListTitlePanel(HorizontalPanel facultyListTitlePanel) {
+		this.facultyListTitlePanel = facultyListTitlePanel;
+	}
+
+	public void setFacultyListVerticalPanel(VerticalPanel facultyListVerticalPanel) {
+		this.facultyListVerticalPanel = facultyListVerticalPanel;
+	}
+
+	public void setHomeButton(Button homeButton) {
+		this.homeButton = homeButton;
+	}
+
 	@Override
 	public void setPresenter(HomePresenter presenter) {
 		this.presenter = presenter;
 	}
 
-	public VerticalPanel getFacultyListVerticalPanel() {
-		return facultyListVerticalPanel;
-	}
-
-	public void setFacultyListVerticalPanel(VerticalPanel facultyListVerticalPanel) {
-		this.facultyListVerticalPanel = facultyListVerticalPanel;
+	public void setScheduleButton(Button scheduleButton) {
+		this.scheduleButton = scheduleButton;
 	}
 
 }

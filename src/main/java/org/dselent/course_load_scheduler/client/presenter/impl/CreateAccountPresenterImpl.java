@@ -22,6 +22,7 @@ import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.CreateAccountView;
 
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.inject.Inject;
@@ -63,7 +64,7 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 		populateComboBox();
 		this.go(parentPresenter.getView().getViewRootPanel());
 	}
-
+	
 	@Override
 	public void go(HasWidgets container)
 	{
@@ -200,6 +201,23 @@ public class CreateAccountPresenterImpl extends BasePresenterImpl implements Cre
 		}
 	}
 
+	/*@Override
+	public void onInvalidAccountCreation(InvalidAccountCreationEvent evt) {
+		createAccountClickInProgress = false;
+		view.getSubmitButton().setEnabled(true);
+		parentPresenter.hideLoadScreen();
+		StringBuilder sb = new StringBuilder();
+		InvalidAccountCreationAction action = evt.getAction();
+		for(int i = 0; i < action.getNumberOfReasons(); i++)
+		{
+			sb.append(action.getReason(i));
+			sb.append("\n");
+		}
+		
+		Window.alert(sb.toString());
+		//this.go(parentPresenter.getView().getViewRootPanel());
+	}*/
+	
 	private void validateForNullString(String string) throws EmptyStringException {
 		checkEmptyString(string);
 	}

@@ -49,6 +49,10 @@ public class InvalidAccountCreationAction extends Action
 		return reasonList.size();
 	}
 	
+	public List<String> getReasonList() {
+		return reasonList;
+	}
+
 	@Override
 	public String toString()
 	{

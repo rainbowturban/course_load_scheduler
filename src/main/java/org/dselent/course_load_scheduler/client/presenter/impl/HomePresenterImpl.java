@@ -24,6 +24,7 @@ import org.dselent.course_load_scheduler.client.presenter.IndexPresenter;
 import org.dselent.course_load_scheduler.client.view.HomeView;
 
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -113,15 +114,17 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	private void retreiveOneFacultySectionInfo() {
 		eventBus.fireEvent(new SendGetOneFacultySectionInfoEvent(new SendGetOneFacultySectionInfoAction()));
 	}
-	
+
 	@Override
 	public void onReceiveGetFaculty(ReceiveGetFacultyEvent evt) {
+		Window.alert("Received faculty list");
 		facultyListHolder = evt.getAction().getList();
 		retreiveOneFacultySectionInfo();
 	}
 
 	@Override
 	public void onReceiveGetOneFacultySectionInfo(ReceiveGetOneFacultySectionInfoEvent evt) {
+		Window.alert("Received section info list");
 		sectionListHolder = evt.getAction().getList();
 		populateFacultyList();
 	}
@@ -131,21 +134,56 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 	 * @param facultyList 
 	 */
 	private void populateFacultyList() {
+		Window.alert("Ready to populate");
 		boolean hasCourses = false;
 		//Get all the faculty
 		VerticalPanel facultyVertPanel = view.getFacultyListVerticalPanel();
 		facultyVertPanel.clear();
-		
+		HorizontalPanel titlePanel = view.getFacultyListTitlePanel();
+		facultyVertPanel.add(titlePanel);
+
+		/*~~~~~~NEW LOOP~~~~~~
 		//iterate through the list of faculty
 		for(SectionsInfo s : sectionListHolder) {
 			HorizontalPanel courseList = new HorizontalPanel();
 			Label numCourses;
 			Label courseInfo;
-			
+
+			//Check if the faculty has courses assigned
+			for (Faculty f : facultyListHolder){
+				hasCourses = false;
+				Label name = new Label("" + f.getLastName() + ", " + f.getFirstName());
+				//name.setStyleName("faculty-name");
+				courseList.add(name);
+				if(s.getFacultyId() == f.getId()) {
+					hasCourses = true;
+					courseInfo = new Label("" + s.getCoursesTitle() + "  " + s.getTermsName());
+					courseList.add(courseInfo);
+				}else {
+					courseInfo = new Label("");
+				}
+				if(hasCourses)
+					numCourses = new Label("(" + (courseList.getWidgetCount()-1) + ")");
+				else
+					numCourses = new Label("");
+				//numCourses.setStyleName("num-courses-label");
+				courseList.insert(numCourses, 0);
+				facultyVertPanel.add(courseList);
+			}
+		}*/
+
+		//~~~~~~OLD (WORKING) LOOP~~~~~~
+		//iterate through the list of faculty
+		for(SectionsInfo s : sectionListHolder) {
+			HorizontalPanel courseList = new HorizontalPanel();
+			Label numCourses;
+			Label courseInfo;
+
 			//Check if the faculty has courses assigned
 			for (Faculty f : facultyListHolder){
 				if(s.getFacultyId() == f.getId()) {
 					Label name = new Label("" + f.getLastName() + ", " + f.getFirstName());
+					name.setStyleName("faculty-name");
 					courseList.add(name);
 					hasCourses = true;
 					courseInfo = new Label("" + s.getCoursesTitle() + "  " + s.getTermsName());
@@ -153,12 +191,14 @@ public class HomePresenterImpl extends BasePresenterImpl implements HomePresente
 				}
 			}
 			numCourses = new Label("(" + (courseList.getWidgetCount()-1) + ")");
+			numCourses.setStyleName("num-courses-label");
 			if(!hasCourses) {
 				courseInfo = new Label("");
 			}
 			courseList.insert(numCourses, 0);
 			facultyVertPanel.add(courseList);
 		}
+		Window.alert("added vert panel to view");
 		view.setFacultyListVerticalPanel(facultyVertPanel);
 	}
 

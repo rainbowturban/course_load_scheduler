@@ -5,7 +5,7 @@
 
 	</ui:style>
 <g:HTMLPanel ui:field="rootPanel">
-	<g:VerticalPanel width="605px" styleName="center">
+	<g:VerticalPanel width="824px" styleName="center">
 	<!-- NAV STUFF -->
 	<g:Cell horizontalAlignment="ALIGN_CENTER">
 		<g:HorizontalPanel>
@@ -25,9 +25,9 @@
 	<g:Label text="Welcome!" width="355px" styleName="page-title" />
 	<g:VerticalPanel ui:field="facultyListVerticalPanel">
 		<g:HorizontalPanel ui:field="facultyListTitlePanel">
-			<g:Label text="Number of Courses" styleName="faculty-list-title"/>
-			<g:Label text="Faculty Name" styleName="faculty-list-title"/>
-			<g:Label text="Assigned Courses" styleName="faculty-list-title"/>
+			<g:Label text="Number of Courses" styleName="faculty-list-title" ui:field="numberOfCoursesLabel"/>
+			<g:Label text="Faculty Name" styleName="faculty-list-title" ui:field="facultyNameLabel"/>
+			<g:Label text="Assigned Courses" styleName="faculty-list-title" ui:field="assignedCoursesLabel"/>
 		</g:HorizontalPanel>
 	</g:VerticalPanel>
 	</g:VerticalPanel>
